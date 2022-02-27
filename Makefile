@@ -43,7 +43,7 @@ ref: vendor/autoload.php ## refactoring proposal
 # -----------------------------------
 # Dependencies
 # -----------------------------------
-vendor: composer.json
+vendor/autoload.php: composer.json
 	composer install
 	composer dump-autoload --optimize
 
