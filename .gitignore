@@ -10,7 +10,7 @@
 ###< symfony/framework-bundle ###
 
 /.idea/
-/node_modules/
+/.vscode/
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
@@ -29,7 +29,7 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
+/public/assets/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

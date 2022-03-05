@@ -11,4 +11,4 @@ jobs:
                     php-version: 8.1
             -   uses: actions/checkout@master
             -   name: lint
-                run: make lint
+                run: make lint is_docker=0
