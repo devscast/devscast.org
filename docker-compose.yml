@@ -10,7 +10,7 @@ services:
       MARIADB_DATABASE: devscast
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
     volumes:
-      - database-data:/var/lib/mariadb/data:rw
+      - database-data:/var/lib/mysql:rw
       - ./var:/var/www/var
     labels:
       com.symfony.server.service-prefix: 'DATABASE'
