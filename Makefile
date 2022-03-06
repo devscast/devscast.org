@@ -14,7 +14,7 @@ ifeq ($(is_docker), 1)
 	de := docker-compose exec
 	dr := $(dc) run --rm
 	sfc := $(de) php bin/console
-	node := $(dr) node
+	node := $(dr) --user="$(user)" node
 	php := $(dr) --no-deps php
 	composer := $(php) composer
 	host := 0.0.0.0

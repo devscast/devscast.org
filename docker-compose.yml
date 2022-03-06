@@ -9,8 +9,6 @@ services:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: devscast
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
-    ports:
-      - 3306:3306
     volumes:
       - database-data:/var/lib/mariadb/data:rw
       - ./var:/var/www/var
@@ -71,12 +69,12 @@ services:
   node:
     container_name: devscast_community_node
     user: '${USER_ID}:${GROUP_ID}'
-    build: 
+    build:
       context: ./tools/docker/node
     command: yarn run watch
-    working_dir: /usr/src/app
+    working_dir: /home/node/app
     volumes:
-      - .:/usr/src/app
+      - ./:/home/node/app
     ports:
       - 3000:3000
 
