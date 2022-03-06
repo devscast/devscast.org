@@ -16,6 +16,7 @@ ifeq ($(is_docker), 1)
 	sfc := $(de) php bin/console
 	node := $(dr) node
 	php := $(dr) --no-deps php
+	composer := $(php) composer
 	host := 0.0.0.0
 else
 	php := php
