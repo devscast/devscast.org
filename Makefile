@@ -42,12 +42,13 @@ lint: vendor/autoload.php ## code style standard and static analysis
 	$(php) vendor/bin/ecs check
 	$(php) bin/console lint:yaml config
 	$(php) bin/console lint:twig templates
+	$(php) bin/console lint:container
 	$(php) vendor/bin/phpstan
 
 .PHONY: migrate
 migrate: vendor/autoload.php ## create database and migrate to the latest version
 	$(php) bin/console doctrine:database:create --if-not-exists
-	$(php) bin/console	doctrine:migration:migrate --no-interaction
+	$(php) bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
 
 .PHONY: test
 test: vendor/autoload.php ## unit and integration tests
@@ -61,14 +62,13 @@ build-docker:
 	$(dc) build node
 
 .PHONY: dev
-dev: vendor/autoload.php ## Start the development env
+dev: vendor/autoload.php node_modules/time ## Start the development env
 	$(dc) up
 
 .PHONY: install
-install: vendor/autoload.php ## install and setup
-	yarn install --force
-	npm rebuild node-sass  # see https://github.com/yarnpkg/yarn/issues/4867
-	yarn run build
+install: vendor/autoload.php public/assets/manifest.json ## install and setup
+	make clear
+	make migrate
 
 .PHONY: lf
 lf: vendor/autoload.php ## code style standard fix
@@ -93,3 +93,15 @@ vendor/autoload.php: composer.json
 
 composer.lock: composer.json
 	$(composer) update
+
+node_modules/time: yarn.lock
+	$(node) yarn install --force
+	touch node_modules/time
+
+public/assets: node_modules/time
+	$(node) yarn run build
+
+public/assets/manifest.json: package.json
+	$(node) yarn --force
+	$(node) npm rebuild node-sass  # see https://github.com/yarnpkg/yarn/issues/4867
+	$(node) yarn run build
