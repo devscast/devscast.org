@@ -1,21 +1,89 @@
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: mariadb
+    container_name: devscast_community_mariadb
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: devscast
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
+    ports:
+      - 3306:3306
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - database-data:/var/lib/mariadb/data:rw
+      - ./var:/var/www/var
+    labels:
+      com.symfony.server.service-prefix: 'DATABASE'
+
+  web:
+    image: nginx:alpine
+    container_name: devscast_community_nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www:delegated
+      - ./tools/config/nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php
+
+  php:
+    user: '${USER_ID}:${GROUP_ID}'
+    container_name: devscast_community_php
+    restart: unless-stopped
+    image: grafikart/php:php8.1-1
+    volumes:
+      - .:/var/www:delegated
+    depends_on:
+      - database
+    environment:
+      APP_ENV: dev
+      MAILER_DSN: smtp://maildev:25?encryption=null&auth_mode=null
+      DATABASE_URL: mysql://root:root@database/devscast?serverVersion=10&chartset=utf8
+
+  ## Developpment Tools
+  maildev:
+    image: maildev/maildev
+    container_name: devscast_community_maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - 1080:80
+    restart: unless-stopped
+    networks:
+        - dev
+    labels:
+      com.symfony.server.service-prefix: 'MAILER'
+  
+  adminer:
+    image: adminer
+    container_name: devscast_community_adminer
+    depends_on:
+      - database
+    environment:
+      APP_ENV: dev
+      ADMINER_DESIGN: pepa-linha
+      ADMINER_DEFAULT_SERVER: database
+    ports:
+      - 8082:8080
+
+  node:
+    container_name: devscast_community_node
+    user: '${USER_ID}:${GROUP_ID}'
+    build: 
+      context: ./tools/docker/node
+    command: yarn run watch
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+  database-data:
+    driver:
+      local
+
+networks:
+  dev:
