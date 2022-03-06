@@ -9,9 +9,13 @@ services:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: devscast
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
+    ports:
+      - 3306:3306
     volumes:
       - database-data:/var/lib/mariadb/data:rw
       - ./var:/var/www/var
+    labels:
+      com.symfony.server.service-prefix: 'DATABASE'
 
   web:
     image: nginx:alpine
@@ -45,10 +49,12 @@ services:
     container_name: devscast_community_maildev
     command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
     ports:
-      - 8081:80
+      - 1080:80
     restart: unless-stopped
     networks:
         - dev
+    labels:
+      com.symfony.server.service-prefix: 'MAILER'
   
   adminer:
     image: adminer
