@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Fixtures;
+namespace Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
