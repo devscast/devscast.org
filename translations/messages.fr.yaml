@@ -1,0 +1,6 @@
+authentication:
+    exceptions:
+        user_not_found: ~
+        user_banned: ~
+        reset_password_ongoing_request: ~
+        reset_password_token_expired: ~
