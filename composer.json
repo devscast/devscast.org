@@ -83,13 +83,15 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Application\\": "src/Application/",
+            "Domain\\": "src/Domain/",
+            "Infrastructure\\": "src/Infrastructure/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/",
-            "App\\Fixtures\\": "fixtures/"
+            "Tests\\": "tests/",
+            "Fixtures\\": "fixtures/"
         }
     },
     "replace": {
