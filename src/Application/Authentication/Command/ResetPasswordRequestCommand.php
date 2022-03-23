@@ -12,7 +12,7 @@ namespace Application\Authentication\Command;
 final class ResetPasswordRequestCommand
 {
     public function __construct(
-        public readonly ?string $email = null,
+        public readonly string $email
     ) {
     }
 }

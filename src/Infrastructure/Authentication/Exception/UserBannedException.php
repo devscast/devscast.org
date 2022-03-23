@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Authentication\Exception;
+namespace Infrastructure\Authentication\Exception;
 
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 

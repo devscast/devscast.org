@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 final class User implements UserPasswordHasherInterface, UserInterface
 {
+    use OAuthTrait;
 
     public function getRoles(): array
     {
