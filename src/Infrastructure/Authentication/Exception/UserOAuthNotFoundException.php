@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Exception;
 
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
@@ -26,6 +27,7 @@ final class UserOAuthNotFoundException extends AuthenticationException
     public function __construct(ResourceOwnerInterface $resourceOwner)
     {
         $this->resourceOwner = $resourceOwner;
+        parent::__construct(message: 'authentication.exceptions.oauth_user_not_found');
     }
 
     public function getResourceOwner(): ResourceOwnerInterface

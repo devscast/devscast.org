@@ -17,6 +17,30 @@ final class User implements UserPasswordHasherInterface, UserInterface
 {
     use OAuthTrait;
 
+    public function getEmail(): string
+    {
+        return '';
+    }
+
+    public function setEmail(string $email): self
+    {
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return '';
+    }
+
+    public function setName(string $name): self
+    {
+        return $this;
+    }
+
+    public function setRoles(array $array)
+    {
+    }
+
     public function getRoles(): array
     {
         return [];
@@ -28,7 +52,7 @@ final class User implements UserPasswordHasherInterface, UserInterface
 
     public function getUserIdentifier(): string
     {
-        return '';
+        return $this->getEmail();
     }
 
     public function hashPassword(PasswordAuthenticatedUserInterface $user, string $plainPassword): string
