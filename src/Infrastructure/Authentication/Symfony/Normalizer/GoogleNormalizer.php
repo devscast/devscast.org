@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Normalizer;
 
 use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
+use League\OAuth2\Client\Provider\GoogleUser;
 
 /**
  * Class GoogleNormalizer
@@ -13,7 +14,6 @@ use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
  */
 final class GoogleNormalizer extends AbstractNormalizer
 {
-
     /**
      * @param GoogleUser $object
      * @author bernard-ng <bernard@devscast.tech>

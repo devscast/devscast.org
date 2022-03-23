@@ -6,3 +6,4 @@ authentication:
         reset_password_token_expired: ~
         oauth_verified_email_not_found: ~
         oauth_email_already_used: ~
+        oauth_authenticated: ~

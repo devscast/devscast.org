@@ -7,6 +7,12 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository;
+use Infrastructure\Authentication\Exception\UserOAuthAuthenticatedException;
+use Infrastructure\Authentication\OAuthService;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -34,7 +40,7 @@ abstract class AbstractOAuthAuthenticator
         protected EntityManagerInterface $em,
         private RouterInterface $router,
         private AuthenticationService $authenticationService,
-        private SocialLoginService $socialLogin,
+        private OAuthService $socialLogin,
     ) {
     }
 
@@ -61,7 +67,7 @@ abstract class AbstractOAuthAuthenticator
 
         $user = $this->authenticationService->getUserOrNull();
         if ($user) {
-            throw new UserAuthenticatedException($user, $resourceOwner);
+            throw new UserOAuthAuthenticatedException($user, $resourceOwner);
         }
 
         return new SelfValidatingPassport(
@@ -91,7 +97,7 @@ abstract class AbstractOAuthAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
-        if ($exception instanceof UserAuthenticatedException) {
+        if ($exception instanceof UserOAuthAuthenticatedException) {
             return new RedirectResponse($this->router->generate('authentication_login'));
         }
 

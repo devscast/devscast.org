@@ -15,6 +15,6 @@ final class OAuthEmailAlreadyUsedException extends CustomUserMessageAuthenticati
 {
     public function __construct()
     {
-        parent::__construct(message: "authentication.exceptions.oauth_email_already_used");
+        parent::__construct(message: 'authentication.exceptions.oauth_email_already_used');
     }
 }

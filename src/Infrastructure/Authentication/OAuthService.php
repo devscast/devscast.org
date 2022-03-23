@@ -6,9 +6,11 @@ namespace Infrastructure\Authentication;
 
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\ValueObject\Role;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -26,6 +28,9 @@ final class OAuthService
         $this->session = $requestStack->getSession();
     }
 
+    /**
+     * @throws ExceptionInterface
+     */
     public function persist(ResourceOwnerInterface $resourceOwner): void
     {
         $data = $this->normalizer->normalize($resourceOwner);
@@ -40,11 +45,12 @@ final class OAuthService
             return false;
         }
 
-        $user->setEmail($oauthData['email']);
-        $user->setGithubId($oauthData['github_id'] ?? null);
-        $user->setGoogleId($oauthData['google_id'] ?? null);
-        $user->setName($oauthData['username']);
-        $user->setRoles([Role::USER]);
+        $user
+            ->setEmail($oauthData['email'])
+            ->setGithubId($oauthData['github_id'] ?? null)
+            ->setGoogleId($oauthData['google_id'] ?? null)
+            ->setName($oauthData['username'])
+            ->setRoles([Role::USER]);
         return true;
     }
 

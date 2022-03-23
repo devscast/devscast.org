@@ -7,6 +7,8 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
+use League\OAuth2\Client\Provider\GoogleUser;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 /**
  * Class GoogleAuthenticator

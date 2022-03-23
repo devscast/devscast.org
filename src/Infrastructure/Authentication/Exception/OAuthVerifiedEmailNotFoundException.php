@@ -15,6 +15,6 @@ final class OAuthVerifiedEmailNotFoundException extends CustomUserMessageAuthent
 {
     public function __construct()
     {
-        parent::__construct(message: "authentication.exceptions.oauth_verified_email_not_found");
+        parent::__construct(message: 'authentication.exceptions.oauth_verified_email_not_found');
     }
 }
