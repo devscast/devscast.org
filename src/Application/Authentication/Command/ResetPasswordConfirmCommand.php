@@ -12,7 +12,7 @@ namespace Application\Authentication\Command;
 final class ResetPasswordConfirmCommand
 {
     public function __construct(
-        public readonly ?string $password = null
+        public readonly string $password
     ) {
     }
 }

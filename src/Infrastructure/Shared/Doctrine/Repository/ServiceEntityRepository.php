@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Shared\Doctrine;
+namespace Infrastructure\Shared\Doctrine\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use LogicException;
 
 use function sprintf;
 
@@ -38,7 +37,7 @@ class ServiceEntityRepository extends EntityRepository implements ServiceEntityR
         $manager = $registry->getManagerForClass($entityClass);
 
         if ($manager === null) {
-            throw new LogicException(sprintf(
+            throw new \LogicException(sprintf(
                 'Could not find the entity manager for class "%s". 
                 Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
                 $entityClass

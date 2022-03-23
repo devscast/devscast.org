@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Authentication\Repository;
+namespace Infrastructure\Authentication\Doctrine\Repository;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Repository\ResetPasswordTokenRepository as ResetPasswordTokenRepositoryInterface;
-use Infrastructure\Shared\Doctrine\ServiceEntityRepository;
+use Infrastructure\Shared\Doctrine\Repository\ServiceEntityRepository;
 
 /**
  * Class ResetPasswordTokenRepository

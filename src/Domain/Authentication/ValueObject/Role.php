@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Authentication\Enum;
+namespace Domain\Authentication\ValueObject;
 
 /**
  * Class Role

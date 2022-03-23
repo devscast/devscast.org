@@ -2,29 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Shared\Doctrine;
+namespace Infrastructure\Shared\Doctrine\Repository;
 
 use BadMethodCallException;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Selectable;
-use Doctrine\DBAL\LockMode;
-use Doctrine\Deprecations\Deprecation;
 use Doctrine\Inflector\Inflector;
 use Doctrine\Inflector\InflectorFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\LazyCriteriaCollection;
-use Doctrine\Persistence\Mapping\ClassMetadata;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Repository\Exception\InvalidMagicMethodCall;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectRepository;
-
 use function array_slice;
+use function Infrastructure\Shared\Doctrine\str_starts_with;
 use function lcfirst;
 use function sprintf;
-use function strpos;
 use function substr;
 
 /**

@@ -5,17 +5,31 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: Domain\Authentication\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            custom_authenticator:
+                - Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator
+                - Infrastructure\Authentication\Symfony\Authenticator\GoogleAuthenticator
+                - Infrastructure\Authentication\Symfonyy\Authenticator\GithubAuthenticator
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+            login_link:
+                check_route: authentication_login_link_check
+                signature_properties: [ id, email ]
+                max_uses: 3
+                lifetime: 600
+
+            logout:
+                path: authentication_logout
+                target: authentication_login
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
@@ -23,8 +37,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
