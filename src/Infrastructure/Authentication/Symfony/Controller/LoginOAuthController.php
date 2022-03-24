@@ -6,6 +6,7 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;

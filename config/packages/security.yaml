@@ -19,7 +19,7 @@ security:
             custom_authenticator:
                 - Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator
                 - Infrastructure\Authentication\Symfony\Authenticator\GoogleAuthenticator
-                - Infrastructure\Authentication\Symfonyy\Authenticator\GithubAuthenticator
+                - Infrastructure\Authentication\Symfony\Authenticator\GithubAuthenticator
 
             login_link:
                 check_route: authentication_login_link_check

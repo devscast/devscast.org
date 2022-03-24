@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository as UserRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\ServiceEntityRepository;
 
 /**
  * Class UserRepository
