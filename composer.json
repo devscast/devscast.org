@@ -56,6 +56,7 @@
         "hautelook/alice-bundle": "^2.10",
         "nelmio/alice": "^3.10",
         "phpstan/phpstan": "^1.4",
+        "phpstan/phpstan-doctrine": "^1.2",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpstan/phpstan-symfony": "^1.1",
         "phpunit/phpunit": "^9.5",

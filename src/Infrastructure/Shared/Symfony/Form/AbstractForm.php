@@ -42,6 +42,7 @@ abstract class AbstractForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var object $data */
         $data = $options['data'];
         $reflection = new \ReflectionClass($data);
         $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
@@ -52,7 +53,7 @@ abstract class AbstractForm extends AbstractType
             /** @var \ReflectionNamedType|\ReflectionUnionType|null $type */
             $type = $property->getType();
 
-            if (null === $type) {
+            if (null === $type || $type instanceof \ReflectionUnionType) {
                 break;
             }
 

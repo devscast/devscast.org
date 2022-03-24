@@ -11,13 +11,4 @@ namespace Domain\Shared\Repository;
  */
 interface DataRepository
 {
-    public function find(mixed $id, ?int $lockMode = null, ?int $lockVersion = null): ?object;
-
-    public function findOneBy(array $criteria, array $orderBy = null): ?object;
-
-    public function findAll(): array;
-
-    public function findBy(array $criteria, array $orderBy = null, ?int $limit = null, ?int $offset = null): array;
-
-    public function count(array $criteria): int;
 }

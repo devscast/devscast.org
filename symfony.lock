@@ -243,6 +243,9 @@
     "phpstan/phpstan": {
         "version": "1.4.6"
     },
+    "phpstan/phpstan-doctrine": {
+        "version": "1.2.11"
+    },
     "phpstan/phpstan-phpunit": {
         "version": "1.0.0"
     },

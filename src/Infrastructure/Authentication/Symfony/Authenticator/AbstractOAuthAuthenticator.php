@@ -11,11 +11,13 @@ use Infrastructure\Authentication\Exception\UserOAuthAuthenticatedException;
 use Infrastructure\Authentication\OAuthService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
+use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
@@ -29,7 +31,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
  * @package Infrastructure\Authentication\Symfony\Authenticator
  * @author bernard-ng <bernard@devscast.tech>
  */
-abstract class AbstractOAuthAuthenticator
+abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
 {
     use TargetPathTrait;
 
@@ -39,7 +41,7 @@ abstract class AbstractOAuthAuthenticator
         private ClientRegistry $clientRegistry,
         protected EntityManagerInterface $em,
         private RouterInterface $router,
-        private AuthenticationService $authenticationService,
+        private TokenStorageInterface $token,
         private OAuthService $socialLogin,
     ) {
     }
@@ -65,7 +67,7 @@ abstract class AbstractOAuthAuthenticator
         /** @var UserRepository $repository */
         $repository = $this->em->getRepository(User::class);
 
-        $user = $this->authenticationService->getUserOrNull();
+        $user = $this->getUserOrNull();
         if ($user) {
             throw new UserOAuthAuthenticatedException($user, $resourceOwner);
         }
@@ -137,5 +139,19 @@ abstract class AbstractOAuthAuthenticator
     private function getClient(): OAuth2ClientInterface
     {
         return $this->clientRegistry->getClient($this->serviceName);
+    }
+
+    private function getUserOrNull(): ?User
+    {
+        if (!$token = $this->token->getToken()) {
+            return null;
+        }
+
+        $user = $token->getUser();
+        if (!\is_object($user) || !$user instanceof User) {
+            return null;
+        }
+
+        return $user;
     }
 }

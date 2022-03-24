@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
+use Domain\Authentication\Repository\ResetPasswordTokenRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Domain\Shared\Entity\TimestampTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
  * @package App\Domain\Authentication\Entity
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class User implements UserPasswordHasherInterface, UserInterface
+#[ORM\Entity(repositoryClass: ResetPasswordTokenRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use OAuthTrait;
 
@@ -37,8 +42,9 @@ final class User implements UserPasswordHasherInterface, UserInterface
         return $this;
     }
 
-    public function setRoles(array $array)
+    public function setRoles(array $array): self
     {
+        return $this;
     }
 
     public function getRoles(): array
@@ -55,18 +61,8 @@ final class User implements UserPasswordHasherInterface, UserInterface
         return $this->getEmail();
     }
 
-    public function hashPassword(PasswordAuthenticatedUserInterface $user, string $plainPassword): string
+    public function getPassword(): ?string
     {
         return '';
-    }
-
-    public function isPasswordValid(PasswordAuthenticatedUserInterface $user, string $plainPassword): bool
-    {
-        return true;
-    }
-
-    public function needsRehash(PasswordAuthenticatedUserInterface $user): bool
-    {
-        return false;
     }
 }
