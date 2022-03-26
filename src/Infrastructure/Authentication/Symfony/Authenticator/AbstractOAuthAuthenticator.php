@@ -27,8 +27,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 /**
- * Class AbstractOAuthAuthenticator
- * @package Infrastructure\Authentication\Symfony\Authenticator
+ * Class AbstractOAuthAuthenticator.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
@@ -49,16 +49,13 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
     public function supports(Request $request): bool
     {
         if ('' === $this->serviceName) {
-            throw new \InvalidArgumentException(
-                message: "You must set a \$serviceName property (for instance 'github', 'google')"
-            );
+            throw new \InvalidArgumentException(message: "You must set a \$serviceName property (for instance 'github', 'google')");
         }
 
         return 'authentication_oauth_check' ===
             $request->attributes->get('_route') &&
             $request->get('service') === $this->serviceName;
     }
-
 
     public function authenticate(Request $request): Passport
     {
@@ -118,6 +115,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         $redirect = strval($request->get('_redirect'));
         if ($redirect) {
             $this->router->match($redirect);
+
             return new RedirectResponse($redirect);
         }
 
@@ -125,6 +123,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
+
         return new RedirectResponse($this->router->generate('app_index'));
     }
 
@@ -151,7 +150,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         }
 
         $user = $token->getUser();
-        if (!\is_object($user) || !$user instanceof User) {
+        if (! \is_object($user) || ! $user instanceof User) {
             return null;
         }
 

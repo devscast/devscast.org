@@ -31,7 +31,9 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
 
     /**
      * Trouve une entité par sa clef primaire et renvoie une exception en cas d'absence.
+     *
      * @return E
+     *
      * @throws EntityNotFoundException
      */
     public function findOrFail(int|string $id): object
@@ -51,12 +53,14 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
 
     /**
      * @return E|null
+     *
      * @throws NonUniqueResultException
      */
     public function findOneByCaseInsensitive(array $conditions): ?object
     {
         /** @var E|null $result */
         $result = $this->findByCaseInsensitiveQuery($conditions)->setMaxResults(1)->getOneOrNullResult();
+
         return $result;
     }
 
@@ -83,7 +87,7 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
         $conditionString = [];
         $parameters = [];
         foreach ($conditions as $k => $v) {
-            $conditionString[] = "LOWER(o.$k) = :$k";
+            $conditionString[] = "LOWER(o.${k}) = :${k}";
             $parameters[$k] = strtolower($v);
         }
 

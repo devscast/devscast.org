@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Test;
 
 /**
- * Class PathHelper
- * @package Test
+ * Class PathHelper.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 class PathHelper

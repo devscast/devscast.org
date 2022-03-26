@@ -11,8 +11,8 @@ use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 /**
- * Class GoogleAuthenticator
- * @package Infrastructure\Authentication\Symfony\Authenticator
+ * Class GoogleAuthenticator.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class GoogleAuthenticator extends AbstractOAuthAuthenticator
@@ -21,7 +21,7 @@ final class GoogleAuthenticator extends AbstractOAuthAuthenticator
 
     public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepository $repository): ?User
     {
-        if (!($resourceOwner instanceof GoogleUser)) {
+        if (! ($resourceOwner instanceof GoogleUser)) {
             throw new \RuntimeException('Expecting GoogleUser as the first parameter');
         }
 

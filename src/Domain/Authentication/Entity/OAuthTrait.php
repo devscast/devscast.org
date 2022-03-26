@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Authentication\Entity;
 
 /**
- * Trait OAuthTrait
- * @package Domain\Authentication\Entity
+ * Trait OAuthTrait.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 trait OAuthTrait
@@ -23,6 +23,7 @@ trait OAuthTrait
     public function setGithubId(?string $githubId): self
     {
         $this->github_id = $githubId;
+
         return $this;
     }
 
@@ -34,6 +35,7 @@ trait OAuthTrait
     public function setGoogleId(?string $googleId): self
     {
         $this->google_id = $googleId;
+
         return $this;
     }
 

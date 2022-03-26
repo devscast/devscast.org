@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
-use Domain\Authentication\Repository\ResetPasswordTokenRepository;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @TODO find a way to remove symfony interfaces from the domain model user
  * Class User
- * @package App\Domain\Authentication\Entity
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class User implements UserInterface, PasswordAuthenticatedUserInterface

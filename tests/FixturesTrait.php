@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Fidry\AliceDataFixtures\LoaderInterface;
 use Test\PathHelper;
 
 /**
- * Trait FixturesTrait
- * @package Tests
+ * Trait FixturesTrait.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 trait FixturesTrait
@@ -25,7 +24,7 @@ trait FixturesTrait
     public function loadFixtures(array $fixtures): array
     {
         $fixturePath = $this->getFixturesPath();
-        $files = array_map(fn($fixture) => PathHelper::join($fixturePath, $fixture . '.yaml'), $fixtures);
+        $files = array_map(fn ($fixture) => PathHelper::join($fixturePath, $fixture . '.yaml'), $fixtures);
         /** @var LoaderInterface $loader */
         $loader = static::getContainer()->get('fidry_alice_data_fixtures.loader.doctrine');
 

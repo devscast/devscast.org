@@ -17,8 +17,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 /**
- * Class LoginFormAuthenticator
- * @package Infrastructure\Authentication\Symfony\Authenticator
+ * Class LoginFormAuthenticator.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
@@ -34,12 +34,12 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = (string)$request->request->get('email', '');
+        $email = (string) $request->request->get('email', '');
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
             userBadge: new UserBadge($email),
-            credentials: new PasswordCredentials((string)$request->request->get('password', '')),
+            credentials: new PasswordCredentials((string) $request->request->get('password', '')),
             badges: [
                 new CsrfTokenBadge('authenticate', strval($request->get('_csrf_token'))),
             ]

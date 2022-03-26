@@ -7,8 +7,8 @@ namespace Domain\Shared\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Trait IdentityTrait
- * @package Domain\Shared\Entity
+ * Trait IdentityTrait.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 trait IdentityTrait

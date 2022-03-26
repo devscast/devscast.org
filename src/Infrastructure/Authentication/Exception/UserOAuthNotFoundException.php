@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  * d'utilisateur correspondant à la réponse de l'OAUTH.
  *
  * Class UserOAuthNotFoundException
- * @package Infrastructure\Authentication\Exception
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class UserOAuthNotFoundException extends AuthenticationException
@@ -21,7 +21,7 @@ final class UserOAuthNotFoundException extends AuthenticationException
 
     /**
      * UserOauthNotFoundException constructor.
-     * @param ResourceOwnerInterface $resourceOwner
+     *
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function __construct(ResourceOwnerInterface $resourceOwner)

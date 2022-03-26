@@ -9,8 +9,8 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
- * Class UserAuthenticatedException
- * @package Infrastructure\Authentication\Exception
+ * Class UserAuthenticatedException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class UserOAuthAuthenticatedException extends AuthenticationException
@@ -20,8 +20,7 @@ final class UserOAuthAuthenticatedException extends AuthenticationException
 
     /**
      * UserAuthenticatedException constructor.
-     * @param User $user
-     * @param ResourceOwnerInterface $resourceOwner
+     *
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function __construct(User $user, ResourceOwnerInterface $resourceOwner)

@@ -8,8 +8,8 @@ use Domain\Authentication\Entity\User;
 use Domain\Shared\Repository\DataRepository;
 
 /**
- * Interface UserRepository
- * @package Domain\Authentication\Repository
+ * Interface UserRepository.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 interface UserRepository extends DataRepository

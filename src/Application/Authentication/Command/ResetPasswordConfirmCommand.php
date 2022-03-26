@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Application\Authentication\Command;
 
 /**
- * Class ResetPasswordConfirmData
- * @package App\Application\Authentication\DataTransfert
+ * Class ResetPasswordConfirmData.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class ResetPasswordConfirmCommand

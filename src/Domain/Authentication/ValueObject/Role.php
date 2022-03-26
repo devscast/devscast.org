@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Authentication\ValueObject;
 
 /**
- * Class Role
- * @package App\Application\Authentication\Enum
+ * Class Role.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class Role

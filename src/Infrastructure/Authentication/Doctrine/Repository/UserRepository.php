@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
@@ -12,8 +11,8 @@ use Domain\Authentication\Repository\UserRepository as UserRepositoryInterface;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
- * Class UserRepository
- * @package Infrastructure\Authentication\Repository
+ * Class UserRepository.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class UserRepository extends AbstractRepository implements UserRepositoryInterface
@@ -31,7 +30,7 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
 
         try {
             /** @var User|null */
-            return ($this->createQueryBuilder('u')
+            return $this->createQueryBuilder('u')
                 ->where('u.email = :email')
                 ->orWhere("u.{$service}_id = :serviceId")
                 ->setMaxResults(1)
@@ -40,7 +39,7 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
                     'serviceId' => $serviceId,
                 ])
                 ->getQuery()
-                ->getOneOrNullResult());
+                ->getOneOrNullResult();
         } catch (NonUniqueResultException) {
             return null;
         }

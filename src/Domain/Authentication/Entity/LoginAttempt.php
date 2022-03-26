@@ -8,8 +8,8 @@ use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
 /**
- * Class LoginAttempt
- * @package Domain\Authentication\Entity
+ * Class LoginAttempt.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class LoginAttempt
@@ -27,6 +27,7 @@ final class LoginAttempt
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

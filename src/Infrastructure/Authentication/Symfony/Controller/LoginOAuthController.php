@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Class LoginOAuthController
- * @package Infrastructure\Authentication\Symfony\Controller
+ * Class LoginOAuthController.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
@@ -27,19 +27,23 @@ final class LoginOAuthController extends AbstractController
         'google' => [],
     ];
 
-    public function __construct(private ClientRegistry $clientRegistry)
-    {
+    public function __construct(
+        private ClientRegistry $clientRegistry
+    ) {
     }
 
     #[Route('/connect/{service}', name: 'connect', methods: ['GET'])]
     public function connect(string $service): RedirectResponse
     {
         $this->ensureServiceAccepted($service);
+
         return $this->clientRegistry
             ->getClient($service)
             ->redirect(
                 scopes: self::SCOPES[$service],
-                options: ['a' => 1]
+                options: [
+                    'a' => 1,
+                ]
             );
     }
 
@@ -50,10 +54,11 @@ final class LoginOAuthController extends AbstractController
     ): RedirectResponse {
         $this->ensureServiceAccepted($service);
         $method = 'set' . ucfirst($service) . 'Id';
-        $this->getUser()?->$method(null);
+        $this->getUser()?->{$method}(null);
         $em->flush();
 
         $this->addFlash('success', 'Votre compte a bien été dissocié de ' . $service);
+
         return $this->redirectToRoute('app_index');
     }
 
@@ -64,13 +69,13 @@ final class LoginOAuthController extends AbstractController
     }
 
     /**
-     * verification de la prise en charge des services oauth supporter par application
-     * @param string $service
+     * verification de la prise en charge des services oauth supporter par application.
+     *
      * @author bernard-ng <bernard@devscast.tech>
      */
     private function ensureServiceAccepted(string $service): void
     {
-        if (!in_array($service, array_keys(self::SCOPES))) {
+        if (! in_array($service, array_keys(self::SCOPES), true)) {
             throw new AccessDeniedException();
         }
     }

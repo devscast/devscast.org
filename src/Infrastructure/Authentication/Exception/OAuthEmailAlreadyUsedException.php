@@ -7,8 +7,8 @@ namespace Infrastructure\Authentication\Exception;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
- * Class OAuthEmailAlreadyUsedException
- * @package Infrastructure\Authentication\Exception
+ * Class OAuthEmailAlreadyUsedException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class OAuthEmailAlreadyUsedException extends CustomUserMessageAuthenticationException

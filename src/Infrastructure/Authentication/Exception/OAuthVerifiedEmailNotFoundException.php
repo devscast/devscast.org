@@ -7,8 +7,8 @@ namespace Infrastructure\Authentication\Exception;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
- * Class OAuthVerifiedEmailNotFoundException
- * @package Infrastructure\Authentication\Exception
+ * Class OAuthVerifiedEmailNotFoundException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class OAuthVerifiedEmailNotFoundException extends CustomUserMessageAuthenticationException

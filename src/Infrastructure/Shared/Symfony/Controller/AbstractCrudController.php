@@ -9,8 +9,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Class AbstractCrudController
- * @package Infrastructure\Symfony\Controller
+ * Class AbstractCrudController.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractCrudController extends AbstractController
