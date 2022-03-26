@@ -9,7 +9,7 @@ namespace Test;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class PathHelper
+final class PathHelper
 {
     public static function join(string ...$parts): string
     {

@@ -38,11 +38,11 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
     protected string $serviceName = '';
 
     public function __construct(
-        private ClientRegistry $clientRegistry,
+        private readonly ClientRegistry $clientRegistry,
         protected EntityManagerInterface $em,
-        private RouterInterface $router,
-        private TokenStorageInterface $token,
-        private OAuthService $socialLogin,
+        private readonly RouterInterface $router,
+        private readonly TokenStorageInterface $token,
+        private readonly OAuthService $socialLogin,
     ) {
     }
 

@@ -28,7 +28,7 @@ final class LoginOAuthController extends AbstractController
     ];
 
     public function __construct(
-        private ClientRegistry $clientRegistry
+        private readonly ClientRegistry $clientRegistry
     ) {
     }
 

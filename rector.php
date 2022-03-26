@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ])
         ->set(
             Option::SYMFONY_CONTAINER_XML_PATH_PARAMETER,
-            __DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml'
+            __DIR__ . '/var/cache/dev/Infrastructure_Shared_Symfony_KernelDevDebugContainer.xml'
         );
 
     $containerConfigurator->import(Rector\Set\ValueObject\LevelSetList::UP_TO_PHP_81);

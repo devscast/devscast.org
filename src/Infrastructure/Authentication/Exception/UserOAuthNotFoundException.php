@@ -17,16 +17,14 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  */
 final class UserOAuthNotFoundException extends AuthenticationException
 {
-    private ResourceOwnerInterface $resourceOwner;
-
     /**
      * UserOauthNotFoundException constructor.
      *
      * @author bernard-ng <bernard@devscast.tech>
      */
-    public function __construct(ResourceOwnerInterface $resourceOwner)
-    {
-        $this->resourceOwner = $resourceOwner;
+    public function __construct(
+        private readonly ResourceOwnerInterface $resourceOwner
+    ) {
         parent::__construct(message: 'authentication.exceptions.oauth_user_not_found');
     }
 

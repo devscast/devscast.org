@@ -15,18 +15,15 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  */
 final class UserOAuthAuthenticatedException extends AuthenticationException
 {
-    private User $user;
-    private ResourceOwnerInterface $resourceOwner;
-
     /**
      * UserAuthenticatedException constructor.
      *
      * @author bernard-ng <bernard@devscast.tech>
      */
-    public function __construct(User $user, ResourceOwnerInterface $resourceOwner)
-    {
-        $this->user = $user;
-        $this->resourceOwner = $resourceOwner;
+    public function __construct(
+        private readonly User $user,
+        private readonly ResourceOwnerInterface $resourceOwner
+    ) {
         parent::__construct(message: 'authentication.exceptions.oauth_authenticated');
     }
 
