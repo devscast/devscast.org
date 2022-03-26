@@ -17,15 +17,19 @@ final class ResetPasswordToken
     use IdentityTrait;
     use TimestampTrait;
 
-    private ?int $id = null;
-
     private ?string $token = null;
 
     private ?User $user = null;
 
-    public function getId(): ?int
+    public function isExpired(int $interval): bool
     {
-        return $this->id;
+        try {
+            $expirationDate = new \DateTime('-' . $interval . ' minutes');
+
+            return $this->getCreatedAt() < $expirationDate;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function getToken(): ?string
@@ -33,7 +37,7 @@ final class ResetPasswordToken
         return $this->token;
     }
 
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->token = $token;
 
@@ -45,21 +49,10 @@ final class ResetPasswordToken
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
-    }
-
-    public function isExpired(int $interval): bool
-    {
-        try {
-            $expirationDate = new \DateTime('-' . $interval . ' minutes');
-
-            return $this->getCreatedAt() < $expirationDate;
-        } catch (\Exception $e) {
-            return false;
-        }
     }
 }

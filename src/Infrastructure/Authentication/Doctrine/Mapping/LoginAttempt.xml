@@ -5,10 +5,15 @@
 
     <entity name="Domain\Authentication\Entity\LoginAttempt" repository-class="Infrastructure\Authentication\Doctrine\Repository\LoginAttemptRepository" table="authentication_login_attempt">
         <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
+            <generator strategy="IDENTITY"/>
         </id>
 
-        <field name="created_at" type="datetime_immutable" />
+        <many-to-one field="user" target-entity="Domain\Authentication\Entity\User">
+            <join-column on-delete="CASCADE" />
+        </many-to-one>
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
         <field name="updated_at" type="datetime_immutable" nullable="true"/>
     </entity>
 </doctrine-mapping>

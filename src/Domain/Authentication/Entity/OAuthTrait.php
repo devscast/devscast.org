@@ -15,6 +15,8 @@ trait OAuthTrait
 
     private ?string $google_id = null;
 
+    private ?string $facebook_id = null;
+
     public function getGithubId(): ?string
     {
         return $this->github_id;
@@ -39,8 +41,20 @@ trait OAuthTrait
         return $this;
     }
 
+    public function getFacebookId(): ?string
+    {
+        return $this->facebook_id;
+    }
+
+    public function setFacebookId(?string $facebook_id): self
+    {
+        $this->facebook_id = $facebook_id;
+
+        return $this;
+    }
+
     public function useOauth(): bool
     {
-        return null !== $this->google_id || null !== $this->github_id;
+        return null !== $this->google_id || null !== $this->github_id || null !== $this->facebook_id;
     }
 }

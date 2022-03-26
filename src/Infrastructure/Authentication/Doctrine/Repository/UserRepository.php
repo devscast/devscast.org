@@ -9,13 +9,16 @@ use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository as UserRepositoryInterface;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
  * Class UserRepository.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserRepository extends AbstractRepository implements UserRepositoryInterface
+final class UserRepository extends AbstractRepository implements UserRepositoryInterface, PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -43,5 +46,25 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
         } catch (NonUniqueResultException) {
             return null;
         }
+    }
+
+    public function findOneByEmail(string $email): ?User
+    {
+        /** @var User/null $user */
+        $user = $this->findOneBy(['email' => $email]);
+        return $user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
+    {
+        if (!$user instanceof User) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
+        }
+
+        $user->setPassword($newHashedPassword);
+        $this->save($user);
     }
 }
