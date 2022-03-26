@@ -14,8 +14,8 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * Class OAuthService
- * @package Infrastructure\Authentication
+ * Class OAuthService.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class OAuthService
@@ -23,8 +23,10 @@ final class OAuthService
     public const SESSION_KEY = 'authentication_oauth_login';
     private Session|SessionInterface $session;
 
-    public function __construct(RequestStack $requestStack, private NormalizerInterface $normalizer)
-    {
+    public function __construct(
+        RequestStack $requestStack,
+        private NormalizerInterface $normalizer
+    ) {
         $this->session = $requestStack->getSession();
     }
 
@@ -41,7 +43,7 @@ final class OAuthService
     {
         /** @var array $oauthData */
         $oauthData = $this->session->get(self::SESSION_KEY);
-        if (null == $oauthData || !isset($oauthData['email'])) {
+        if (null === $oauthData || ! isset($oauthData['email'])) {
             return false;
         }
 
@@ -51,6 +53,7 @@ final class OAuthService
             ->setGoogleId($oauthData['google_id'] ?? null)
             ->setName($oauthData['username'])
             ->setRoles([Role::USER]);
+
         return true;
     }
 
@@ -58,6 +61,7 @@ final class OAuthService
     {
         /** @var array $oauthData */
         $oauthData = $this->session->get(self::SESSION_KEY);
+
         return $oauthData ? $oauthData['type'] : null;
     }
 }

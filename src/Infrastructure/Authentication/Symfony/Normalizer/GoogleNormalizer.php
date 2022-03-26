@@ -8,14 +8,15 @@ use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
 use League\OAuth2\Client\Provider\GoogleUser;
 
 /**
- * Class GoogleNormalizer
- * @package Infrastructure\Authentication\Symfony\Normalizer
+ * Class GoogleNormalizer.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class GoogleNormalizer extends AbstractNormalizer
 {
     /**
      * @param GoogleUser $object
+     *
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function normalize($object, string $format = null, array $context = []): array

@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class AbstractController
- * @package Infrastructure\Symfony\Controller
+ * Class AbstractController.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractController extends SymfonyAbstractController
@@ -27,7 +27,7 @@ abstract class AbstractController extends SymfonyAbstractController
             $response = new Response();
         }
 
-        if (Response::HTTP_OK === $response->getStatusCode() && $form->isSubmitted() && !$form->isValid()) {
+        if (Response::HTTP_OK === $response->getStatusCode() && $form->isSubmitted() && ! $form->isValid()) {
             $response->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -59,6 +59,7 @@ abstract class AbstractController extends SymfonyAbstractController
                 }
             }
         }
+
         return $errors;
     }
 }

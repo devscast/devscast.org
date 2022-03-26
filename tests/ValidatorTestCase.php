@@ -8,8 +8,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
- * Class ValidatorTestCase
- * @package Tests
+ * Class ValidatorTestCase.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 class ValidatorTestCase extends KernelTestCase

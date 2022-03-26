@@ -7,8 +7,8 @@ namespace Infrastructure\Authentication\Exception;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
- * Class UserNotFoundException
- * @package App\Application\Authentication\Exception
+ * Class UserNotFoundException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class UserNotFoundException extends AuthenticationException

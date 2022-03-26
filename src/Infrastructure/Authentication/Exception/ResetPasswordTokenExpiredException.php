@@ -7,8 +7,8 @@ namespace Infrastructure\Authentication\Exception;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
- * Class ResetPasswordTokenExpiredException
- * @package App\Application\Authentication\Exception
+ * Class ResetPasswordTokenExpiredException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class ResetPasswordTokenExpiredException extends AuthenticationException

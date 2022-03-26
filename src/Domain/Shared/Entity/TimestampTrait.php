@@ -7,8 +7,8 @@ namespace Domain\Shared\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Trait TimestampTrait
- * @package Domain\Shared\Entity
+ * Trait TimestampTrait.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 trait TimestampTrait
@@ -39,6 +39,7 @@ trait TimestampTrait
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
         return $this;
     }
 
@@ -50,6 +51,7 @@ trait TimestampTrait
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
         return $this;
     }
 }

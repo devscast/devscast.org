@@ -8,8 +8,8 @@ use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
 /**
- * Class ResetPasswordToken
- * @package Domain\Authentication\Entity
+ * Class ResetPasswordToken.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class ResetPasswordToken
@@ -48,6 +48,7 @@ final class ResetPasswordToken
     public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -55,6 +56,7 @@ final class ResetPasswordToken
     {
         try {
             $expirationDate = new \DateTime('-' . $interval . ' minutes');
+
             return $this->getCreatedAt() < $expirationDate;
         } catch (\Exception $e) {
             return false;

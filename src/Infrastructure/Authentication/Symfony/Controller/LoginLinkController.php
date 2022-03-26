@@ -9,8 +9,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class LoginLinkController
- * @package Infrastructure\Authentication\Symfony\Controller
+ * Class LoginLinkController.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]

@@ -8,8 +8,8 @@ use Domain\Authentication\Entity\User;
 use Domain\Shared\Repository\DataRepository;
 
 /**
- * Interface LoginAttemptRepository
- * @package Domain\Authentication\Repository
+ * Interface LoginAttemptRepository.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 interface LoginAttemptRepository extends DataRepository

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Authenticator;
 
-use Domain\Authentication\Repository\UserRepository;
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use League\OAuth2\Client\Provider\GithubResourceOwner;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
@@ -19,8 +19,8 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * Class GithubAuthenticator
- * @package Infrastructure\Authentication\Symfony\Authenticator
+ * Class GithubAuthenticator.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class GithubAuthenticator extends AbstractOAuthAuthenticator
@@ -29,18 +29,18 @@ final class GithubAuthenticator extends AbstractOAuthAuthenticator
 
     public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepository $repository): ?User
     {
-        if (!($resourceOwner instanceof GithubResourceOwner)) {
+        if (! ($resourceOwner instanceof GithubResourceOwner)) {
             throw new \RuntimeException('Expecting GithubResourceOwner as the first parameter');
         }
 
         $user = $repository->findForOauth(
             service: 'github',
-            serviceId: (string)$resourceOwner->getId(),
+            serviceId: (string) $resourceOwner->getId(),
             email: $resourceOwner->getEmail()
         );
 
         if ($user && null === $user->getGithubId()) {
-            $user->setGithubId((string)$resourceOwner->getId());
+            $user->setGithubId((string) $resourceOwner->getId());
             $this->em->flush();
         }
 

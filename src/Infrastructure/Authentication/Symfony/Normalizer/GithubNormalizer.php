@@ -8,14 +8,15 @@ use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
 use League\OAuth2\Client\Provider\GithubResourceOwner;
 
 /**
- * Class GithubNormalizer
- * @package Infrastructure\Authentication\Symfony\Normalizer
+ * Class GithubNormalizer.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class GithubNormalizer extends AbstractNormalizer
 {
     /**
      * @param GithubResourceOwner $object
+     *
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function normalize(mixed $object, string $format = null, array $context = []): array

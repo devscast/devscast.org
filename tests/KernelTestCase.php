@@ -8,8 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 /**
- * Class KernelTestCase
- * @package Tests
+ * Class KernelTestCase.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
@@ -17,7 +17,7 @@ class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
     protected KernelBrowser $client;
     protected EntityManagerInterface $em;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         self::bootKernel();
         $this->em = self::getContainer()->get(EntityManagerInterface::class);

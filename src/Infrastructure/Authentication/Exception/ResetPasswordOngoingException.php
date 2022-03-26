@@ -7,8 +7,8 @@ namespace Infrastructure\Authentication\Exception;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
- * Class ResetPasswordOngoingException
- * @package App\Application\Authentication\Exception
+ * Class ResetPasswordOngoingException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class ResetPasswordOngoingException extends AuthenticationException

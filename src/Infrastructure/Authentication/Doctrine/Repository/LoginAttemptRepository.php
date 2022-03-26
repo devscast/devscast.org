@@ -14,8 +14,8 @@ use Domain\Authentication\Repository\LoginAttemptRepository as LoginAttemptRepos
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
- * Class LoginAttemptRepository
- * @package Infrastructure\Authentication\Doctrine\Repository
+ * Class LoginAttemptRepository.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class LoginAttemptRepository extends AbstractRepository implements LoginAttemptRepositoryInterface

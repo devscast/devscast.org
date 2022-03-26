@@ -9,8 +9,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class ResetPasswordController
- * @package Infrastructure\Authentication\Symfony\Controller
+ * Class ResetPasswordController.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]

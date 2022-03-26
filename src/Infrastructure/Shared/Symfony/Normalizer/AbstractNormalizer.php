@@ -8,8 +8,8 @@ use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * Class Normalizer
- * @package Infrastructure\Shared\Symfony\Normalizer
+ * Class Normalizer.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface

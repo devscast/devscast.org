@@ -16,10 +16,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Construit un formulaire automatiquement en se basant sur les propriétés
- * d'un objet (un DTO dans le cas de figure)
+ * d'un objet (un DTO dans le cas de figure).
  *
  * Class AbstractForm
- * @package Infrastructure\Symfony\Form
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractForm extends AbstractType
@@ -30,11 +30,11 @@ abstract class AbstractForm extends AbstractType
         'int' => NumberType::class,
         'float' => NumberType::class,
         \DateTimeInterface::class => DateTimeType::class,
-        UploadedFile::class => FileType::class
+        UploadedFile::class => FileType::class,
     ];
 
     protected const NAMES = [
-        'color' => ColorType::class
+        'color' => ColorType::class,
     ];
 
     /**
@@ -58,18 +58,15 @@ abstract class AbstractForm extends AbstractType
             }
 
             if (array_key_exists($name, self::NAMES)) {
-                $builder->add($name, self::NAMES[$name], ['required' => false]);
+                $builder->add($name, self::NAMES[$name], [
+                    'required' => false,
+                ]);
             } elseif (array_key_exists($type->getName(), self::TYPES)) {
                 $builder->add($name, self::TYPES[$type->getName()], [
-                    'required' => !$type->allowsNull() && 'bool' !== $type->getName()
+                    'required' => ! $type->allowsNull() && 'bool' !== $type->getName(),
                 ]);
             } else {
-                throw new \RuntimeException(sprintf(
-                    'Could not find the field associated with the type %s in %s::%s',
-                    $type->getName(),
-                    $data::class,
-                    $name
-                ));
+                throw new \RuntimeException(sprintf('Could not find the field associated with the type %s in %s::%s', $type->getName(), $data::class, $name));
             }
         }
     }

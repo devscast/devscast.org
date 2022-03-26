@@ -6,13 +6,12 @@ namespace Tests;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 /**
- * Class WebTestCase
- * @package App\Tests
+ * Class WebTestCase.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
@@ -43,10 +42,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param string $method
-     * @param string $url
-     * @param array|null $data
-     * @return string
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function jsonRequest(string $method, string $url, ?array $data = null): string
@@ -90,7 +85,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param int|null $expectedErrors
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function expectFormErrors(?int $expectedErrors = null): void
@@ -116,7 +110,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param string $title
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function expectH1(string $title): void
@@ -130,7 +123,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param string $title
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function expectTitle(string $title): void
@@ -144,7 +136,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param UserInterface|null $user
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function login(?UserInterface $user)
@@ -156,8 +147,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * @param string $key
-     * @return string
      * @author bernard-ng <bernard@devscast.tech>
      */
     public function setCsrf(string $key): string
