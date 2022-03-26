@@ -25,5 +25,5 @@ services:
     Infrastructure\:
         resource: '../src/Infrastructure'
         exclude:
-            - '../src/Infrastructure/Symfony/Kernel.php'
+            - '../src/Infrastructure/Shared/Symfony/Kernel.php'
 

@@ -1,3 +1,13 @@
+controllers:
+    resource: ../src/Infrastructure/
+    type: annotation
+    schemes:
+        - HTTP
+        - HTTPS
+
 kernel:
     resource: ../src/Infrastructure/Shared/Symfony/Kernel.php
     type: annotation
+    schemes:
+        - HTTP
+        - HTTPS
