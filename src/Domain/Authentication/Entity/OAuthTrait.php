@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Trait OAuthTrait
  * @package Domain\Authentication\Entity
@@ -13,10 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait OAuthTrait
 {
-    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $github_id = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $google_id = null;
 
     public function getGithubId(): ?string

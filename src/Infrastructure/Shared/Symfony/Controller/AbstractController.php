@@ -53,7 +53,8 @@ abstract class AbstractController extends SymfonyAbstractController
 
         foreach ($form->all() as $childForm) {
             if ($childForm instanceof FormInterface) {
-                if ($childErrors = $this->getFormErrors($childForm)) {
+                $childErrors = $this->getFormErrors($childForm);
+                if ($childErrors) {
                     $errors[] = $childErrors;
                 }
             }

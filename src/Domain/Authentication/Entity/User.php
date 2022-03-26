@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace Domain\Authentication\Entity;
 
 use Domain\Authentication\Repository\ResetPasswordTokenRepository;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Domain\Shared\Entity\TimestampTrait;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @TODO find a way to remove symfony interfaces from the domain model user
  * Class User
  * @package App\Domain\Authentication\Entity
  * @author bernard-ng <bernard@devscast.tech>
  */
-#[ORM\Entity(repositoryClass: ResetPasswordTokenRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use IdentityTrait;
+    use TimestampTrait;
     use OAuthTrait;
 
     public function getEmail(): string

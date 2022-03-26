@@ -11,4 +11,13 @@ namespace Domain\Shared\Repository;
  */
 interface DataRepository
 {
+    public function save(object $entity): void;
+
+    public function delete(object $entity): void;
+
+    public function findOrFail(int|string $id): object;
+
+    public function findOneByCaseInsensitive(array $conditions): ?object;
+
+    public function findByCaseInsensitive(array $conditions): array;
 }
