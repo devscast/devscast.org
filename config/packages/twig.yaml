@@ -1,5 +1,15 @@
 twig:
+    form_themes:
+        - form_div_layout.html.twig
     default_path: '%kernel.project_dir%/templates'
+    date:
+        format: 'd M Y H:i'
+        interval_format: '%d days'
+        timezone: null
+    number_format:
+        decimals: 2
+        decimal_point: ','
+        thousands_separator: '.'
 
 when@test:
     twig:

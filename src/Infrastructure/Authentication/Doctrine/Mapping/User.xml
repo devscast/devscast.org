@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Domain\Authentication\Entity\User" repository-class="Infrastructure\Authentication\Doctrine\Repository\UserRepository" table="user">
+        <unique-constraints>
+            <unique-constraint columns="email"/>
+            <unique-contraint columns="phone_number"/>
+        </unique-constraints>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" length="255"/>
+        <field name="email" type="string" length="180" unique="true" nullable="true" />
+        <field name="phone_number" type="string" length="15" unique="true" nullable="false" />
+        <field name="roles" type="json"/>
+        <field name="password" type="string" length="4096" nullable="true" />
+        <field name="is_verified" type="boolean"/>
+
+        <field name="created_at" type="datetime_immutable" />
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>
