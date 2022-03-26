@@ -41,8 +41,8 @@ final class OAuthService
 
     public function hydrate(User $user): bool
     {
-        /** @var array $oauthData */
-        $oauthData = $this->session->get(self::SESSION_KEY);
+        /** @var array|null $oauthData */
+        $oauthData = $this->session->get(name: self::SESSION_KEY, default: null);
         if (null === $oauthData || ! isset($oauthData['email'])) {
             return false;
         }

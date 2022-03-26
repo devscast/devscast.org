@@ -8,6 +8,9 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+    </rule>
     <rule ref="PSR12"/>
 
     <file>config/</file>
