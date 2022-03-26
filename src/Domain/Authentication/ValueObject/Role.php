@@ -11,6 +11,6 @@ namespace Domain\Authentication\ValueObject;
  */
 abstract class Role
 {
-    public const ADMIN = 'ROLE_ADMIN';
-    public const USER = 'ROLE_USER';
+    final public const ADMIN = 'ROLE_ADMIN';
+    final public const USER = 'ROLE_USER';
 }

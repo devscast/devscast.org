@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class LoginLinkController extends AbstractController
 {
     #[Route('/check', name: 'check', methods: ['GET'])]
-    public function check(): void
+    public function check(): never
     {
         throw new \LogicException('This code should never be reached');
     }

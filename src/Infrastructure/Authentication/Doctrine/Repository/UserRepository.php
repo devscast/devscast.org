@@ -51,7 +51,10 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
     public function findOneByEmail(string $email): ?User
     {
         /** @var User/null $user */
-        $user = $this->findOneBy(['email' => $email]);
+        $user = $this->findOneBy([
+            'email' => $email,
+        ]);
+
         return $user;
     }
 
@@ -60,7 +63,7 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
 

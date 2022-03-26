@@ -21,11 +21,11 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 final class OAuthService
 {
     public const SESSION_KEY = 'authentication_oauth_login';
-    private Session|SessionInterface $session;
+    private readonly Session | SessionInterface $session;
 
     public function __construct(
         RequestStack $requestStack,
-        private NormalizerInterface $normalizer
+        private readonly NormalizerInterface $normalizer
     ) {
         $this->session = $requestStack->getSession();
     }

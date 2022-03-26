@@ -69,7 +69,7 @@ final class GithubAuthenticator extends AbstractOAuthAuthenticator
             );
 
             /** @var array $emails */
-            $emails = json_decode($response->getContent(), true);
+            $emails = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
             foreach ($emails as $email) {
                 if (true === $email['primary'] && true === $email['verified']) {
                     $data = $githubUser->toArray();
@@ -84,7 +84,7 @@ final class GithubAuthenticator extends AbstractOAuthAuthenticator
             TransportExceptionInterface |
             ClientExceptionInterface |
             RedirectionExceptionInterface |
-            ServerExceptionInterface $e
+            ServerExceptionInterface
         ) {
             throw new OAuthVerifiedEmailNotFoundException();
         }

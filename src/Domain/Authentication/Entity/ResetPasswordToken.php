@@ -27,7 +27,7 @@ final class ResetPasswordToken
             $expirationDate = new \DateTime('-' . $interval . ' minutes');
 
             return $this->getCreatedAt() < $expirationDate;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return false;
         }
     }
