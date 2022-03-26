@@ -115,12 +115,14 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         TokenInterface $token,
         string $firewallName
     ): RedirectResponse {
-        if ($redirect = strval($request->get('_redirect'))) {
+        $redirect = strval($request->get('_redirect'));
+        if ($redirect) {
             $this->router->match($redirect);
             return new RedirectResponse($redirect);
         }
 
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
         return new RedirectResponse($this->router->generate('app_index'));
@@ -143,7 +145,8 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
 
     private function getUserOrNull(): ?User
     {
-        if (!$token = $this->token->getToken()) {
+        $token = $this->token->getToken();
+        if (! $token) {
             return null;
         }
 

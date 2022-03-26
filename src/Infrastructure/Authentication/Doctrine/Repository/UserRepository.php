@@ -9,13 +9,14 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository as UserRepositoryInterface;
+use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * Class UserRepository
  * @package Infrastructure\Authentication\Repository
  * @author bernard-ng <bernard@devscast.tech>
  */
-class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
+final class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

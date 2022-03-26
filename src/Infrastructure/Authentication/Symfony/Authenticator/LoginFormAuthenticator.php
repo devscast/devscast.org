@@ -51,11 +51,13 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         TokenInterface $token,
         string $firewallName
     ): RedirectResponse {
-        if ($redirect = strval($request->get('_redirect'))) {
+        $redirect = strval($request->get('_redirect'));
+        if ($redirect) {
             return new RedirectResponse($redirect);
         }
 
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
 

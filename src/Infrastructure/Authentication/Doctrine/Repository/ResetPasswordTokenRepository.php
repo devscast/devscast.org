@@ -8,13 +8,14 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Repository\ResetPasswordTokenRepository as ResetPasswordTokenRepositoryInterface;
+use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * Class ResetPasswordTokenRepository
  * @package Infrastructure\Authentication\Repository
  * @author bernard-ng <bernard@devscast.tech>
  */
-class ResetPasswordTokenRepository extends ServiceEntityRepository implements ResetPasswordTokenRepositoryInterface
+final class ResetPasswordTokenRepository extends AbstractRepository implements ResetPasswordTokenRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

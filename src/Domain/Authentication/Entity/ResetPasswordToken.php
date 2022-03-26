@@ -4,31 +4,23 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
-use Domain\Authentication\Repository\ResetPasswordTokenRepository;
+use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ResetPasswordToken
  * @package Domain\Authentication\Entity
  * @author bernard-ng <bernard@devscast.tech>
  */
-#[ORM\Entity(repositoryClass: ResetPasswordTokenRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 final class ResetPasswordToken
 {
+    use IdentityTrait;
     use TimestampTrait;
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
     private ?string $token = null;
 
-    #[ORM\OneToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?User $user = null;
 
     public function getId(): ?int
