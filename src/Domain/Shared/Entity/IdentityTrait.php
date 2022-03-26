@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Trait IdentityTrait.
  *
@@ -13,10 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait IdentityTrait
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
+
+    private ?string $uuid = null;
 
     public function getId(): ?int
     {
@@ -26,6 +23,18 @@ trait IdentityTrait
     public function setId(?int $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(?string $uuid): self
+    {
+        $this->uuid = $uuid;
 
         return $this;
     }

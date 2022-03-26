@@ -15,4 +15,6 @@ use Domain\Shared\Repository\DataRepository;
 interface UserRepository extends DataRepository
 {
     public function findForOauth(string $service, ?string $serviceId, ?string $email): ?User;
+
+    public function findOneByEmail(string $email): ?User;
 }

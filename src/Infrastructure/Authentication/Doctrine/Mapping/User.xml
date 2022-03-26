@@ -10,17 +10,58 @@
         </unique-constraints>
 
         <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
+            <generator strategy="IDENTITY"/>
         </id>
+        <field name="uuid" type="string" length="36"/>
 
-        <field name="name" length="255"/>
-        <field name="email" type="string" length="180" unique="true" nullable="true" />
-        <field name="phone_number" type="string" length="15" unique="true" nullable="false" />
+        <field name="name" type="string" length="80"/>
+        <field name="username" type="string" length="30"/>
+        <field name="job_title" type="string" length="150" nullable="true"/>
+        <field name="biography" type="text" nullable="true"/>
+        <field name="gender" type="string" column-definition="ENUM('M', 'F', 'O')">
+            <options>
+                <option name="default">M</option>
+            </options>
+        </field>
+        <field name="email" type="string" length="180" unique="true" nullable="true"/>
+        <field name="phone_number" type="string" length="15" unique="true" nullable="true"/>
+        <field name="country" type="string" length="3">
+            <options>
+                <option name="default">CD</option>
+            </options>
+        </field>
         <field name="roles" type="json"/>
-        <field name="password" type="string" length="4096" nullable="true" />
-        <field name="is_verified" type="boolean"/>
+        <field name="password" type="string" length="4096" nullable="true"/>
 
-        <field name="created_at" type="datetime_immutable" />
+        <!-- States -->
+        <field name="is_email_verified" type="boolean">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="is_phone_number_verified" type="boolean">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="is_banned" type="boolean">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="banned_at" type="datetime_immutable" nullable="true"/>
+
+        <!-- Login History -->
+        <field name="last_login_at" type="datetime_immutable" nullable="true"/>
+        <field name="last_login_ip" type="datetime_immutable" nullable="true"/>
+
+        <!-- OAuth -->
+        <field name="github_id" type="string" length="255"/>
+        <field name="facebook_id" type="string" length="255"/>
+        <field name="google_id" type="string" length="255"/>
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
         <field name="updated_at" type="datetime_immutable" nullable="true"/>
     </entity>
 </doctrine-mapping>

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Trait TimestampTrait.
  *
@@ -13,19 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait TimestampTrait
 {
-    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\PrePersist]
     public function setCreatedAtOnPrePersist(): void
     {
         $this->created_at = new \DateTimeImmutable();
     }
 
-    #[ORM\PostUpdate]
     public function setUpdatedAtOnPostUpdate(): void
     {
         $this->updated_at = new \DateTimeImmutable();
