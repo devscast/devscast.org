@@ -14,11 +14,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use IdentityTrait;
     use TimestampTrait;
     use OAuthTrait;
+
+    private ?string $uuid = null;
 
     private ?string $name = null;
 
@@ -46,9 +48,9 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private bool $is_banned = false;
 
-    private ?\DateTimeInterface $banned_at = null;
+    private ?\DateTimeImmutable $banned_at = null;
 
-    private ?\DateTimeInterface $last_login_at = null;
+    private ?\DateTimeImmutable $last_login_at = null;
 
     private ?string $last_login_ip = null;
 
@@ -184,14 +186,18 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLastLoginAt(): ?\DateTimeInterface
+    public function getLastLoginAt(): ?\DateTimeImmutable
     {
         return $this->last_login_at;
     }
 
     public function setLastLoginAt(?\DateTimeInterface $last_login_at): self
     {
-        $this->last_login_at = $last_login_at;
+        if (null !== $last_login_at) {
+            $this->last_login_at = \DateTimeImmutable::createFromInterface($last_login_at);
+        } else {
+            $this->last_login_at = null;
+        }
 
         return $this;
     }
@@ -254,7 +260,23 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setBannedAt(?\DateTimeInterface $banned_at): self
     {
-        $this->banned_at = $banned_at;
+        if (null !== $banned_at) {
+            $this->banned_at = \DateTimeImmutable::createFromInterface($banned_at);
+        } else {
+            $this->banned_at = null;
+        }
+
+        return $this;
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(?string $uuid): self
+    {
+        $this->uuid = $uuid;
 
         return $this;
     }
