@@ -9,14 +9,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
- * Class AbstractCrudData
- * @package Application\Shared\DataTransfert
+ * Class AbstractCrudData.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractCrudData implements CrudDataInterface
 {
-    public function __construct(protected object $entity)
-    {
+    public function __construct(
+        protected object $entity
+    ) {
         $reflexion = new \ReflectionClass($this);
         $properties = $reflexion->getProperties(\ReflectionProperty::IS_PUBLIC);
         $accessor = new PropertyAccessor();
@@ -66,6 +67,7 @@ abstract class AbstractCrudData implements CrudDataInterface
     public function setEntity(object $entity): CrudDataInterface
     {
         $this->entity = $entity;
+
         return $this;
     }
 
