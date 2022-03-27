@@ -12,7 +12,7 @@ use Domain\Shared\Entity\TimestampTrait;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ResetPasswordToken
+class ResetPasswordToken
 {
     use IdentityTrait;
     use TimestampTrait;

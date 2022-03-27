@@ -13,3 +13,4 @@ parameters:
     checkGenericClassInNonGenericObjectType: false
     doctrine:
         objectManagerLoader: tests/object-manager.php
+        allowNullablePropertyForRequiredField: true

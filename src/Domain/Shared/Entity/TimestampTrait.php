@@ -11,9 +11,9 @@ namespace Domain\Shared\Entity;
  */
 trait TimestampTrait
 {
-    private ?\DateTimeInterface $created_at = null;
+    private ?\DateTimeImmutable $created_at = null;
 
-    private ?\DateTimeInterface $updated_at = null;
+    private ?\DateTimeImmutable $updated_at = null;
 
     public function setCreatedAtOnPrePersist(): void
     {
@@ -25,26 +25,38 @@ trait TimestampTrait
         $this->updated_at = new \DateTimeImmutable();
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface|string $created_at): self
     {
-        $this->created_at = $created_at;
+        if (is_string($created_at)) {
+            $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i', $created_at);
+            $this->created_at = false === $date ? null : $date;
+        } elseif ($created_at instanceof \DateTimeInterface) {
+            $this->created_at = \DateTimeImmutable::createFromInterface($created_at);
+        }
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface|string|null $updated_at): self
     {
-        $this->updated_at = $updated_at;
+        if (is_string($updated_at)) {
+            $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i', $updated_at);
+            $this->updated_at = false === $date ? null : $date;
+        } elseif ($updated_at instanceof \DateTimeInterface) {
+            $this->updated_at = \DateTimeImmutable::createFromInterface($updated_at);
+        } else {
+            $this->updated_at = $updated_at;
+        }
 
         return $this;
     }

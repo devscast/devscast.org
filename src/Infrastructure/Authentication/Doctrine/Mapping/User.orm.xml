@@ -54,7 +54,7 @@
 
         <!-- Login History -->
         <field name="last_login_at" type="datetime_immutable" nullable="true"/>
-        <field name="last_login_ip" type="datetime_immutable" nullable="true"/>
+        <field name="last_login_ip" type="string" nullable="true"/>
 
         <!-- OAuth -->
         <field name="github_id" type="string" length="255"/>
