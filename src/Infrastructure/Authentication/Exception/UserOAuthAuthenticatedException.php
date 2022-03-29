@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Exception;
 
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Exception\UserOAuthAuthenticatedException as UserOAuthAuthenticatedExceptionInterface;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Class UserAuthenticatedException.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserOAuthAuthenticatedException extends AuthenticationException
+final class UserOAuthAuthenticatedException extends CustomUserMessageAuthenticationException implements UserOAuthAuthenticatedExceptionInterface
 {
     /**
      * UserAuthenticatedException constructor.

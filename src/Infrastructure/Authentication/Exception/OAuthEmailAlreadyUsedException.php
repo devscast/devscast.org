@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Exception;
 
+use Domain\Authentication\Exception\OAuthEmailAlreadyUsedException as OAuthEmailAlreadyUsedExceptionInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class OAuthEmailAlreadyUsedException extends CustomUserMessageAuthenticationException
+final class OAuthEmailAlreadyUsedException extends CustomUserMessageAuthenticationException implements OAuthEmailAlreadyUsedExceptionInterface
 {
     public function __construct()
     {

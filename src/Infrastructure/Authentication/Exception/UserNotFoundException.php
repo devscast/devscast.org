@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Exception;
 
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Domain\Authentication\Exception\UserNotFoundException as UserNotFoundExceptionInfrastructure;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Class UserNotFoundException.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserNotFoundException extends AuthenticationException
+final class UserNotFoundException extends CustomUserMessageAuthenticationException implements UserNotFoundExceptionInfrastructure
 {
     public function __construct()
     {

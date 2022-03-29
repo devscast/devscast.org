@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Exception;
 
+use Domain\Authentication\Exception\OAuthVerifiedEmailNotFoundException as OAuthVerifiedEmailNotFoundExceptionInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class OAuthVerifiedEmailNotFoundException extends CustomUserMessageAuthenticationException
+final class OAuthVerifiedEmailNotFoundException extends CustomUserMessageAuthenticationException implements OAuthVerifiedEmailNotFoundExceptionInterface
 {
     public function __construct()
     {

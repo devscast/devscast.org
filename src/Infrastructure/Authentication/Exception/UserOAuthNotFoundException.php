@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Exception;
 
+use Domain\Authentication\Exception\UserOAuthNotFoundException as UserOAuthNotFoundExceptionInterface;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Erreur renvoyée lorsque l'on ne trouve pas
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserOAuthNotFoundException extends AuthenticationException
+final class UserOAuthNotFoundException extends CustomUserMessageAuthenticationException implements UserOAuthNotFoundExceptionInterface
 {
     /**
      * UserOauthNotFoundException constructor.
