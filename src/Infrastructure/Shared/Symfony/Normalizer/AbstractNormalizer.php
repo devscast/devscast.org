@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 abstract class AbstractNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
 {
-    abstract public function normalize(mixed $object, string $format = null, array $context = []);
+    abstract public function normalize(mixed $object, string $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null;
 
     abstract public function supportsNormalization($data, string $format = null): bool;
 
