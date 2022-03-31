@@ -16,10 +16,24 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            entry_point: Infrastructure\Authentication\Symfony\Security\AuthenticationEntryPoint
+            user_checker: Infrastructure\Authentication\Symfony\Security\UserChecker
             custom_authenticator:
                 - Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator
                 - Infrastructure\Authentication\Symfony\Authenticator\GoogleAuthenticator
                 - Infrastructure\Authentication\Symfony\Authenticator\GithubAuthenticator
+
+            # configure the maximum login attempts (per minute)
+            #login_throttling:
+                #max_attempts: 3
+
+            form_login:
+                post_only: true
+                login_path: authentication_login
+                failure_path: authentication_login
+                username_parameter: identifier
+                password_parameter: password
+                csrf_parameter: _token
 
             login_link:
                 check_route: authentication_login_link_check
@@ -28,11 +42,24 @@ security:
                 lifetime: 600
 
             logout:
+                invalidate_session: true
                 path: authentication_logout
                 target: authentication_login
 
+            remember_me:
+                secret: "%kernel.secret%"
+                lifetime: 604800 # 1 week in seconds
+                path: /
+                samesite: strict
+
             # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            switch_user: { role: ROLE_ADMIN, parameter: _control }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_USER
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
