@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
+use Domain\Authentication\ValueObject\Role;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,8 +20,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use IdentityTrait;
     use TimestampTrait;
     use OAuthTrait;
-
-    private ?string $uuid = null;
 
     private ?string $name = null;
 
@@ -38,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $country = null;
 
-    private array $roles = [];
+    private array $roles = [Role::USER];
 
     private ?string $password = null;
 
@@ -53,6 +52,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $last_login_at = null;
 
     private ?string $last_login_ip = null;
+
+    public static function createBasicWithRequiredFields(
+        string $username,
+        string $email,
+        string $password,
+        bool $is_admin = false
+    ): self {
+        return (new self())
+            ->setUsername($username)
+            ->setEmail($email)
+            ->setPassword($password)
+            ->setIsEmailVerified(true)
+            ->setRoles([$is_admin ? Role::ADMIN : Role::USER]);
+    }
 
     public function getName(): ?string
     {
@@ -128,7 +141,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = Role::USER;
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -174,7 +189,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsBanned(): bool
+    public function isBanned(): bool
     {
         return $this->is_banned;
     }
@@ -269,15 +284,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUuid(): ?string
+    public function isConfirmed(): bool
     {
-        return $this->uuid;
-    }
-
-    public function setUuid(?string $uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
+        return $this->is_email_verified || $this->is_phone_number_verified;
     }
 }

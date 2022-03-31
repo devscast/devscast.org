@@ -19,6 +19,11 @@ class LoginAttempt
 
     private ?User $user = null;
 
+    public static function createFor(User $user): self
+    {
+        return (new self())->setUser($user);
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
