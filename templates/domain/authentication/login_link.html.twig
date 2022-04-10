@@ -1,0 +1,9 @@
+{% extends 'domain/authentication/layout/base.html.twig' %}
+{% block title 'authentication.titles.login_link' | trans([], 'authentication') %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button type="submit">{{ "global.submit" | trans([], 'messages') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
