@@ -55,6 +55,39 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             switch_user: { role: ROLE_ADMIN, parameter: _control }
 
+            two_factor:
+                auth_form_path: authentication_2fa_login
+                check_path: authentication_2fa_check
+                post_only: true
+                default_target_path: /
+                always_use_default_target_path: false
+                auth_code_parameter_name: _code
+                trusted_parameter_name: _trusted
+                remember_me_sets_trusted: false
+                multi_factor: false
+                success_handler: ~
+                failure_handler: ~
+
+                # Use a custom authentication required handler instead of the default one
+                # This can be used to modify the default behavior of the bundle, which is always redirecting to the
+                # two-factor authentication form, when two-factor authentication is required.
+                authentication_required_handler: ~
+
+                # Some two-factor providers need to be "prepared", usually a code is generated and sent to the user. Per
+                # default, this happens when the two-factor form is shown. But you may want to execute preparation
+                # earlier in the user's journey.
+                prepare_on_login: false
+                prepare_on_access_denied: false
+
+                enable_csrf: true
+                csrf_parameter: _token
+                csrf_token_id: 2fa
+
+                # If you have multiple user providers registered, Symfony's security extension requires you to configure
+                # a user provider. You're forced to configure this node, although it doesn't have any effect on the
+                # TwoFactorBundle. So set this to any of your user providers, it doesn't matter which one.
+                provider: app_user_provider
+
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN:

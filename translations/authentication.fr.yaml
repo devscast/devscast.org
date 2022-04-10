@@ -3,6 +3,8 @@ authentication:
         reset_password_confirm: Mise à jour du mot de passe
         reset_password_request: Mot de passe oublié ?
         login_link: Un Problème de connexion ?
+        login_2fa: Connexion 2FA
+        login: Connexion
     forms:
         labels:
             identifier: Identifiant
@@ -42,3 +44,4 @@ authentication:
             login_link_requested: "%name%, voici le lien d'accès à votre compte Devscast"
             reset_password_requested: Instruction de réinitialisation de mot de passe Devscast
             reset_password_confirmed: "%name%, votre mot de passe sur Devscast a été mise à jour"
+            2fa_auth_code: "Code d'authentification Devscast"

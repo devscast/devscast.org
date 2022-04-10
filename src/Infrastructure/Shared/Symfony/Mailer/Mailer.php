@@ -27,19 +27,19 @@ class Mailer
 
     public function createEmail(string $template, array $data = []): Email
     {
-        $this->twig->addGlobal('format', 'html');
         $html = $this->twig->render(
             name: $template,
             context: $data + [
-                'layout' => 'shared/layout/mail/base.html.twig',
+                '_format' => 'html',
+                '_layout' => 'shared/layout/mail/base.html.twig',
             ]
         );
 
-        $this->twig->addGlobal('format', 'text');
         $text = $this->twig->render(
             name: $template,
             context: $data + [
-                'layout' => 'shared/layout/mail/base.text.twig',
+                '_format' => 'text',
+                '_layout' => 'shared/layout/mail/base.text.twig',
             ]
         );
 

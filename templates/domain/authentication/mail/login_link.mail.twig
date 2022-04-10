@@ -1,4 +1,4 @@
-{% extends layout %}
+{% extends _layout %}
 {% import 'shared/layout/mail/macro.html.twig' as e %}
 
 {% block body %}
@@ -8,7 +8,7 @@
         Désolé d'apprendre que vous avez des difficultés à vous connecter à Devscast.
         Nous pouvons vous aider à vous reconnecter directement à votre compte.
 
-        {%- if format == 'html' -%}
+        {%- if _format == 'html' -%}
             {% embed 'shared/layout/mail/section.html.twig' %}
                 {% block content %}
                     <div style="text-align: center">

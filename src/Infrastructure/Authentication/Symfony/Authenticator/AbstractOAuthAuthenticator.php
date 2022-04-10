@@ -14,6 +14,7 @@ use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
+use Scheb\TwoFactorBundle\Security\Http\Authenticator\TwoFactorAuthenticator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -55,6 +56,16 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         return 'authentication_oauth_check' ===
             $request->attributes->get('_route') &&
             $request->get('service') === $this->serviceName;
+    }
+
+    public function createToken(Passport $passport, string $firewallName): TokenInterface
+    {
+        $token = parent::createToken($passport, $firewallName);
+
+        // Set this to bypass 2fa for this authenticator
+        $token->setAttribute(TwoFactorAuthenticator::FLAG_2FA_COMPLETE, true);
+
+        return $token;
     }
 
     public function authenticate(Request $request): Passport

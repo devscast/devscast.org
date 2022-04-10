@@ -1,0 +1,43 @@
+{% extends 'domain/authentication/layout/base.html.twig' %}
+{% block title 'authentication.titles.login_2fa' | trans([], 'authentication') %}
+
+{% block body %}
+    {% if authenticationError %}
+        <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
+    {% endif %}
+
+    <p>{{ "choose_provider"|trans({}, 'SchebTwoFactorBundle') }}:
+        {% for provider in availableTwoFactorProviders %}
+            <a href="{{ path("authentication_2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
+        {% endfor %}
+    </p>
+
+    <p class="label"><label for="_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>
+    <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
+        <p class="widget">
+            <input
+                    id="_code"
+                    type="text"
+                    name="{{ authCodeParameterName }}"
+                    autocomplete="one-time-code"
+                    autofocus
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+            />
+        </p>
+
+        {% if displayTrustedOption %}
+            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+        {% endif %}
+        {% if isCsrfProtectionEnabled %}
+            <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+        {% endif %}
+        <p class="submit"><input type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}" /></p>
+    </form>
+
+    <p class="cancel">
+        <form action="{{ logoutPath }}" method="post">
+            <button>{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</button>
+        </form>
+    </p>
+{% endblock %}

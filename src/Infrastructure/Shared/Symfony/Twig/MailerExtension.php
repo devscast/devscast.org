@@ -28,7 +28,7 @@ class MailerExtension extends AbstractExtension
 
     public function markdown(array $context, string $content): string
     {
-        if (($context['format'] ?? 'text') === 'text') {
+        if (($context['_format'] ?? 'text') === 'text') {
             return $content;
         }
         $content = preg_replace('/^(^ {2,})(\S+[ \S]*)$/m', '${2}', $content);
