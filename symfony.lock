@@ -5,6 +5,9 @@
     "amphp/byte-stream": {
         "version": "v1.8.1"
     },
+    "bacon/bacon-qr-code": {
+        "version": "2.0.7"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.5"
     },
@@ -28,6 +31,9 @@
         "files": [
             "config/packages/test/dama_doctrine_test_bundle.yaml"
         ]
+    },
+    "dasprid/enum": {
+        "version": "1.0.3"
     },
     "dnoegel/php-xdg-base-dir": {
         "version": "v0.1.1"
@@ -124,6 +130,18 @@
     },
     "egulias/email-validator": {
         "version": "3.1.2"
+    },
+    "endroid/installer": {
+        "version": "1.4.0"
+    },
+    "endroid/qr-code": {
+        "version": "4.4.7"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.0.7"
+    },
+    "erusev/parsedown": {
+        "version": "1.7.4"
     },
     "fakerphp/faker": {
         "version": "v1.19.0"
@@ -782,8 +800,20 @@
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.4"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.5"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.8"
+    },
+    "twig/markdown-extra": {
+        "version": "v3.3.8"
+    },
+    "twig/string-extra": {
+        "version": "v3.3.5"
     },
     "twig/twig": {
         "version": "v3.3.8"
