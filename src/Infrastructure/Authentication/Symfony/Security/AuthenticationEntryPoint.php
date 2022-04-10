@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
 
 /**
  * Because the security component is a bit stupid and does not return an AccessDenied for users connected with a cookie
- * We redirect the treatment of this situation to the AccessDeniedHandler
+ * We redirect the treatment of this situation to the AccessDeniedHandler.
  *
  * Class AuthenticationEntryPoint
  *
@@ -43,9 +43,11 @@ final class AuthenticationEntryPoint implements AuthenticationEntryPointInterfac
             return $this->accessDeniedHandler->handle($request, $previous);
         }
 
-        if (in_array('application/json', $request->getAcceptableContentTypes())) {
+        if (in_array('application/json', $request->getAcceptableContentTypes(), true)) {
             return new JsonResponse(
-                data: ['title' => "Vous n'avez pas les permissions suffisantes pour effectuer cette action"],
+                data: [
+                    'title' => "Vous n'avez pas les permissions suffisantes pour effectuer cette action",
+                ],
                 status: Response::HTTP_FORBIDDEN
             );
         }

@@ -8,8 +8,8 @@ use Domain\Authentication\Exception\TooManyLoginAttemptsException as TooManyLogi
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
- * Class TooManyLoginAttemptsException
- * @package Infrastructure\Authentication\Exception
+ * Class TooManyLoginAttemptsException.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class TooManyLoginAttemptsException extends CustomUserMessageAuthenticationException implements TooManyLoginAttemptsExceptionInterface

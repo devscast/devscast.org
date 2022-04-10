@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class UserChecker
+ * Class UserChecker.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */

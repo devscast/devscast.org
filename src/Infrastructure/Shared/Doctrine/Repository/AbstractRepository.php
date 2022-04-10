@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection ALL */
+
 declare(strict_types=1);
 
 namespace Infrastructure\Shared\Doctrine\Repository;
@@ -59,7 +61,9 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
     public function findOneByCaseInsensitive(array $conditions): ?object
     {
         /** @var E|null $result */
-        $result = $this->findByCaseInsensitiveQuery($conditions)->setMaxResults(1)->getOneOrNullResult();
+        $result = $this->findByCaseInsensitiveQuery($conditions)
+            ->setMaxResults(1)
+            ->getOneOrNullResult();
 
         return $result;
     }
