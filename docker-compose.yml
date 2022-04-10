@@ -31,15 +31,12 @@ services:
     user: '${USER_ID}:${GROUP_ID}'
     container_name: devscast_community_php
     restart: unless-stopped
-    image: grafikart/php:php8.1-1
+    build:
+      context: ./tools/docker/php
     volumes:
       - .:/var/www:delegated
     depends_on:
       - database
-    environment:
-      APP_ENV: dev
-      MAILER_DSN: smtp://maildev:25?encryption=null&auth_mode=null
-      DATABASE_URL: mysql://root:root@database/devscast?serverVersion=10.7.3-MariaDB&chartset=utf8
 
   ## Development Tools
   maildev:
@@ -49,8 +46,6 @@ services:
     ports:
       - "1080:80"
     restart: unless-stopped
-    networks:
-        - dev
     labels:
       com.symfony.server.service-prefix: 'MAILER'
 
@@ -82,6 +77,3 @@ volumes:
   database-data:
     driver:
       local
-
-networks:
-  dev:

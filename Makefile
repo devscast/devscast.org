@@ -13,9 +13,11 @@ ifeq ($(is_docker), 1)
 	dc := USER_ID=$(user) GROUP_ID=$(group) docker-compose
 	de := docker-compose exec
 	dr := $(dc) run --rm
+	drtest := $(dc) -f docker-compose.test.yaml run --rm
 	sfc := $(de) php bin/console
 	node := $(dr) --user="$(user)" node
 	php := $(dr) --no-deps php
+	phptest := $(drtest) phptest
 	composer := $(php) composer
 	host := 0.0.0.0
 else
@@ -53,8 +55,9 @@ migrate: vendor/autoload.php ## create database and migrate to the latest versio
 
 .PHONY: test
 test: vendor/autoload.php ## unit and integration tests
-	make migrate
-	$(php) vendor/bin/phpunit --coverage-text --stop-on-failure
+	$(phptest) bin/console cache:clear --env=test
+	$(phptest) bin/console doctrine:schema:validate --skip-sync
+	$(phptest) bin/phpunit --stop-on-failure
 
 .PHONY: build-docker
 build-docker:
