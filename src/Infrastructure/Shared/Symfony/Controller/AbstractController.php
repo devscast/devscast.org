@@ -21,7 +21,7 @@ abstract class AbstractController extends SymfonyAbstractController
         return $this->redirectToRoute($route, $params, Response::HTTP_SEE_OTHER);
     }
 
-    protected function getFormResponseStatus(FormInterface $form, ?Response $response = null): Response
+    protected function getResponseBasedOnFormValidationStatus(FormInterface $form, ?Response $response = null): Response
     {
         if (null === $response) {
             $response = new Response();

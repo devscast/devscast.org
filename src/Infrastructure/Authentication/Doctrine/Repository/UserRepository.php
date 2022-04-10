@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection ALL */
+
 declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
@@ -32,8 +34,8 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
         }
 
         try {
-            /** @var User|null */
-            return $this->createQueryBuilder('u')
+            /** @var User|null $result */
+            $result = $this->createQueryBuilder('u')
                 ->where('u.email = :email')
                 ->orWhere("u.{$service}_id = :serviceId")
                 ->setMaxResults(1)
@@ -43,6 +45,8 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
                 ])
                 ->getQuery()
                 ->getOneOrNullResult();
+
+            return $result;
         } catch (NonUniqueResultException) {
             return null;
         }
@@ -50,18 +54,60 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
 
     public function findOneByEmail(string $email): ?User
     {
-        /** @var User/null $user */
-        $user = $this->findOneBy([
-            'email' => $email,
-        ]);
+        try {
+            /** @var User|null $result */
+            $result = $this->createQueryBuilder('u')
+                ->where('u.email = :email')
+                ->setParameter('email', $email)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
 
-        return $user;
+            return $result;
+        } catch (NonUniqueResultException) {
+            return null;
+        }
+    }
+
+    public function findOneByUsername(string $username): ?User
+    {
+        try {
+            /** @var User|null $result */
+            $result = $this->createQueryBuilder('u')
+                ->where('u.username = :username')
+                ->setParameter('username', $username)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
+
+            return $result;
+        } catch (NonUniqueResultException) {
+            return null;
+        }
+    }
+
+    public function findOneByEmailOrUsername(string $emailOrUsername): ?User
+    {
+        try {
+            /** @var User|null $result */
+            $result = $this->createQueryBuilder('u')
+                ->where('LOWER(u.email) = :identifier')
+                ->orWhere('LOWER(u.username) = :identifier')
+                ->setParameter('identifier', mb_strtolower($emailOrUsername))
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
+
+            return $result;
+        } catch (NonUniqueResultException) {
+            return null;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
+    public function upgradePassword(PasswordAuthenticatedUserInterface|User $user, string $newHashedPassword): void
     {
         if (! $user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));

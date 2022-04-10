@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
-use DateTime;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -34,8 +33,8 @@ final class LoginAttemptRepository extends AbstractRepository implements LoginAt
         return intval($this->createQueryBuilder('l')
             ->select('COUNT(l.id) as count')
             ->where('l.user = :user')
-            ->andWhere('l.createdAt > :date')
-            ->setParameter('date', new DateTime("-{$minutes} minutes"))
+            ->andWhere('l.created_at > :date')
+            ->setParameter('date', new \DateTimeImmutable("-{$minutes} minutes"))
             ->setParameter('user', $user)
             ->setMaxResults(1)
             ->getQuery()

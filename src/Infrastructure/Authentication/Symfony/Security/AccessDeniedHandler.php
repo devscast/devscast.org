@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 declare(strict_types=1);
 
@@ -7,14 +9,13 @@ namespace Infrastructure\Authentication\Symfony\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
 use Twig\Environment;
 
 /**
- * Class AccessDeniedHandler
- * @package Infrastructure\Authentication\Symfony\Security
+ * Class AccessDeniedHandler.
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class AccessDeniedHandler implements AccessDeniedHandlerInterface
@@ -28,7 +29,7 @@ final class AccessDeniedHandler implements AccessDeniedHandlerInterface
     {
         $attributes = $accessDeniedException->getAttributes();
 
-        if (in_array('application/json', $request->getAcceptableContentTypes())) {
+        if (in_array('application/json', $request->getAcceptableContentTypes(), true)) {
             return new JsonResponse(null, Response::HTTP_FORBIDDEN);
         }
 
