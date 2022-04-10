@@ -1,0 +1,37 @@
+# See the configuration reference at https://symfony.com/bundles/SchebTwoFactorBundle/6.x/configuration.html
+scheb_two_factor:
+    security_tokens:
+        - Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken
+        - Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken
+
+    # Trusted device feature
+    trusted_device:
+        enabled: true
+        lifetime: 604800
+        extend_lifetime: false
+        cookie_name: _devscast_trusted_device
+        cookie_secure: auto
+        cookie_same_site: "lax"
+        cookie_path: "/"
+
+    # Backup codes feature
+    backup_codes:
+        enabled: true
+
+    # Email authentication config
+    email:
+        enabled: true
+        mailer: Infrastructure\Authentication\Symfony\Mailer\EmailAuthCodeMailer
+        sender_email: noreply@devscast.org
+        sender_name: Devscast Community
+        digits: 6
+        template: domain/authentication/login_2fa.html.twig
+
+    # Google Authenticator config
+    google:
+        enabled: true
+        server_name: devscast.org
+        issuer: Devscast Community
+        digits: 6
+        window: 1
+        template: domain/authentication/login_2fa.html.twig
