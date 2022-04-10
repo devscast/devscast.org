@@ -1,0 +1,25 @@
+version: '3'
+services:
+    phptest:
+        image: grafikart/php:php8.1-1
+        container_name: devscast_community_phptest
+        volumes:
+            - .:/var/www:delegated
+        links:
+            - dbtest
+        networks:
+            - test
+    dbtest:
+        image: mariadb
+        container_name: devscast_community_dbtest
+        environment:
+            MARIADB_USER: test
+            MARIADB_ROOT_PASSWORD: test
+            MARIADB_DATABASE: devscast_test
+        ports:
+            - "3308:3306"
+        networks:
+            - test
+
+networks:
+    test:
