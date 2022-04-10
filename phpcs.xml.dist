@@ -10,6 +10,7 @@
 
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
     </rule>
     <rule ref="PSR12"/>
 
