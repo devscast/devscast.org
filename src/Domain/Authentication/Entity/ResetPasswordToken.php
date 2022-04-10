@@ -21,6 +21,15 @@ class ResetPasswordToken
 
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->token = substr(
+            string: bin2hex(random_bytes(max(1, intval(ceil(60 / 2))))),
+            offset: 0,
+            length: 60
+        );
+    }
+
     public function isExpired(int $interval): bool
     {
         try {

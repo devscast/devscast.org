@@ -143,6 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         $roles[] = Role::USER;
+
         return array_unique($roles);
     }
 
