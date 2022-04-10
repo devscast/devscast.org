@@ -17,4 +17,10 @@ interface UserRepository extends DataRepository
     public function findForOauth(string $service, ?string $serviceId, ?string $email): ?User;
 
     public function findOneByEmail(string $email): ?User;
+
+    public function findOneByUsername(string $username): ?User;
+
+    public function findOneByEmailOrUsername(string $emailOrUsername): ?User;
+
+    public function upgradePassword(User $user, string $newHashedPassword): void;
 }

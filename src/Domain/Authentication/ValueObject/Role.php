@@ -13,4 +13,5 @@ abstract class Role
 {
     final public const ADMIN = 'ROLE_ADMIN';
     final public const USER = 'ROLE_USER';
+    final public const SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 }

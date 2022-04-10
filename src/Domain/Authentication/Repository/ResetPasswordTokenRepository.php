@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Repository;
 
+use Domain\Authentication\Entity\ResetPasswordToken;
+use Domain\Authentication\Entity\User;
 use Domain\Shared\Repository\DataRepository;
 
 /**
@@ -13,4 +15,7 @@ use Domain\Shared\Repository\DataRepository;
  */
 interface ResetPasswordTokenRepository extends DataRepository
 {
+    public function findFor(User $user): ?ResetPasswordToken;
+
+    public function findOneByToken(string $token): ?ResetPasswordToken;
 }

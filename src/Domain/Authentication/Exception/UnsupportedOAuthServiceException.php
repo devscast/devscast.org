@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Domain\Authentication\Exception;
 
 /**
- * Interface UserBannedException.
+ * Interface UnsupportedOAuthServiceException.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface UserBannedException
+interface UnsupportedOAuthServiceException
 {
 }
