@@ -53,7 +53,7 @@ final class RequestLoginLinkHandler implements MessageHandlerInterface
             )->subject($this->translator->trans(
                 id: 'authentication.mails.subjects.login_link_requested',
                 parameters: [
-                    'name' => $user->getUsername(),
+                    '%name%' => $user->getUsername(),
                 ],
                 domain: 'authentication'
             ))
