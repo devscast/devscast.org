@@ -9,7 +9,7 @@ namespace Application\Authentication\Command;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class LoginUserCommand
+final class LoginCommand
 {
     public function __construct(
         public ?string $identifier = null,

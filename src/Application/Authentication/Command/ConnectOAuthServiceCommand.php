@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Application\Authentication\Command;
 
 /**
- * Class RequestLoginLinkCommand.
+ * Class ConnectOAuthServiceCommand.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RequestLoginLinkCommand
+final class ConnectOAuthServiceCommand
 {
     public function __construct(
-        public ?string $email = null
+        public readonly string $service
     ) {
     }
 }
