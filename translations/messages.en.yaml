@@ -1,9 +1,2 @@
-authentication:
-    exceptions:
-        user_not_found: ~
-        user_banned: ~
-        reset_password_ongoing_request: ~
-        reset_password_token_expired: ~
-        oauth_verified_email_not_found: ~
-        oauth_email_already_used: ~
-        oauth_authenticated: ~
+global:
+    submit: soumettre
