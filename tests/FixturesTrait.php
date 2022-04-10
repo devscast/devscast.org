@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use Fidry\AliceDataFixtures\LoaderInterface;
-use Test\PathHelper;
 
 /**
  * Trait FixturesTrait.
