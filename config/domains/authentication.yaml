@@ -1,0 +1,13 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Infrastructure\Authentication\Doctrine\EventListener\UserEmptyBackupCodeListener:
+        tags:
+            -
+                name: doctrine.orm.entity_listener
+                event: postUpdate
+                entity: Domain\Authentication\Entity\User

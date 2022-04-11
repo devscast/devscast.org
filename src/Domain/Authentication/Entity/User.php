@@ -6,6 +6,7 @@ namespace Domain\Authentication\Entity;
 
 use Domain\Authentication\ValueObject\Role;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
+use Scheb\TwoFactorBundle\Model\BackupCodeInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface as GoogleTwoFactor;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -17,12 +18,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleTwoFactor, EmailTwoFactor
+class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleTwoFactor, EmailTwoFactor, BackupCodeInterface
 {
     use IdentityTrait;
     use TimestampTrait;
     use OAuthTrait;
     use TwoFactorAuthTrait;
+    use BackupAuthTrait;
 
     private ?string $name = null;
 

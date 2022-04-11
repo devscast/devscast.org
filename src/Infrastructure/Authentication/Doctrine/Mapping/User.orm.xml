@@ -77,6 +77,7 @@
             </options>
         </field>
         <field name="google_authenticator_secret" type="string" length="255" nullable="true"/>
+        <field name="backup_codes" type="json"/>
 
         <!-- Timestamp -->
         <field name="created_at" type="datetime_immutable"/>
