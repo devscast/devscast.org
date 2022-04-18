@@ -10,14 +10,15 @@ use Domain\Authentication\Event\TwoFactorAuthEnabledEvent;
 use Domain\Authentication\Repository\UserRepository;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticator;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class ToggleEmailAuthCodeHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ToggleGoogleAuthenticatorHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ToggleGoogleAuthenticatorHandler
 {
     public function __construct(
         private readonly GoogleAuthenticator $authenticator,

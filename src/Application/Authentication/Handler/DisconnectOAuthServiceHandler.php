@@ -7,18 +7,20 @@ namespace Application\Authentication\Handler;
 use Application\Authentication\Command\DisconnectOAuthServiceCommand;
 use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Exception\UnsupportedOAuthServiceException;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class DisconnectOAuthServiceHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class DisconnectOAuthServiceHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class DisconnectOAuthServiceHandler
 {
     public const SCOPES = [
         'github' => ['user:email'],
         'google' => [],
+        'facebook' => [],
     ];
 
     public function __construct(
@@ -35,8 +37,14 @@ final class DisconnectOAuthServiceHandler implements MessageHandlerInterface
         $user = $command->user;
         match ($command->service) {
             'github' => $user->setGithubId(null),
-            'google' => $user->setGoogleId(null)
+            'google' => $user->setGoogleId(null),
+            'facebook' => $user->setFacebookId(null)
         };
+
+        //if (null === $user->getPassword() && !$user->useOauth()) {
+        //    throw new PasswordNotSetException();
+        //}
+
         $this->repository->save($user);
     }
 }

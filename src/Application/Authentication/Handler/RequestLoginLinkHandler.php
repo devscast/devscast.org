@@ -9,7 +9,7 @@ use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkDetails;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
@@ -20,7 +20,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RequestLoginLinkHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class RequestLoginLinkHandler
 {
     public function __construct(
         private readonly Mailer $mailer,

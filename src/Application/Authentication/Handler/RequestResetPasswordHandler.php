@@ -12,7 +12,7 @@ use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Exception\ResetPasswordOngoingException;
 use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -21,7 +21,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RequestResetPasswordHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class RequestResetPasswordHandler
 {
     private const EXPIRE_IN = 30;
 
