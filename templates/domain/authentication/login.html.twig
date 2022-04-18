@@ -2,8 +2,24 @@
 {% block title 'authentication.titles.login' | trans([], 'authentication') %}
 
 {% block body %}
+    <p>connexion oauth</p>
+    <a href="{{ path('authentication_oauth_connect', {service: 'google'}) }}" title="connexion via google" aria-label="connexion via google">
+        google
+    </a>
+    <a href="{{ path('authentication_oauth_connect', {service: 'github'}) }}" title="Connexion via github" aria-label="connexion via github">
+        github
+    </a>
+    <a href="{{ path('authentication_oauth_connect', {service: 'facebook'}) }}" title="Connexion via github" aria-label="connexion via github">
+        facebook
+    </a>
+    <br><br>
+    <hr>
     {{ form_start(form) }}
         {{ form_rest(form) }}
     <button type="submit">{{ "global.submit" | trans([], 'messages') }}</button>
     {{ form_end(form) }}
+
+    <br><br>
+    <hr>
+    <a href="{{ path('authentication_login_link_request') }}">mot de passe oublié</a>
 {% endblock %}

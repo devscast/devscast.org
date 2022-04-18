@@ -26,7 +26,7 @@
         Si vous n'avez pas demandé ce lien en essayant de vous connecter ou de réinitialiser votre mot de passe, ignorez simplement ce mail.
 
         Ce lien ne sera plus valide après **10 minutes**,
-        {{ e.button('Me connecter', link.url) }}
+        {{ e.button('Me connecter', link.url, 'primary', _format) }}
 
         Vous pouvez également <a rel="noopener" href="{{ url('authentication_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
     {% endapply %}
