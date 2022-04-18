@@ -16,9 +16,7 @@ use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ResetPasswordController.
@@ -29,12 +27,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/password', name: 'authentication_reset_password_')]
 final class ResetPasswordController extends AbstractController
 {
-    public function __construct(
-        private readonly MessageBusInterface $commandBus,
-        private readonly TranslatorInterface $translator
-    ) {
-    }
-
     #[Route('/request', name: 'request', methods: ['GET', 'POST'])]
     public function request(Request $request): Response
     {
@@ -48,21 +40,23 @@ final class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->commandBus->dispatch($command);
+                $this->dispatchSync($command);
                 $this->addFlash('success', $this->translator->trans(
                     id: 'authentication.flashes.reset_password_requested_successfully',
                     parameters: [],
                     domain: 'authentication'
                 ));
-
-                return $this->redirectSeeOther('authentication_login');
             } catch (ResetPasswordOngoingException | UserNotFoundException $e) {
                 $this->addFlash('error', $this->translator->trans(
                     id: $e->getMessageKey(),
                     parameters: $e->getMessageData(),
                     domain: 'authentication'
                 ));
+            } catch (\Throwable $e) {
+                $this->handleUnexpectedException($e);
             }
+
+            return $this->redirectSeeOther('authentication_login');
         }
 
         return $this->render(
@@ -94,12 +88,17 @@ final class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->commandBus->dispatch($command);
-            $this->addFlash('success', $this->translator->trans(
-                id: 'authentication.flashes.reset_password_confirmed_successfully',
-                parameters: [],
-                domain: 'authentication'
-            ));
+            try {
+                $this->dispatchSync($command);
+                $this->addFlash('success', $this->translator->trans(
+                    id: 'authentication.flashes.reset_password_confirmed_successfully',
+                    parameters: [],
+                    domain: 'authentication'
+                ));
+            } catch (\Throwable $e) {
+                $this->handleUnexpectedException($e);
+            }
+
             $this->redirectSeeOther('authentication_login');
         }
 

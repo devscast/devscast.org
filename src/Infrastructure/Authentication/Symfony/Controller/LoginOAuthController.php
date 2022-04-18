@@ -13,11 +13,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class LoginOAuthController.
@@ -28,20 +26,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/login/oauth', name: 'authentication_oauth_')]
 final class LoginOAuthController extends AbstractController
 {
-    public function __construct(
-        private readonly MessageBusInterface $commandBus,
-        private readonly TranslatorInterface $translator
-    ) {
-    }
-
     #[Route('/connect/{service}', name: 'connect', methods: ['GET'])]
     public function connect(string $service): RedirectResponse
     {
         try {
-            $envelope = $this->commandBus->dispatch(new ConnectOAuthServiceCommand($service));
+            $envelope = $this->dispatchSync(new ConnectOAuthServiceCommand($service));
 
             /** @var HandledStamp $stamp */
-            $stamp = $envelope->last(HandledStamp::class);
+            $stamp = $envelope?->last(HandledStamp::class);
 
             /** @var RedirectResponse $response */
             $response = $stamp->getResult();
@@ -57,6 +49,10 @@ final class LoginOAuthController extends AbstractController
             return $response;
         } catch (UnsupportedOAuthServiceException) {
             throw new NotFoundHttpException();
+        } catch (\Throwable $e) {
+            $this->handleUnexpectedException($e);
+
+            return $this->redirectToRoute('authentication_login');
         }
     }
 
@@ -64,7 +60,7 @@ final class LoginOAuthController extends AbstractController
     public function disconnect(string $service, #[CurrentUser] User $user): RedirectResponse
     {
         try {
-            $this->commandBus->dispatch(new DisconnectOAuthServiceCommand($user, $service));
+            $this->dispatchSync(new DisconnectOAuthServiceCommand($user, $service));
             $this->addFlash('success', $this->translator->trans(
                 id: 'authentication.flashes.oauth_service_disconnected_successfully',
                 parameters: [
@@ -74,9 +70,13 @@ final class LoginOAuthController extends AbstractController
             ));
 
             // TODO redirect to profile
-            return $this->redirectToRoute('app_index');
+            return $this->redirectToRoute('authentication_settings_index');
         } catch (UnsupportedOAuthServiceException) {
             throw new NotFoundHttpException();
+        } catch (\Throwable $e) {
+            $this->handleUnexpectedException($e);
+
+            return $this->redirectToRoute('authentication_settings_index');
         }
     }
 

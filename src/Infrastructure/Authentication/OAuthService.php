@@ -47,6 +47,7 @@ final class OAuthService
             return false;
         }
 
+        // todo: dispatch create user command
         $user
             ->setEmail($oauthData['email'])
             ->setGithubId($oauthData['github_id'] ?? null)

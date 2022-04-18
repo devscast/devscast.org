@@ -29,7 +29,8 @@ class Mailer
     {
         $html = $this->twig->render(
             name: $template,
-            context: $data + [
+            context: [
+                ...$data,
                 '_format' => 'html',
                 '_layout' => 'shared/layout/mail/base.html.twig',
             ]
@@ -37,7 +38,8 @@ class Mailer
 
         $text = $this->twig->render(
             name: $template,
-            context: $data + [
+            context: [
+                ...$data,
                 '_format' => 'text',
                 '_layout' => 'shared/layout/mail/base.text.twig',
             ]
