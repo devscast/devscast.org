@@ -9,7 +9,7 @@ use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository;
 use Infrastructure\Authentication\Doctrine\Repository\ResetPasswordTokenRepository;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -19,7 +19,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ConfirmResetPasswordHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ConfirmResetPasswordHandler
 {
     public function __construct(
         private readonly TranslatorInterface $translator,

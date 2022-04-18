@@ -6,7 +6,7 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\ExportBackupCodeCommand;
 use Application\Authentication\Command\RegenerateBackupCodeCommand;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
@@ -14,7 +14,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ExportBackupCodeHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ExportBackupCodeHandler
 {
     public function __construct(
         private readonly MessageBusInterface $commandBus

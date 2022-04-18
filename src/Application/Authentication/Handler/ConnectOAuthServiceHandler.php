@@ -8,18 +8,20 @@ use Application\Authentication\Command\ConnectOAuthServiceCommand;
 use Infrastructure\Authentication\Exception\UnsupportedOAuthServiceException;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class ConnectOAuthServiceHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ConnectOAuthServiceHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ConnectOAuthServiceHandler
 {
     public const SCOPES = [
         'github' => ['user:email'],
         'google' => [],
+        'facebook' => [],
     ];
 
     public function __construct(

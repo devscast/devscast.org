@@ -9,14 +9,15 @@ use Domain\Authentication\Event\TwoFactorAuthDisabledEvent;
 use Domain\Authentication\Event\TwoFactorAuthEnabledEvent;
 use Domain\Authentication\Repository\UserRepository;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class ToggleEmailAuthCodeHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ToggleEmailAuthCodeHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ToggleEmailAuthCodeHandler
 {
     public function __construct(
         private readonly UserRepository $repository,

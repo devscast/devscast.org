@@ -10,14 +10,15 @@ use Domain\Authentication\Event\LoginWithAnotherIpAddressEvent;
 use Domain\Authentication\Repository\UserRepository;
 use Domain\Authentication\Service\LoginAttemptService;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class RegisterLoginIpAddressHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RegisterLoginIpAddressHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class RegisterLoginIpAddressHandler
 {
     public function __construct(
         private readonly LoginAttemptService $loginAttempt,

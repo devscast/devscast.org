@@ -6,14 +6,15 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RegisterLoginAttemptCommand;
 use Domain\Authentication\Service\LoginAttemptService;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class RegisterLoginAttemptHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RegisterLoginAttemptHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class RegisterLoginAttemptHandler
 {
     public function __construct(
         private readonly LoginAttemptService $loginAttempt

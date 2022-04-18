@@ -6,14 +6,15 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RegenerateBackupCodeCommand;
 use Domain\Authentication\Repository\UserRepository;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Class RegenerateBackupCodeHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class RegenerateBackupCodeHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class RegenerateBackupCodeHandler
 {
     public function __construct(
         private readonly UserRepository $repository
