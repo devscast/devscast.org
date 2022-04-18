@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class LoginFormController.
@@ -22,17 +21,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('', name: 'authentication_')]
 final class LoginFormController extends AbstractController
 {
-    public function __construct(
-        private readonly TranslatorInterface $translator,
-    ) {
-    }
-
-    /**
-     * Pas besoin de handle la request ou de dispatcher la command,
-     * Symfony gère tout ceci grâce aux Authenticators.
-     *
-     * @author bernard-ng <bernard@devscast.tech>
-     */
     #[Route('/login', name: 'login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $utils): Response
     {

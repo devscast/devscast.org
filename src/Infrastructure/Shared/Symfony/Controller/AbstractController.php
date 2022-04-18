@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Symfony\Controller;
 
+use Infrastructure\Shared\Symfony\Messenger\DispatchTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class AbstractController.
@@ -16,6 +20,15 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class AbstractController extends SymfonyAbstractController
 {
+    use DispatchTrait;
+
+    public function __construct(
+        protected readonly MessageBusInterface $commandBus,
+        protected readonly TranslatorInterface $translator,
+        protected readonly LoggerInterface $logger
+    ) {
+    }
+
     protected function redirectSeeOther(string $route, array $params = []): RedirectResponse
     {
         return $this->redirectToRoute($route, $params, Response::HTTP_SEE_OTHER);
@@ -61,5 +74,15 @@ abstract class AbstractController extends SymfonyAbstractController
         }
 
         return $errors;
+    }
+
+    protected function handleUnexpectedException(\Throwable $e): void
+    {
+        $this->addFlash('error', $this->translator->trans(
+            id: 'authentication.flashes.something_went_wrong',
+            parameters: [],
+            domain: 'authentication'
+        ));
+        $this->logger->error($e->getMessage(), $e->getTrace());
     }
 }

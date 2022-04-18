@@ -10,10 +10,8 @@ use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class LoginLinkController.
@@ -24,12 +22,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/login/link', name: 'authentication_login_link_')]
 final class LoginLinkController extends AbstractController
 {
-    public function __construct(
-        private readonly MessageBusInterface $commandBus,
-        private readonly TranslatorInterface $translator
-    ) {
-    }
-
     #[Route('/request', name: 'request', methods: ['GET', 'POST'])]
     public function request(Request $request): Response
     {
@@ -43,7 +35,7 @@ final class LoginLinkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->commandBus->dispatch($command);
+                $this->dispatchSync($command);
                 $this->addFlash('success', $this->translator->trans(
                     id: 'authentication.flashes.login_link_requested_successfully',
                     parameters: [],
@@ -57,6 +49,8 @@ final class LoginLinkController extends AbstractController
                     parameters: [],
                     domain: 'authentication'
                 ));
+            } catch (\Throwable $e) {
+                $this->handleUnexpectedException($e);
             }
         }
 
