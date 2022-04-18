@@ -22,6 +22,7 @@ security:
                 - Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator
                 - Infrastructure\Authentication\Symfony\Authenticator\GoogleAuthenticator
                 - Infrastructure\Authentication\Symfony\Authenticator\GithubAuthenticator
+                - Infrastructure\Authentication\Symfony\Authenticator\FacebookAuthenticator
 
             # configure the maximum login attempts (per minute)
             #login_throttling:

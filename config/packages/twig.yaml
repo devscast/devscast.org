@@ -1,6 +1,6 @@
 twig:
     form_themes:
-        - form_div_layout.html.twig
+        - shared/layout/form_theme.html.twig
     default_path: '%kernel.project_dir%/templates'
     date:
         format: 'd M Y H:i'
