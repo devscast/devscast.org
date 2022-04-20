@@ -13,7 +13,7 @@ use Twig\TwigFilter;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class MailerExtension extends AbstractExtension
+final class MailerExtension extends AbstractExtension
 {
     public function getFilters(): array
     {

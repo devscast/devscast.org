@@ -78,11 +78,11 @@ abstract class AbstractController extends SymfonyAbstractController
 
     protected function handleUnexpectedException(\Throwable $e): void
     {
+        $this->logger->error($e->getMessage(), $e->getTrace());
         $this->addFlash('error', $this->translator->trans(
             id: 'authentication.flashes.something_went_wrong',
             parameters: [],
             domain: 'authentication'
         ));
-        $this->logger->error($e->getMessage(), $e->getTrace());
     }
 }

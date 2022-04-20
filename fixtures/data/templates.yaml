@@ -1,0 +1,38 @@
+Domain\Authentication\Entity\User:
+    user (template):
+        name: <name()>
+        username (unique): <userName()>
+        job_title: <jobTitle()>
+        biography: <realText(500)>
+        gender: <randomElement(['M', 'F', 'O'])>
+
+        email: user_<current()>\@devscast.org
+        phone_number: <e164PhoneNumber()>
+        country: <countryCode()>
+        roles: [ 'ROLE_USER' ]
+        password: \$2y\$13\$PzaAzoYYBl1VyuAU9M/3GuFQaOgO2vyHct1iN0b4vULoIXtcBICuu # 000000
+
+        # States
+        is_email_verified: 1
+        is_phone_number_verified: 1
+        is_banned: 0
+        banned_at: ~
+
+        # Login History
+        last_login_at: <ipv4()>
+        last_login_ip: <dateTimeThisYear()>
+
+        # OAuth
+        github_id: ~
+        facebook_id: ~
+        google_id: ~
+
+        # 2FA
+        is_email_auth_enabled: 0
+        email_auth_code: 0
+        google_authenticator_secret: 0
+        backup_codes: []
+
+        # Timestamp
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
