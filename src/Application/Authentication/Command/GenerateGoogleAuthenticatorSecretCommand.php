@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Domain\Authentication\Event;
+namespace Application\Authentication\Command;
 
 use Domain\Authentication\Entity\User;
 
 /**
- * Class TwoFactorAuthEnabledEvent.
+ * Class GenerateGoogleSecretCommand.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorAuthEnabledEvent
+final class GenerateGoogleAuthenticatorSecretCommand
 {
     public function __construct(
         public readonly User $user

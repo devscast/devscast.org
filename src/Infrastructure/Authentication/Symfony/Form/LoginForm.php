@@ -30,14 +30,12 @@ final class LoginForm extends AbstractForm
         $builder
             ->add('identifier', TextType::class, [
                 'label' => 'authentication.forms.labels.identifier',
-                'translation_domain' => 'authentication',
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'authentication.forms.labels.password',
                 'attr' => [
                     'autocomplete' => 'current-password',
                 ],
-                'translation_domain' => 'authentication',
             ])
             ->add('_token', HiddenType::class, [
                 'mapped' => false,
@@ -52,6 +50,7 @@ final class LoginForm extends AbstractForm
         $resolver->setDefaults([
             'data_class' => LoginCommand::class,
             'csrf_protection' => false,
+            'translation_domain' => 'authentication',
         ]);
     }
 

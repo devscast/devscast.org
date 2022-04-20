@@ -25,7 +25,6 @@ final class RequestResetPasswordForm extends AbstractType
                 'autocomplete' => 'email',
                 'placeholder' => 'authentication.forms.placeholders.email',
             ],
-            'translation_domain' => 'authentication',
         ]);
     }
 
@@ -33,6 +32,7 @@ final class RequestResetPasswordForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RequestResetPasswordCommand::class,
+            'translation_domain' => 'authentication',
         ]);
     }
 }

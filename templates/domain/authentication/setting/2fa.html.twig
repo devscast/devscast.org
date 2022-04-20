@@ -1,0 +1,13 @@
+{% extends 'domain/authentication/layout/base.html.twig' %}
+{% block title 'authentication.titles.settings.2fa' | trans([], 'authentication') %}
+
+{% block body %}
+    <h1>{{ 'authentication.titles.settings.2fa' | trans([], 'authentication') }}</h1>
+    <hr>
+    <img src="{{ qr_code_data_uri(qrcode_content) }}" alt="google authenticator qrcode">
+    <br>
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button type="submit">{{ 'global.submit' | trans({}, 'messages') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
