@@ -88,4 +88,9 @@ trait TwoFactorAuthTrait
     {
         return (string) $this->email;
     }
+
+    public function is2FAEnabled(): bool
+    {
+        return $this->is_email_auth_enabled || $this->is_google_authenticator_enabled;
+    }
 }

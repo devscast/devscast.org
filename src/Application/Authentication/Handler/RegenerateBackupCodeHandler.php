@@ -25,7 +25,7 @@ final class RegenerateBackupCodeHandler
     {
         $user = $command->user;
         $codes = [];
-        for ($i = 0; $i <= 6; ++$i) {
+        for ($i = 0; $i <= 5; ++$i) {
             $codes[$i] = $this->generateCode();
         }
 

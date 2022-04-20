@@ -1,0 +1,8 @@
+{% extends 'domain/authentication/layout/base.html.twig' %}
+{% block title 'authentication.titles.settings.index' | trans([], 'authentication') %}
+
+{% block body %}
+    <h1>{{ 'authentication.titles.settings.index' | trans([], 'authentication') }}</h1>
+    <hr>
+    <a href="{{ path('authentication_settings_2fa') }}">2fa</a>
+{% endblock %}

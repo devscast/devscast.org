@@ -25,7 +25,6 @@ final class RequestLoginLinkForm extends AbstractType
                 'autocomplete' => 'email',
                 'placeholder' => 'authentication.forms.placeholders.email',
             ],
-            'translation_domain' => 'authentication',
         ]);
     }
 
@@ -33,6 +32,7 @@ final class RequestLoginLinkForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RequestLoginLinkCommand::class,
+            'translation_domain' => 'authentication',
         ]);
     }
 }

@@ -5,7 +5,9 @@ authentication:
         login_link: Un Problème de connexion ?
         login_2fa: Connexion 2FA
         login: Connexion
-        setting: Paramètres d'authentification
+        settings:
+            index: Paramètres d'authentification
+            2fa: Paramètres authentification à facteur double
     forms:
         labels:
             identifier: Identifiant
@@ -13,6 +15,8 @@ authentication:
             password: Mot de passe
             password_confirm: Confirmer le mot de passe
             email: Adresse Email
+            2fa_google_authenticator_provider: Avec Google Authenticator
+            2fa_email_provider: Avec Email
         placeholders:
             identifier: "Email ou Nom d'utilisateur..."
             password: Mot de passe 6+ caractères
@@ -28,6 +32,7 @@ authentication:
         oauth_service_login_successfully: 'Vous êtes maintenant connecté via %service%'
         too_many_resend_code_request: "Vous avez atteint la limite de demande de renvoie de code pour aujourd'hui"
         resend_code_requested_successfully: Le code d'authentification a été renvoyé avec succès
+        2fa_settings_updated_successfully: Les paramètres d'authentification à facteur double ont bien été modifié
     validations:
         password_must_match: Les deux mots de passe ne sont pas identiques !
     exceptions:
@@ -48,3 +53,5 @@ authentication:
             reset_password_requested: Instruction de réinitialisation de mot de passe Devscast
             reset_password_confirmed: "%name%, votre mot de passe sur Devscast a été mise à jour"
             2fa_auth_code: "Code d'authentification Devscast"
+            2fa_enabled: Authentification à facteur double activée
+            2fa_disabled: Authentification à facteur double désactivée
