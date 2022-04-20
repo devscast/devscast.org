@@ -2,8 +2,9 @@ version: '3'
 
 services:
   database:
-    image: mariadb
-    container_name: devscast_community_mariadb
+    image: mariadb:10.7.3
+    container_name: devscast_community_database
+    restart: unless-stopped
     environment:
       MARIADB_USER: root
       MARIADB_ROOT_PASSWORD: root
@@ -38,20 +39,28 @@ services:
     depends_on:
       - database
 
+  redis:
+    image: redis:6-alpine
+    container_name: devscast_community_redis
+    restart: unless-stopped
+    labels:
+      com.symfony.server.service-prefix: 'REDIS'
+
   ## Development Tools
   maildev:
-    image: maildev/maildev
+    image: maildev/maildev:2.0.2
     container_name: devscast_community_maildev
+    restart: unless-stopped
     command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
     ports:
       - "1080:80"
-    restart: unless-stopped
     labels:
       com.symfony.server.service-prefix: 'MAILER'
 
   adminer:
-    image: adminer
+    image: adminer:4.8.1
     container_name: devscast_community_adminer
+    restart: unless-stopped
     depends_on:
       - database
     environment:
@@ -72,6 +81,35 @@ services:
       - ./:/home/node/app
     ports:
       - "3000:3000"
+
+  php_test:
+    user: '${USER_ID}:${GROUP_ID}'
+    container_name: devscast_community_phptest
+    build:
+      context: ./tools/docker/php
+    volumes:
+      - .:/var/www:delegated
+    depends_on:
+      - database_test
+
+  database_test:
+    image: mariadb:10.7.3
+    container_name: devscast_community_databasetest
+    environment:
+      MARIADB_USER: test
+      MARIADB_ROOT_PASSWORD: test
+      MARIADB_DATABASE: devscast_test
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
+    ports:
+      - "3308:3306"
+
+  redis_gui:
+    image: rediscommander/redis-commander
+    container_name: devscast_community_redisgui
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
 
 volumes:
   database-data:

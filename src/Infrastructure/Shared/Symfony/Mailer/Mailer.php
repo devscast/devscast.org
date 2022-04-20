@@ -16,7 +16,7 @@ use Twig\Environment;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Mailer
+final class Mailer
 {
     public function __construct(
         private readonly Environment $twig,

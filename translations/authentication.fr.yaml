@@ -5,6 +5,7 @@ authentication:
         login_link: Un Problème de connexion ?
         login_2fa: Connexion 2FA
         login: Connexion
+        setting: Paramètres d'authentification
     forms:
         labels:
             identifier: Identifiant
@@ -25,6 +26,8 @@ authentication:
         oauth_service_disconnected_successfully: '%service% a été dissocié de votre compte Devscast'
         oauth_service_connected_successfully: '%service% a été associé à votre compte Devscast'
         oauth_service_login_successfully: 'Vous êtes maintenant connecté via %service%'
+        too_many_resend_code_request: "Vous avez atteint la limite de demande de renvoie de code pour aujourd'hui"
+        resend_code_requested_successfully: Le code d'authentification a été renvoyé avec succès
     validations:
         password_must_match: Les deux mots de passe ne sont pas identiques !
     exceptions:

@@ -40,4 +40,9 @@
             <button>{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</button>
         </form>
     </p>
+    <p class="resend">
+        <form action="{{ path('authentication_2fa_resend_code') }}" method="post">
+            <button>{{ 'global.resend'|trans({}, 'messages') }}</button>
+        </form>
+    </p>
 {% endblock %}

@@ -6,7 +6,6 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepository;
-use Infrastructure\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use League\OAuth2\Client\Provider\FacebookUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
@@ -23,10 +22,6 @@ final class FacebookAuthenticator extends AbstractOAuthAuthenticator
     {
         if (! ($resourceOwner instanceof FacebookUser)) {
             throw new \RuntimeException('Expecting FacebookUser as the first parameter');
-        }
-
-        if (true !== ($resourceOwner->toArray()['email_verified'] ?? null)) {
-            throw new OAuthVerifiedEmailNotFoundException();
         }
 
         $user = $repository->findForOauth(

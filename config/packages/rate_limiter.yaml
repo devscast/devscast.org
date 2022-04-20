@@ -1,0 +1,6 @@
+framework:
+    rate_limiter:
+        resend_2FA_code:
+            policy: 'token_bucket'
+            limit: 3
+            rate: { interval: '120 seconds', amount: 1 }
