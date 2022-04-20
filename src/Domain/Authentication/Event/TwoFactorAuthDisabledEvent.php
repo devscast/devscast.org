@@ -14,8 +14,7 @@ use Domain\Authentication\Entity\User;
 final class TwoFactorAuthDisabledEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly string $provider
+        public readonly User $user
     ) {
     }
 }

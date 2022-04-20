@@ -29,7 +29,6 @@ final class ConfirmResetPasswordForm extends AbstractType
                 'label' => 'authentication.forms.labels.password_confirm',
             ],
             'invalid_message' => 'authentication.validations.password_must_match',
-            'translation_domain' => 'authentication',
         ]);
     }
 
@@ -37,6 +36,7 @@ final class ConfirmResetPasswordForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ConfirmResetPasswordCommand::class,
+            'translation_domain' => 'authentication',
         ]);
     }
 }

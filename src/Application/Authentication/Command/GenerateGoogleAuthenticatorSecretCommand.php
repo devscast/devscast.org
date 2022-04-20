@@ -7,11 +7,11 @@ namespace Application\Authentication\Command;
 use Domain\Authentication\Entity\User;
 
 /**
- * Class ToggleEmailAuthCodeCommand.
+ * Class GenerateGoogleSecretCommand.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ToggleEmailAuthCodeCommand
+final class GenerateGoogleAuthenticatorSecretCommand
 {
     public function __construct(
         public readonly User $user

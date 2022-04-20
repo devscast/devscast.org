@@ -1,0 +1,17 @@
+{% extends 'domain/authentication/layout/base.html.twig' %}
+
+{% block body %}
+    <h1>Backup code</h1>
+
+    <code>
+        {% for code in codes %}
+            <strong>{{ code }}</strong>
+        {% endfor %}
+    </code>
+
+    <form action="{{ path('authentication_setting_backup_codes_regenerate') }}" method="post">
+        <button type="submit">regenerate</button>
+    </form>
+    <a href="{{ path('authentication_setting_backup_codes_export') }}">download backup code (csv)</a>
+{% endblock %}
+

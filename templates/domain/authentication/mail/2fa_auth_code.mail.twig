@@ -11,7 +11,9 @@
             {% embed 'shared/layout/mail/section.html.twig' %}
                 {% block content %}
                     <div style="text-align: center">
-                        <strong>{{ user.emailAuthCode }}</strong>
+                        <code>
+                            <strong>{{ user.emailAuthCode }}</strong>
+                        </code>
                     </div>
                 {% endblock %}
             {% endembed %}

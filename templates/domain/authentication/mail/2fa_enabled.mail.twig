@@ -1,0 +1,10 @@
+{% extends _layout %}
+{% import 'shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        L'authentification à facteur double vient d'être activée de votre compte Devscast.
+    {% endapply %}
+{% endblock %}
