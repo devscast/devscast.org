@@ -1,3 +1,12 @@
-global:
-    submit: soumettre
-    resend: renvoyer
+global.submit: Soumettre
+global.resend: Renvoyer
+global.new: Ajouter
+global.cancel: Annuler
+global.close: Fermer
+global.show: Détail
+global.back: Retour
+global.edit: Modifier
+global.delete: Supprimer
+
+# flash messages
+flashes.something_went_wrong: Désolé une erreur est survenue de notre côté, veuillez réessayer

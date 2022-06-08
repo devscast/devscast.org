@@ -8,11 +8,11 @@ use Domain\Authentication\Entity\User;
 use Domain\Shared\Repository\DataRepository;
 
 /**
- * Interface LoginAttemptRepository.
+ * Interface LoginAttemptRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface LoginAttemptRepository extends DataRepository
+interface LoginAttemptRepositoryInterface extends DataRepository
 {
     public function deleteAttemptsFor(User $user): void;
 

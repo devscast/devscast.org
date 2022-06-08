@@ -8,11 +8,11 @@ use Domain\Authentication\Entity\User;
 use Domain\Shared\Repository\DataRepository;
 
 /**
- * Interface UserRepository.
+ * Interface UserRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface UserRepository extends DataRepository
+interface UserRepositoryInterface extends DataRepository
 {
     public function findForOauth(string $service, ?string $serviceId, ?string $email): ?User;
 

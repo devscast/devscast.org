@@ -10,11 +10,11 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\ResetPasswordTokenRepository as ResetPasswordTokenRepositoryInterface;
+use Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
- * Class ResetPasswordTokenRepository.
+ * Class ResetPasswordTokenRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
@@ -57,5 +57,15 @@ final class ResetPasswordTokenRepository extends AbstractRepository implements R
         } catch (NonUniqueResultException) {
             return null;
         }
+    }
+
+    public function clean(): mixed
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.created_at < :date')
+            ->setParameter('date', new \DateTimeImmutable('-3 month'))
+            ->delete(ResetPasswordToken::class, 'r')
+            ->getQuery()
+            ->execute();
     }
 }

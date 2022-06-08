@@ -7,8 +7,8 @@ namespace Application\Authentication\Handler;
 use Application\Authentication\Command\RequestResetPasswordCommand;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\ResetPasswordTokenRepository;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Authentication\Exception\ResetPasswordOngoingException;
 use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
@@ -27,10 +27,10 @@ final class RequestResetPasswordHandler
     private const EXPIRE_IN = 30;
 
     public function __construct(
-        private readonly Mailer $mailer,
-        private readonly ResetPasswordTokenRepository $tokenRepository,
-        private readonly UserRepository $userRepository,
-        private readonly TranslatorInterface $translator
+        private readonly Mailer                                $mailer,
+        private readonly ResetPasswordTokenRepositoryInterface $tokenRepository,
+        private readonly UserRepositoryInterface               $userRepository,
+        private readonly TranslatorInterface                   $translator
     ) {
     }
 

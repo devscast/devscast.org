@@ -6,7 +6,7 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Authentication\Exception\UserOAuthAuthenticatedException;
 use Infrastructure\Authentication\OAuthService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -72,7 +72,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
     {
         $credentials = $this->fetchAccessToken($this->getClient());
         $resourceOwner = $this->getResourceOwnerFromCredentials($credentials);
-        /** @var UserRepository $repository */
+        /** @var UserRepositoryInterface $repository */
         $repository = $this->em->getRepository(User::class);
 
         $user = $this->getUserOrNull();
@@ -145,7 +145,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
 
     abstract protected function getUserFromResourceOwner(
         ResourceOwnerInterface $resourceOwner,
-        UserRepository $repository
+        UserRepositoryInterface $repository
     ): ?User;
 
     private function getClient(): OAuth2ClientInterface

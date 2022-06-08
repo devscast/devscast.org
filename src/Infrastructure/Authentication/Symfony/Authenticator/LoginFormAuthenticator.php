@@ -6,7 +6,7 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,8 +38,8 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     private ?UserInterface $user = null;
 
     public function __construct(
-        private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly UserRepository $repository,
+        private readonly UrlGeneratorInterface    $urlGenerator,
+        private readonly UserRepositoryInterface  $repository,
         private readonly EventDispatcherInterface $dispatcher
     ) {
     }

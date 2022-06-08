@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RegenerateBackupCodeCommand;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -17,7 +17,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class RegenerateBackupCodeHandler
 {
     public function __construct(
-        private readonly UserRepository $repository
+        private readonly UserRepositoryInterface $repository
     ) {
     }
 

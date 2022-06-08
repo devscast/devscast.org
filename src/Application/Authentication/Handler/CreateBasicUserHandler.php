@@ -6,7 +6,7 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\CreateBasicUserCommand;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -19,7 +19,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 final class CreateBasicUserHandler
 {
     public function __construct(
-        private readonly UserRepository $repository,
+        private readonly UserRepositoryInterface     $repository,
         private readonly UserPasswordHasherInterface $hasher
     ) {
     }

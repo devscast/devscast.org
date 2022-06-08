@@ -9,11 +9,11 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\LoginAttempt;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\LoginAttemptRepository as LoginAttemptRepositoryInterface;
+use Domain\Authentication\Repository\LoginAttemptRepositoryInterface;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
- * Class LoginAttemptRepository.
+ * Class LoginAttemptRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */

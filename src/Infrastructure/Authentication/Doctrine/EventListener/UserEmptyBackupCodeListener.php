@@ -25,7 +25,6 @@ final class UserEmptyBackupCodeListener
     {
         if (0 === \count($user->getBackupCode())) {
             $this->commandBus->dispatch(new RegenerateBackupCodeCommand($user));
-            dump('event: listener !');
         }
     }
 }

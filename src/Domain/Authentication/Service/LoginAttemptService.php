@@ -6,7 +6,7 @@ namespace Domain\Authentication\Service;
 
 use Domain\Authentication\Entity\LoginAttempt;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\LoginAttemptRepository;
+use Domain\Authentication\Repository\LoginAttemptRepositoryInterface;
 
 /**
  * Class LoginAttemptService.
@@ -18,7 +18,7 @@ final class LoginAttemptService
     private const ATTEMPTS = 3;
 
     public function __construct(
-        private readonly LoginAttemptRepository $repository
+        private readonly LoginAttemptRepositoryInterface $repository
     ) {
     }
 

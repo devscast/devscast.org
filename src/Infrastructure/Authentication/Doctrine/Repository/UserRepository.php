@@ -9,14 +9,14 @@ namespace Infrastructure\Authentication\Doctrine\Repository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\UserRepository as UserRepositoryInterface;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * Class UserRepository.
+ * Class UserRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */

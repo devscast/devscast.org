@@ -7,7 +7,7 @@ namespace Application\Authentication\Handler;
 use Application\Authentication\Command\Toggle2FACommand;
 use Domain\Authentication\Event\TwoFactorAuthDisabledEvent;
 use Domain\Authentication\Event\TwoFactorAuthEnabledEvent;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -20,7 +20,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class Toggle2FAHandler
 {
     public function __construct(
-        private readonly UserRepository $repository,
+        private readonly UserRepositoryInterface  $repository,
         private readonly EventDispatcherInterface $dispatcher
     ) {
     }

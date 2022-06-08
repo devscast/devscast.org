@@ -21,6 +21,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 abstract class AbstractController extends SymfonyAbstractController
 {
     use DispatchTrait;
+    use FlashMessageTrait;
 
     public function __construct(
         protected readonly MessageBusInterface $commandBus,
@@ -45,44 +46,5 @@ abstract class AbstractController extends SymfonyAbstractController
         }
 
         return $response;
-    }
-
-    protected function flashFormErrors(FormInterface $form): void
-    {
-        $errors = $this->getFormErrors($form);
-        $errors = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($errors)));
-        $this->addFlash(
-            type: 'error',
-            message: implode(separator: '\n', array: $errors)
-        );
-    }
-
-    protected function getFormErrors(FormInterface $form): array
-    {
-        $errors = [];
-        foreach ($form->getErrors() as $error) {
-            $errors[] = $error->getMessage();
-        }
-
-        foreach ($form->all() as $childForm) {
-            if ($childForm instanceof FormInterface) {
-                $childErrors = $this->getFormErrors($childForm);
-                if ($childErrors) {
-                    $errors[] = $childErrors;
-                }
-            }
-        }
-
-        return $errors;
-    }
-
-    protected function handleUnexpectedException(\Throwable $e): void
-    {
-        $this->logger->error($e->getMessage(), $e->getTrace());
-        $this->addFlash('error', $this->translator->trans(
-            id: 'authentication.flashes.something_went_wrong',
-            parameters: [],
-            domain: 'authentication'
-        ));
     }
 }

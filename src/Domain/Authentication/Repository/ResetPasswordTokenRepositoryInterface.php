@@ -6,6 +6,7 @@ namespace Domain\Authentication\Repository;
 
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
+use Domain\Shared\Repository\CleanableRepositoryInterface;
 use Domain\Shared\Repository\DataRepository;
 
 /**
@@ -13,7 +14,7 @@ use Domain\Shared\Repository\DataRepository;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface ResetPasswordTokenRepository extends DataRepository
+interface ResetPasswordTokenRepositoryInterface extends DataRepository, CleanableRepositoryInterface
 {
     public function findFor(User $user): ?ResetPasswordToken;
 

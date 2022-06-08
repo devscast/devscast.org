@@ -6,7 +6,7 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RequestLoginLinkCommand;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -27,7 +27,7 @@ final class RequestLoginLinkHandler
         private readonly Mailer $mailer,
         private readonly LoginLinkHandlerInterface $loginLinkHandler,
         private readonly TranslatorInterface $translator,
-        private readonly UserRepository $repository
+        private readonly UserRepositoryInterface $repository
     ) {
     }
 

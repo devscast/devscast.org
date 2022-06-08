@@ -1,57 +1,52 @@
-authentication:
-    titles:
-        reset_password_confirm: Mise à jour du mot de passe
-        reset_password_request: Mot de passe oublié ?
-        login_link: Un Problème de connexion ?
-        login_2fa: Connexion 2FA
-        login: Connexion
-        settings:
-            index: Paramètres d'authentification
-            2fa: Paramètres authentification à facteur double
-    forms:
-        labels:
-            identifier: Identifiant
-            username: Nom d'utilisateur
-            password: Mot de passe
-            password_confirm: Confirmer le mot de passe
-            email: Adresse Email
-            2fa_google_authenticator_provider: Avec Google Authenticator
-            2fa_email_provider: Avec Email
-        placeholders:
-            identifier: "Email ou Nom d'utilisateur..."
-            password: Mot de passe 6+ caractères
-            username: "nom d'utilisateur... (ex: bob44)"
-            email: Votre adresse email...
-    flashes:
-        something_went_wrong: Désolé une erreur est survenue dans le processus d'authentification.
-        login_link_requested_successfully: Un lien de connexion vous a été envoyé par email.
-        reset_password_requested_successfully: Les instructions de récupération de mot de passe vous ont été envoyées par email.
-        reset_password_confirmed_successfully: Votre mot de passe à bien été mise à jour.
-        oauth_service_disconnected_successfully: '%service% a été dissocié de votre compte Devscast'
-        oauth_service_connected_successfully: '%service% a été associé à votre compte Devscast'
-        oauth_service_login_successfully: 'Vous êtes maintenant connecté via %service%'
-        too_many_resend_code_request: "Vous avez atteint la limite de demande de renvoie de code pour aujourd'hui"
-        resend_code_requested_successfully: Le code d'authentification a été renvoyé avec succès
-        2fa_settings_updated_successfully: Les paramètres d'authentification à facteur double ont bien été modifié
-    validations:
-        password_must_match: Les deux mots de passe ne sont pas identiques !
-    exceptions:
-        user_not_found: Désolé cet adresse email, ne correspond à aucun de nos enregistrements.
-        user_banned: Désolé ce compte a été bloqué.
-        reset_password_ongoing_request: |
-            Désolé une demande de réinitialisation de mot de passe est déjà en cours,
-            Veuillez poursuivre avec les intructions qui vous ont été envoyées par email.
-        reset_password_token_expired: Désolé le lien que vous avez utilisé n'est plus valide.
-        oauth_unsupported_service: "Désolé le service oauth %service% n'est pas supporté"
-        oauth_verified_email_not_found: Aucune adresse email vérifiée n'est associée.
-        oauth_email_already_used: Cette adresse email est déjà utilisé, essayez plutôt de vous connecter
-        oauth_authenticated: Oh non, mais vous êtes déjà connecté !
-        too_many_login_attempts: Plusieurs tantives de connexion erronée, réessayez plutard !
-    mails:
-        subjects:
-            login_link_requested: "%name%, voici le lien d'accès à votre compte Devscast"
-            reset_password_requested: Instruction de réinitialisation de mot de passe Devscast
-            reset_password_confirmed: "%name%, votre mot de passe sur Devscast a été mise à jour"
-            2fa_auth_code: "Code d'authentification Devscast"
-            2fa_enabled: Authentification à facteur double activée
-            2fa_disabled: Authentification à facteur double désactivée
+authentication.titles.reset_password_confirm: Mise à jour du mot de passe
+authentication.titles.reset_password_request: Mot de passe oublié ?
+authentication.titles.login_link: Un Problème de connexion ?
+authentication.titles.login_2fa: Connexion 2FA
+authentication.titles.login: Connexion
+authentication.titles.settings.index: Paramètres d'authentification
+authentication.titles.settings.2fa: Paramètres authentification à facteur double
+
+authentication.forms.labels.identifier: Identifiant
+authentication.forms.labels.username: Nom d'utilisateur
+authentication.forms.labels.password: Mot de passe
+authentication.forms.labels.password_confirm: Confirmer le mot de passe
+authentication.forms.labels.email: Adresse Email
+authentication.forms.labels.2fa_google_authenticator_provider: Avec Google Authenticator
+authentication.forms.labels.2fa_email_provider: Avec Email
+
+authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
+authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères
+authentication.forms.labels.placeholders.username: "nom d'utilisateur... (ex: bob44)"
+authentication.forms.labels.placeholders.email: Votre adresse email...
+
+# flash messages
+authentication.flashes.something_went_wrong: Désolé une erreur est survenue dans le processus d'authentification.
+authentication.flashes.login_link_requested_successfully: Un lien de connexion vous a été envoyé par email.
+authentication.flashes.reset_password_requested_successfully: Les instructions de récupération de mot de passe vous ont été envoyées par email.
+authentication.flashes.reset_password_confirmed_successfully: Votre mot de passe à bien été mise à jour.
+authentication.flashes.oauth_service_disconnected_successfully: '%service% a été dissocié de votre compte Devscast'
+authentication.flashes.oauth_service_connected_successfully: '%service% a été associé à votre compte Devscast'
+authentication.flashes.oauth_service_login_successfully: 'Vous êtes maintenant connecté via %service%'
+authentication.flashes.too_many_resend_code_request: "Vous avez atteint la limite de demande de renvoie de code pour aujourd'hui"
+authentication.flashes.resend_code_requested_successfully: Le code d'authentification a été renvoyé avec succès
+authentication.flashes.2fa_settings_updated_successfully: Les paramètres d'authentification à facteur double ont bien été modifié
+
+authentication.validations.password_must_match: Les deux mots de passe ne sont pas identiques !
+
+authentication.exceptions.user_not_found: Désolé cet adresse email, ne correspond à aucun de nos enregistrements.
+authentication.exceptions.user_banned: Désolé ce compte a été bloqué.
+authentication.exceptions.reset_password_ongoing_request: |
+    Désolé une demande de réinitialisation de mot de passe est déjà en cours,
+    Veuillez poursuivre avec les instructions qui vous ont été envoyées par email.
+
+authentication.exceptions.reset_password_token_expired: Désolé le lien que vous avez utilisé n'est plus valide.
+authentication.exceptions.oauth_unsupported_service: "Désolé le service oauth %service% n'est pas supporté"
+authentication.exceptions.oauth_verified_email_not_found: Aucune adresse email vérifiée n'est associée.
+authentication.exceptions.oauth_email_already_used: Cette adresse email est déjà utilisé, essayez plutôt de vous connecter
+authentication.exceptions.oauth_authenticated: Oh non, mais vous êtes déjà connecté !
+authentication.exceptions.too_many_login_attempts: Plusieurs tentives de connexion erronée, réessayez plus tard !
+
+authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"
+authentication.mails.subjects.reset_password_requested: "[Devscast] Instruction de réinitialisation de mot de passe"
+authentication.mails.subjects.reset_password_confirmed: "[Devscast] %name%, votre mot de passe a été mise à jour"
+authentication.mails.subjects.2fa_auth_code: "[Devscast] Code d'authentification"

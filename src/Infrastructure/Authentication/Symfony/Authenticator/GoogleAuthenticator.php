@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Repository\UserRepository;
+use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
@@ -19,7 +19,7 @@ final class GoogleAuthenticator extends AbstractOAuthAuthenticator
 {
     protected string $serviceName = 'google';
 
-    public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepository $repository): ?User
+    public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepositoryInterface $repository): ?User
     {
         if (! ($resourceOwner instanceof GoogleUser)) {
             throw new \RuntimeException('Expecting GoogleUser as the first parameter');
