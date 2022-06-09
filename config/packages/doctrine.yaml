@@ -14,9 +14,13 @@ doctrine:
         mappings:
             Domain\Authentication\Entity:
                 type: xml
-                dir: '%kernel.project_dir%/src/Infrastructure/Authentication/Doctrine/Mapping'
+                dir: '%kernel.project_dir%/src/Infrastructure/Authentication/Doctrine/Mapping/Entity'
                 prefix: 'Domain\Authentication\Entity'
-                alias: Authentication
+                is_bundle: false
+            Domain\Authentication\ValueObject:
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Authentication/Doctrine/Mapping/ValueObject'
+                prefix: 'Domain\Authentication\ValueObject'
                 is_bundle: false
 
 when@test:
