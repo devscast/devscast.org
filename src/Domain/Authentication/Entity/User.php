@@ -6,6 +6,7 @@ namespace Domain\Authentication\Entity;
 
 use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
+use Domain\Authentication\ValueObject\Username;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Scheb\TwoFactorBundle\Model\BackupCodeInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
@@ -29,13 +30,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private ?string $name = null;
 
-    private ?string $username = null;
+    private ?Username $username = null;
 
     private ?string $job_title = null;
 
     private ?string $biography = null;
 
     private Gender $gender;
+
+    private ?string $pronouns = null;
 
     private ?string $email = null;
 
@@ -91,14 +94,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this;
     }
 
-    public function getUsername(): ?string
+    public function getUsername(): ?Username
     {
         return $this->username;
     }
 
-    public function setUsername(?string $username): self
+    public function setUsername(Username|string $username): self
     {
-        $this->username = $username;
+        if ($username instanceof Username) {
+            $this->username = $username;
+        } else {
+            $this->username = Username::fromString($username);
+        }
 
         return $this;
     }

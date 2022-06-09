@@ -8,6 +8,7 @@
         <unique-constraints>
             <unique-constraint columns="email"/>
             <unique-contraint columns="phone_number"/>
+            <unique-constraint columns="username"/>
         </unique-constraints>
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
@@ -25,6 +26,7 @@
 
         <!-- fields -->
         <field name="name" type="string" length="80" nullable="true"/>
+        <field name="pronouns" type="string" length="10" nullable="true"/>
         <field name="job_title" type="string" length="150" nullable="true"/>
         <field name="biography" type="text" nullable="true"/>
         <field name="email" type="string" length="180" unique="true" nullable="true"/>

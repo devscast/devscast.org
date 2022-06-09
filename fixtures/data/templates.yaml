@@ -8,6 +8,7 @@ Domain\Authentication\Entity\User:
 
         email: user_<current()>\@devscast.org
         phone_number: <e164PhoneNumber()>
+        pronouns: <randomElement(['She\Her', 'He\Him', 'They\Their'])>
         country: <countryCode()>
         roles: [ 'ROLE_USER' ]
         password: \$2y\$13\$PzaAzoYYBl1VyuAU9M/3GuFQaOgO2vyHct1iN0b4vULoIXtcBICuu # 000000
