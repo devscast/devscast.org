@@ -18,15 +18,15 @@
             <generator strategy="IDENTITY"/>
         </id>
 
+        <!-- value object -->
+        <embedded name="username" class="Domain\Authentication\ValueObject\Username" use-column-prefix="false" />
+        <embedded name="gender" class="Domain\Authentication\ValueObject\Gender" use-column-prefix="false" />
+        <embedded name="roles" class="Domain\Authentication\ValueObject\Roles" use-column-prefix="false" />
+
+        <!-- fields -->
         <field name="name" type="string" length="80" nullable="true"/>
-        <field name="username" type="string" length="30"/>
         <field name="job_title" type="string" length="150" nullable="true"/>
         <field name="biography" type="text" nullable="true"/>
-        <field name="gender" type="string" column-definition="ENUM('M', 'F', 'O')">
-            <options>
-                <option name="default">M</option>
-            </options>
-        </field>
         <field name="email" type="string" length="180" unique="true" nullable="true"/>
         <field name="phone_number" type="string" length="15" unique="true" nullable="true"/>
         <field name="country" type="string" length="3" nullable="true">
@@ -34,7 +34,6 @@
                 <option name="default">CD</option>
             </options>
         </field>
-        <field name="roles" type="json"/>
         <field name="password" type="string" length="4096" nullable="true"/>
 
         <!-- States -->
