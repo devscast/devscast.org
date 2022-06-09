@@ -10,6 +10,7 @@ use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
 use Domain\Authentication\Event\LoginAttemptsLimitReachedEvent;
 use Domain\Authentication\Event\LoginWithAnotherIpAddressEvent;
+use Domain\Authentication\Event\ResetPasswordConfirmedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -36,6 +37,7 @@ final class LoginEventSubscriber implements EventSubscriberInterface
             BadPasswordSubmittedEvent::class => 'onBadPasswordSubmitted',
             LoginWithAnotherIpAddressEvent::class => 'onLoginWithAnotherIpAddress',
             LoginAttemptsLimitReachedEvent::class => 'onLoginAttemptsLimitReached',
+            ResetPasswordConfirmedEvent::class => 'onResetPasswordConfirmed',
         ];
     }
 
@@ -58,6 +60,11 @@ final class LoginEventSubscriber implements EventSubscriberInterface
     }
 
     public function onLoginAttemptsLimitReached(LoginAttemptsLimitReachedEvent $event): void
+    {
+        // TODO: send email
+    }
+
+    public function onResetPasswordConfirmed(ResetPasswordConfirmedEvent $event): void
     {
         // TODO: send email
     }

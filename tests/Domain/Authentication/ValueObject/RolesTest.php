@@ -16,7 +16,7 @@ final class RolesTest extends TestCase
 {
     public function testInstanceValueHasExceptedOptions(): void
     {
-        $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'];
+        $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
         foreach ($roles as $role) {
             $this->assertContains($role, Roles::ROLES);
         }
@@ -38,15 +38,15 @@ final class RolesTest extends TestCase
 
     public function testSameInstanceValueAreEquals(): void
     {
-        $a = Roles::regularUser();
-        $b = Roles::regularUser();
+        $a = Roles::developer();
+        $b = Roles::developer();
         $this->assertSame(true, $a->equals($b));
         $this->assertSame(true, $b->equals($a));
     }
 
     public function testDifferentInstanceValueAreNotEquals(): void
     {
-        $a = Roles::regularUser();
+        $a = Roles::developer();
         $b = Roles::superAdmin();
         $this->assertSame(false, $a->equals($b));
         $this->assertSame(false, $b->equals($a));
@@ -54,14 +54,14 @@ final class RolesTest extends TestCase
 
     public function testArrayValueEqualsInstanceValue(): void
     {
-        $a = Roles::regularUser();
+        $a = Roles::developer();
         $b = ['ROLE_USER'];
         $this->assertSame(true, $a->equals($b));
     }
 
     public function testArrayValuesAreNotEqualsToInstanceValue(): void
     {
-        $a = Roles::regularUser();
+        $a = Roles::developer();
         $b = ['ROLE_USER', 'ROLE_ADMIN'];
         $this->assertSame(false, $a->equals($b));
     }
