@@ -25,10 +25,10 @@ final class ExportBackupCodeHandler
     public function __invoke(ExportBackupCodeCommand $command): string
     {
         $user = $command->user;
-        if (0 === count($user->getBackupCode())) {
+        if (0 === count($user->getBackupCodes())) {
             $this->commandBus->dispatch(new RegenerateBackupCodeCommand($user));
         }
 
-        return implode("\n", $user->getBackupCode());
+        return implode("\n", $user->getBackupCodes());
     }
 }

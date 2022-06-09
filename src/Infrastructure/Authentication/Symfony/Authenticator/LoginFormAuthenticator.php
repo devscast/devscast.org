@@ -38,8 +38,8 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     private ?UserInterface $user = null;
 
     public function __construct(
-        private readonly UrlGeneratorInterface    $urlGenerator,
-        private readonly UserRepositoryInterface  $repository,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly UserRepositoryInterface $repository,
         private readonly EventDispatcherInterface $dispatcher
     ) {
     }

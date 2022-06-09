@@ -43,7 +43,7 @@ final class TwoFactorController extends AbstractController
                     domain: 'authentication'
                 ));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
         }
 
@@ -62,7 +62,7 @@ final class TwoFactorController extends AbstractController
             try {
                 $this->dispatchSync(new GenerateGoogleAuthenticatorSecretCommand($user));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
         }
 

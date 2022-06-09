@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication;
 
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\ValueObject\Role;
+use Domain\Authentication\ValueObject\Roles;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -42,7 +42,7 @@ final class OAuthService
     public function hydrate(User $user): bool
     {
         /** @var array|null $oauthData */
-        $oauthData = $this->session->get(name: self::SESSION_KEY, default: null);
+        $oauthData = $this->session->get(name: self::SESSION_KEY);
         if (null === $oauthData || ! isset($oauthData['email'])) {
             return false;
         }
@@ -53,7 +53,7 @@ final class OAuthService
             ->setGithubId($oauthData['github_id'] ?? null)
             ->setGoogleId($oauthData['google_id'] ?? null)
             ->setName($oauthData['username'])
-            ->setRoles([Role::USER]);
+            ->setRoles(Roles::developer());
 
         return true;
     }

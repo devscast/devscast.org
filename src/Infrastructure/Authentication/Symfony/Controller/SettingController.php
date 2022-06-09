@@ -6,14 +6,13 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\GenerateGoogleAuthenticatorSecretCommand;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\ValueObject\Role;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted(Role::USER)]
+#[IsGranted('ROLE_USER')]
 #[Route('/profile/settings/authentication', name: 'authentication_settings_')]
 final class SettingController extends AbstractController
 {
@@ -33,7 +32,7 @@ final class SettingController extends AbstractController
             try {
                 $this->dispatchSync(new GenerateGoogleAuthenticatorSecretCommand($user));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
         }
 

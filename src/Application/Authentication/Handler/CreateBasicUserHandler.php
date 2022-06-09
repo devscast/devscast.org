@@ -19,7 +19,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 final class CreateBasicUserHandler
 {
     public function __construct(
-        private readonly UserRepositoryInterface     $repository,
+        private readonly UserRepositoryInterface $repository,
         private readonly UserPasswordHasherInterface $hasher
     ) {
     }

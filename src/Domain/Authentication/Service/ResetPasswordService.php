@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Authentication\Service;
 
 use Domain\Authentication\Entity\ResetPasswordToken;
+use Domain\Authentication\Exception\ResetPasswordTokenExpiredException;
 use Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface;
-use Infrastructure\Authentication\Exception\ResetPasswordTokenExpiredException;
 
 /**
  * Class ResetPasswordService.

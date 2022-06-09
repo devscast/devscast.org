@@ -4,14 +4,26 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Exception;
 
+use Domain\Shared\Exception\SafeMessageException;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+
 /**
- * Erreur renvoyée lorsque l'on ne trouve pas
- * d'utilisateur correspondant à la réponse de l'OAUTH.
- *
- * Class UserOAuthNotFoundException
+ * Class UserOAuthNotFoundException.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface UserOAuthNotFoundException
+final class UserOAuthNotFoundException extends SafeMessageException
 {
+    protected string $messageDomain = 'authentication';
+
+    public function __construct(
+        private readonly ResourceOwnerInterface $resourceOwner
+    ) {
+        parent::__construct(message: 'authentication.exceptions.oauth_user_not_found');
+    }
+
+    public function getResourceOwner(): ResourceOwnerInterface
+    {
+        return $this->resourceOwner;
+    }
 }

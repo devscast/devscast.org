@@ -27,18 +27,18 @@ final class BackupCodeController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if (empty($user->getBackupCode())) {
+        if (empty($user->getBackupCodes())) {
             try {
                 $this->dispatchSync(new RegenerateBackupCodeCommand($user));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
         }
 
         return $this->render(
             view: 'domain/authentication/setting/backup_code.html.twig',
             parameters: [
-                'codes' => $user->getBackupCode(),
+                'codes' => $user->getBackupCodes(),
             ]
         );
     }
@@ -52,7 +52,7 @@ final class BackupCodeController extends AbstractController
         try {
             $this->dispatchSync(new RegenerateBackupCodeCommand($user));
         } catch (\Throwable $e) {
-            $this->handleUnexpectedException($e);
+            $this->addSafeMessageExceptionFlash($e);
         }
 
         return $this->redirectSeeOther('authentication_setting_backup_codes_index');
@@ -78,7 +78,7 @@ final class BackupCodeController extends AbstractController
 
             return $response;
         } catch (\Throwable $e) {
-            $this->handleUnexpectedException($e);
+            $this->addSafeMessageExceptionFlash($e);
         }
 
         return $this->redirectSeeOther('authentication_setting_backup_codes_index');

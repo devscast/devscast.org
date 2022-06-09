@@ -50,7 +50,7 @@ final class LoginOAuthController extends AbstractController
         } catch (UnsupportedOAuthServiceException) {
             throw new NotFoundHttpException();
         } catch (\Throwable $e) {
-            $this->handleUnexpectedException($e);
+            $this->addSafeMessageExceptionFlash($e);
 
             return $this->redirectToRoute('authentication_login');
         }
@@ -74,7 +74,7 @@ final class LoginOAuthController extends AbstractController
         } catch (UnsupportedOAuthServiceException) {
             throw new NotFoundHttpException();
         } catch (\Throwable $e) {
-            $this->handleUnexpectedException($e);
+            $this->addSafeMessageExceptionFlash($e);
 
             return $this->redirectToRoute('authentication_settings_index');
         }

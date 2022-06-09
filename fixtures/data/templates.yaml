@@ -19,19 +19,19 @@ Domain\Authentication\Entity\User:
         banned_at: ~
 
         # Login History
-        last_login_at: <ipv4()>
-        last_login_ip: <dateTimeThisYear()>
+        last_login_at: <dateTimeThisYear()>
+        last_login_ip: <ipv4()>
 
         # OAuth
         github_id: ~
         facebook_id: ~
         google_id: ~
 
-        # 2FA
-        is_email_auth_enabled: 0
-        email_auth_code: 0
-        google_authenticator_secret: 0
-        backup_codes: []
+#        # 2FA
+#        is_email_auth_enabled: 0
+#        email_auth_code: 0
+#        google_authenticator_secret: 0
+#        backup_codes: []
 
         # Timestamp
         created_at: <dateTimeThisYear()>

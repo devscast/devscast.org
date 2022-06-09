@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\ConnectOAuthServiceCommand;
-use Infrastructure\Authentication\Exception\UnsupportedOAuthServiceException;
+use Domain\Authentication\Exception\UnsupportedOAuthServiceException;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

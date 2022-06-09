@@ -23,7 +23,7 @@ final class UserEmptyBackupCodeListener
 
     public function postUpdate(User $user, LifecycleEventArgs $event): void
     {
-        if (0 === \count($user->getBackupCode())) {
+        if (0 === \count($user->getBackupCodes())) {
             $this->commandBus->dispatch(new RegenerateBackupCodeCommand($user));
         }
     }

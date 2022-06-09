@@ -15,10 +15,10 @@ trait BackupAuthTrait
 
     public function isBackupCode(string $code): bool
     {
-        return in_array((int) $code, $this->getBackupCode(), true);
+        return in_array((int) $code, $this->getBackupCodes(), true);
     }
 
-    public function setBackupCode(?array $codes = []): self
+    public function setBackupCodes(?array $codes = []): self
     {
         if (null === $codes) {
             $this->backup_codes = [];
@@ -31,15 +31,15 @@ trait BackupAuthTrait
         return $this;
     }
 
-    public function getBackupCode(): array
+    public function getBackupCodes(): array
     {
         return $this->backup_codes ?? [];
     }
 
     public function invalidateBackupCode(string $code): void
     {
-        $backup_code = $this->getBackupCode();
-        $this->backup_codes = array_filter($this->getBackupCode(), function (string $c) use ($code) {
+        $backup_code = $this->getBackupCodes();
+        $this->backup_codes = array_filter($this->getBackupCodes(), function (string $c) use ($code) {
             return $c !== $code;
         });
     }

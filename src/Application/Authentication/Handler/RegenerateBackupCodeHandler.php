@@ -29,12 +29,12 @@ final class RegenerateBackupCodeHandler
             $codes[$i] = $this->generateCode();
         }
 
-        $user->setBackupCode($codes);
+        $user->setBackupCodes($codes);
         $this->repository->save($user);
     }
 
     private function generateCode(): int
     {
-        return random_int(10 ** (6 - 1), 10 ** 6 - 1);
+        return \random_int(10 ** (6 - 1), 10 ** 6 - 1);
     }
 }

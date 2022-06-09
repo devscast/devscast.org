@@ -20,7 +20,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class Toggle2FAHandler
 {
     public function __construct(
-        private readonly UserRepositoryInterface  $repository,
+        private readonly UserRepositoryInterface $repository,
         private readonly EventDispatcherInterface $dispatcher
     ) {
     }

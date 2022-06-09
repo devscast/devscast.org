@@ -18,7 +18,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class GenerateGoogleAuthenticatorSecretHandler
 {
     public function __construct(
-        private readonly UserRepositoryInterface      $repository,
+        private readonly UserRepositoryInterface $repository,
         private readonly GoogleAuthenticatorInterface $authenticator
     ) {
     }

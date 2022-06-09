@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormInterface;
  */
 trait FlashMessageTrait
 {
-    protected function handleUnexpectedException(\Throwable $e): void
+    protected function addSafeMessageExceptionFlash(\Throwable $e): void
     {
         if ($e instanceof SafeMessageException) {
             $message = $this->getSafeMessageException($e);

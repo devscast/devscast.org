@@ -6,8 +6,8 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Exception\UserOAuthAuthenticatedException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Authentication\Exception\UserOAuthAuthenticatedException;
 use Infrastructure\Authentication\OAuthService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
@@ -105,7 +105,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         );
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
+    public function onAuthenticationFailure(Request $request, AuthenticationException|\Exception $exception): RedirectResponse
     {
         if ($exception instanceof UserOAuthAuthenticatedException) {
             return new RedirectResponse($this->router->generate('authentication_login'));

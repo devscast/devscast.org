@@ -6,10 +6,8 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ConfirmResetPasswordCommand;
 use Application\Authentication\Command\RequestResetPasswordCommand;
+use Domain\Authentication\Exception\ResetPasswordTokenExpiredException;
 use Domain\Authentication\Service\ResetPasswordService;
-use Infrastructure\Authentication\Exception\ResetPasswordOngoingException;
-use Infrastructure\Authentication\Exception\ResetPasswordTokenExpiredException;
-use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Authentication\Symfony\Form\ConfirmResetPasswordForm;
 use Infrastructure\Authentication\Symfony\Form\RequestResetPasswordForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
@@ -46,14 +44,8 @@ final class ResetPasswordController extends AbstractController
                     parameters: [],
                     domain: 'authentication'
                 ));
-            } catch (ResetPasswordOngoingException | UserNotFoundException $e) {
-                $this->addFlash('error', $this->translator->trans(
-                    id: $e->getMessageKey(),
-                    parameters: $e->getMessageData(),
-                    domain: 'authentication'
-                ));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
 
             return $this->redirectSeeOther('authentication_login');
@@ -73,12 +65,8 @@ final class ResetPasswordController extends AbstractController
     {
         try {
             $token = $service->findToken($token);
-        } catch (ResetPasswordTokenExpiredException) {
-            $this->addFlash('error', $this->translator->trans(
-                id: 'authentication.exceptions.reset_password_token_expired',
-                parameters: [],
-                domain: 'authentication'
-            ));
+        } catch (ResetPasswordTokenExpiredException $e) {
+            $this->addSafeMessageExceptionFlash($e);
 
             return $this->redirectSeeOther('authentication_login');
         }
@@ -96,10 +84,10 @@ final class ResetPasswordController extends AbstractController
                     domain: 'authentication'
                 ));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
 
-            $this->redirectSeeOther('authentication_login');
+            return $this->redirectSeeOther('authentication_login');
         }
 
         return $this->render(

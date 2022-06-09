@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
-use Domain\Authentication\ValueObject\Role;
+use Domain\Authentication\ValueObject\Gender;
+use Domain\Authentication\ValueObject\Roles;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Scheb\TwoFactorBundle\Model\BackupCodeInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
@@ -34,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private ?string $biography = null;
 
-    private ?string $gender = 'M';
+    private Gender $gender;
 
     private ?string $email = null;
 
@@ -42,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private ?string $country = null;
 
-    private array $roles = [Role::USER];
+    private Roles $roles;
 
     private ?string $password = null;
 
@@ -58,6 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private ?string $last_login_ip = null;
 
+    public function __construct()
+    {
+        $this->gender = Gender::male();
+        $this->roles = Roles::developer();
+    }
+
     public static function createBasicWithRequiredFields(
         string $username,
         string $email,
@@ -69,7 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
             ->setEmail($email)
             ->setPassword($password)
             ->setIsEmailVerified(true)
-            ->setRoles([$is_admin ? Role::ADMIN : Role::USER]);
+            ->setRoles($is_admin ? Roles::admin() : Roles::developer());
     }
 
     public function getName(): ?string
@@ -96,14 +103,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this;
     }
 
-    public function getGender(): ?string
+    public function getGender(): Gender
     {
         return $this->gender;
     }
 
-    public function setGender(?string $gender): self
+    public function setGender(Gender|string $gender): self
     {
-        $this->gender = $gender;
+        if ($gender instanceof Gender) {
+            $this->gender = $gender;
+        } else {
+            $this->gender = Gender::fromString($gender);
+        }
 
         return $this;
     }
@@ -146,15 +157,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        $roles[] = Role::USER;
-
-        return array_unique($roles);
+        return $this->roles->toArray();
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(Roles|array $roles): self
     {
-        $this->roles = $roles;
+        if ($roles instanceof Roles) {
+            $this->roles = $roles;
+        } else {
+            $this->roles = Roles::fromArray($roles);
+        }
 
         return $this;
     }

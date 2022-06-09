@@ -23,10 +23,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class ConfirmResetPasswordHandler
 {
     public function __construct(
-        private readonly TranslatorInterface          $translator,
-        private readonly Mailer                       $mailer,
-        private readonly UserPasswordHasherInterface  $hasher,
-        private readonly UserRepositoryInterface      $userRepository,
+        private readonly TranslatorInterface $translator,
+        private readonly Mailer $mailer,
+        private readonly UserPasswordHasherInterface $hasher,
+        private readonly UserRepositoryInterface $userRepository,
         private readonly ResetPasswordTokenRepository $tokenRepository
     ) {
     }

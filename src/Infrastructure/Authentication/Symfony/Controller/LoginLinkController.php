@@ -50,7 +50,7 @@ final class LoginLinkController extends AbstractController
                     domain: 'authentication'
                 ));
             } catch (\Throwable $e) {
-                $this->handleUnexpectedException($e);
+                $this->addSafeMessageExceptionFlash($e);
             }
         }
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Authenticator;
 
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 

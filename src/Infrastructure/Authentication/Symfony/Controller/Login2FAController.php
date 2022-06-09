@@ -42,7 +42,7 @@ final class Login2FAController extends AbstractController
                 domain: 'authentication'
             ));
         } catch (\Throwable $e) {
-            $this->handleUnexpectedException($e);
+            $this->addSafeMessageExceptionFlash($e);
         }
 
         return $this->redirectSeeOther('app_index');

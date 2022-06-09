@@ -6,8 +6,8 @@ namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RequestLoginLinkCommand;
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Exception\UserNotFoundException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Authentication\Exception\UserNotFoundException;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;

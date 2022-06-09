@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\DisconnectOAuthServiceCommand;
+use Domain\Authentication\Exception\UnsupportedOAuthServiceException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Authentication\Exception\UnsupportedOAuthServiceException;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
