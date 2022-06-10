@@ -72,6 +72,7 @@ services:
 
   node:
     container_name: devscast_community_node
+    restart: unless-stopped
     user: '${USER_ID}:${GROUP_ID}'
     build:
       context: ./tools/docker/node
@@ -85,6 +86,7 @@ services:
   php_test:
     user: '${USER_ID}:${GROUP_ID}'
     container_name: devscast_community_phptest
+    restart: unless-stopped
     build:
       context: ./tools/docker/php
     volumes:
@@ -95,10 +97,11 @@ services:
   database_test:
     image: mariadb:10.7.3
     container_name: devscast_community_databasetest
+    restart: unless-stopped
     environment:
       MARIADB_USER: test
       MARIADB_ROOT_PASSWORD: test
-      MARIADB_DATABASE: devscast_test
+      MARIADB_DATABASE: devscast
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
     ports:
       - "3308:3306"
@@ -106,6 +109,7 @@ services:
   redis_gui:
     image: rediscommander/redis-commander
     container_name: devscast_community_redisgui
+    restart: unless-stopped
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:

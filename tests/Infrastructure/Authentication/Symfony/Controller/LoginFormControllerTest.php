@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Infrastructure\Authentication\Symfony\Controller;
 
+use Tests\FixturesTrait;
 use Tests\WebTestCase;
 
 /**
@@ -13,6 +14,8 @@ use Tests\WebTestCase;
  */
 final class LoginFormControllerTest extends WebTestCase
 {
+    use FixturesTrait;
+
     public function testLoginFormPageIsAvailable(): void
     {
         $this->client->request('GET', '/login');

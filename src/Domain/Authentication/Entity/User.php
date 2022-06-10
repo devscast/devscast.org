@@ -309,6 +309,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this;
     }
 
+    public function getPronouns(): ?string
+    {
+        return $this->pronouns;
+    }
+
+    public function setPronouns(string $pronouns): self
+    {
+        $this->pronouns = $pronouns;
+
+        return $this;
+    }
+
     public function isConfirmed(): bool
     {
         return $this->is_email_verified || $this->is_phone_number_verified;

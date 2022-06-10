@@ -1,2 +1,5 @@
 include:
     - ../../fixtures/data/templates.yaml
+
+Domain\Authentication\Entity\User:
+    user{1..5} (extends user):

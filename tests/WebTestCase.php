@@ -63,7 +63,7 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
             1,
             $this->client
                 ->getCrawler()
-                ->filter('div[class="alert alert-danger"], div[class="alert alert-error"]')
+                ->filter('div[type="error"], app-toast[type="error"]')
                 ->count(),
             'Error Alert mismatch'
         );
@@ -78,7 +78,7 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
             1,
             $this->client
                 ->getCrawler()
-                ->filter('div[class="alert alert-success"]')
+                ->filter('div[type="success"], app-toast[type="success"]')
                 ->count(),
             'Success Alert mismatch'
         );

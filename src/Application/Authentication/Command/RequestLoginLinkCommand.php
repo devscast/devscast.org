@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Authentication\Command;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class RequestLoginLinkCommand.
  *
@@ -12,6 +14,8 @@ namespace Application\Authentication\Command;
 final class RequestLoginLinkCommand
 {
     public function __construct(
+        #[Assert\NotBlank]
+        #[Assert\Email]
         public ?string $email = null
     ) {
     }
