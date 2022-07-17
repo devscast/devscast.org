@@ -1,6 +1,6 @@
 # Devscast Community Platform
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Lint](https://github.com/devscast/devscast.org/actions/workflows/lint.yaml/badge.svg)](https://github.com/devscast/devscast.org/actions/workflows/lint.yaml)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Lint](https://github.com/devscast/devscast.org/actions/workflows/lint.yaml/badge.svg)](https://github.com/devscast/devscast.org/actions/workflows/lint.yaml) [![Tests](https://github.com/devscast/devscast.org/actions/workflows/test.yaml/badge.svg)](https://github.com/devscast/devscast.org/actions/workflows/test.yaml)
 
 The Devscast Community Platform is for those who want to impact the community by creating content around their passions, sharing knowledge, but also learning.
 
