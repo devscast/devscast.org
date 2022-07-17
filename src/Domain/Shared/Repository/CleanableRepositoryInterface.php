@@ -11,5 +11,5 @@ namespace Domain\Shared\Repository;
  */
 interface CleanableRepositoryInterface
 {
-    public function clean(): mixed;
+    public function clean(): int;
 }

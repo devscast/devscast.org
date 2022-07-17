@@ -1,3 +1,4 @@
+# pages titles
 authentication.titles.reset_password_confirm: Mise à jour du mot de passe
 authentication.titles.reset_password_request: Mot de passe oublié ?
 authentication.titles.login_link: Un Problème de connexion ?
@@ -6,6 +7,7 @@ authentication.titles.login: Connexion
 authentication.titles.settings.index: Paramètres d'authentification
 authentication.titles.settings.2fa: Paramètres authentification à facteur double
 
+# forms messages
 authentication.forms.labels.identifier: Identifiant
 authentication.forms.labels.username: Nom d'utilisateur
 authentication.forms.labels.password: Mot de passe
@@ -30,9 +32,18 @@ authentication.flashes.oauth_service_login_successfully: 'Vous êtes maintenant 
 authentication.flashes.too_many_resend_code_request: "Vous avez atteint la limite de demande de renvoie de code pour aujourd'hui"
 authentication.flashes.resend_code_requested_successfully: Le code d'authentification a été renvoyé avec succès
 authentication.flashes.2fa_settings_updated_successfully: Les paramètres d'authentification à facteur double ont bien été modifié
+authentication.flashes.user_deleted_successfully: "L'utilisateur (%name%) a été supprimé avec succès !"
+authentication.flashes.user_updated_successfully: "L'utilisateur (%name% a bien été modifié !)"
+authentication.flashes.user_registered_successfully: "L'utilisateur (%name%) à bien été crée"
+authentication.flashes.profile_updated_successfully: "Vos informations ont bien été mise à jour"
 
+# validations messages
 authentication.validations.password_must_match: Les deux mots de passe ne sont pas identiques !
+authentication.validations.empty_role: Veuillez définir au moins un rôle
+authentication.validations.invalid_role: Désolé ce role n'est pas reconnu
+authentication.validations.empty_username: Le nom d'utilisateur ne doit pas être vide
 
+# safe massages exceptions
 authentication.exceptions.user_not_found: Désolé cet adresse email, ne correspond à aucun de nos enregistrements.
 authentication.exceptions.user_banned: Désolé ce compte a été bloqué.
 authentication.exceptions.reset_password_ongoing_request: |
@@ -44,9 +55,15 @@ authentication.exceptions.oauth_unsupported_service: "Désolé le service oauth 
 authentication.exceptions.oauth_verified_email_not_found: Aucune adresse email vérifiée n'est associée.
 authentication.exceptions.oauth_email_already_used: Cette adresse email est déjà utilisé, essayez plutôt de vous connecter
 authentication.exceptions.oauth_authenticated: Oh non, mais vous êtes déjà connecté !
-authentication.exceptions.too_many_login_attempts: Plusieurs tentives de connexion erronée, réessayez plus tard !
+authentication.exceptions.too_many_login_attempts: Plusieurs tentatives de connexion erronées, réessayez plus tard !
+authentication.exceptions.invalid_current_password: le mot de passe actuel est incorrecte.
+authentication.exceptions.email_already_used: Cette adresse email est déjà utilisée par un autre compte.
 
+# Emails subjects messages
 authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"
 authentication.mails.subjects.reset_password_requested: "[Devscast] Instruction de réinitialisation de mot de passe"
 authentication.mails.subjects.reset_password_confirmed: "[Devscast] %name%, votre mot de passe a été mise à jour"
 authentication.mails.subjects.2fa_auth_code: "[Devscast] Code d'authentification"
+authentication.mails.subjects.password_updated: "[Devscast] Votre mot de passe a été mise à jour"
+authentication.mails.subjects.default_password_created: "[Devscast] Connectez-vous à votre compte avec ce mot de passe par défaut"
+authentication.mails.subjects.login_with_another_ip_address: "[Devscast] Nouvelle connexion à votre compte"

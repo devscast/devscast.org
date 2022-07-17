@@ -29,13 +29,13 @@ final class Login2FAController extends AbstractController
 
             if (null !== $user) {
                 $this->dispatchSync(new Resend2FACodeCommand((string) $request->getClientIp(), $user));
-                $this->addFlash('error', $this->translator->trans(
+                $this->addFlash('success', $this->translator->trans(
                     id: 'authentication.flashes.resend_code_requested_successfully',
                     parameters: [],
                     domain: 'authentication'
                 ));
             }
-        } catch (RateLimitExceededException $e) {
+        } catch (RateLimitExceededException) {
             $this->addFlash('error', $this->translator->trans(
                 id: 'authentication.flashes.too_many_resend_code_request',
                 parameters: [],

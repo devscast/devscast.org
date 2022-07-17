@@ -52,7 +52,7 @@ final class LoginOAuthController extends AbstractController
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 
-            return $this->redirectToRoute('authentication_login');
+            return $this->redirectSeeOther('authentication_login');
         }
     }
 
@@ -76,7 +76,7 @@ final class LoginOAuthController extends AbstractController
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 
-            return $this->redirectToRoute('authentication_settings_index');
+            return $this->redirectSeeOther('authentication_settings_index');
         }
     }
 

@@ -1,7 +1,7 @@
 Domain\Authentication\Entity\User:
     user (template):
         name: <name()>
-        username (unique): <userName()>
+        username: user<current()>23
         job_title: <jobTitle()>
         biography: <realText(500)>
         gender: <randomElement(['M', 'F', 'O'])>

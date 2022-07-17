@@ -59,13 +59,13 @@ final class ResetPasswordTokenRepository extends AbstractRepository implements R
         }
     }
 
-    public function clean(): mixed
+    public function clean(): int
     {
-        return $this->createQueryBuilder('r')
+        return intval($this->createQueryBuilder('r')
             ->where('r.created_at < :date')
             ->setParameter('date', new \DateTimeImmutable('-3 month'))
             ->delete(ResetPasswordToken::class, 'r')
             ->getQuery()
-            ->execute();
+            ->execute());
     }
 }

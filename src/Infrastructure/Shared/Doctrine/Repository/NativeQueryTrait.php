@@ -14,7 +14,7 @@ trait NativeQueryTrait
     public function execute(string $sql, array $data, bool $fetchAll = true): array
     {
         try {
-            $connection = $this->_em->getConnection();
+            $connection = $this->getEntityManager()->getConnection();
             $statement = $connection->prepare($sql);
             $result = $statement->executeQuery($data);
 

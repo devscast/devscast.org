@@ -20,7 +20,7 @@ trait FlashMessageTrait
             $message = $this->getSafeMessageException($e);
         } else {
             $message = $this->translator->trans(
-                id: 'flashes.something_went_wrong',
+                id: 'global.flashes.something_went_wrong',
                 parameters: [],
                 domain: 'messages'
             );

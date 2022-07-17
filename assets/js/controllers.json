@@ -1,0 +1,39 @@
+{
+  "controllers": {
+    "@symfony/ux-cropperjs": {
+      "cropper": {
+        "fetch": "eager",
+        "enabled": true,
+        "autoimport": {
+          "cropperjs/dist/cropper.min.css": true,
+          "@symfony/ux-cropperjs/src/style.css": true
+        }
+      }
+    },
+    "@symfony/ux-autocomplete": {
+      "autocomplete": {
+        "enabled": true,
+        "fetch": "lazy",
+        "autoimport": {
+          "tom-select/dist/css/tom-select.default.css": false
+        }
+      }
+    },
+    "@symfony/ux-turbo": {
+      "turbo-core": {
+        "enabled": true,
+        "fetch": "eager"
+      }
+    },
+    "@symfony/ux-dropzone": {
+      "dropzone": {
+        "enabled": true,
+        "fetch": "lazy",
+        "autoimport": {
+          "@symfony/ux-dropzone/src/style.css": false
+        }
+      }
+    }
+  },
+  "entrypoints": []
+}

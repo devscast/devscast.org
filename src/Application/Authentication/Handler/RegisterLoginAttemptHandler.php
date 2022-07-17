@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\RegisterLoginAttemptCommand;
-use Domain\Authentication\Service\LoginAttemptService;
+use Application\Authentication\Service\LoginAttemptService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**

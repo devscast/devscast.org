@@ -9,4 +9,4 @@ global.edit: Modifier
 global.delete: Supprimer
 
 # flash messages
-flashes.something_went_wrong: Désolé une erreur est survenue de notre côté, veuillez réessayer
+global.flashes.something_went_wrong: Désolé une erreur est survenue de notre côté, veuillez réessayer

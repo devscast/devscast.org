@@ -6,8 +6,8 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ConfirmResetPasswordCommand;
 use Application\Authentication\Command\RequestResetPasswordCommand;
+use Application\Authentication\Service\ResetPasswordService;
 use Domain\Authentication\Exception\ResetPasswordTokenExpiredException;
-use Domain\Authentication\Service\ResetPasswordService;
 use Infrastructure\Authentication\Symfony\Form\ConfirmResetPasswordForm;
 use Infrastructure\Authentication\Symfony\Form\RequestResetPasswordForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
@@ -51,12 +51,11 @@ final class ResetPasswordController extends AbstractController
             return $this->redirectSeeOther('authentication_login');
         }
 
-        return $this->render(
+        return $this->renderForm(
             view: 'domain/authentication/reset_password_request.html.twig',
             parameters: [
-                'form' => $form->createView(),
+                'form' => $form,
             ],
-            response: $this->getResponseBasedOnFormValidationStatus($form)
         );
     }
 
@@ -90,12 +89,11 @@ final class ResetPasswordController extends AbstractController
             return $this->redirectSeeOther('authentication_login');
         }
 
-        return $this->render(
+        return $this->renderForm(
             view: 'domain/authentication/reset_password_confirm.html.twig',
             parameters: [
-                'form' => $form->createView(),
+                'form' => $form,
             ],
-            response: $this->getResponseBasedOnFormValidationStatus($form)
         );
     }
 }

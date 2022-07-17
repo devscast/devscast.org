@@ -17,7 +17,9 @@ trait TimestampTrait
 
     public function setCreatedAtOnPrePersist(): void
     {
-        $this->created_at = new \DateTimeImmutable();
+        if (null !== $this->created_at) {
+            $this->created_at = new \DateTimeImmutable();
+        }
     }
 
     public function setUpdatedAtOnPostUpdate(): void

@@ -5,4 +5,3 @@ export const app = startStimulusApp(require.context(
     true,
     /\.[jt]sx?$/
 ));
-

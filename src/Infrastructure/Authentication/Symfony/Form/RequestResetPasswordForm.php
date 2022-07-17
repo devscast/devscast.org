@@ -23,7 +23,7 @@ final class RequestResetPasswordForm extends AbstractType
             'label' => 'authentication.forms.labels.email',
             'attr' => [
                 'autocomplete' => 'email',
-                'placeholder' => 'authentication.forms.placeholders.email',
+                'placeholder' => 'authentication.forms.labels.placeholders.email',
             ],
         ]);
     }

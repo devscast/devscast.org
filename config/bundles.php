@@ -21,4 +21,9 @@ return [
     KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle::class => ['all' => true],
     Endroid\QrCodeBundle\EndroidQrCodeBundle::class => ['all' => true],
     Scheb\TwoFactorBundle\SchebTwoFactorBundle::class => ['all' => true],
+    Symfony\UX\Autocomplete\AutocompleteBundle::class => ['all' => true],
+    Symfony\UX\Cropperjs\CropperjsBundle::class => ['all' => true],
+    Symfony\UX\Dropzone\DropzoneBundle::class => ['all' => true],
+    Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
+    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
 ];

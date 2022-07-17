@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Authentication\Service;
+namespace Application\Authentication\Service;
 
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Exception\ResetPasswordTokenExpiredException;

@@ -44,22 +44,20 @@ final class LoginLinkController extends AbstractController
 
                 return $this->redirectSeeOther('authentication_login');
             } catch (AuthenticationException) {
-                $this->addFlash('error', $this->translator->trans(
-                    id: 'authentication.flashes.something_went_wrong',
-                    parameters: [],
-                    domain: 'authentication'
-                ));
+                $this->addSomethingWentWrongFlash();
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
             }
+
+            $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return $this->render(
+        return $this->renderForm(
             view: 'domain/authentication/login_link.html.twig',
             parameters: [
-                'form' => $form->createView(),
+                'form' => $form,
             ],
-            response: $this->getResponseBasedOnFormValidationStatus($form)
+            response: $response ?? null
         );
     }
 

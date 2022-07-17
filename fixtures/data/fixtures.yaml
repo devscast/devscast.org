@@ -3,7 +3,7 @@ include:
 
 Domain\Authentication\Entity\User:
     user_admin (extends user):
-        username: admin
+        username: admin77
         email: admin\@admin.com
         roles: [ 'ROLE_USER', 'ROLE_ADMIN' ]
 
