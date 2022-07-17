@@ -99,8 +99,8 @@ services:
     container_name: devscast_community_databasetest
     restart: unless-stopped
     environment:
-      MARIADB_USER: root
-      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: test
+      MARIADB_ROOT_PASSWORD: test
       MARIADB_DATABASE: devscast
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
 
