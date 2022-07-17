@@ -2,25 +2,29 @@ name: Test
 on: [ push, pull_request ]
 jobs:
   test:
-    name: Functional tests
+    name: PHPUnit Symfony Testing
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: root
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      fail-fast: false
+
     steps:
-      -   name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: 8.1
+      -   name: Checkout
+          uses: actions/checkout@v2
 
-      -   name: Get composer cache directory
-          id: composer-cache
-          run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      -   name: Start mysql service
+          run: sudo systemctl start mysql
 
-      -   name: Cache composer dependencies
-          uses: actions/cache@v2
-          with:
-            path: ${{ steps.composer-cache.outputs.dir }}
-            key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-            restore-keys: ${{ runner.os }}-composer-
-
-      -   uses: actions/checkout@master
-      -   name: test
+      -   name: Run tests
           run: make test
+          env:
+            DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/devscast
