@@ -39,8 +39,9 @@ This project uses [lint](), code style standard and static analysis.
 
 If you find that one of your pull reviews does not pass the CI server check due to a code style conflict, you can easily fix it by running:
 
-```
-
+```bash
+make lint 
+make test
 ```
 
 ### contributors
