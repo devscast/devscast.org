@@ -28,7 +28,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         /** @var EntityManagerInterface $em */
         $em = self::getContainer()->get(EntityManagerInterface::class);
         $this->em = $em;
-        $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
         parent::setUp();
     }
 

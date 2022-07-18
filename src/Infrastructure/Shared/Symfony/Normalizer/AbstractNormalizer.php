@@ -16,7 +16,7 @@ abstract class AbstractNormalizer implements NormalizerInterface, CacheableSuppo
 {
     abstract public function normalize(mixed $object, string $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null;
 
-    abstract public function supportsNormalization($data, string $format = null): bool;
+    abstract public function supportsNormalization($data, string $format = null, array $context = []): bool;
 
     public function hasCacheableSupportsMethod(): bool
     {
