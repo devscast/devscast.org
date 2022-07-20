@@ -31,7 +31,7 @@ doctrine:
             Domain\Content\ValueObject:
                 type: xml
                 dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/ValueObject'
-                prefix: 'Domain\Content\Entity'
+                prefix: 'Domain\Content\ValueObject'
                 is_bundle: false
 
 when@test:

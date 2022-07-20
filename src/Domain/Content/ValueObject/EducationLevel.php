@@ -14,17 +14,17 @@ use Webmozart\Assert\Assert;
 class EducationLevel
 {
     final public const LEVELS = ['beginner', 'intermediate', 'advance'];
-    private string $level = 'beginner';
+    private string $education_level = 'beginner';
 
     private function __construct(string $level)
     {
         Assert::inArray($level, self::LEVELS);
-        $this->level = $level;
+        $this->education_level = $level;
     }
 
     public function __toString(): string
     {
-        return $this->level;
+        return $this->education_level;
     }
 
     public static function beginner(): self
@@ -50,9 +50,9 @@ class EducationLevel
     public function equals(self|string $type): bool
     {
         if ($type instanceof self) {
-            return $type->level === $this->level;
+            return $type->education_level === $this->education_level;
         }
 
-        return $this->level === $type;
+        return $this->education_level === $type;
     }
 }

@@ -14,17 +14,17 @@ use Webmozart\Assert\Assert;
 class ContentType
 {
     final public const TYPES = ['podcast', 'post', 'video'];
-    private string $type = 'post';
+    private string $content_type = 'post';
 
     private function __construct(string $type)
     {
         Assert::inArray($type, self::TYPES);
-        $this->type = $type;
+        $this->content_type = $type;
     }
 
     public function __toString(): string
     {
-        return $this->type;
+        return $this->content_type;
     }
 
     public static function podcast(): self
@@ -50,9 +50,9 @@ class ContentType
     public function equals(self|string $type): bool
     {
         if ($type instanceof self) {
-            return $type->type === $this->type;
+            return $type->content_type === $this->content_type;
         }
 
-        return $this->type === $type;
+        return $this->content_type === $type;
     }
 }

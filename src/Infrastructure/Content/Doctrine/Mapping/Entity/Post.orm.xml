@@ -9,10 +9,6 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\PostRepository"
             table="post"
     >
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
-        </id>
-
         <!-- relations -->
         <many-to-one field="category" target-entity="Domain\Content\Entity\Category" >
             <join-column on-delete="SET NULL" nullable="true" />
