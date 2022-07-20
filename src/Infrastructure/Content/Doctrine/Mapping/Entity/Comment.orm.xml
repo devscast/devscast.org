@@ -22,13 +22,13 @@
 
 
         <!-- relations -->
-        <many-to-one field="target" target-entity="Domain\Authentication\Entity\Content" >
+        <many-to-one field="target" target-entity="Domain\Content\Entity\Content" >
             <join-column on-delete="CASCADE" nullable="false" />
         </many-to-one>
         <many-to-one field="author" target-entity="Domain\Authentication\Entity\User" >
             <join-column on-delete="CASCADE" nullable="false" />
         </many-to-one>
-        <one-to-many field="replies" target-entity="Domain\Content\Entity\Comment" mapped-bu="parent" />
+        <one-to-many field="replies" target-entity="Domain\Content\Entity\Comment" mapped-by="parent" />
         <many-to-one field="parent" target-entity="Domain\Content\Entity\Comment" inversed-by="replies">
             <join-column on-delete="CASCADE" />
         </many-to-one>

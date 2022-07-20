@@ -9,20 +9,7 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\VideoRepository"
             table="video"
     >
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
-            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
-        </lifecycle-callbacks>
-
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
-        </id>
-
         <!-- fields -->
         <field name="source_url" type="string" nullable="false" />
-
-        <!-- Timestamp -->
-        <field name="created_at" type="datetime_immutable"/>
-        <field name="updated_at" type="datetime_immutable" nullable="true"/>
     </entity>
 </doctrine-mapping>

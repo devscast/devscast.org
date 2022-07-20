@@ -20,6 +20,12 @@ class PodcastSeason
     use IdentityTrait;
     use TimestampTrait;
 
+    private ?string $name = null;
+
+    private ?string $short_code = null;
+
+    private ?string $description = null;
+
     /**
      * @var Collection<PodcastEpisode>
      */
@@ -42,7 +48,7 @@ class PodcastSeason
 
     public function addEpisode(PodcastEpisode $episode): self
     {
-        if (! $this->episodes->contains($episode)) {
+        if (!$this->episodes->contains($episode)) {
             $this->episodes->add($episode);
             $episode->setSeason($this);
         }
@@ -71,6 +77,39 @@ class PodcastSeason
     {
         $this->thumbnail = $thumbnail;
 
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): PodcastSeason
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getShortCode(): ?string
+    {
+        return $this->short_code;
+    }
+
+    public function setShortCode(?string $short_code): PodcastSeason
+    {
+        $this->short_code = $short_code;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): PodcastSeason
+    {
+        $this->description = $description;
         return $this;
     }
 }

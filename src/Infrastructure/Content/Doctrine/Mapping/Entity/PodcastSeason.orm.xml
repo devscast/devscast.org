@@ -16,7 +16,7 @@
 
         <!-- fields -->
         <field name="name" type="string" nullable="false" />
-        <field name="short_code" type="integer" nullable="false">
+        <field name="short_code" type="string" nullable="false">
             <options>
                 <option name="default">S1</option>
             </options>

@@ -5,7 +5,7 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="Domain\Content\ValueObject\EducationLevel">
-        <field name="level" type="string" column-definition="ENUM('beginner', 'intermediate', 'advanced')">
+        <field name="education_level" type="string" column-definition="ENUM('beginner', 'intermediate', 'advanced')">
             <options>
                 <option name="default">beginner</option>
             </options>
