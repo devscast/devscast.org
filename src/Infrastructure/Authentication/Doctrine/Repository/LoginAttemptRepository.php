@@ -15,6 +15,8 @@ use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 /**
  * Class LoginAttemptRepositoryInterface.
  *
+ * @extends AbstractRepository<LoginAttempt>
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class LoginAttemptRepository extends AbstractRepository implements LoginAttemptRepositoryInterface

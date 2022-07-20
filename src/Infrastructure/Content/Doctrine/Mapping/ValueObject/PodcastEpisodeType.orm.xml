@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <embeddable name="Domain\Content\ValueObject\PodcastEpisodeType">
+        <field name="episode_type" type="string" column-definition="ENUM('Full', 'Bonus', 'Trailer')">
+            <options>
+                <option name="default">Full</option>
+            </options>
+        </field>
+    </embeddable>
+</doctrine-mapping>

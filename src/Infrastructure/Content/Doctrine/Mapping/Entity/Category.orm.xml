@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\Content\Entity\Category"
+            repository-class="Infrastructure\Content\Doctrine\Repository\CategoryRepository"
+            table="content_category"
+    >
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
+            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="name" type="string" nullable="false" />
+        <field name="description" type="text" nullable="false" />
+        <field name="post_count" type="integer" nullable="false">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

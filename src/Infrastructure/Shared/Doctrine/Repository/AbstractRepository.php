@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
-use Domain\Shared\Repository\DataRepository;
+use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * @template E of object
@@ -21,7 +21,7 @@ use Domain\Shared\Repository\DataRepository;
  * @method E[]    findAll()
  * @method E[]    findBy(array $criteria, array $orderBy = null, ?int $limit = null, ?int $offset = null)
  */
-abstract class AbstractRepository extends ServiceEntityRepository implements DataRepository
+abstract class AbstractRepository extends ServiceEntityRepository implements DataRepositoryInterface
 {
     /**
      * @psalm-param class-string<E> $entityClass
@@ -71,19 +71,25 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
     /**
      * @psalm-param E $entity
      */
-    public function save(object $entity): void
+    public function save(object $entity, bool $flush = true): void
     {
-        $this->_em->persist($entity);
-        $this->_em->flush();
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
     /**
      * @psalm-param E $entity
      */
-    public function delete(object $entity): void
+    public function delete(object $entity, bool $flush = true): void
     {
-        $this->_em->remove($entity);
-        $this->_em->flush();
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
     protected function findByCaseInsensitiveQuery(array $conditions): Query

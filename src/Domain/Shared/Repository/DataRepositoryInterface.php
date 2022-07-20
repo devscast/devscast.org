@@ -9,7 +9,7 @@ namespace Domain\Shared\Repository;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface DataRepository
+interface DataRepositoryInterface
 {
     public function save(object $entity): void;
 
