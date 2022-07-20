@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Domain\Content\Entity\PodcastEpisode" repository-class="Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository" table="podcast_episode">
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
+            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <!-- value objects -->
+        <embedded name="episode_type" class="Domain\Content\ValueObject\PodcastEpisodeType" use-column-prefix="false" />
+        <embedded name="audio" class="Domain\Content\ValueObject\PodcastEpisodeAudio" use-column-prefix="true" />
+
+        <!-- relations -->
+        <many-to-one field="season" target-entity="Domain\Content\Entity\PodcastSeason" inversed-by="episodes">
+            <join-column nullable="true" on-delete="SET NULL" />
+        </many-to-one>
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

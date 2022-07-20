@@ -16,6 +16,8 @@ use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 /**
  * Class ResetPasswordTokenRepositoryInterface.
  *
+ * @extends AbstractRepository<ResetPasswordToken>
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class ResetPasswordTokenRepository extends AbstractRepository implements ResetPasswordTokenRepositoryInterface

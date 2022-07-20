@@ -1,0 +1,17 @@
+parameters:
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # Doctrine Repositories
+  Domain\Content\Repository\CategoryRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\CategoryRepository'
+  Domain\Content\Repository\CommentRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\CommentRepository'
+  Domain\Content\Repository\ContentRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\ContentRepository'
+  Domain\Content\Repository\PodcastEpisodeRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository'
+  Domain\Content\Repository\PodcastSeasonRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\PodcastSeasonRepository'
+  Domain\Content\Repository\PostRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\PostRepository'
+  Domain\Content\Repository\TagRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\TagRepository'
+  Domain\Content\Repository\VideoRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\VideoRepository'
+

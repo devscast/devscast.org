@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 /**
  * Class UserRepositoryInterface.
  *
+ * @extends AbstractRepository<User>
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 final class UserRepository extends AbstractRepository implements UserRepositoryInterface, PasswordUpgraderInterface

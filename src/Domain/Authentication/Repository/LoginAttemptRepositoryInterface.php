@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Domain\Authentication\Repository;
 
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Repository\DataRepository;
+use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface LoginAttemptRepositoryInterface.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-interface LoginAttemptRepositoryInterface extends DataRepository
+interface LoginAttemptRepositoryInterface extends DataRepositoryInterface
 {
     public function deleteAttemptsFor(User $user): void;
 
