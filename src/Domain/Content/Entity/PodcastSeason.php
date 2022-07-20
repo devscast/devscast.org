@@ -48,7 +48,7 @@ class PodcastSeason
 
     public function addEpisode(PodcastEpisode $episode): self
     {
-        if (!$this->episodes->contains($episode)) {
+        if (! $this->episodes->contains($episode)) {
             $this->episodes->add($episode);
             $episode->setSeason($this);
         }
@@ -85,9 +85,10 @@ class PodcastSeason
         return $this->name;
     }
 
-    public function setName(?string $name): PodcastSeason
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -96,9 +97,10 @@ class PodcastSeason
         return $this->short_code;
     }
 
-    public function setShortCode(?string $short_code): PodcastSeason
+    public function setShortCode(?string $short_code): self
     {
         $this->short_code = $short_code;
+
         return $this;
     }
 
@@ -107,9 +109,10 @@ class PodcastSeason
         return $this->description;
     }
 
-    public function setDescription(?string $description): PodcastSeason
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 }
