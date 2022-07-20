@@ -24,6 +24,8 @@ make dev
 
 ## How do I contribute to
 
+![Alt](https://repobeats.axiom.co/api/embed/1267dba1df790cd786be31a24d58d6f80aa67469.svg "Repobeats analytics image")
+
 Contribution are encouraged and may be submitted by forking this project and submitting a pull request. Since this project is still in its very early stages, if your change is substantial, please raise an issue first to discuss it.
 
 We also need people to test out pull-requests. So take a look through  [the open issues](https://github.com/devscast/devscast.org/issues)  and help where you can.
