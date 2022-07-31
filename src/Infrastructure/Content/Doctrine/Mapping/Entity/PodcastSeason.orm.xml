@@ -29,7 +29,7 @@
         </field>
 
         <!-- value objects -->
-        <embedded name="thumbnail" class="Domain\Content\ValueObject\Thumbnail" use-column-prefix="true" />
+        <embedded name="thumbnail" class="Domain\Shared\ValueObject\Image" use-column-prefix="true" />
 
         <!-- relations -->
         <one-to-many field="episodes" target-entity="Domain\Content\Entity\PodcastEpisode" mapped-by="season" />

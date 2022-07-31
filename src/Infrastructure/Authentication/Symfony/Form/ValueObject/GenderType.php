@@ -44,7 +44,7 @@ final class GenderType extends AbstractType implements DataMapperInterface
     public function mapDataToForms(mixed $viewData, \Traversable $forms): void
     {
         $forms = iterator_to_array($forms);
-        $forms['username']->setData((string) $viewData);
+        $forms['gender']->setData((string) $viewData);
     }
 
     /**

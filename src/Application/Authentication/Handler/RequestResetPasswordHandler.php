@@ -43,7 +43,7 @@ final class RequestResetPasswordHandler
             $token = new ResetPasswordToken();
         }
 
-        $token->setUser($user);
+        $token->setOwner($user);
         $this->tokenRepository->save($token);
 
         $this->sendResetPasswordInstructionEmail($token, $user);

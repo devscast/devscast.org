@@ -4,7 +4,11 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Domain\Authentication\Entity\User" repository-class="Infrastructure\Authentication\Doctrine\Repository\UserRepository" table="user">
+    <entity
+            name="Domain\Authentication\Entity\User"
+            repository-class="Infrastructure\Authentication\Doctrine\Repository\UserRepository"
+            table="user"
+    >
         <unique-constraints>
             <unique-constraint columns="email"/>
             <unique-contraint columns="phone_number"/>
@@ -72,12 +76,12 @@
             </options>
         </field>
         <field name="email_auth_code" type="string" length="6" nullable="true"/>
-        <field name="is_google_authenticator_enabled" type="boolean">
+        <field name="is_google_auth_enabled" type="boolean">
             <options>
                 <option name="default">0</option>
             </options>
         </field>
-        <field name="google_authenticator_secret" type="string" length="255" nullable="true"/>
+        <field name="google_auth_secret" type="string" length="255" nullable="true"/>
         <field name="backup_codes" type="json"/>
 
         <!-- Timestamp -->

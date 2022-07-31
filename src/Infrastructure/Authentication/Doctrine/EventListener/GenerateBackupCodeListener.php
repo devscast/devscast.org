@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\EventListener;
 
-use Application\Authentication\Command\RegenerateBackupCodeCommand;
+use Application\Authentication\Command\GenerateBackupCodeCommand;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Domain\Authentication\Entity\User;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
- * Class UserEmptyBackupCodeListener.
+ * Class GenerateBackupCodeListener.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserEmptyBackupCodeListener
+final class GenerateBackupCodeListener
 {
     public function __construct(
         private readonly MessageBusInterface $commandBus
@@ -23,8 +23,8 @@ final class UserEmptyBackupCodeListener
 
     public function postUpdate(User $user, LifecycleEventArgs $event): void
     {
-        if (0 === \count($user->getBackupCodes())) {
-            $this->commandBus->dispatch(new RegenerateBackupCodeCommand($user));
+        if ($user->isEmptyBackupCodes()) {
+            $this->commandBus->dispatch(new GenerateBackupCodeCommand($user));
         }
     }
 }

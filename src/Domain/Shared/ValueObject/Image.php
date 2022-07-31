@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Domain\Content\ValueObject;
+namespace Domain\Shared\ValueObject;
 
 /**
- * Class Thumbnail.
+ * Class Image.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Thumbnail
+class Image
 {
     private function __construct(
         public readonly ?string $url = null,

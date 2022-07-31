@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller\Setting;
 
 use Application\Authentication\Command\ExportBackupCodeCommand;
-use Application\Authentication\Command\RegenerateBackupCodeCommand;
+use Application\Authentication\Command\GenerateBackupCodeCommand;
 use Domain\Authentication\Entity\User;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -29,7 +29,7 @@ final class BackupCodeController extends AbstractController
 
         if (empty($user->getBackupCodes())) {
             try {
-                $this->dispatchSync(new RegenerateBackupCodeCommand($user));
+                $this->dispatchSync(new GenerateBackupCodeCommand($user));
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
             }
@@ -50,7 +50,7 @@ final class BackupCodeController extends AbstractController
         $user = $this->getUser();
 
         try {
-            $this->dispatchSync(new RegenerateBackupCodeCommand($user));
+            $this->dispatchSync(new GenerateBackupCodeCommand($user));
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
         }

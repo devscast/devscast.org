@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Application\Authentication\Handler;
 
-use Application\Authentication\Command\Toggle2FACommand;
-use Domain\Authentication\Event\TwoFactorAuthDisabledEvent;
-use Domain\Authentication\Event\TwoFactorAuthEnabledEvent;
+use Application\Authentication\Command\ToggleTwoFactorCommand;
+use Domain\Authentication\Event\TwoFactorDisabledEvent;
+use Domain\Authentication\Event\TwoFactorEnabledEvent;
 use Domain\Authentication\Repository\UserRepositoryInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
- * Class Toggle2FAHandler.
+ * Class ToggleTwoFactorHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsMessageHandler]
-final class Toggle2FAHandler
+final class ToggleTwoFactorHandler
 {
     public function __construct(
         private readonly UserRepositoryInterface $repository,
@@ -25,23 +25,21 @@ final class Toggle2FAHandler
     ) {
     }
 
-    public function __invoke(Toggle2FACommand $command): void
+    public function __invoke(ToggleTwoFactorCommand $command): void
     {
         $user = $command->user;
-        $previous2FAStatus = $user->is2FAEnabled();
+        $status = $user->isTwoFactorEnabled();
 
         $command->email ? $user->enableEmailAuthCode() : $user->disableEmailAuthCode();
         $command->google ? $user->enableGoogleAuthenticator() : $user->disableGoogleAuthenticator();
         $this->repository->save($user);
 
-        if (false === $user->is2FAEnabled() && $user->is2FAEnabled() !== $previous2FAStatus) {
-            $this->dispatcher->dispatch(new TwoFactorAuthDisabledEvent($user));
+        if (false === $user->isTwoFactorEnabled() && $user->isTwoFactorEnabled() !== $status) {
+            $this->dispatcher->dispatch(new TwoFactorDisabledEvent($user));
         }
 
-        if (true === $user->is2FAEnabled() && $user->is2FAEnabled() !== $previous2FAStatus) {
-            $this->dispatcher->dispatch(new TwoFactorAuthEnabledEvent($user));
+        if (true === $user->isTwoFactorEnabled() && $user->isTwoFactorEnabled() !== $status) {
+            $this->dispatcher->dispatch(new TwoFactorEnabledEvent($user));
         }
-
-        $this->repository->save($user);
     }
 }

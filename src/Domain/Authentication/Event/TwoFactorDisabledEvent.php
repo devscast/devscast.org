@@ -7,11 +7,11 @@ namespace Domain\Authentication\Event;
 use Domain\Authentication\Entity\User;
 
 /**
- * Class TwoFactorAuthDisabledEvent.
+ * Class TwoFactorDisabledEvent.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorAuthDisabledEvent
+final class TwoFactorDisabledEvent
 {
     public function __construct(
         public readonly User $user

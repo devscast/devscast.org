@@ -8,21 +8,25 @@ use Application\Authentication\Command\RegisterLoginAttemptCommand;
 use Application\Authentication\Command\RegisterLoginIpAddressCommand;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
+use Domain\Authentication\Event\DefaultPasswordCreatedEvent;
 use Domain\Authentication\Event\LoginAttemptsLimitReachedEvent;
 use Domain\Authentication\Event\LoginWithAnotherIpAddressEvent;
+use Domain\Authentication\Event\PasswordUpdatedEvent;
 use Domain\Authentication\Event\ResetPasswordConfirmedEvent;
+use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
- * Class LoginEventSubscriber.
+ * Class AuthenticationEventSubscriber.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class LoginEventSubscriber implements EventSubscriberInterface
+final class AuthenticationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
+        private readonly Mailer $mailer,
         private readonly MessageBusInterface $commandBus
     ) {
     }
@@ -38,6 +42,8 @@ final class LoginEventSubscriber implements EventSubscriberInterface
             LoginWithAnotherIpAddressEvent::class => 'onLoginWithAnotherIpAddress',
             LoginAttemptsLimitReachedEvent::class => 'onLoginAttemptsLimitReached',
             ResetPasswordConfirmedEvent::class => 'onResetPasswordConfirmed',
+            DefaultPasswordCreatedEvent::class => 'onDefaultPasswordCreated',
+            PasswordUpdatedEvent::class => 'onPasswordUpdated',
         ];
     }
 
@@ -56,16 +62,51 @@ final class LoginEventSubscriber implements EventSubscriberInterface
 
     public function onLoginWithAnotherIpAddress(LoginWithAnotherIpAddressEvent $event): void
     {
-        // TODO: send email
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/login_with_another_ip_address.mail.twig',
+            subject: 'authentication.mails.subjects.login_with_another_ip_address',
+            domain: 'authentication'
+        );
+    }
+
+    public function onPasswordUpdated(PasswordUpdatedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/password_updated.mail.twig',
+            subject: 'authentication.mails.subjects.password_updated',
+            domain: 'authentication'
+        );
+    }
+
+    public function onDefaultPasswordCreated(DefaultPasswordCreatedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/default_password_created.mail.twig',
+            subject: 'authentication.mails.subjects.password_updated',
+            domain: 'authentication'
+        );
     }
 
     public function onLoginAttemptsLimitReached(LoginAttemptsLimitReachedEvent $event): void
     {
-        // TODO: send email
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/login_with_another_ip_address.mail.twig',
+            subject: 'authentication.mails.subjects.login_attempts_limit_reached',
+            domain: 'authentication'
+        );
     }
 
     public function onResetPasswordConfirmed(ResetPasswordConfirmedEvent $event): void
     {
-        // TODO: send email
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/reset_password_confirmed.mail.twig',
+            subject: 'authentication.mails.subjects.reset_password_confirmed',
+            domain: 'authentication'
+        );
     }
 }

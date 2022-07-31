@@ -11,8 +11,6 @@ namespace Domain\Content\Entity;
  */
 class Video extends Content
 {
-    use AuthorTrait;
-
     private ?string $source_url = null;
 
     public function getSourceUrl(): ?string

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Controller;
 
-use Application\Authentication\Command\Resend2FACodeCommand;
+use Application\Authentication\Command\ResendTwoFactorCodeCommand;
 use Domain\Authentication\Entity\User;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Security;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class Login2FAController extends AbstractController
+final class LoginTwoFactorController extends AbstractController
 {
     #[Route('/login/2fa_resend_code', name: 'authentication_2fa_resend_code', methods: ['POST', 'GET'])]
     public function resend(Request $request, Security $security): Response
@@ -28,7 +28,7 @@ final class Login2FAController extends AbstractController
             $user = $security->getToken()?->getUser();
 
             if (null !== $user) {
-                $this->dispatchSync(new Resend2FACodeCommand((string) $request->getClientIp(), $user));
+                $this->dispatchSync(new ResendTwoFactorCodeCommand((string) $request->getClientIp(), $user));
                 $this->addFlash('success', $this->translator->trans(
                     id: 'authentication.flashes.resend_code_requested_successfully',
                     parameters: [],

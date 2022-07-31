@@ -28,7 +28,7 @@ final class GenerateGoogleAuthenticatorSecretHandler
         $user = $command->user;
         $secret = $this->authenticator->generateSecret();
 
-        $user->setGoogleAuthenticatorSecret($secret);
+        $user->setGoogleAuthSecret($secret);
         $this->repository->save($user);
     }
 }

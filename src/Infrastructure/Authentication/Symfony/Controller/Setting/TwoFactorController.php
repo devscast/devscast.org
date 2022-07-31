@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller\Setting;
 
 use Application\Authentication\Command\GenerateGoogleAuthenticatorSecretCommand;
-use Application\Authentication\Command\Toggle2FACommand;
+use Application\Authentication\Command\ToggleTwoFactorCommand;
 use Domain\Authentication\Entity\User;
-use Infrastructure\Authentication\Symfony\Form\Setting\Toggle2FaForm;
+use Infrastructure\Authentication\Symfony\Form\Setting\ToggleTwoFactorForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,8 +30,8 @@ final class TwoFactorController extends AbstractController
         $user = $this->setupTwoFactorSecrets($user);
         $qrcode = $authenticator->getQRContent($user);
 
-        $command = new Toggle2FACommand($user);
-        $form = $this->createForm(Toggle2FaForm::class, $command);
+        $command = new ToggleTwoFactorCommand($user);
+        $form = $this->createForm(ToggleTwoFactorForm::class, $command);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +48,7 @@ final class TwoFactorController extends AbstractController
         }
 
         return $this->render(
-            view: 'domain/authentication/setting/2fa.html.twig',
+            view: 'two_factor.html.twig',
             parameters: [
                 'form' => $form->createView(),
                 'qrcode_content' => $qrcode,

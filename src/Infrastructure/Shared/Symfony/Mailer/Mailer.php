@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Symfony\Mailer;
 
+use Domain\Authentication\Entity\User;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
@@ -21,6 +23,7 @@ final class Mailer
     public function __construct(
         private readonly Environment $twig,
         private readonly MailerInterface $mailer,
+        private readonly TranslatorInterface $translator,
         private readonly LoggerInterface $logger
     ) {
     }
@@ -49,6 +52,30 @@ final class Mailer
             ->from(new Address('noreply@devscast.org', 'Devscast Community'))
             ->html($html)
             ->text($text);
+    }
+
+    public function sendNotificationEmail(object $event, string $template, string $subject, string $domain = 'messages'): void
+    {
+        if (! property_exists($event, 'user')) {
+            throw new \RuntimeException('Event must have a reference to the user !');
+        }
+
+        /** @var User $user */
+        $user = $event->user;
+
+        $this->send(
+            $this->createEmail(
+                template: $template,
+                data: [
+                    'user' => $user,
+                    'event' => $event,
+                ]
+            )->subject($this->translator->trans(
+                id: $subject,
+                parameters: [],
+                domain: $domain
+            ))->to(new Address((string) $user->getEmail(), (string) $user->getUsername()))
+        );
     }
 
     public function send(Email $email): void

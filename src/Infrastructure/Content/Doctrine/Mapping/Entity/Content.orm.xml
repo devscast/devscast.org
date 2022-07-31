@@ -60,11 +60,11 @@
 
         <!-- value objects -->
         <embedded name="status" class="Domain\Content\ValueObject\ContentStatus" use-column-prefix="false" />
-        <embedded name="thumbnail" class="Domain\Content\ValueObject\Thumbnail" use-column-prefix="true" />
+        <embedded name="thumbnail" class="Domain\Shared\ValueObject\Image" use-column-prefix="true" />
         <embedded name="education_level" class="Domain\Content\ValueObject\EducationLevel" use-column-prefix="false" />
 
         <!-- relations -->
-        <many-to-one field="author" target-entity="Domain\Authentication\Entity\User" >
+        <many-to-one field="owner" target-entity="Domain\Authentication\Entity\User" >
             <join-column on-delete="CASCADE" nullable="false" />
         </many-to-one>
         <many-to-many field="tags" target-entity="Domain\Content\Entity\Tag" >

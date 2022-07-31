@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Authentication\Entity;
 
 use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
 /**
@@ -16,18 +17,21 @@ class ResetPasswordToken
 {
     use IdentityTrait;
     use TimestampTrait;
+    use OwnerTrait;
 
-    private ?string $token = null;
-
-    private ?User $user = null;
+    private ?string $token;
 
     public function __construct()
     {
-        $this->token = substr(
-            string: bin2hex(random_bytes(max(1, intval(ceil(60 / 2))))),
-            offset: 0,
-            length: 60
-        );
+        try {
+            $this->token = substr(
+                string: bin2hex(random_bytes(max(1, intval(ceil(60 / 2))))),
+                offset: 0,
+                length: 60
+            );
+        } catch (\Exception) {
+            $this->token = null;
+        }
     }
 
     public function isExpired(int $interval): bool
@@ -49,18 +53,6 @@ class ResetPasswordToken
     public function setToken(?string $token): self
     {
         $this->token = $token;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

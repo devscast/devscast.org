@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\ExportBackupCodeCommand;
-use Application\Authentication\Command\RegenerateBackupCodeCommand;
+use Application\Authentication\Command\GenerateBackupCodeCommand;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -26,7 +26,7 @@ final class ExportBackupCodeHandler
     {
         $user = $command->user;
         if (0 === count($user->getBackupCodes())) {
-            $this->commandBus->dispatch(new RegenerateBackupCodeCommand($user));
+            $this->commandBus->dispatch(new GenerateBackupCodeCommand($user));
         }
 
         return implode("\n", $user->getBackupCodes());

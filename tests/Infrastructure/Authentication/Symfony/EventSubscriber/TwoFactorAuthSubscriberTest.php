@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Infrastructure\Authentication\Symfony\EventSubscriber;
 
-use Domain\Authentication\Event\TwoFactorAuthDisabledEvent;
-use Domain\Authentication\Event\TwoFactorAuthEnabledEvent;
-use Infrastructure\Authentication\Symfony\EventSubscriber\TwoFactorAuthEventSubscriber;
+use Domain\Authentication\Event\TwoFactorDisabledEvent;
+use Domain\Authentication\Event\TwoFactorEnabledEvent;
+use Infrastructure\Authentication\Symfony\EventSubscriber\TwoFactorEventSubscriber;
 use Tests\EventSubscriberTest;
 
 /**
@@ -18,9 +18,9 @@ final class TwoFactorAuthSubscriberTest extends EventSubscriberTest
 {
     public function testIsSubscribedToRightEvents(): void
     {
-        $events = TwoFactorAuthEventSubscriber::getSubscribedEvents();
+        $events = TwoFactorEventSubscriber::getSubscribedEvents();
 
-        $this->assertArrayHasKey(TwoFactorAuthEnabledEvent::class, $events);
-        $this->assertArrayHasKey(TwoFactorAuthDisabledEvent::class, $events);
+        $this->assertArrayHasKey(TwoFactorEnabledEvent::class, $events);
+        $this->assertArrayHasKey(TwoFactorDisabledEvent::class, $events);
     }
 }

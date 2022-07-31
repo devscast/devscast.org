@@ -11,8 +11,6 @@ namespace Domain\Content\Entity;
  */
 class Post extends Content
 {
-    use AuthorTrait;
-
     private ?Category $category = null;
 
     public function getCategory(): ?Category

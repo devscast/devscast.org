@@ -30,8 +30,9 @@ Domain\Authentication\Entity\User:
 
 #        # 2FA
 #        is_email_auth_enabled: 0
+#        is_google_auth_enabled: 0
 #        email_auth_code: 0
-#        google_authenticator_secret: 0
+#        google_auth_secret: 0
 #        backup_codes: []
 
         # Timestamp

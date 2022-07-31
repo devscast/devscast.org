@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection ALL */
-
 declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;

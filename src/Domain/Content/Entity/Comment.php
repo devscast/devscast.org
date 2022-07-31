@@ -7,6 +7,7 @@ namespace Domain\Content\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
 /**
@@ -18,7 +19,7 @@ class Comment
 {
     use IdentityTrait;
     use TimestampTrait;
-    use AuthorTrait;
+    use OwnerTrait;
 
     private ?string $content = null;
 

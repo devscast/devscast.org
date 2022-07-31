@@ -6,7 +6,7 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Content\ValueObject\Thumbnail;
+use Domain\Content\ValueObject\Image;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
@@ -33,11 +33,11 @@ class PodcastSeason
 
     private int $episode_count = 0;
 
-    private Thumbnail $thumbnail;
+    private Image $thumbnail;
 
     public function __construct()
     {
-        $this->thumbnail = Thumbnail::default();
+        $this->thumbnail = Image::default();
         $this->episodes = new ArrayCollection();
     }
 
@@ -68,12 +68,12 @@ class PodcastSeason
         return $this;
     }
 
-    public function getThumbnail(): Thumbnail
+    public function getThumbnail(): Image
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(Thumbnail $thumbnail): self
+    public function setThumbnail(Image $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 

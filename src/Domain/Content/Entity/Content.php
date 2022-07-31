@@ -9,8 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
-use Domain\Content\ValueObject\Thumbnail;
+use Domain\Content\ValueObject\Image;
 use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\TimestampTrait;
 use Symfony\Component\Uid\Uuid;
 
@@ -21,7 +22,7 @@ use Symfony\Component\Uid\Uuid;
  */
 class Content
 {
-    use AuthorTrait;
+    use OwnerTrait;
     use IdentityTrait;
     use TimestampTrait;
 
@@ -37,7 +38,7 @@ class Content
 
     private ContentType $content_type;
 
-    private Thumbnail $thumbnail;
+    private Image $thumbnail;
 
     private EducationLevel $education_level;
 
@@ -63,7 +64,7 @@ class Content
         $this->uuid = Uuid::v4();
         $this->content_type = ContentType::post();
         $this->status = ContentStatus::draft();
-        $this->thumbnail = Thumbnail::default();
+        $this->thumbnail = Image::default();
         $this->education_level = EducationLevel::beginner();
         $this->tags = new ArrayCollection();
     }
@@ -164,12 +165,12 @@ class Content
         return $this;
     }
 
-    public function getThumbnail(): Thumbnail
+    public function getThumbnail(): Image
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(Thumbnail $thumbnail): self
+    public function setThumbnail(Image $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 

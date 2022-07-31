@@ -42,7 +42,7 @@ trait FlashMessageTrait
     protected function addSomethingWentWrongFlash(): void
     {
         $this->addFlash('error', $this->translator->trans(
-            id: 'flashes.something_went_wrong',
+            id: 'global.flashes.something_went_wrong',
             parameters: [],
             domain: 'messages'
         ));

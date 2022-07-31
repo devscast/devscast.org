@@ -1,0 +1,12 @@
+{% extends _layout %}
+{% import 'shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        Nous venons d'enregistrer une nouvelle connexion à votre compte depuis un nouvel appareil,
+        si vous n'êtes pas l'auteur de cette connexion, sécurisez votre compte en changeant le mot de passe
+        maintenant, dans le cas contraire veuillez tout simplement ignorez cette notification de sécurité.
+    {% endapply %}
+{% endblock %}

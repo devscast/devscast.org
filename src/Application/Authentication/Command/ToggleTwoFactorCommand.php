@@ -6,7 +6,7 @@ namespace Application\Authentication\Command;
 
 use Domain\Authentication\Entity\User;
 
-final class Toggle2FACommand
+final class ToggleTwoFactorCommand
 {
     public function __construct(
         public readonly User $user,

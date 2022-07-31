@@ -10,7 +10,7 @@ services:
     Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface: '@Infrastructure\Authentication\Doctrine\Repository\ResetPasswordTokenRepository'
     Domain\Authentication\Repository\LoginAttemptRepositoryInterface: '@Infrastructure\Authentication\Doctrine\Repository\LoginAttemptRepository'
 
-    Infrastructure\Authentication\Doctrine\EventListener\UserEmptyBackupCodeListener:
+    Infrastructure\Authentication\Doctrine\EventListener\GenerateBackupCodeListener:
         tags:
             - name: doctrine.orm.entity_listener
               event: postUpdate

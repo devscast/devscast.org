@@ -7,14 +7,13 @@ namespace Application\Authentication\Command;
 use Domain\Authentication\Entity\User;
 
 /**
- * Class Resend2FACodeCommand.
+ * Class GenerateBackupCodeCommand.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class Resend2FACodeCommand
+final class GenerateBackupCodeCommand
 {
     public function __construct(
-        public readonly string $ip,
         public readonly User $user
     ) {
     }

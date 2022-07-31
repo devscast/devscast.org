@@ -34,7 +34,7 @@ final class ConfirmResetPasswordHandler
     public function __invoke(ConfirmResetPasswordCommand $command): void
     {
         /** @var User|null $user */
-        $user = $command->token->getUser();
+        $user = $command->token->getOwner();
         if (null !== $user) {
             $this->userRepository->upgradePassword(
                 user: $user,
