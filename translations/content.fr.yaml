@@ -1,0 +1,21 @@
+# pages titles
+content.titles.reset_password_confirm: Mise à jour du mot de passe
+
+# forms messages
+content.forms.labels.identifier: Identifiant
+
+content.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
+
+
+# flash messages
+content.flashes.something_went_wrong: Désolé une erreur est survenue dans le processus d'authentification.
+
+# validations messages
+content.validations.password_must_match: Les deux mots de passe ne sont pas identiques !
+
+# safe massages exceptions
+content.exceptions.subject_proposal_limit_reached: Vous ne pouvez proposer que 2 sujets pour mois et il faudrait être inscrit depuis plus d'un mois.
+content.exceptions.cannot_mutate_accepted_subject_proposal: Vous ne pouvez pas supprimer un sujet qui a déjà été accepté.
+
+# Emails subjects messages
+content.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"

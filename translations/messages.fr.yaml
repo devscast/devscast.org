@@ -8,5 +8,7 @@ global.back: Retour
 global.edit: Modifier
 global.delete: Supprimer
 
+global.home: Connectez-vous, apprenez, partagez et progressez
+
 # flash messages
 global.flashes.something_went_wrong: Désolé une erreur est survenue de notre côté, veuillez réessayer
