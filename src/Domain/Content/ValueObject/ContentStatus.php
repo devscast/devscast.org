@@ -13,12 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class ContentStatus
 {
-    final public const STATUS = ['draft', 'reviewing', 'published', 'rejected'];
+    final public const VALUES = ['draft', 'reviewing', 'published', 'rejected'];
     private string $status = 'draft';
 
     private function __construct(string $status)
     {
-        Assert::inArray($status, self::STATUS);
+        Assert::inArray($status, self::VALUES);
         $this->status = $status;
     }
 

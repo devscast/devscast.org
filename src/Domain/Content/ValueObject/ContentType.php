@@ -13,12 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class ContentType
 {
-    final public const TYPES = ['podcast', 'post', 'video'];
+    final public const VALUES = ['podcast', 'post', 'video'];
     private string $content_type = 'post';
 
     private function __construct(string $type)
     {
-        Assert::inArray($type, self::TYPES);
+        Assert::inArray($type, self::VALUES);
         $this->content_type = $type;
     }
 

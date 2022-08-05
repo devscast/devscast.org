@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  */
 class Roles implements \Stringable
 {
-    public const ROLES = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
+    public const VALUES = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
     public const ROLES_CHOICES = [
         'ROLE_ADMIN' => 'ROLE_ADMIN',
         'ROLE_USER' => 'ROLE_USER',
@@ -27,7 +27,7 @@ class Roles implements \Stringable
     {
         Assert::notEmpty($roles, 'authentication.validations.empty_roles');
         foreach ($roles as $role) {
-            Assert::inArray($role, self::ROLES, 'authentication.validations.invalid_roles');
+            Assert::inArray($role, self::VALUES, 'authentication.validations.invalid_roles');
         }
 
         $roles[] = 'ROLE_USER';

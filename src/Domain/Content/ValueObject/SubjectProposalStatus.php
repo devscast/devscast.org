@@ -13,12 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class SubjectProposalStatus
 {
-    final public const STATUS = ['reviewing', 'published', 'rejected'];
+    final public const VALUES = ['reviewing', 'accepted', 'rejected'];
     private string $status = 'reviewing';
 
     private function __construct(string $status)
     {
-        Assert::inArray($status, self::STATUS);
+        Assert::inArray($status, self::VALUES);
         $this->status = $status;
     }
 

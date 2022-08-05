@@ -11,17 +11,16 @@ final class GenderTest extends TestCase
 {
     public function testInstanceValueCastToStringValue(): void
     {
-        $a = Gender::fromString('F');
-        $this->assertSame('F', (string) $a);
-    }
-
-    public function testUsernameValidFormat(): void
-    {
-        $validGenders = ['O', 'M', 'F'];
+        $validGenders = ['M', 'F', 'O'];
 
         foreach ($validGenders as $name) {
             $this->assertSame($name, (string) Gender::fromString($name));
         }
+    }
+
+    public function testInstanceValueHasExceptedOptions(): void
+    {
+        $this->assertSame(Gender::VALUES, ['M', 'F', 'O']);
     }
 
     public function testInstanceAndValueAreEquals(): void
@@ -50,7 +49,6 @@ final class GenderTest extends TestCase
     public function testStringValueEqualsInstanceValue(): void
     {
         $a = Gender::fromString('O');
-        $b = 'O';
-        $this->assertSame(true, $a->equals($b));
+        $this->assertSame(true, $a->equals('O'));
     }
 }

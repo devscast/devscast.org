@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  */
 class Gender implements \Stringable
 {
-    public const GENDERS = ['M', 'F', 'O'];
+    public const VALUES = ['M', 'F', 'O'];
     public const GENDERS_CHOICES = [
         'M' => 'M',
         'F' => 'F',
@@ -24,7 +24,7 @@ class Gender implements \Stringable
 
     private function __construct(string $gender)
     {
-        Assert::inArray($gender, self::GENDERS);
+        Assert::inArray($gender, self::VALUES);
         $this->gender = $gender;
     }
 

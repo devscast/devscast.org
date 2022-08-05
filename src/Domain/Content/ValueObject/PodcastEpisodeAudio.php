@@ -12,9 +12,9 @@ namespace Domain\Content\ValueObject;
 class PodcastEpisodeAudio
 {
     private function __construct(
-        public readonly ?string $url = null,
-        public readonly int $size = 0,
-        public readonly ?string $type = null,
+        public ?string $url = null,
+        public int $size = 0,
+        public ?string $type = null,
     ) {
     }
 

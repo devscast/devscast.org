@@ -13,12 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class EducationLevel
 {
-    final public const LEVELS = ['beginner', 'intermediate', 'advance'];
+    final public const VALUES = ['beginner', 'intermediate', 'advanced'];
     private string $education_level = 'beginner';
 
     private function __construct(string $level)
     {
-        Assert::inArray($level, self::LEVELS);
+        Assert::inArray($level, self::VALUES);
         $this->education_level = $level;
     }
 

@@ -13,12 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class PodcastEpisodeType implements \Stringable
 {
-    final public const TYPES = ['Full', 'Trailer', 'Bonus'];
+    final public const VALUES = ['Full', 'Trailer', 'Bonus'];
     private string $episode_type = 'Full';
 
     private function __construct(string $type)
     {
-        Assert::inArray($type, self::TYPES);
+        Assert::inArray($type, self::VALUES);
         $this->episode_type = $type;
     }
 

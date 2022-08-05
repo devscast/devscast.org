@@ -16,9 +16,9 @@ final class RolesTest extends TestCase
 {
     public function testInstanceValueHasExceptedOptions(): void
     {
-        $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
+        $roles = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
         foreach ($roles as $role) {
-            $this->assertContains($role, Roles::ROLES);
+            $this->assertContains($role, Roles::VALUES);
         }
     }
 
