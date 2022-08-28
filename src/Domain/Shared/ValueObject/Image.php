@@ -12,10 +12,10 @@ namespace Domain\Shared\ValueObject;
 class Image
 {
     private function __construct(
-        public readonly ?string $url = null,
-        public readonly int $size = 0,
-        public readonly ?string $type = null,
-        public readonly array $dimensions = []
+        public ?string $url = null,
+        public int $size = 0,
+        public ?string $type = null,
+        public array $dimensions = []
     ) {
     }
 

@@ -32,16 +32,24 @@ trait TimestampTrait
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface|string $created_at): self
+    public function setCreatedAt(\DateTimeInterface|string|null $created_at): self
     {
-        if (is_string($created_at)) {
-            $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i', $created_at);
-            $this->created_at = false === $date ? null : $date;
-        } elseif ($created_at instanceof \DateTimeInterface) {
-            $this->created_at = \DateTimeImmutable::createFromInterface($created_at);
-        }
+        $this->created_at = $this->createDateTime($created_at);
 
         return $this;
+    }
+
+    public function createDateTime(\DateTimeInterface|string|null $date): ?\DateTimeImmutable
+    {
+        if (is_string($date)) {
+            $datetime = \DateTimeImmutable::createFromFormat('Y-m-d H:i', $date);
+
+            return false === $datetime ? null : $datetime;
+        } elseif ($date instanceof \DateTimeInterface) {
+            return \DateTimeImmutable::createFromInterface($date);
+        }
+
+        return null;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
@@ -51,14 +59,7 @@ trait TimestampTrait
 
     public function setUpdatedAt(\DateTimeInterface|string|null $updated_at): self
     {
-        if (is_string($updated_at)) {
-            $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i', $updated_at);
-            $this->updated_at = false === $date ? null : $date;
-        } elseif ($updated_at instanceof \DateTimeInterface) {
-            $this->updated_at = \DateTimeImmutable::createFromInterface($updated_at);
-        } else {
-            $this->updated_at = $updated_at;
-        }
+        $this->updated_at = $this->createDateTime($updated_at);
 
         return $this;
     }
