@@ -1,12 +1,12 @@
 {% use 'form_div_layout.html.twig' %}
 
 {%- block form_row -%}
-    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('mb-6')) }) -%}
+    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('w-full relative')) }) -%}
     {{- parent() -}}
 {%- endblock form_row -%}
 
 {%- block widget_attributes -%}
-    {%- set attr = attr|merge({ class: attr.class|default(widget_class|default('text-gray-600 px-4 py-2 bg-gray-100 rounded w-full border-2 border-transparent focus:outline-none focus:border-indigo-200 focus:bg-white')) ~ (disabled ? ' ' ~ widget_disabled_class|default('border-gray-300 text-gray-500')) ~ (errors|length ? ' ' ~ widget_errors_class|default('border-red-700')) }) -%}
+    {%- set attr = attr|merge({ class: attr.class|default(widget_class|default('w-full font-light bg-transparent px-5 py-2.5 rounded-lg border border-neutral-300/60 placeholder-neutral-500 dark:placeholder-neutral-300 dark:border-neutral-700 ring-2 ring-transparent focus:border-neutral-300 dark:focus:border-neutral-600 focus:outline-none dark:focus:ring-info-400/10 focus:ring-info-light transition')) ~ (disabled ? ' ' ~ widget_disabled_class|default('border-gray-300 text-gray-500')) ~ (errors|length ? ' ' ~ widget_errors_class|default('border-danger-300')) }) -%}
     {{- parent() -}}
 {%- endblock widget_attributes -%}
 
@@ -16,15 +16,15 @@
 {%- endblock form_label -%}
 
 {%- block form_help -%}
-    {%- set help_attr = help_attr|merge({ class: help_attr.class|default(help_class|default('mt-1 text-sm text-gray-500')) }) -%}
-    {{- parent() -}}
+    {%- set help_attr = help_attr|merge({ class: help_attr.class|default(help_class|default('mt-3 inline-block text-neutral-500 dark:text-neutral-400')) }) -%}
+    <small>{{- parent() -}}</small>
 {%- endblock form_help -%}
 
 {%- block form_errors -%}
     {%- if errors|length > 0 -%}
         <ul>
             {%- for error in errors -%}
-                <li class="{{ error_item_class|default('text-red-700 form-error-message') }}">{{ error.message }}</li>
+                <li class="{{ error_item_class|default('text-red-300 form-error-message') }}">{{ error.message }}</li>
             {%- endfor -%}
         </ul>
     {%- endif -%}

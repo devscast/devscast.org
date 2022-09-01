@@ -1,20 +1,25 @@
 {% extends 'domain/authentication/layout/base.html.twig' %}
-{% block title 'authentication.titles.login_2fa' | trans([], 'authentication') %}
+{% block title 'authentication.titles.login_two_factor' | trans([], 'authentication') %}
 
-{% block body %}
+{% block content %}
+<div class="mt-8 bg-white border border-neutral-light rounded-3xl shadow-2xl shadow-neutral-300/20 dark:shadow-none dark:border-neutral-700 dark:bg-neutral-800 -mx-6 sm:-mx-10 p-8 sm:p-10 xl:p-12 2xl:p-16">
+    <h1 class="text-2xl text-neutral-800 dark:text-white">{{ 'authentication.titles.login_two_factor' | trans([], 'authentication') }}</h1>
     {% if authenticationError %}
-        <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
+        <app-toast type="error" message="{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}"></app-toast>
     {% endif %}
 
-    <p>{{ "choose_provider"|trans({}, 'SchebTwoFactorBundle') }}:
+    <p class="mb-4">
+        {{ "choose_provider"|trans({}, 'SchebTwoFactorBundle') }}:
         {% for provider in availableTwoFactorProviders %}
-            <a href="{{ path("authentication_2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
+            <a class="inline-block text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light" href="{{ path("authentication_2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
         {% endfor %}
     </p>
 
-    <p class="label"><label for="_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>
-    <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
-        <p class="widget">
+    <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post" class="mt-8 space-y-8 text-neutral-600  dark:text-white">
+        <div class="w-full relative">
+            <label for="_code" class="block text-gray-500">
+                {{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }} :
+            </label>
             <input
                     id="_code"
                     type="text"
@@ -23,26 +28,35 @@
                     autofocus
                     inputmode="numeric"
                     pattern="[0-9]*"
+                    class="w-full font-light bg-transparent px-5 py-2.5 rounded-lg border border-neutral-300/60 placeholder-neutral-500 dark:placeholder-neutral-300 dark:border-neutral-700 ring-2 ring-transparent focus:border-neutral-300 dark:focus:border-neutral-600 focus:outline-none dark:focus:ring-info-400/10 focus:ring-info-light invalid:border-danger-300 transition"
             />
-        </p>
+        </div>
 
         {% if displayTrustedOption %}
-            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+            <div class="w-full relative">
+                <label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" />
+                    {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}
+                </label>
+            </div>
         {% endif %}
         {% if isCsrfProtectionEnabled %}
             <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
         {% endif %}
-        <p class="submit"><input type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}" /></p>
+
+        <div>
+            <button type="submit" class="group w-full flex justify-center items-center btn btn-primary">
+            <span class="w-max relative z-[1] font-medium text-primary-dark">
+                {{ "login"|trans({}, 'SchebTwoFactorBundle') }}
+            </span>
+            </button>
+        </div>
     </form>
 
-    <p class="cancel">
-        <form action="{{ logoutPath }}" method="post">
-            <button>{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</button>
-        </form>
-    </p>
-    <p class="resend">
-        <form action="{{ path('authentication_2fa_resend_code') }}" method="post">
-            <button>{{ 'global.resend'|trans({}, 'messages') }}</button>
-        </form>
-    </p>
+    <a href="{{ logoutPath }}" class="inline-block mt-4 -ml-3 w-max px-3 text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light">
+        {{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}
+    </a>
+    <form action="{{ path('authentication_2fa_resend_code') }}" method="post" class="inline-block mt-4 -ml-3 w-max px-3 text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light">
+        <button>{{ 'global.resend'|trans({}, 'messages') }}</button>
+    </form>
+</div>
 {% endblock %}

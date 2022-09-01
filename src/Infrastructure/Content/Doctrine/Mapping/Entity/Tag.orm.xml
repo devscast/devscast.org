@@ -4,12 +4,11 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Domain\Content\Entity\Tag" repository-class="Infrastructure\Content\Doctrine\Repository\TagRepository" table="content_tag">
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
-            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
-        </lifecycle-callbacks>
-
+    <entity
+            name="Domain\Content\Entity\Tag"
+            repository-class="Infrastructure\Content\Doctrine\Repository\TagRepository"
+            table="content_tag"
+    >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

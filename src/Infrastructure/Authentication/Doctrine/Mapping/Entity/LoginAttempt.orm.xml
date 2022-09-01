@@ -9,11 +9,6 @@
             repository-class="Infrastructure\Authentication\Doctrine\Repository\LoginAttemptRepository"
             table="login_attempt"
     >
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
-            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
-        </lifecycle-callbacks>
-
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

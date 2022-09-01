@@ -34,7 +34,7 @@ final class LoginAttemptRepository extends AbstractRepository implements LoginAt
     {
         return intval($this->createQueryBuilder('l')
             ->select('COUNT(l.id) as count')
-            ->where('l.user = :user')
+            ->where('l.owner = :user')
             ->andWhere('l.created_at > :date')
             ->setParameter('date', new \DateTimeImmutable("-{$minutes} minutes"))
             ->setParameter('user', $user)
@@ -46,7 +46,7 @@ final class LoginAttemptRepository extends AbstractRepository implements LoginAt
     public function deleteAttemptsFor(User $user): void
     {
         $this->createQueryBuilder('a')
-            ->where('a.user = :user')
+            ->where('a.owner = :user')
             ->setParameter('user', $user)
             ->delete()
             ->getQuery()

@@ -30,7 +30,7 @@ final class ResetPasswordTokenRepository extends AbstractRepository implements R
         try {
             /** @var ResetPasswordToken|null $result */
             $result = $this->createQueryBuilder('r')
-                ->where('r.user = :user')
+                ->where('r.owner = :user')
                 ->setParameter('user', $user)
                 ->setMaxResults(1)
                 ->getQuery()

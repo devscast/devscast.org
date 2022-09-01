@@ -9,11 +9,6 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\SubjectProposalRepository"
             table="content_subject_proposal"
     >
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
-            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
-        </lifecycle-callbacks>
-
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

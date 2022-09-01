@@ -45,8 +45,7 @@ final class LoginFormController extends AbstractController
         );
     }
 
-    #[Route('/logout', name: 'logout', methods: ['POST'])]
-    #[Route('/logout', name: 'logout', methods: ['GET'], condition: "'dev' === '%kernel.environment%'")]
+    #[Route('/logout', name: 'logout', methods: ['POST', 'GET'])]
     public function logout(): never
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');

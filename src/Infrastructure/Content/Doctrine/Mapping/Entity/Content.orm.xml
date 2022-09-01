@@ -15,10 +15,6 @@
             <discriminator-mapping value="post" class="Domain\Content\Entity\Post" />
             <discriminator-mapping value="video" class="Domain\Content\Entity\Video" />
         </discriminator-map>
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtOnPrePersist"/>
-            <lifecycle-callback type="postUpdate" method="setUpdatedAtOnPostUpdate"/>
-        </lifecycle-callbacks>
 
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
