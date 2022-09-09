@@ -9,10 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
-use Domain\Shared\ValueObject\Image;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\TimestampTrait;
+use Domain\Shared\ValueObject\Image;
 use Symfony\Component\Uid\Uuid;
 
 /**

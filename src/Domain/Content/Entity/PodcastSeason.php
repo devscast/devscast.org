@@ -6,9 +6,9 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\ValueObject\Image;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
+use Domain\Shared\ValueObject\Image;
 
 /**
  * Class PodcastSeason.

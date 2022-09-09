@@ -55,6 +55,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private bool $is_banned = false;
 
+    private ?string $email_verification_token = null;
+
+    private ?string $phone_number_verification_token = null;
+
+    private bool $is_subscribed_newsletter = false;
+
+    private bool $is_subscribed_marketing = false;
+
     private ?\DateTimeImmutable $banned_at = null;
 
     private ?\DateTimeImmutable $last_login_at = null;
@@ -322,6 +330,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function isConfirmed(): bool
     {
-        return $this->is_email_verified || $this->is_phone_number_verified;
+        return $this->is_email_verified || $this->is_phone_number_verified || $this->useOauth();
+    }
+
+    public function isIsSubscribedNewsletter(): bool
+    {
+        return $this->is_subscribed_newsletter;
+    }
+
+    public function setIsSubscribedNewsletter(bool $is_subscribed_newsletter): self
+    {
+        $this->is_subscribed_newsletter = $is_subscribed_newsletter;
+
+        return $this;
+    }
+
+    public function isIsSubscribedMarketing(): bool
+    {
+        return $this->is_subscribed_marketing;
+    }
+
+    public function setIsSubscribedMarketing(bool $is_subscribed_marketing): self
+    {
+        $this->is_subscribed_marketing = $is_subscribed_marketing;
+
+        return $this;
+    }
+
+    public function getEmailVerificationToken(): ?string
+    {
+        return $this->email_verification_token;
+    }
+
+    public function setEmailVerificationToken(?string $token): self
+    {
+        $this->email_verification_token = $token;
+
+        return $this;
+    }
+
+    public function getPhoneNumberVerificationToken(): ?string
+    {
+        return $this->phone_number_verification_token;
+    }
+
+    public function setPhoneNumberVerificationToken(?string $token): self
+    {
+        $this->phone_number_verification_token = $token;
+
+        return $this;
     }
 }

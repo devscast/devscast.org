@@ -16,7 +16,12 @@ final class UsernameType extends AbstractType implements DataMapperInterface
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('username', TextType::class)->setDataMapper($this);
+        $builder->add('username', TextType::class, [
+            'label' => 'authentication.forms.labels.username',
+            'attr' => [
+                'placeholder' => 'authentication.forms.labels.placeholders.username',
+            ],
+        ])->setDataMapper($this);
     }
 
     public function configureOptions(OptionsResolver $resolver): OptionsResolver
@@ -25,6 +30,7 @@ final class UsernameType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => Username::class,
             'empty_data' => null,
+            'translation_domain' => 'authentication',
         ]);
 
         return $resolver;

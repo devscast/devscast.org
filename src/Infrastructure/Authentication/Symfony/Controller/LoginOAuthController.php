@@ -7,12 +7,10 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 use Application\Authentication\Command\ConnectOAuthServiceCommand;
 use Application\Authentication\Command\DisconnectOAuthServiceCommand;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\Exception\UnsupportedOAuthServiceException;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -47,8 +45,6 @@ final class LoginOAuthController extends AbstractController
             ));
 
             return $response;
-        } catch (UnsupportedOAuthServiceException) {
-            throw new NotFoundHttpException();
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 
@@ -71,8 +67,6 @@ final class LoginOAuthController extends AbstractController
 
             // TODO redirect to profile
             return $this->redirectToRoute('authentication_settings_index');
-        } catch (UnsupportedOAuthServiceException) {
-            throw new NotFoundHttpException();
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 

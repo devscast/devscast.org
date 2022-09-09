@@ -30,9 +30,15 @@ final class UpdatePasswordForm extends AbstractType
                 'required' => true,
                 'first_options' => [
                     'label' => 'authentication.forms.labels.password',
+                    'attr' => [
+                        'minlength' => 6,
+                    ],
                 ],
                 'second_options' => [
                     'label' => 'authentication.forms.labels.password_confirm',
+                    'attr' => [
+                        'minlength' => 6,
+                    ],
                 ],
             ]);
     }

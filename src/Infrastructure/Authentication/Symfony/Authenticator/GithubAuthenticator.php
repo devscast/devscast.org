@@ -7,6 +7,7 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
+use Infrastructure\Authentication\Symfony\DomainAuthenticationExceptionTrait;
 use League\OAuth2\Client\Provider\GithubResourceOwner;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
@@ -25,6 +26,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  */
 final class GithubAuthenticator extends AbstractOAuthAuthenticator
 {
+    use DomainAuthenticationExceptionTrait;
+
     protected string $serviceName = 'github';
 
     public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepositoryInterface $repository): ?User
@@ -79,14 +82,15 @@ final class GithubAuthenticator extends AbstractOAuthAuthenticator
                 }
             }
 
-            throw new OAuthVerifiedEmailNotFoundException();
+            $this->throwDomainException(new OAuthVerifiedEmailNotFoundException());
         } catch (
+            \JsonException |
             TransportExceptionInterface |
             ClientExceptionInterface |
             RedirectionExceptionInterface |
-            ServerExceptionInterface
+            ServerExceptionInterface $e
         ) {
-            throw new OAuthVerifiedEmailNotFoundException();
+            $this->throwDomainException(new OAuthVerifiedEmailNotFoundException(previous: $e));
         }
     }
 }

@@ -19,7 +19,7 @@ final class TimestampSubscriber implements EventSubscriberInterface
     {
         return [
             Events::prePersist,
-            Events::postUpdate
+            Events::postUpdate,
         ];
     }
 

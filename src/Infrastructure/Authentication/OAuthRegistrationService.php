@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication;
 
-use Domain\Authentication\Entity\User;
-use Domain\Authentication\ValueObject\Roles;
+use Application\Authentication\Command\RegisterUserCommand;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -14,11 +13,11 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * Class OAuthService.
+ * Class OAuthRegistrationService.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class OAuthService
+final class OAuthRegistrationService
 {
     public const SESSION_KEY = 'authentication_oauth_login';
     private readonly Session | SessionInterface $session;
@@ -39,7 +38,12 @@ final class OAuthService
         $this->session->set(self::SESSION_KEY, $data);
     }
 
-    public function hydrate(User $user): bool
+    public function desist(): void
+    {
+        $this->session->remove(self::SESSION_KEY);
+    }
+
+    public function hydrate(RegisterUserCommand $command): bool
     {
         /** @var array|null $oauthData */
         $oauthData = $this->session->get(name: self::SESSION_KEY);
@@ -47,13 +51,13 @@ final class OAuthService
             return false;
         }
 
-        // todo: dispatch create user command
-        $user
-            ->setEmail($oauthData['email'])
-            ->setGithubId($oauthData['github_id'] ?? null)
-            ->setGoogleId($oauthData['google_id'] ?? null)
-            ->setName($oauthData['username'])
-            ->setRoles(Roles::developer());
+        $command->name = $oauthData['username'];
+        $command->email = $oauthData['email'];
+        $command->facebook_id = $oauthData['facebook_id'] ?? null;
+        $command->google_id = $oauthData['google_id'] ?? null;
+        $command->github_id = $oauthData['github_id'] ?? null;
+        $command->oauth_type = $oauthData['type'] ?? null;
+        $command->is_oauth = true;
 
         return true;
     }

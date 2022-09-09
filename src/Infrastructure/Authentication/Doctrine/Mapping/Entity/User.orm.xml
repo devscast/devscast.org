@@ -36,13 +36,25 @@
             </options>
         </field>
         <field name="password" type="string" length="4096" nullable="true"/>
+        <field name="is_subscribed_newsletter" type="boolean">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="is_subscribed_marketing" type="boolean">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- States -->
+        <field name="email_verification_token" type="string" length="255" nullable="true"/>
         <field name="is_email_verified" type="boolean">
             <options>
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="phone_number_verification_token" type="string" length="255" nullable="true"/>
         <field name="is_phone_number_verified" type="boolean">
             <options>
                 <option name="default">0</option>

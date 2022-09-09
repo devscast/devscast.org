@@ -7,8 +7,10 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Exception\UserOAuthAuthenticatedException;
+use Domain\Authentication\Exception\UserOAuthNotFoundException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Authentication\OAuthService;
+use Infrastructure\Authentication\OAuthRegistrationService;
+use Infrastructure\Authentication\Symfony\DomainAuthenticationExceptionTrait;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
@@ -22,6 +24,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
@@ -35,6 +38,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
 {
     use TargetPathTrait;
+    use DomainAuthenticationExceptionTrait;
 
     protected string $serviceName = '';
 
@@ -43,14 +47,14 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
         protected EntityManagerInterface $em,
         private readonly RouterInterface $router,
         private readonly TokenStorageInterface $token,
-        private readonly OAuthService $socialLogin,
+        private readonly OAuthRegistrationService $OAuthRegistrationService,
     ) {
     }
 
     public function supports(Request $request): bool
     {
         if ('' === $this->serviceName) {
-            throw new \InvalidArgumentException(message: "You must set a \$serviceName property (for instance 'github', 'google')");
+            throw new \InvalidArgumentException(message: "You must set a \$serviceName property (for instance 'github', 'google', 'facebook')");
         }
 
         return 'authentication_oauth_check' ===
@@ -72,43 +76,33 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
     {
         $credentials = $this->fetchAccessToken($this->getClient());
         $resourceOwner = $this->getResourceOwnerFromCredentials($credentials);
+        $user = $this->getUserOrNull();
+        if (null !== $user) {
+            $this->throwDomainException(new UserOAuthAuthenticatedException($user, $resourceOwner));
+        }
+
         /** @var UserRepositoryInterface $repository */
         $repository = $this->em->getRepository(User::class);
-
-        $user = $this->getUserOrNull();
-        if ($user) {
-            throw new UserOAuthAuthenticatedException($user, $resourceOwner);
+        $user = $this->getUserFromResourceOwner($resourceOwner, $repository);
+        if (null === $user) {
+            $this->OAuthRegistrationService->persist($resourceOwner);
+            $this->throwDomainException(new UserOAuthNotFoundException($resourceOwner));
         }
 
         return new SelfValidatingPassport(
-            userBadge: new UserBadge(
-                userIdentifier: strval($resourceOwner->getId()),
-                userLoader: function () use ($resourceOwner, $repository) {
-                    $user = $this->getUserFromResourceOwner(
-                        resourceOwner: $resourceOwner,
-                        repository: $repository
-                    );
-
-                    // register the user
-                    if (null === $user) {
-                        $this->socialLogin->persist($resourceOwner);
-                        $user = new User();
-                        if ($this->socialLogin->hydrate($user)) {
-                            $this->em->persist($user);
-                            $this->em->flush();
-                        }
-                    }
-
-                    return $user;
-                }
-            )
+            userBadge: new UserBadge($user->getUserIdentifier(), fn () => $user),
+            badges: [
+                new RememberMeBadge(),
+            ]
         );
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException|\Exception $exception): RedirectResponse
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
-        if ($exception instanceof UserOAuthAuthenticatedException) {
-            return new RedirectResponse($this->router->generate('authentication_login'));
+        if ($exception->getPrevious() instanceof UserOAuthNotFoundException) {
+            return new RedirectResponse($this->router->generate('authentication_register', [
+                'oauth' => 1,
+            ]));
         }
 
         if ($request->hasSession()) {

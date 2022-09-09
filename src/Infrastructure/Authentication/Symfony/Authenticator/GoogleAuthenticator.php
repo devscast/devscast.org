@@ -7,6 +7,7 @@ namespace Infrastructure\Authentication\Symfony\Authenticator;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Exception\OAuthVerifiedEmailNotFoundException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
+use Infrastructure\Authentication\Symfony\DomainAuthenticationExceptionTrait;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
@@ -17,6 +18,8 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
  */
 final class GoogleAuthenticator extends AbstractOAuthAuthenticator
 {
+    use DomainAuthenticationExceptionTrait;
+
     protected string $serviceName = 'google';
 
     public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepositoryInterface $repository): ?User
@@ -26,7 +29,7 @@ final class GoogleAuthenticator extends AbstractOAuthAuthenticator
         }
 
         if (true !== ($resourceOwner->toArray()['email_verified'] ?? null)) {
-            throw new OAuthVerifiedEmailNotFoundException();
+            $this->throwDomainException(new OAuthVerifiedEmailNotFoundException());
         }
 
         $user = $repository->findForOauth(

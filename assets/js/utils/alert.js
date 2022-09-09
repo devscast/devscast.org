@@ -14,7 +14,7 @@ export const confirmSwalMixin = Swal.mixin({
 export const toastSwalMixin = Swal.mixin({
     toast: true,
     position: 'top-end',
-    timer: 5000,
+    timer: 30000,
     showCloseButton: true,
     timerProgressBar: true,
     showConfirmButton: false,

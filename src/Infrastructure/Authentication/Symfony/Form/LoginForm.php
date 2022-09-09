@@ -31,8 +31,8 @@ final class LoginForm extends AbstractForm
             ->add('identifier', TextType::class, [
                 'label' => null,
                 'attr' => [
-                    'placeholder' => 'authentication.forms.labels.identifier'
-                ]
+                    'placeholder' => 'authentication.forms.labels.identifier',
+                ],
             ])
             ->add('password', PasswordType::class, [
                 'label' => null,

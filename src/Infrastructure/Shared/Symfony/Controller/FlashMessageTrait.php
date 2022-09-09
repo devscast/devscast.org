@@ -16,7 +16,10 @@ trait FlashMessageTrait
 {
     protected function addSafeMessageExceptionFlash(\Throwable $e): void
     {
-        if ($e instanceof SafeMessageException) {
+        $previous = $e->getPrevious();
+        if ($previous instanceof SafeMessageException) {
+            $message = $this->getSafeMessageException($previous);
+        } elseif ($e instanceof SafeMessageException) {
             $message = $this->getSafeMessageException($e);
         } else {
             $message = $this->translator->trans(
