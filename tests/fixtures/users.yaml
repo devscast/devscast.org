@@ -3,3 +3,15 @@ include:
 
 Domain\Authentication\Entity\User:
     user{1..5} (extends user):
+
+    user_unconfirmed (extends user):
+        username: unconfirmed
+        email: unconfirmed@unconfirmed.com
+        email_verification_token: 'pazjejoazuaziuaazenonazbfiumqksdmù'
+        is_email_verified: false
+
+    user_reset_login_attempts (extends user):
+        username: resetloginattempts
+        email: loginattempts@loginattempts.com
+        reset_login_attempts_token: 'pazjejoazuaziuaazenonazbfiumqksdmù'
+        is_email_verified: true

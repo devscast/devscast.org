@@ -33,6 +33,10 @@ final class RegistrationController extends AbstractController
         UserAuthenticatorInterface $authenticator,
         LoginFormAuthenticator $loginFormAuthenticator
     ): Response {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_index');
+        }
+
         $command = new RegisterUserCommand();
         $isOAuth = 1 === $request->query->getInt('oauth') && $OAuthService->hydrate($command);
         $form = $this->createForm(RegisterUserForm::class, $command)

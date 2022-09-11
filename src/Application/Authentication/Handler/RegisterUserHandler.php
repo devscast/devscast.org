@@ -8,6 +8,7 @@ use Application\Authentication\Command\RegisterUserCommand;
 use Application\Authentication\Service\CodeGeneratorService;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\UserRegisteredEvent;
+use Domain\Authentication\Event\UserRegistrationConfirmedEvent;
 use Domain\Authentication\Exception\EmailAlreadyUsedException;
 use Domain\Authentication\Exception\UsernameAlreadyUsedException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
@@ -59,7 +60,12 @@ final class RegisterUserHandler
         }
 
         $this->repository->save($user);
-        $this->dispatcher->dispatch(new UserRegisteredEvent($user, $command->is_oauth, $command->oauth_type));
+
+        if ($command->is_oauth) {
+            $this->dispatcher->dispatch(new UserRegistrationConfirmedEvent($user, $command->is_oauth, $command->oauth_type));
+        } else {
+            $this->dispatcher->dispatch(new UserRegisteredEvent($user));
+        }
 
         return $user;
     }

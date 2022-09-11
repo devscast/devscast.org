@@ -14,7 +14,9 @@ use Domain\Authentication\Entity\User;
 final class UserRegistrationConfirmedEvent
 {
     public function __construct(
-        public readonly User $user
+        public readonly User $user,
+        public readonly bool $is_oauth = false,
+        public readonly ?string $oauth_type = null
     ) {
     }
 }

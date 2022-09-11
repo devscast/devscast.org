@@ -7,8 +7,6 @@ namespace Infrastructure\Authentication;
 use Application\Authentication\Command\RegisterUserCommand;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -20,13 +18,11 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 final class OAuthRegistrationService
 {
     public const SESSION_KEY = 'authentication_oauth_login';
-    private readonly Session | SessionInterface $session;
 
     public function __construct(
-        RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
         private readonly NormalizerInterface $normalizer
     ) {
-        $this->session = $requestStack->getSession();
     }
 
     /**
@@ -35,18 +31,18 @@ final class OAuthRegistrationService
     public function persist(ResourceOwnerInterface $resourceOwner): void
     {
         $data = $this->normalizer->normalize($resourceOwner);
-        $this->session->set(self::SESSION_KEY, $data);
+        $this->requestStack->getSession()->set(self::SESSION_KEY, $data);
     }
 
     public function desist(): void
     {
-        $this->session->remove(self::SESSION_KEY);
+        $this->requestStack->getSession()->remove(self::SESSION_KEY);
     }
 
     public function hydrate(RegisterUserCommand $command): bool
     {
         /** @var array|null $oauthData */
-        $oauthData = $this->session->get(name: self::SESSION_KEY);
+        $oauthData = $this->requestStack->getSession()->get(name: self::SESSION_KEY);
         if (null === $oauthData || ! isset($oauthData['email'])) {
             return false;
         }
@@ -65,7 +61,7 @@ final class OAuthRegistrationService
     public function getOauthType(): ?string
     {
         /** @var array $oauthData */
-        $oauthData = $this->session->get(self::SESSION_KEY);
+        $oauthData = $this->requestStack->getSession()->get(self::SESSION_KEY);
 
         return $oauthData ? $oauthData['type'] : null;
     }

@@ -15,8 +15,6 @@ final class UserRegisteredEvent
 {
     public function __construct(
         public readonly User $user,
-        public readonly bool $is_oauth = false,
-        public readonly ?string $oauth_type = null
     ) {
     }
 }
