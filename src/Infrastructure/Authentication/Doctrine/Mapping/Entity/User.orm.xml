@@ -48,6 +48,7 @@
         </field>
 
         <!-- States -->
+        <field name="reset_login_attempts_token" type="string" length="355" nullable="true" />
         <field name="email_verification_token" type="string" length="255" nullable="true"/>
         <field name="is_email_verified" type="boolean">
             <options>

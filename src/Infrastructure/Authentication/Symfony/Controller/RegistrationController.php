@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Controller;
 
+use Application\Authentication\Command\ConfirmRegistrationCommand;
 use Application\Authentication\Command\RegisterUserCommand;
+use Domain\Authentication\Entity\User;
 use Infrastructure\Authentication\OAuthRegistrationService;
+use Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator;
 use Infrastructure\Authentication\Symfony\Form\RegisterUserForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 /**
  * class RegistrationController.
@@ -23,8 +27,12 @@ use Symfony\Component\Routing\Annotation\Route;
 final class RegistrationController extends AbstractController
 {
     #[Route('', name: 'register', methods: ['GET', 'POST'])]
-    public function register(Request $request, OAuthRegistrationService $OAuthService): Response
-    {
+    public function register(
+        Request $request,
+        OAuthRegistrationService $OAuthService,
+        UserAuthenticatorInterface $authenticator,
+        LoginFormAuthenticator $loginFormAuthenticator
+    ): Response {
         $command = new RegisterUserCommand();
         $isOAuth = 1 === $request->query->getInt('oauth') && $OAuthService->hydrate($command);
         $form = $this->createForm(RegisterUserForm::class, $command)
@@ -40,7 +48,8 @@ final class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->dispatchSync($command);
+                /** @var User $user */
+                $user = $this->getHandledResultSync($command);
 
                 if ($isOAuth) {
                     $OAuthService->desist();
@@ -48,19 +57,21 @@ final class RegistrationController extends AbstractController
                         id: 'authentication.flashes.user_registered_with_oauth_successfully',
                         parameters: [
                             '%name%' => $command->username,
-                            '%service%' => $OAuthService->getOauthType(),
+                            '%service%' => $command->oauth_type,
                         ],
                         domain: 'authentication'
                     ));
-                } else {
-                    $this->addFlash('success', $this->translator->trans(
-                        id: 'authentication.flashes.user_registered_with_email_successfully',
-                        parameters: [
-                            '%name%' => $command->username,
-                        ],
-                        domain: 'authentication'
-                    ));
+
+                    return $authenticator->authenticateUser($user, $loginFormAuthenticator, $request) ?:
+                        $this->redirectSeeOther('app_index');
                 }
+                $this->addFlash('success', $this->translator->trans(
+                    id: 'authentication.flashes.user_registered_with_email_successfully',
+                    parameters: [
+                        '%name%' => $command->username,
+                    ],
+                    domain: 'authentication'
+                ));
 
                 return $this->redirectSeeOther('authentication_login');
             } catch (\Throwable $e) {
@@ -79,7 +90,20 @@ final class RegistrationController extends AbstractController
         );
     }
 
-    public function confirm(Request $request): void
+    #[Route('/confirm/{token}', name: 'register_confirm', methods: ['GET'])]
+    public function confirm(string $token): Response
     {
+        try {
+            $this->dispatchSync(new ConfirmRegistrationCommand($token));
+            $this->addFlash('success', $this->translator->trans(
+                id: 'authentication.flashes.registration_confirmed_successfully',
+                parameters: [],
+                domain: 'authentication'
+            ));
+        } catch (\Throwable $e) {
+            $this->addSafeMessageExceptionFlash($e);
+        }
+
+        return $this->redirectSeeOther('authentication_login');
     }
 }

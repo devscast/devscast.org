@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./templates/**/*.html.twig'],
   presets: [],
-  darkMode: "media", // or 'class'
+  darkMode: "class", // or 'class'
   theme: {
     screens: {
       sm: "640px",

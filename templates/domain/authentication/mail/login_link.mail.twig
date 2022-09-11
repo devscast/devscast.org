@@ -13,7 +13,7 @@
                 {% block content %}
                     <div style="text-align: center">
                         Scanner le QRCode pour vous connecter ou utiliser le lien direct
-                        <img src="{{ qr_code_data_uri(link.url) }}" title="scanner le qrcode pour vous connecter" alt="qrcode de connexion" />
+                        <img src="{{ qr_code_data_uri(event.link.url) }}" title="scanner le qrcode pour vous connecter" alt="qrcode de connexion" />
                     </div>
                 {% endblock %}
             {% endembed %}
@@ -26,7 +26,7 @@
         Si vous n'avez pas demandé ce lien en essayant de vous connecter ou de réinitialiser votre mot de passe, ignorez simplement ce mail.
 
         Ce lien ne sera plus valide après **10 minutes**,
-        {{ e.button('Me connecter', link.url, 'primary', _format) }}
+        {{ e.button('Me connecter', event.link.url, 'primary', _format) }}
 
         Vous pouvez également <a rel="noopener" href="{{ url('authentication_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
     {% endapply %}

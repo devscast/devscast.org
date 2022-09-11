@@ -10,7 +10,6 @@ use Domain\Authentication\Entity\User;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -65,12 +64,8 @@ final class BackupCodeController extends AbstractController
         $user = $this->getUser();
 
         try {
-            $envelope = $this->dispatchSync(new ExportBackupCodeCommand($user));
-
-            /** @var HandledStamp $stamp */
-            $stamp = $envelope?->last(HandledStamp::class);
-
-            $response = new Response(strval($stamp->getResult()));
+            $content = $this->getHandledResultSync(new ExportBackupCodeCommand($user));
+            $response = new Response(strval($content));
             $response->headers->set('Content-Disposition', HeaderUtils::makeDisposition(
                 disposition: HeaderUtils::DISPOSITION_ATTACHMENT,
                 filename: 'devscast_backup_code.txt'

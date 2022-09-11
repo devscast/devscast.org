@@ -7,6 +7,7 @@ namespace Infrastructure\Shared\Symfony\Messenger;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 trait DispatchTrait
 {
@@ -29,6 +30,20 @@ trait DispatchTrait
 
             return null;
         }
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    protected function getHandledResultSync(object $command): mixed
+    {
+        /** @var Envelope|null $envelope */
+        $envelope = $this->dispatchSync($command);
+
+        /** @var HandledStamp|null $stamp */
+        $stamp = $envelope?->last(HandledStamp::class);
+
+        return $stamp?->getResult();
     }
 
     protected function dispatchAsync(object $command): Envelope

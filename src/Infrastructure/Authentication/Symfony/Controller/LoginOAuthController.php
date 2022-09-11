@@ -11,7 +11,6 @@ use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
@@ -28,13 +27,8 @@ final class LoginOAuthController extends AbstractController
     public function connect(string $service): RedirectResponse
     {
         try {
-            $envelope = $this->dispatchSync(new ConnectOAuthServiceCommand($service));
-
-            /** @var HandledStamp $stamp */
-            $stamp = $envelope?->last(HandledStamp::class);
-
             /** @var RedirectResponse $response */
-            $response = $stamp->getResult();
+            $response = $this->getHandledResultSync(new ConnectOAuthServiceCommand($service));
 
             $this->addFlash('success', $this->translator->trans(
                 id: 'authentication.flashes.oauth_service_login_successfully',

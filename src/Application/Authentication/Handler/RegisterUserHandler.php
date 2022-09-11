@@ -31,7 +31,7 @@ final class RegisterUserHandler
     ) {
     }
 
-    public function __invoke(RegisterUserCommand $command): void
+    public function __invoke(RegisterUserCommand $command): User
     {
         if ($this->repository->findOneByEmail((string) $command->email)) {
             throw new EmailAlreadyUsedException();
@@ -60,5 +60,7 @@ final class RegisterUserHandler
 
         $this->repository->save($user);
         $this->dispatcher->dispatch(new UserRegisteredEvent($user, $command->is_oauth, $command->oauth_type));
+
+        return $user;
     }
 }

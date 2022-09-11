@@ -16,5 +16,5 @@ interface LoginAttemptRepositoryInterface extends DataRepositoryInterface
 {
     public function deleteAttemptsFor(User $user): void;
 
-    public function countRecentFor(User $user, int $minutes): int;
+    public function countRecentFor(User $user): int;
 }

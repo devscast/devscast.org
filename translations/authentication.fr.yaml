@@ -42,6 +42,9 @@ authentication.flashes.profile_updated_successfully: "Vos informations ont bien 
 authentication.flashes.user_registered_with_oauth_successfully: "Bienvenue dans la communauté %name% votre compte a bien été créé via %service%, étape suivante compléter votre profile !"
 authentication.flashes.user_registered_with_email_successfully: "Bienvenue dans la communauté %name%, à présent vérifiez vos mails pour confirmer votre inscription"
 authentication.flashes.complete_username: Vous y êtes presque ! compléter votre nom d'utilisateur pour finaliser l'inscription
+authentication.flashes.registration_confirmed_successfully: Félicitation votre inscription a bien été confirmé, bienvenue à Devscast !
+authentication.flashes.login_required: Vous devez être connecté pour effectué cette action !
+authentication.flashes.login_attempts_reset_successfully: Votre compte a bien été déverrouiller, vous pouvez à nouveau vous connecter !
 
 # validations messages
 authentication.validations.password_must_match: Les deux mots de passe ne sont pas identiques !
@@ -70,6 +73,8 @@ authentication.exceptions.invalid_current_password: le mot de passe actuel est i
 authentication.exceptions.email_already_used: Cette adresse email est déjà utilisée par un autre compte.
 authentication.exceptions.username_already_used: Désolé ce nom d'utilisateur n'est pas disponible.
 authentication.exceptions.invalid_registration_confirmation_token: Désolé ce lien de confirmation n'est pas valide !
+authentication.exceptions.user_registration_not_confirmed: Désolé nous ne pouvons vous connecter car, votre inscription n'a pas encore été confirmée
+authentication.exceptions.invalid_reset_login_attempts_token: Impossible de déverrouiller votre compte, le jeton de sécurité n'est pas valide !
 
 # Emails subjects messages
 authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"
@@ -80,3 +85,5 @@ authentication.mails.subjects.password_updated: "[Devscast] Votre mot de passe a
 authentication.mails.subjects.default_password_created: "[Devscast] Connectez-vous à votre compte avec ce mot de passe par défaut"
 authentication.mails.subjects.login_with_another_ip_address: "[Devscast] Nouvelle connexion à votre compte"
 authentication.mails.subjects.login_attempts_limit_reached: "[Devscast] Plusieurs tentatives de connexion sur votre compte"
+authentication.mails.subjects.registration_confirmation: "[Devscast] Veuillez confirmer votre inscription"
+authentication.mails.subjects.registration_confirmed: "[Devscast] Bienvenue dans la communauté"

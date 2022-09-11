@@ -37,7 +37,7 @@ final class TwoFactorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
-                $this->addFlash('error', $this->translator->trans(
+                $this->addFlash('success', $this->translator->trans(
                     id: 'authentication.flashes.2fa_settings_updated_successfully',
                     parameters: [],
                     domain: 'authentication'
@@ -47,10 +47,10 @@ final class TwoFactorController extends AbstractController
             }
         }
 
-        return $this->render(
-            view: 'two_factor.html.twig',
+        return $this->renderForm(
+            view: 'domain/authentication/setting/two_factor.html.twig',
             parameters: [
-                'form' => $form->createView(),
+                'form' => $form,
                 'qrcode_content' => $qrcode,
             ]
         );

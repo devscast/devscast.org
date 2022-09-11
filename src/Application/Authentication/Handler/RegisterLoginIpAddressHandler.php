@@ -33,7 +33,7 @@ final class RegisterLoginIpAddressHandler
         $this->loginAttempt->deleteAttemptsFor($user);
 
         if ($user instanceof User) {
-            if ($command->ip !== $user->getLastLoginIp()) {
+            if ($user->getLastLoginIp() !== $command->ip && null !== $user->getLastLoginAt()) {
                 $this->dispatcher->dispatch(new LoginWithAnotherIpAddressEvent(
                     user: $user,
                     ip: $command->ip

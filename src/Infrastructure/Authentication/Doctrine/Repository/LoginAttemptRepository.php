@@ -30,13 +30,11 @@ final class LoginAttemptRepository extends AbstractRepository implements LoginAt
      * @throws NonUniqueResultException
      * @throws NoResultException
      */
-    public function countRecentFor(User $user, int $minutes): int
+    public function countRecentFor(User $user): int
     {
         return intval($this->createQueryBuilder('l')
             ->select('COUNT(l.id) as count')
             ->where('l.owner = :user')
-            ->andWhere('l.created_at > :date')
-            ->setParameter('date', new \DateTimeImmutable("-{$minutes} minutes"))
             ->setParameter('user', $user)
             ->setMaxResults(1)
             ->getQuery()

@@ -54,8 +54,13 @@ final class Mailer
             ->text($text);
     }
 
-    public function sendNotificationEmail(object $event, string $template, string $subject, string $domain = 'messages'): void
-    {
+    public function sendNotificationEmail(
+        object $event,
+        string $template,
+        string $subject,
+        array $subject_parameters = [],
+        string $domain = 'messages'
+    ): void {
         if (! property_exists($event, 'user')) {
             throw new \RuntimeException('Event must have a reference to the user !');
         }
@@ -72,7 +77,7 @@ final class Mailer
                 ]
             )->subject($this->translator->trans(
                 id: $subject,
-                parameters: [],
+                parameters: $subject_parameters,
                 domain: $domain
             ))->to(new Address((string) $user->getEmail(), (string) $user->getUsername()))
         );

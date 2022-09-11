@@ -7,14 +7,13 @@ namespace Application\Authentication\Handler;
 use Application\Authentication\Command\RequestResetPasswordCommand;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Event\ResetPasswordRequestedEvent;
 use Domain\Authentication\Exception\ResetPasswordOngoingException;
 use Domain\Authentication\Exception\UserNotFoundException;
 use Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Mime\Address;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class RequestResetPasswordHandler.
@@ -27,10 +26,9 @@ final class RequestResetPasswordHandler
     private const EXPIRE_IN = 30;
 
     public function __construct(
-        private readonly Mailer $mailer,
         private readonly ResetPasswordTokenRepositoryInterface $tokenRepository,
         private readonly UserRepositoryInterface $userRepository,
-        private readonly TranslatorInterface $translator
+        private readonly EventDispatcherInterface $dispatcher
     ) {
     }
 
@@ -45,8 +43,7 @@ final class RequestResetPasswordHandler
 
         $token->setOwner($user);
         $this->tokenRepository->save($token);
-
-        $this->sendResetPasswordInstructionEmail($token, $user);
+        $this->dispatcher->dispatch(new ResetPasswordRequestedEvent($user, $token));
     }
 
     private function findUserByEmail(?string $email): User
@@ -69,23 +66,5 @@ final class RequestResetPasswordHandler
         }
 
         return $token;
-    }
-
-    private function sendResetPasswordInstructionEmail(?ResetPasswordToken $token, User $user): void
-    {
-        $email = $this->mailer
-            ->createEmail(
-                template: 'domain/authentication/mail/reset_password_request.mail.twig',
-                data: [
-                    'token' => $token,
-                ]
-            )->subject($this->translator->trans(
-                id: 'authentication.mails.subjects.reset_password_requested',
-                parameters: [],
-                domain: 'authentication'
-            ))
-            ->to(new Address((string) $user->getEmail(), (string) $user->getUsername()));
-
-        $this->mailer->send($email);
     }
 }

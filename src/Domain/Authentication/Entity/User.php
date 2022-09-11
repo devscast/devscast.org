@@ -55,6 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private bool $is_banned = false;
 
+    private ?string $reset_login_attempts_token = null;
+
     private ?string $email_verification_token = null;
 
     private ?string $phone_number_verification_token = null;
@@ -197,7 +199,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this;
     }
 
-    public function getIsEmailVerified(): bool
+    public function isIsEmailVerified(): bool
     {
         return $this->is_email_verified;
     }
@@ -209,7 +211,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this;
     }
 
-    public function getIsPhoneNumberVerified(): bool
+    public function isIsPhoneNumberVerified(): bool
     {
         return $this->is_phone_number_verified;
     }
@@ -377,6 +379,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     public function setPhoneNumberVerificationToken(?string $token): self
     {
         $this->phone_number_verification_token = $token;
+
+        return $this;
+    }
+
+    public function getResetLoginAttemptsToken(): ?string
+    {
+        return $this->reset_login_attempts_token;
+    }
+
+    public function setResetLoginAttemptsToken(?string $token): self
+    {
+        $this->reset_login_attempts_token = $token;
 
         return $this;
     }

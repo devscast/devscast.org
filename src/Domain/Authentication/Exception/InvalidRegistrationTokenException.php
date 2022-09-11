@@ -7,11 +7,11 @@ namespace Domain\Authentication\Exception;
 use Domain\Shared\Exception\SafeMessageException;
 
 /**
- * class InvalidRegistrationConfirmationToken.
+ * class InvalidRegistrationTokenException.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class InvalidRegistrationConfirmationToken extends SafeMessageException
+final class InvalidRegistrationTokenException extends SafeMessageException
 {
     protected string $messageDomain = 'authentication';
 

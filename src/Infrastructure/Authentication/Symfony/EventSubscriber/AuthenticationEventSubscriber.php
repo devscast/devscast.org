@@ -10,9 +10,13 @@ use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
 use Domain\Authentication\Event\DefaultPasswordCreatedEvent;
 use Domain\Authentication\Event\LoginAttemptsLimitReachedEvent;
+use Domain\Authentication\Event\LoginLinkRequestedEvent;
 use Domain\Authentication\Event\LoginWithAnotherIpAddressEvent;
 use Domain\Authentication\Event\PasswordUpdatedEvent;
 use Domain\Authentication\Event\ResetPasswordConfirmedEvent;
+use Domain\Authentication\Event\ResetPasswordRequestedEvent;
+use Domain\Authentication\Event\UserRegisteredEvent;
+use Domain\Authentication\Event\UserRegistrationConfirmedEvent;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -41,9 +45,13 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
             BadPasswordSubmittedEvent::class => 'onBadPasswordSubmitted',
             LoginWithAnotherIpAddressEvent::class => 'onLoginWithAnotherIpAddress',
             LoginAttemptsLimitReachedEvent::class => 'onLoginAttemptsLimitReached',
+            LoginLinkRequestedEvent::class => 'onLoginLinkRequested',
             ResetPasswordConfirmedEvent::class => 'onResetPasswordConfirmed',
+            ResetPasswordRequestedEvent::class => 'onResetPasswordRequested',
             DefaultPasswordCreatedEvent::class => 'onDefaultPasswordCreated',
             PasswordUpdatedEvent::class => 'onPasswordUpdated',
+            UserRegisteredEvent::class => 'onUserRegistered',
+            UserRegistrationConfirmedEvent::class => 'onUserRegistrationConfirmed',
         ];
     }
 
@@ -94,8 +102,21 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/login_with_another_ip_address.mail.twig',
+            template: 'domain/authentication/mail/login_attempts_limit_reached.mail.twig',
             subject: 'authentication.mails.subjects.login_attempts_limit_reached',
+            domain: 'authentication'
+        );
+    }
+
+    public function onLoginLinkRequested(LoginLinkRequestedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/login_link.mail.twig',
+            subject: 'authentication.mails.subjects.login_link_requested',
+            subject_parameters: [
+                '%name%' => $event->user->getUsername(),
+            ],
             domain: 'authentication'
         );
     }
@@ -106,6 +127,39 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
             $event,
             template: 'domain/authentication/mail/reset_password_confirmed.mail.twig',
             subject: 'authentication.mails.subjects.reset_password_confirmed',
+            subject_parameters: [
+                '%name%' => $event->user->getUsername(),
+            ],
+            domain: 'authentication'
+        );
+    }
+
+    public function onResetPasswordRequested(ResetPasswordRequestedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/reset_password_request.mail.twig',
+            subject: 'authentication.mails.subjects.reset_password_requested',
+            domain: 'authentication'
+        );
+    }
+
+    public function onUserRegistered(UserRegisteredEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/registration_confirmation.mail.twig',
+            subject: 'authentication.mails.subjects.registration_confirmation',
+            domain: 'authentication'
+        );
+    }
+
+    public function onUserRegistrationConfirmed(UserRegistrationConfirmedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: 'domain/authentication/mail/registration_confirmed.mail.twig',
+            subject: 'authentication.mails.subjects.registration_confirmed',
             domain: 'authentication'
         );
     }

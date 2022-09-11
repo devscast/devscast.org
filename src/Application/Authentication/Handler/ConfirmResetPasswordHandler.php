@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\ConfirmResetPasswordCommand;
+use Application\Authentication\Service\LoginAttemptService;
 use Domain\Authentication\Entity\User;
+use Domain\Authentication\Event\ResetPasswordConfirmedEvent;
 use Domain\Authentication\Repository\UserRepositoryInterface;
 use Infrastructure\Authentication\Doctrine\Repository\ResetPasswordTokenRepository;
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ConfirmResetPasswordHandler.
@@ -23,11 +23,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class ConfirmResetPasswordHandler
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly Mailer $mailer,
         private readonly UserPasswordHasherInterface $hasher,
         private readonly UserRepositoryInterface $userRepository,
-        private readonly ResetPasswordTokenRepository $tokenRepository
+        private readonly ResetPasswordTokenRepository $tokenRepository,
+        private readonly LoginAttemptService $loginAttemptService,
+        private readonly EventDispatcherInterface $dispatcher
     ) {
     }
 
@@ -44,28 +44,20 @@ final class ConfirmResetPasswordHandler
                 )
             );
 
+            /*
+             * it can happen that the user wants to reset his password before confirming his email,
+             * if he managed to do it then the email address he uses belongs to him and therefore
+             * we can make an implicit validation of the email
+             */
+            if (false === $user->isIsEmailVerified()) {
+                $user->setEmailVerificationToken(null)
+                    ->setIsEmailVerified(true);
+                $this->userRepository->save($user);
+            }
+
             $this->tokenRepository->delete($command->token);
-            $this->sendResetPasswordConfirmedEmail($user);
+            $this->loginAttemptService->deleteAttemptsFor($user);
+            $this->dispatcher->dispatch(new ResetPasswordConfirmedEvent($user));
         }
-    }
-
-    private function sendResetPasswordConfirmedEmail(User $user): void
-    {
-        $email = $this->mailer
-            ->createEmail(
-                template: 'domain/authentication/mail/reset_password_confirmed.mail.twig',
-                data: [
-                    'user' => $user,
-                ]
-            )->subject($this->translator->trans(
-                id: 'authentication.mails.subjects.reset_password_confirmed',
-                parameters: [
-                    '%name%' => $user->getUsername(),
-                ],
-                domain: 'authentication'
-            ))
-            ->to(new Address((string) $user->getEmail(), (string) $user->getUsername()));
-
-        $this->mailer->send($email);
     }
 }

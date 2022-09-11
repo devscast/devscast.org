@@ -7,11 +7,11 @@ namespace Domain\Authentication\Event;
 use Domain\Authentication\Entity\User;
 
 /**
- * Class ResetPasswordConfirmedEvent.
+ * class UserRegistrationConfirmedEvent.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ResetPasswordConfirmedEvent
+final class UserRegistrationConfirmedEvent
 {
     public function __construct(
         public readonly User $user

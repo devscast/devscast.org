@@ -1,0 +1,27 @@
+{% extends _layout %}
+{% import 'shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        Bienvenue dans la communauté Devscast, nous sommes très heureux de te compter parmi nos membres.
+        Mais avant d'aller plus loin, nous voudrions nous rassurez que c'est bien vous qui avez créé le compte,
+        pour ce faire veuillez tout simplement confirmer votre inscription
+
+        {%- if _format == 'html' -%}
+            {% embed 'shared/layout/mail/section.html.twig' %}
+                {% block content %}
+                    <div style="text-align: center">
+                        Scanner le QRCode pour confirmer votre inscription ou utiliser le lien
+                        <img src="{{ qr_code_data_uri(url('authentication_register_confirm', {token: user.emailVerificationToken})) }}" title="scanner le qrcode pour confirmer votre inscription" alt="qrcode" />
+                    </div>
+                {% endblock %}
+            {% endembed %}
+        {%- endif -%}
+
+        Ce lien peut être utilisé pour confirmer votre inscription Devscast. On ne le demande jamais pour autre chose.
+
+        {{ e.button('Confirmer mon inscription', url('authentication_register_confirm', {token: user.emailVerificationToken}), 'primary', _format) }}
+    {% endapply %}
+{% endblock %}

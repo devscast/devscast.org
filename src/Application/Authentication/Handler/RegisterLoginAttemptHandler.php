@@ -17,7 +17,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class RegisterLoginAttemptHandler
 {
     public function __construct(
-        private readonly LoginAttemptService $loginAttempt
+        private readonly LoginAttemptService $loginAttempt,
     ) {
     }
 

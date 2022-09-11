@@ -33,7 +33,7 @@
                     <tr>
                         <td class="header">
                             <a href="{{ absolute_url('/') }}" style="display: inline-block;">
-                                <img src="https://assets.devscast.tech/files/png/logo_black.png" class="logo" alt="Devscast Logo" width="250px">
+                                <img src="{{ absolute_url(asset('images/logo.png')) }}" class="logo" alt="Devscast Logo" width="250px">
                             </a>
                         </td>
                         <!-- Email Body -->
@@ -44,6 +44,9 @@
                                 <tr>
                                     <td class="content-cell">
                                         {% block body '' %}
+
+                                        Cordialement, <br>
+                                        L'équipe Devscast.
                                     </td>
                                 </tr>
                             </table>
@@ -73,10 +76,10 @@
                                         </div>
 
                                         {% block footer %}
-                                            Vous recevez cet e-mail car vous êtes un membre précieux de la communauté Devscast.
+                                            Vous recevez cet e-mail, car vous êtes un membre précieux de la communauté Devscast.
                                             <br><br>
 
-                                            © {{ 'now' | date('Y')}} Devscast. Tous droits réservés. <br>
+                                            © 2019 - {{ 'now' | date('Y')}} Devscast. Tous droits réservés. <br>
                                             2189 Maman Yemo coin Sandoa, Haut-katanga, Lubumbashi RDC
                                         {% endblock %}
                                     </td>

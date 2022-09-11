@@ -14,7 +14,8 @@ use Domain\Authentication\Entity\User;
 final class LoginLinkRequestedEvent
 {
     public function __construct(
-        public readonly User $user
+        public readonly User $user,
+        public readonly object $link
     ) {
     }
 }

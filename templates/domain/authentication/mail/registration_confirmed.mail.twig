@@ -1,0 +1,10 @@
+{% extends _layout %}
+{% import 'shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        Bienvenue dans la communauté Devscast, nous sommes très heureux de te compter parmi nos membres.
+    {% endapply %}
+{% endblock %}
