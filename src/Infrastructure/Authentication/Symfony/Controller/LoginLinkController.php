@@ -53,7 +53,7 @@ final class LoginLinkController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/login_link.html.twig',
+            view: '@app/domain/authentication/login_link.html.twig',
             parameters: [
                 'form' => $form,
             ],

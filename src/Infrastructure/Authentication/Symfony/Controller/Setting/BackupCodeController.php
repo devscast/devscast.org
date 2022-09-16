@@ -35,7 +35,7 @@ final class BackupCodeController extends AbstractController
         }
 
         return $this->render(
-            view: 'domain/authentication/setting/backup_code.html.twig',
+            view: '@app/domain/authentication/setting/backup_code.html.twig',
             parameters: [
                 'codes' => $user->getBackupCodes(),
             ]

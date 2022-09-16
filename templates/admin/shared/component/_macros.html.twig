@@ -1,0 +1,40 @@
+{% macro user_data_item(label, value, options) %}
+    <div class="profile-ud-item">
+        <div class="profile-ud {{ options.style ?? 'wider' }}">
+            <span class="profile-ud-label">{{ label }}</span>
+            <span class="profile-ud-value">{{ value ? value | raw : '-' }}</span>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro stats_infos(data, label) %}
+    {% if data != 0.0 %}
+        {{ _self.ratio(data) }}
+        <span> vs. le mois passé</span>
+    {% else %}
+        <span class="change down">
+            {{ 'alert-fill-c' | icon }}
+        </span>
+        <span class="text-danger"> Aucun {{ label }} ce mois</span>
+    {% endif %}
+{% endmacro %}
+
+{% macro ratio(data) %}
+    <span class="change {{ data > 0 ? 'up text-success' : 'down text-danger' }}">
+        {{  (data > 0 ? 'arrow-long-up' : 'arrow-long-down') | icon }}
+        {{  data }} %
+    </span>
+{% endmacro %}
+
+{% macro user_data_link(label, value, link, options) %}
+    <div class="profile-ud-item">
+        <div class="profile-ud {{ options.style ?? 'wider' }}">
+            <span class="profile-ud-label">{{ label }}</span>
+            <span class="profile-ud-value">
+                <a href="{{ link }}" title="{{ value }}" aria-label="{{ value }}">
+                    {{ value }}
+                </a>
+            </span>
+        </div>
+    </div>
+{% endmacro %}

@@ -9,8 +9,9 @@ Encore
     .setOutputPath('public/assets/')
     .setPublicPath('/assets')
 
-    .addEntry('app', './assets/app.js')
-    .enableStimulusBridge('./assets/js/controllers.json')
+    .addEntry('app', './assets/app/index.js')
+    .addEntry('admin', './assets/admin/index.js')
+    .enableStimulusBridge('./assets/shared/controllers.json')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
 
@@ -46,8 +47,8 @@ Encore.addPlugin(new WorkboxPlugin.InjectManifest({
         /^css.(.+)?(css|js)$/,
     ],
     maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-    swSrc: './assets/js/sw.js',
-    swDest: '../sw.js',
+    swSrc: './assets/app/js/sw.js',
+    swDest: '../sw.js', // public/sw.js
     mode: Encore.isProduction ? 'production' : 'development'
 }), -10);
 

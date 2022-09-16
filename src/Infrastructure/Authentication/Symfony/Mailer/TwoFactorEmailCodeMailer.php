@@ -29,7 +29,7 @@ final class TwoFactorEmailCodeMailer implements AuthCodeMailerInterface
     public function sendAuthCode(TwoFactorInterface $user): void
     {
         $email = $this->mailer->createEmail(
-            template: 'domain/authentication/mail/two_factor_auth_code.mail.twig',
+            template: '@app/domain/authentication/mail/two_factor_auth_code.mail.twig',
             data: [
                 'user' => $user,
             ]

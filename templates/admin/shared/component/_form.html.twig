@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button class="btn btn-primary">
+        {{ 'save-fill' | icon }}
+        <span>{{ 'global.submit' | trans([], 'messages') }}</span>
+    </button>
+{{ form_end(form) }}

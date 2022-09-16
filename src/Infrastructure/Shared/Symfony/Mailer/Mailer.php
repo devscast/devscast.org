@@ -35,7 +35,7 @@ final class Mailer
             context: [
                 ...$data,
                 '_format' => 'html',
-                '_layout' => 'shared/layout/mail/base.html.twig',
+                '_layout' => '@app/shared/layout/mail/base.html.twig',
             ]
         );
 
@@ -44,7 +44,7 @@ final class Mailer
             context: [
                 ...$data,
                 '_format' => 'text',
-                '_layout' => 'shared/layout/mail/base.text.twig',
+                '_layout' => '@app/shared/layout/mail/base.text.twig',
             ]
         );
 

@@ -85,7 +85,7 @@ final class RegistrationController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/register.html.twig',
+            view: '@app/domain/authentication/register.html.twig',
             parameters: [
                 'form' => $form,
                 'is_oauth' => $isOAuth,

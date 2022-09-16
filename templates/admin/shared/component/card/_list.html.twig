@@ -1,0 +1,39 @@
+<div class="card card-stretch">
+    <div class="card-inner-group">
+        <div class="card-inner">
+            <div class="card-title-group">
+                <div class="card-title">
+                    <h5 class="title">
+                        {% block list_card_title %}{% endblock %}
+                    </h5>
+                </div>
+                <div class="card-tools mr-n1">
+                    <ul class="btn-toolbar">
+                        {% block list_card_action_list %}{% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-inner p-0">
+            {% block list_card_table %}
+                <table class="table table-tranx">
+                    <thead>
+                    <tr class="tb-tnx-head">
+                        {% block list_card_table_head %}{% endblock %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% block list_card_table_body %}{% endblock %}
+                    </tbody>
+                </table>
+            {% endblock %}
+        </div>
+        <div class="card-inner d-flex justify-content-center">
+            {% block list_card_pagination %}
+                {% if data is defined %}
+                    {{ knp_pagination_render(data) }}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

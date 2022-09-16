@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale | default('fr') }}" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('/images/favicon.webp') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %} | Devscast Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+{% include '@app/shared/component/_flash.html.twig' %}
+<body class="{% block bodyClass 'min-h-screen flex items-center bg-neutral-lighter dark:bg-neutral-dark' %}">
+{% block body %}
+    <div class="m-auto container px-12 sm:px-0 mx-auto">
+        <div class="mx-auto h-full md:w-10/12 lg:w-5/12">
+            <div class="m-auto  py-12  sm:p-12 xl:w-10/12 2xl:w-9/12">
+                {% block header %}
+                    <div class="space-y-4 xl:p-2 2xl:p-6">
+                        <a href="{{ path('app_index') }}" title="Devscast Community" aria-label="Devscast Community">
+                            <img src="{{ asset('/images/logo-dark.png') }}" class="w-10 dark:hidden" alt="devscast logo"/>
+                            <img src="{{ asset('/images/logo.png') }}" class="w-10 hidden dark:inline-block" alt="devscast logo"/>
+                        </a>
+                    </div>
+                {% endblock %}
+
+                {% block content %}{% endblock %}
+
+                {% block footer %}
+                    <div class="border-t mt-12 border-neutral-lighter pt-12 text-neutral-500 dark:border-neutral-800">
+                        <div class="space-x-4 text-center text-sm">
+                            <span class="text-neutral-300 font-light hover:text-neutral-400 dark:text-neutral-500 dark:hover:text-neutral-300">&copy; Devscast</span>
+                            <a href="#" class="text-neutral-400 font-light hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-300">Contact</a>
+                            <a href="#" class="text-neutral-400 font-light hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-300">Privacy & Terms</a>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

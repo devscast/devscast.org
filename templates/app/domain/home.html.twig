@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/webp" href="{{ asset('images/favicon.webp') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="tailus ui html-vite and tailwindcss 3.1 boilerplate"/>
+    <title>Devscast Community</title>
+
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_script_tags('app') }}
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen dark:bg-neutral-dark">
+<header class="inset-x-0 z-20 bg-white/80 dark:bg-neutral-dark/80 backdrop-blur-xl">
+    <nav class="relative border-b border-neutral-lighter dark:border-neutral-800">
+        <div class="relative z-[1] lg:max-w-7xl px-6 sm:px-12 mx-auto xl:px-0 py-4">
+            <div class="flex justify-between">
+                <a href="{{ path('app_index') }}">
+                    <img src="{{ asset('images/logo-dark.png') }}" loading="lazy" class="w-8 dark:hidden" alt="devcast logo" />
+                    <img src="{{ asset('images/logo.png') }}" class="w-8 hidden dark:inline-block" alt="devcast logo" />
+                </a>
+                <div class="w-[54%]">
+                    <div class="w-full relative flex items-center text-gray-400 focus-within:text-indigo-400">
+                            <span class="absolute left-4 h-6 flex items-center pr-3 border-r border-neutral-light dark:border-neutral-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </span>
+                        <input type="search" name="leadingIcon" id="leadingIcon" placeholder="Recherchez ici" class="w-full pl-14 pr-4 py-2.5 rounded-md placeholder-neutral-400 text-sm text-gray-600 bg-neutral-lighter dark:bg-neutral-800 focus:border-primary-300 dark:border-neutral-700 transition">
+                    </div>
+                    <div class="-mb-4 mt-6 border- border-neutral-light dark:border-neutral-700 flex justify-between dark:text-neutral-300">
+                        <div role="tablist" aria-label="tabs" class="overflow-hidden sticky top-0 flex gap-4">
+                            <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0" title="tab item" class="block pb-2.5 bg-cyan-200 bg-opacity-0 border-b border-cyan-500 hover:bg-opacity-25 focus:bg-opacity-40 active:bg-opacity-60 transition-opacity">
+                                <span class="block w-max m-auto tracking-wider text-sm font-medium text-cyan-600">Tout</span>
+                            </button>
+                            <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1" title="tab item" class="block pb-2.5 bg-cyan-200 bg-opacity-0 hover:bg-opacity-25 focus:bg-opacity-40 active:bg-opacity-60 transition-opacity">
+                                <span class="block w-max m-auto tracking-wider text-sm font-medium text-neutral-500">Articles</span>
+                            </button>
+                            <button role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1" title="tab item" class="block pb-2.5 bg-cyan-200 bg-opacity-0 hover:bg-opacity-25 focus:bg-opacity-40 active:bg-opacity-60 transition-opacity">
+                                <span class="block w-max m-auto tracking-wider text-sm font-medium text-neutral-500">Podcasts</span>
+                            </button>
+                        </div>
+                        <span class="text-sm">Cummunauté</span>
+                    </div>
+                </div>
+                <div class="flex">
+                    <img class="w-9 h-9 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="pt-6 lg:max-w-7xl px-6 sm:px-12 mx-auto xl:px-0 py-2">
+    <div class="flex items-center justify-between">
+        <div></div>
+        <div class="xl:w-[54%] space-y-6">
+            <div class="grid gap-4 grid-cols-2">
+                <div class="dark:p-px rounded-2xl dark:bg-gradient-to-br from-info-500 to-secondary-500">
+                    <div class="rounded-[0.95rem] p-2 bg-gradient-to-br from-secondary-light to-primary-lighter dark:from-neutral-800 dark:to-neutral-800">
+                        <div class="flex gap-3 items-center">
+                            <img class="w-24 h-24 rounded-xl bg-neutral-lighter dark:bg-neutral-800" src="https://ssl-static.libsyn.com/p/assets/a/e/4/d/ae4de219513cad32/2021-01-salesforce-devs-podcast-1400x1400-v2.png" alt="">
+                            <div>
+                                <h5 class="text-base text-secondary-dark dark:text-white">How to live freelancing in DR Congo</h5>
+                                <button class="mt-2 w-max group relative flex h-8 items-center px-3.5 before:absolute before:inset-0 before:shadow-xl before:shadow-secondary-300/20 before:rounded-full before:bg-white dark:before:bg-neutral-700 dark:before:shadow-none before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
+                                        <span class="w-max relative flex items-center gap-1 text-sm tracking-wide font-medium text-secondary-500 dark:text-neutral-light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="relative bi bi-play-fill" viewBox="0 0 16 16">
+                                                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                            </svg>
+                                            Ecouter
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dark:p-px rounded-2xl bg-gradient-to-br from-info-500 to-secondary-500">
+                    <div class="rounded-[0.95rem] p-2 bg-gradient-to-br from-secondary-light to-primary-lighter dark:from-neutral-800 dark:to-neutral-800">
+                        <div class="flex gap-3 items-center">
+                            <img class="w-24 h-24 rounded-xl bg-neutral-lighter dark:bg-neutral-800" src="https://files.casted.us/3c5eaed8-922f-4684-bae1-d14fb57be4cc.jpg" alt="">
+                            <div>
+                                <h5 class="text-base text-secondary-dark dark:text-white">How to live freelancing in DR Congo</h5>
+                                <button class="mt-2 w-max group relative flex h-8 items-center px-3.5 before:absolute before:inset-0 before:shadow-xl before:shadow-secondary-300/20 before:rounded-full before:bg-white dark:before:bg-neutral-700 dark:before:shadow-none before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
+                                        <span class="w-max relative flex items-center gap-1 text-sm tracking-wide font-medium text-secondary-500 dark:text-neutral-light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="relative bi bi-play-fill" viewBox="0 0 16 16">
+                                                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                            </svg>
+                                            Ecouter
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="hidden border- border-neutral-light dark:border-neutral-700 dark:text-white flex items-center justify-between">
+                    <h4>Articles récents</h4>
+                    <button class="group h-9 w-9 -mr-1.5 rounded-full transition hover:bg-neutral-light dark:hover:bg-neutral-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-5 h-5 mx-auto transition duration-300 group-hover:rotate-90" viewBox="0 0 16 16">
+                            <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+                            <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="py-6 space-y-6 divide-y divide-neutral-light dark:divide-neutral-800">
+                    <div class="-m-6 p-6 group from-primary-light dark:from-neutral-800 to-transparent hover:bg-gradient-to-b">
+                        <div class="flex gap-6">
+                            <div class="w-3/12">
+                                <img class="w-max h-40 object-cover rounded-xl bg-neutral-lighter" src="https://miro.medium.com/max/1400/0*TZq0RP7sHHHZM6Cf" alt="">
+                            </div>
+                            <div class="w-9/12">
+                                <div class="-ml-1 p-1 pr-2 rounded-full flex items-center gap-2 hover:bg-primary-lighter dark:hover:bg-neutral-700/20 w-max">
+                                    <img class="w-7 h-7 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                                    <span class="font-normal text-neutral-500 dark:text-neutral-300">Méschac Irung</span>
+                                </div>
+                                <h4 class="mt-2.5 text-xl font-semibold text-neutral-800 dark:text-neutral-light group-hover:text-primary-dark dark:group-hover:text-white">Redis x DEV Hackathon Reminder ⏰ and always</h4>
+                                <p class="mt-2.5 font-light text-neutral-600 dark:text-neutral-300">In natus, optio nam architecto quae, quaerat quo ullam sed quaerat quo ullam sed quaerat quo ullam sed aut obcaecati commodi aspernatur officiis sunt.</p>
+                                <div class="mt-6 flex justify-between">
+                                    <div class="flex gap-4">
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-secondary-lighter dark:bg-neutral-800 group-hover:bg-secondary-light dark:group-hover:bg-secondary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-secondary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-secondary-300 group-hover:text-secondary-600">45</span>
+                                        </div>
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-primary-lighter dark:bg-neutral-800 group-hover:bg-primary-light dark:group-hover:bg-primary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-primary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-primary-300 group-hover:text-primary-600">45 comments</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600 dark:text-neutral-light">2 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="-m-6 p-6 group from-primary-light dark:from-neutral-800 to-transparent hover:bg-gradient-to-b">
+                        <div class="flex gap-6">
+                            <div class="w-3/12">
+                                <img class="w-max h-40 object-cover rounded-xl bg-neutral-lighter" src="https://miro.medium.com/max/2160/0*XB6zvIO8A6t0bpcN.jpg" alt="">
+                            </div>
+                            <div class="w-9/12">
+                                <div class="-ml-1 p-1 pr-2 rounded-full flex items-center gap-2 hover:bg-primary-lighter dark:hover:bg-neutral-700/20 w-max">
+                                    <img class="w-7 h-7 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                                    <span class="font-normal text-neutral-500 dark:text-neutral-300">Méschac Irung</span>
+                                </div>
+                                <h4 class="mt-2.5 text-xl font-semibold text-neutral-800 dark:text-neutral-light group-hover:text-primary-dark dark:group-hover:text-white">Redis x DEV Hackathon Reminder ⏰ and always</h4>
+                                <p class="mt-2.5 font-light text-neutral-600 dark:text-neutral-300">In natus, optio nam architecto quae, quaerat quo ullam sed quaerat quo ullam sed quaerat quo ullam sed aut obcaecati commodi aspernatur officiis sunt.</p>
+                                <div class="mt-6 flex justify-between">
+                                    <div class="flex gap-4">
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-secondary-lighter dark:bg-neutral-800 group-hover:bg-secondary-light dark:group-hover:bg-secondary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-secondary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-secondary-300 group-hover:text-secondary-600">45</span>
+                                        </div>
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-primary-lighter dark:bg-neutral-800 group-hover:bg-primary-light dark:group-hover:bg-primary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-primary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-primary-300 group-hover:text-primary-600">45 comments</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600 dark:text-neutral-light">2 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="-m-6 p-6 group from-primary-light dark:from-neutral-800 to-transparent hover:bg-gradient-to-b">
+                        <div class="flex gap-6">
+                            <div class="w-3/12">
+                                <img class="w-max h-40 object-cover rounded-xl bg-neutral-lighter" src="https://miro.medium.com/max/1400/1*NlNyKKV8N2tXzFhzTGYYUg.png" alt="">
+                            </div>
+                            <div class="w-9/12">
+                                <div class="-ml-1 p-1 pr-2 rounded-full flex items-center gap-2 hover:bg-primary-lighter dark:hover:bg-neutral-700/20 w-max">
+                                    <img class="w-7 h-7 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                                    <span class="font-normal text-neutral-500 dark:text-neutral-300">Méschac Irung</span>
+                                </div>
+                                <h4 class="mt-2.5 text-xl font-semibold text-neutral-800 dark:text-neutral-light group-hover:text-primary-dark dark:group-hover:text-white">Redis x DEV Hackathon Reminder ⏰ and always</h4>
+                                <p class="mt-2.5 font-light text-neutral-600 dark:text-neutral-300">In natus, optio nam architecto quae, quaerat quo ullam sed quaerat quo ullam sed quaerat quo ullam sed aut obcaecati commodi aspernatur officiis sunt.</p>
+                                <div class="mt-6 flex justify-between">
+                                    <div class="flex gap-4">
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-secondary-lighter dark:bg-neutral-800 group-hover:bg-secondary-light dark:group-hover:bg-secondary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-secondary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-secondary-300 group-hover:text-secondary-600">45</span>
+                                        </div>
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-primary-lighter dark:bg-neutral-800 group-hover:bg-primary-light dark:group-hover:bg-primary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-primary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-primary-300 group-hover:text-primary-600">45 comments</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600 dark:text-neutral-light">2 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="-m-6 p-6 group from-primary-light dark:from-neutral-800 to-transparent hover:bg-gradient-to-b">
+                        <div class="flex gap-6">
+                            <div class="w-3/12">
+                                <img class="w-max h-40 object-cover rounded-xl bg-neutral-lighter" src="https://miro.medium.com/max/1400/1*gyzWVoo9KK8xwvoYCeQTlw.png" alt="">
+                            </div>
+                            <div class="w-9/12">
+                                <div class="-ml-1 p-1 pr-2 rounded-full flex items-center gap-2 hover:bg-primary-lighter dark:hover:bg-neutral-700/20 w-max">
+                                    <img class="w-7 h-7 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                                    <span class="font-normal text-neutral-500 dark:text-neutral-300">Méschac Irung</span>
+                                </div>
+                                <h4 class="mt-2.5 text-xl font-semibold text-neutral-800 dark:text-neutral-light group-hover:text-primary-dark dark:group-hover:text-white">Redis x DEV Hackathon Reminder ⏰ and always</h4>
+                                <p class="mt-2.5 font-light text-neutral-600 dark:text-neutral-300">In natus, optio nam architecto quae, quaerat quo ullam sed quaerat quo ullam sed quaerat quo ullam sed aut obcaecati commodi aspernatur officiis sunt.</p>
+                                <div class="mt-6 flex justify-between">
+                                    <div class="flex gap-4">
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-secondary-lighter dark:bg-neutral-800 group-hover:bg-secondary-light dark:group-hover:bg-secondary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-secondary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-secondary-300 group-hover:text-secondary-600">45</span>
+                                        </div>
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-primary-lighter dark:bg-neutral-800 group-hover:bg-primary-light dark:group-hover:bg-primary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-primary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-primary-300 group-hover:text-primary-600">45 comments</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-neutral-600 dark:text-neutral-light">2 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden -m-6 p-6 group from-primary-lighter dark:from-neutral-800 to-transparent hover:bg-gradient-to-b">
+                        <div class="space-y-6">
+                            <div class="w-full">
+                                <img class="w-full h-72 object-cover rounded-xl bg-neutral-lighter" src="https://miro.medium.com/max/1400/1*LOTovrmWqNBWRvFnl-ElPQ.jpeg" alt="">
+                            </div>
+                            <div class="">
+                                <div class="-ml-1 p-1 pr-2 rounded-full flex items-center gap-2 hover:bg-primary-lighter dark:hover:bg-neutral-700/20 w-max">
+                                    <img class="w-7 h-7 border border-neutral-light dark:border-neutral-800 rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="user avatar">
+                                    <span class="font-normal text-neutral-500 dark:text-neutral-300">Méschac Irung</span>
+                                </div>
+                                <h4 class="mt-2.5 text-2xl font-semibold text-neutral-800 dark:text-neutral-light group-hover:text-primary-dark dark:group-hover:text-white">Redis x DEV Hackathon Reminder ⏰ and always</h4>
+                                <p class="mt-2.5 font-light text-neutral-600 dark:text-neutral-300">In natus, optio nam architecto quae, quaerat quo ullam sed aut obcaecati commodi aspernatur officiis sunt.</p>
+                                <div class="mt-6 flex justify-between">
+                                    <div class="flex gap-4">
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-secondary-lighter dark:bg-neutral-800 group-hover:bg-secondary-light dark:group-hover:bg-secondary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-secondary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-secondary-300 group-hover:text-secondary-600">45</span>
+                                        </div>
+                                        <div class="px-2 p-1 gap-1 flex items-center rounded-full bg-primary-lighter dark:bg-neutral-800 group-hover:bg-primary-light dark:group-hover:bg-primary-600/20">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-500 dark:text-neutral-300 group-hover:text-primary-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <span class="text-sm text-neutral-500 dark:text-neutral-300 dark:group-hover:text-primary-300 group-hover:text-primary-600">45 comments</span>
+                                        </div>
+                                    </div>
+
+
+                                    <span class="text-sm text-neutral-600 dark:text-neutral-light">2 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+        </div>
+    </div>
+</div>
+<div aria-hidden="true" class="fixed right-0  top-0 scale-y-[2.5] rotate-45 w-28 h-96 blur-[5rem] rounded-full bg-secondary-300/30 dark:bg-info-400/20"></div>
+
+
+</body>
+</html>

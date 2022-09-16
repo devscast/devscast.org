@@ -1,6 +1,9 @@
 twig:
+    paths:
+        '%kernel.project_dir%/templates/app': 'app'
+        '%kernel.project_dir%/templates/admin': 'admin'
     form_themes:
-        - shared/layout/form_theme.html.twig
+        - '@app/shared/layout/form_theme.html.twig'
     default_path: '%kernel.project_dir%/templates'
     date:
         format: 'd M Y H:i'

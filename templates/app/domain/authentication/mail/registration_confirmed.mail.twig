@@ -1,0 +1,15 @@
+{% extends _layout %}
+{% import '@app/shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        Bienvenue dans la communauté Devscast, nous sommes très heureux de vous compter parmi nos membres.
+
+        {% if event.is_oauth %}
+            Votre compte a été créé via {{ event.oauth_type }}, utiliser la même methode pour vous connecter prochainement,
+            si vous ne définissez pas un mot de passe.
+        {% endif %}
+    {% endapply %}
+{% endblock %}

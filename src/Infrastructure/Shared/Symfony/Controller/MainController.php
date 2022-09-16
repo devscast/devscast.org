@@ -20,6 +20,6 @@ final class MainController extends AbstractController
     #[Route('/', name: 'app_index', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('domain/home.html.twig');
+        return $this->render('@app/domain/home.html.twig');
     }
 }

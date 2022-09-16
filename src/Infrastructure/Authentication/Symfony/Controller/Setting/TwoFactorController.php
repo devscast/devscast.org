@@ -48,7 +48,7 @@ final class TwoFactorController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/setting/two_factor.html.twig',
+            view: '@app/domain/authentication/setting/two_factor.html.twig',
             parameters: [
                 'form' => $form,
                 'qrcode_content' => $qrcode,

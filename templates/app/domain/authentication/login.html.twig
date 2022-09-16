@@ -1,0 +1,64 @@
+{% extends '@app/domain/authentication/layout/base.html.twig' %}
+{% block title 'authentication.titles.login' | trans([], 'authentication') %}
+
+{% block content %}
+    <div class="mt-8 bg-white border border-neutral-light rounded-3xl shadow-2xl shadow-neutral-300/20 dark:shadow-none dark:border-neutral-700 dark:bg-neutral-800 -mx-6 sm:-mx-10 p-8 sm:p-10 xl:p-12 2xl:p-16">
+        <h1 class="text-2xl text-neutral-800 dark:text-white">Connectez-vous</h1>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            <a class="h-11 rounded-full border border-neutral-300/75 bg-white hover:bg-info-lighter active:bg-info-light px-6 transition active:bg-neutral-50 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:bg-neutral-700/80 dark:hover:border-neutral-700 dark:active:bg-neutral-700/40" href="{{ path('authentication_oauth_connect', {service: 'google'}) }}" title="connexion via google" aria-label="connexion via google">
+                <div class="h-full flex items-center justify-center space-x-4">
+                    <img src="https://tailus.io/sources/blocks/plus-social/preview/images/google.svg" class="w-5" alt="" />
+                    <span class="block w-max text-sm font-medium tracking-wide text-cyan-700 dark:text-white">Google</span>
+                </div>
+            </a>
+            <a class="h-11 rounded-full bg-neutral-dark px-6 transition hover:bg-neutral-800 focus:bg-neutral-700 active:bg-neutral-600 dark:border dark:bg-neutral-700 dark:border-neutral-600 dark:hover:bg-neutral-700/80 dark:hover:border-neutral-700 dark:active:bg-neutral-700/40" href="{{ path('authentication_oauth_connect', {service: 'github'}) }}" title="Connexion via github" aria-label="connexion via github">
+                <div class="h-full flex items-center justify-center space-x-4 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    <span class="block w-max text-sm font-medium tracking-wide text-white">Github</span>
+                </div>
+            </a>
+        </div>
+        <div class="mt-8 h-px bg-neutral-light dark:bg-neutral-700"></div>
+        <span class="block px-4 bg-white -mt-3.5 w-max mx-auto text-neutral-500 dark:text-neutral-300 dark:bg-neutral-800">Ou</span>
+
+        {{ form_start(form, {attr: {class: 'mt-8 space-y-8 text-neutral-600  dark:text-white'}}) }}
+            {{ form_row(form.identifier) }}
+
+            <div class="flex flex-col items-end">
+                <div class="w-full relative">
+                    {{ form_label(form.password) }}
+                    {{ form_errors(form.password) }}
+                    {{ form_widget(form.password) }}
+                    <button type="button" data-target="password" class="eye invisible opacity-0 absolute w-max px-5 inset-0 ml-auto my-auto text-neutral-400 transition hover:text-neutral-500 dark:hover:text-neutral-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="eye-on h-5 w-5 transition duration-200" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="eye-off hidden h-5 w-5 transition duration-200" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd" />
+                            <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                        </svg>
+                    </button>
+                    {{ form_help(form.password) }}
+                </div>
+                <a href="{{ path('authentication_login_link_request') }}" title="mot de passe oublié" aria-label="mot de passe oublié" class="-mx-3 -mb-3 w-max p-3 text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light">
+                    <span class="text-sm tracking-wide">mot de passe oublié</span>
+                </a>
+            </div>
+        {{ form_rest(form) }}
+
+        <div>
+            <button type="submit" class="group w-full flex justify-center items-center btn btn-primary">
+                <span class="w-max relative z-[1] font-medium text-primary-dark">
+                    Se connecter
+                </span>
+            </button>
+            <a href="{{ path('authentication_register') }}" class="inline-block mt-4 -ml-3 w-max px-3 text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light">
+                <span class="text-sm tracking-wide">Créer un nouveau compte</span>
+            </a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

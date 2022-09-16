@@ -1,0 +1,33 @@
+{
+  "dir": "ltr",
+  "lang": "fr-Fr",
+  "short_name": "Devscast",
+  "name": "Devscast Community",
+  "icons": [
+    {
+      "src": "/images/icons/logo/maskable_icon.png",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons/logo/maskable_icon_x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons/logo/maskable_icon_x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#222222",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "theme_color": "#05FFBB",
+  "shortcuts": [],
+  "description": ""
+}

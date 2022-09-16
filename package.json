@@ -19,6 +19,7 @@
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.53.0",
         "sass-loader": "^12.6.0",
+        "tailwindcss": "^3.1.6",
         "webpack-notifier": "^1.15.0",
         "workbox-cacheable-response": "^6.5.3",
         "workbox-expiration": "^6.5.3",
@@ -42,7 +43,6 @@
         "flatpickr": "^4.6.13",
         "htm": "^3.1.1",
         "sweetalert2": "^11.4.20",
-        "tailwindcss": "^3.1.6",
         "tom-select": "^2.0.1"
     }
 }

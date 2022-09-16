@@ -1,0 +1,14 @@
+<a{% for attr, value  in options %} {{ attr }}="{{ value }}"{% endfor %}>
+<span class="float-right">
+    {% if sorted %}
+        {% if direction == 'desc' %}
+            {{ 'arrow-up' | icon }}
+        {% else %}
+            {{ 'arrow-down' | icon }}
+        {% endif %}
+    {% else %}
+        {{ 'opt-alt' | icon }}
+    {% endif %}
+</span>
+{{ title }}
+</a>

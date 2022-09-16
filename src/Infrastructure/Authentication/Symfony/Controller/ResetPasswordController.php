@@ -52,7 +52,7 @@ final class ResetPasswordController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/reset_password_request.html.twig',
+            view: '@app/domain/authentication/reset_password_request.html.twig',
             parameters: [
                 'form' => $form,
             ],
@@ -90,7 +90,7 @@ final class ResetPasswordController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/reset_password_confirm.html.twig',
+            view: '@app/domain/authentication/reset_password_confirm.html.twig',
             parameters: [
                 'form' => $form,
             ],

@@ -1,0 +1,33 @@
+<div class="nk-block-head nk-block-head-sm">
+    <div class="nk-block-between g-3">
+        <div class="nk-block-head-content">
+            <h3 class="nk-block-title page-title fw-bolder">
+                {% block header_title %}
+                    {% if block("title") is defined %}
+                        {{ block('title') | title }}
+                    {% endif %}
+                {% endblock %}
+            </h3>
+            <div class="nk-block-des text-soft">
+                {% block header_description %}
+                    {% if data is defined and data.getTotalItemCount is defined and data.getTotalItemCount > 0 %}
+                        <span class="fw-bolder">{{ data.getTotalItemCount }}</span> éléments,
+                        page <span class="fw-bolder">{{ data.getCurrentPageNumber }}</span> sur {{ data.getPageCount }}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="nk-block-head-content">
+            <div class="toggle-wrap nk-block-tools-toggle">
+                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
+                    {{ 'menu-alt-r' | icon }}
+                </a>
+                <div class="toggle-expand-content" data-content="pageMenu">
+                    <ul class="nk-block-tools g-3">
+                        {% block header_action_list %}{% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

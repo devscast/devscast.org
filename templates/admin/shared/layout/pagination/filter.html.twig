@@ -1,0 +1,29 @@
+<form method="get" action="{{ action }}" enctype="application/x-www-form-urlencoded">
+    <div class="form-row content-search">
+        {% if fields|length > 1 %}
+            <div class="form-group mb-0 mt-0 col-4">
+                <select class="form-control" name="{{ filterFieldName }}" aria-label="{{ 'filter' | trans }}">
+                    {% for field, label in fields %}
+                        <option value="{{ field }}"{% if selectedField == field %} selected="selected"{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <input type="hidden" name="filter_name" value="{{ fields|keys|first }}"/>
+        {% endif %}
+
+        <div class="search-form mb-0 mt-0 col-7">
+            <input placeholder="{{ 'search' | trans }}..."
+                   class="form-control"
+                   aria-label="{{ 'search' | trans }}"
+                   autocomplete="false"
+                   type="search"
+                   value="{{ selectedValue }}"
+                   name="filter_value"
+            />
+            <button class="btn" type="button">
+                {{ 'search' | icon }}
+            </button>
+        </div>
+    </div>
+</form>

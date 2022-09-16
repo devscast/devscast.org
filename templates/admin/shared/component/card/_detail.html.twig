@@ -1,0 +1,13 @@
+<div class="card card-stretch">
+    <div class="card-aside-wrap">
+        <div class="card-content">
+            <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                {% block detail_card_tabs %}{% endblock %}
+            </ul>
+            <div class="card-inner">
+                {% block detail_card_body %}{% endblock %}
+            </div>
+        </div>
+        {% block detail_card_aside %}{% endblock %}
+    </div>
+</div>

@@ -16,6 +16,6 @@ final class SettingController extends AbstractController
     #[Route('', name: 'index', methods: ['GET', 'POST'])]
     public function index(): Response
     {
-        return $this->render('domain/authentication/setting/index.html.twig');
+        return $this->render('@app/domain/authentication/setting/index.html.twig');
     }
 }

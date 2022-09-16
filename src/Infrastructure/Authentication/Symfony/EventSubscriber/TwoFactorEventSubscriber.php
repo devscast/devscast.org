@@ -33,7 +33,7 @@ final class TwoFactorEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/two_factor_enabled.mail.twig',
+            template: '@app/domain/authentication/mail/two_factor_enabled.mail.twig',
             subject: 'authentication.mails.subjects.two_factor_enabled',
             domain: 'authentication'
         );
@@ -43,7 +43,7 @@ final class TwoFactorEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/two_factor_disabled.mail.twig',
+            template: '@app/domain/authentication/mail/two_factor_disabled.mail.twig',
             subject: 'authentication.mails.subjects.two_factor_disabled',
             domain: 'authentication'
         );

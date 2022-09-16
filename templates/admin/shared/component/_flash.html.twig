@@ -1,0 +1,6 @@
+{% for message in app.flashes('success') %}
+    <app-toast type="success" message="{{ message | nl2br }}"></app-toast>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <app-toast type="error" message="{{ message | nl2br }}"></app-toast>
+{% endfor %}

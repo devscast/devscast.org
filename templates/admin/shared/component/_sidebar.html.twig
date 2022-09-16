@@ -1,0 +1,31 @@
+<div class="nk-sidebar nk-sidebar-fixed is-dark" data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+        <div class="nk-sidebar-brand">
+            <a href="{{ path('app_index') }}" class="logo-link nk-sidebar-logo">
+                <img class="logo-light logo-img" src="{{ asset('images/logo.png') }}" alt="logo">
+                <img class="logo-dark logo-img" src="{{ asset('images/logo-dark.png') }}" alt="logo-dark">
+                <img class="logo-small logo-img logo-img-small" src="{{ asset('images/logo.png') }}" alt="logo-small">
+            </a>
+        </div>
+        <div class="nk-menu-trigger mr-n2">
+            <span role="button" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu">{{ 'arrow-left' | icon }}</span>
+            <span role="button" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu">{{ 'menu' | icon }}</span>
+        </div>
+    </div>
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-content">
+            <div class="nk-sidebar-menu" data-simplebar>
+                <ul class="nk-menu">
+                    {% block sidebar_menu_list %}
+                        {{ sidebar_render() }}
+                    {% endblock %}
+                </ul>
+            </div>
+            <div class="nk-sidebar-footer">
+                <ul class="nk-menu nk-menu-footer">
+                    {% block sidebar_footer_list %}{% endblock %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

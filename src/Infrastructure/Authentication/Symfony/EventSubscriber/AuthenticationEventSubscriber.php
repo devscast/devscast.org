@@ -72,7 +72,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/login_with_another_ip_address.mail.twig',
+            template: '@app/domain/authentication/mail/login_with_another_ip_address.mail.twig',
             subject: 'authentication.mails.subjects.login_with_another_ip_address',
             domain: 'authentication'
         );
@@ -82,7 +82,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/password_updated.mail.twig',
+            template: '@app/domain/authentication/mail/password_updated.mail.twig',
             subject: 'authentication.mails.subjects.password_updated',
             domain: 'authentication'
         );
@@ -92,7 +92,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/default_password_created.mail.twig',
+            template: '@app/domain/authentication/mail/default_password_created.mail.twig',
             subject: 'authentication.mails.subjects.password_updated',
             domain: 'authentication'
         );
@@ -102,7 +102,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/login_attempts_limit_reached.mail.twig',
+            template: '@app/domain/authentication/mail/login_attempts_limit_reached.mail.twig',
             subject: 'authentication.mails.subjects.login_attempts_limit_reached',
             domain: 'authentication'
         );
@@ -112,7 +112,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/login_link.mail.twig',
+            template: '@app/domain/authentication/mail/login_link.mail.twig',
             subject: 'authentication.mails.subjects.login_link_requested',
             subject_parameters: [
                 '%name%' => $event->user->getUsername(),
@@ -125,7 +125,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/reset_password_confirmed.mail.twig',
+            template: '@app/domain/authentication/mail/reset_password_confirmed.mail.twig',
             subject: 'authentication.mails.subjects.reset_password_confirmed',
             subject_parameters: [
                 '%name%' => $event->user->getUsername(),
@@ -138,7 +138,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/reset_password_request.mail.twig',
+            template: '@app/domain/authentication/mail/reset_password_request.mail.twig',
             subject: 'authentication.mails.subjects.reset_password_requested',
             domain: 'authentication'
         );
@@ -148,7 +148,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/registration_confirmation.mail.twig',
+            template: '@app/domain/authentication/mail/registration_confirmation.mail.twig',
             subject: 'authentication.mails.subjects.registration_confirmation',
             domain: 'authentication'
         );
@@ -158,7 +158,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: 'domain/authentication/mail/registration_confirmed.mail.twig',
+            template: '@app/domain/authentication/mail/registration_confirmed.mail.twig',
             subject: 'authentication.mails.subjects.registration_confirmed',
             domain: 'authentication'
         );

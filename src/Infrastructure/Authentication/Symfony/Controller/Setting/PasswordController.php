@@ -46,7 +46,7 @@ final class PasswordController extends AbstractController
         }
 
         return $this->renderForm(
-            view: 'domain/authentication/setting/password.html.twig',
+            view: '@app/domain/authentication/setting/password.html.twig',
             parameters: [
                 'form' => $form,
             ],
