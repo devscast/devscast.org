@@ -46,7 +46,7 @@ migrate: vendor/autoload.php ## create database and migrate to the latest versio
 	$(sfc) doctrine:migration:migrate --no-interaction --allow-no-migration
 
 .PHONY: test
-test: vendor/autoload.php ## unit and integration tests
+test: vendor/autoload.php public/assets/manifest.json ## unit and integration tests
 	$(phptest) bin/console cache:clear --env=test
 	$(phptest) bin/console doctrine:database:create --if-not-exists --env=test
 	$(phptest) bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
