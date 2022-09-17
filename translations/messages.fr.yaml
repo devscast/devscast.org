@@ -7,6 +7,8 @@ global.show: Détail
 global.back: Retour
 global.edit: Modifier
 global.delete: Supprimer
+global.ban: Bannir
+global.unban: Annuler le bannissement
 
 global.home: Connectez-vous, apprenez, partagez et progressez
 

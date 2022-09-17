@@ -1,10 +1,96 @@
 {% extends '@admin/shared/layout/base.html.twig' %}
+{% block title "Utilisateur #{data.username}" %}
+
+{% block header %}
+    {% embed "@admin/shared/component/_header.html.twig" %}
+        {% block header_title "Utilisateur #{data.username}" | title %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_authentication_user_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                    {{ 'arrow-long-left' | icon }}
+                    <span>Tous les utilisateurs</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('administration_authentication_user_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
+                    {{ 'edit-alt-fill' | icon }}
+                    <span>{{ 'global.edit' | trans([], 'messages') }}</span>
+                </a>
+            </li>
+            {% if app.user != data %}
+                <li>
+                    <form class="d-inline-block" method="post" action="" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value='{{ csrf_token("delete_#{data.id}") }}'>
+                        <button is="app-confirm-button" title="{{ 'global.delete' | trans([], 'messages') }}" aria-label="{{ 'global.delete' | trans([], 'messages') }}" class="btn btn-danger">
+                            {{ 'trash-empty-fill' | icon }}
+                            <span>{{ 'global.delete' | trans([], 'messages') }}</span>
+                        </button>
+                    </form>
+                </li>
+                {% if not data.banned %}
+                    <li>
+                        <form  action="{{ path('administration_authentication_user_ban', {id: data.id}) }}"  class="d-inline-block" method="post" onsubmit="return confirm('Are you sure you want to ban this user?');">
+                            <button is="app-confirm-button" title="{{ 'global.delete' | trans([], 'messages') }}" aria-label="{{ 'global.delete' | trans([], 'messages') }}" class="btn btn-danger">
+                                {{ 'user-cross' | icon }}
+                                <span>{{ 'global.ban' | trans([], 'messages') }}</span>
+                            </button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li>
+                        <form  action="{{ path('administration_authentication_user_unban', {id: data.id}) }}"  class="d-inline-block" method="post" onsubmit="return confirm('Are you sure you want to unban this user?');">
+                            <button is="app-confirm-button" title="{{ 'global.unban' | trans([], 'messages') }}" aria-label="{{ 'global.unban' | trans([], 'messages') }}" class="btn btn-white btn-dim btn-outline-light">
+                                {{ 'user-check' | icon }}
+                                <span>{{ 'global.unban' | trans([], 'messages') }}</span>
+                            </button>
+                        </form>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
 
 {% block content %}
-
+    {% embed "@admin/shared/component/card/_detail.html.twig" %}
+        {% import '@admin/shared/component/_macros.html.twig' as component %}
+        {% block detail_card_body %}
+            <div class="nk-block">
+                <div class="nk-block-head">
+                    <h5 class="title">Informations personnelles</h5>
+                </div>
+                <div class="profile-ud-list">
+                    {{ component.user_data_item('Nom complet', data.name) }}
+                    {{ component.user_data_item("Nom d'utilisateur", data.username) }}
+                    {{ component.user_data_item('Email', data.email) }}
+                    {{ component.user_data_item('Pronoms', data.pronouns) }}
+                    {{ component.user_data_item('Biographie', data.biography) }}
+                    {{ component.user_data_item('Poste', data.jobTitle) }}
+                    {{ component.user_data_item('Genre', data.gender) }}
+                    {{ component.user_data_item('Pays', data.country) }}
+                    {{ component.user_data_item('Rôle', data.roles | last | badge) }}
+                </div>
+            </div>
+            <div class="nk-divider divider md"></div>
+            <div class="nk-block">
+                <div class="nk-block-head">
+                    <h5 class="title">Informations supplémentaires</h5>
+                </div>
+                <div class="profile-ud-list">
+                    {{ component.user_data_item("Bannis", data.banned | boolean) }}
+                    {{ component.user_data_item("Email verifié", data.isEmailVerified | boolean) }}
+                    {{ component.user_data_item("Téléphone verifié", data.isPhoneNumberVerified | boolean) }}
+                    {{ component.user_data_item("Newsletter", data.isSubscribedNewsletter | boolean) }}
+                    {{ component.user_data_item("Marketing", data.isSubscribedMarketing | boolean) }}
+                    {{ component.user_data_item("2FA activé", data.twoFactorEnabled | boolean) }}
+                    {{ component.user_data_item("Dernière Ip", data.lastLoginIp) }}
+                    {{ component.user_data_item("Dernière connexion", data.lastLoginAt ? data.lastLoginAt | date : '-') }}
+                    {{ component.user_data_item("Date de création", data.createdAt | date ) }}
+                    {{ component.user_data_item("Dernière mise à jour", data.updatedAt ? data.updatedAt | date : '-') }}
+                    {{ component.user_data_item("Date de bannissement", data.bannedAt ? data.bannedAt | date : '-') }}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

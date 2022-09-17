@@ -126,10 +126,15 @@ final class UserController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('administration_authentication_user_show');
+        return $this->redirectSeeOther(
+            route: 'administration_authentication_user_show',
+            params: [
+                'id' => $row->getId(),
+            ]
+        );
     }
 
-    #[Route('/unban/{id<\d+}', name: 'unban', methods: ['POST'])]
+    #[Route('/unban/{id<\d+>}', name: 'unban', methods: ['POST'])]
     public function unban(User $row): Response
     {
         try {
@@ -139,7 +144,12 @@ final class UserController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('administration_authentication_user_show');
+        return $this->redirectSeeOther(
+            route: 'administration_authentication_user_show',
+            params: [
+                'id' => $row->getId(),
+            ]
+        );
     }
 
     #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
