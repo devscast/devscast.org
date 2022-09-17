@@ -39,11 +39,10 @@ final class ResetPasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.reset_password_requested_successfully',
-                    parameters: [],
                     domain: 'authentication'
-                ));
+                );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
             }
@@ -77,11 +76,10 @@ final class ResetPasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.reset_password_confirmed_successfully',
-                    parameters: [],
                     domain: 'authentication'
-                ));
+                );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
             }

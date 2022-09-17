@@ -29,10 +29,7 @@ final class LoginFormController extends AbstractController
 
         if (null !== $error) {
             $command->identifier = $utils->getLastUsername();
-            $this->addFlash('error', $this->translator->trans(
-                id: $error->getMessageKey(),
-                parameters: $error->getMessageData()
-            ));
+            $this->addErrorFlash($error->getMessageKey(), $error->getMessageData());
         }
 
         $form = $this->createForm(LoginForm::class, $command);

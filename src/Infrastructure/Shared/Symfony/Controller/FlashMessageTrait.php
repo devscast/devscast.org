@@ -62,19 +62,19 @@ trait FlashMessageTrait
         ));
     }
 
-    protected function addSuccessFlash(string $message, array $parameters = [], ?string $domain = null): void
+    protected function addSuccessFlash(string $id, array $parameters = [], ?string $domain = null): void
     {
         $this->addFlash('success', $this->translator->trans(
-            id: $message,
+            id: $id,
             parameters: $parameters,
             domain: $domain ?? 'messages'
         ));
     }
 
-    protected function addErrorFlash(string $message, array $parameters = [], ?string $domain = null): void
+    protected function addErrorFlash(string $id, array $parameters = [], ?string $domain = null): void
     {
         $this->addFlash('error', $this->translator->trans(
-            id: $message,
+            id: $id,
             parameters: $parameters,
             domain: $domain ?? 'messages'
         ));

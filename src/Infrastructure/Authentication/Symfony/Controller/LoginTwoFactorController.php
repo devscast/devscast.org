@@ -29,18 +29,16 @@ final class LoginTwoFactorController extends AbstractController
 
             if (null !== $user) {
                 $this->dispatchSync(new ResendTwoFactorCodeCommand((string) $request->getClientIp(), $user));
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.resend_code_requested_successfully',
-                    parameters: [],
                     domain: 'authentication'
-                ));
+                );
             }
         } catch (RateLimitExceededException) {
-            $this->addFlash('error', $this->translator->trans(
+            $this->addErrorFlash(
                 id: 'authentication.flashes.too_many_resend_code_request',
-                parameters: [],
                 domain: 'authentication'
-            ));
+            );
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
         }

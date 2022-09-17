@@ -30,13 +30,13 @@ final class LoginOAuthController extends AbstractController
             /** @var RedirectResponse $response */
             $response = $this->getHandledResultSync(new ConnectOAuthServiceCommand($service));
 
-            $this->addFlash('success', $this->translator->trans(
+            $this->addSuccessFlash(
                 id: 'authentication.flashes.oauth_service_login_successfully',
                 parameters: [
                     '%service%' => $service,
                 ],
                 domain: 'authentication'
-            ));
+            );
 
             return $response;
         } catch (\Throwable $e) {
@@ -51,13 +51,13 @@ final class LoginOAuthController extends AbstractController
     {
         try {
             $this->dispatchSync(new DisconnectOAuthServiceCommand($user, $service));
-            $this->addFlash('success', $this->translator->trans(
+            $this->addSuccessFlash(
                 id: 'authentication.flashes.oauth_service_disconnected_successfully',
                 parameters: [
                     '%service%' => $service,
                 ],
                 domain: 'authentication'
-            ));
+            );
 
             // TODO redirect to profile
             return $this->redirectToRoute('authentication_settings_index');

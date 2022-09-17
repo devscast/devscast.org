@@ -37,11 +37,10 @@ final class TwoFactorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.2fa_settings_updated_successfully',
-                    parameters: [],
                     domain: 'authentication'
-                ));
+                );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
             }

@@ -23,11 +23,10 @@ final class ResetLoginAttemptsController extends AbstractController
     {
         try {
             $this->dispatchSync(new ResetLoginAttemptsCommand($token));
-            $this->addFlash('success', $this->translator->trans(
+            $this->addSuccessFlash(
                 id: 'authentication.flashes.login_attempts_reset_successfully',
-                parameters: [],
                 domain: 'authentication'
-            ));
+            );
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
         }

@@ -43,11 +43,10 @@ final class RegistrationController extends AbstractController
             ->handleRequest($request);
 
         if ($isOAuth && false === $form->isSubmitted()) {
-            $this->addFlash('success', $this->translator->trans(
+            $this->addSuccessFlash(
                 id: 'authentication.flashes.complete_username',
-                parameters: [],
                 domain: 'authentication'
-            ));
+            );
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,25 +56,25 @@ final class RegistrationController extends AbstractController
 
                 if ($isOAuth) {
                     $OAuthService->desist();
-                    $this->addFlash('success', $this->translator->trans(
+                    $this->addSuccessFlash(
                         id: 'authentication.flashes.user_registered_with_oauth_successfully',
                         parameters: [
                             '%name%' => $command->username,
                             '%service%' => $command->oauth_type,
                         ],
                         domain: 'authentication'
-                    ));
+                    );
 
                     return $authenticator->authenticateUser($user, $loginFormAuthenticator, $request) ?:
                         $this->redirectSeeOther('app_index');
                 }
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.user_registered_with_email_successfully',
                     parameters: [
                         '%name%' => $command->username,
                     ],
                     domain: 'authentication'
-                ));
+                );
 
                 return $this->redirectSeeOther('authentication_login');
             } catch (\Throwable $e) {
@@ -99,11 +98,10 @@ final class RegistrationController extends AbstractController
     {
         try {
             $this->dispatchSync(new ConfirmRegistrationCommand($token));
-            $this->addFlash('success', $this->translator->trans(
+            $this->addSuccessFlash(
                 id: 'authentication.flashes.registration_confirmed_successfully',
-                parameters: [],
                 domain: 'authentication'
-            ));
+            );
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
         }

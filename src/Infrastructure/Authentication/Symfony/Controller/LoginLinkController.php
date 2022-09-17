@@ -36,11 +36,10 @@ final class LoginLinkController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
-                $this->addFlash('success', $this->translator->trans(
+                $this->addSuccessFlash(
                     id: 'authentication.flashes.login_link_requested_successfully',
-                    parameters: [],
                     domain: 'authentication'
-                ));
+                );
 
                 return $this->redirectSeeOther('authentication_login');
             } catch (AuthenticationException) {
