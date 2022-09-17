@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Handler;
 
 use Application\Authentication\Command\DisconnectOAuthServiceCommand;
+use Domain\Authentication\Exception\PasswordNotSetException;
 use Domain\Authentication\Exception\UnsupportedOAuthServiceException;
 use Domain\Authentication\Repository\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -41,9 +42,9 @@ final class DisconnectOAuthServiceHandler
             'facebook' => $user->setFacebookId(null)
         };
 
-        //if (null === $user->getPassword() && !$user->useOauth()) {
-        //    throw new PasswordNotSetException();
-        //}
+        if (null === $user->getPassword() && ! $user->useOauth()) {
+            throw new PasswordNotSetException();
+        }
 
         $this->repository->save($user);
     }

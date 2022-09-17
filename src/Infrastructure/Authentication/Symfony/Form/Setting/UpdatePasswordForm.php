@@ -20,27 +20,32 @@ final class UpdatePasswordForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('current', PasswordType::class, [
+        /** @var UpdatePasswordCommand|null $command */
+        $command = $builder->getData();
+
+        if ($command && null !== $command->user->getPassword()) {
+            $builder->add('current', PasswordType::class, [
                 'label' => 'authentication.forms.labels.current_password',
-            ])
-            ->add('new', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'authentication.validations.password_must_match',
-                'required' => true,
-                'first_options' => [
-                    'label' => 'authentication.forms.labels.password',
-                    'attr' => [
-                        'minlength' => 6,
-                    ],
-                ],
-                'second_options' => [
-                    'label' => 'authentication.forms.labels.password_confirm',
-                    'attr' => [
-                        'minlength' => 6,
-                    ],
-                ],
             ]);
+        }
+
+        $builder->add('new', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'invalid_message' => 'authentication.validations.password_must_match',
+            'required' => true,
+            'first_options' => [
+                'label' => 'authentication.forms.labels.password',
+                'attr' => [
+                    'minlength' => 6,
+                ],
+            ],
+            'second_options' => [
+                'label' => 'authentication.forms.labels.password_confirm',
+                'attr' => [
+                    'minlength' => 6,
+                ],
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,0 +1,32 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Modifier un utilisateur' %}
+
+{% block header %}
+    {% embed "@admin/shared/component/_header.html.twig" %}
+        {% block header_title "Modifier un utilisateur" | title %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_authentication_user_show', {id: data.id}) }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                    {{ 'arrow-long-left' | icon }}
+                    <span>Voir l'utilisateur</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% if app.user == data %}
+        <div class="alert alert-danger alert-icon">
+            {{ 'alert-circle' | icon }} Modifier les informations de votre propre compte entraîne une déconnexion
+            et ceci peut également entraîner à une perte d'accès au système.
+            Modifier vos informations depuis vos paramètres de profil.
+        </div>
+    {% endif %}
+
+    {% embed "@admin/shared/component/card/_simple.html.twig" %}
+        {% block simple_card_body %}
+            {% include '@admin/shared/component/_form.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

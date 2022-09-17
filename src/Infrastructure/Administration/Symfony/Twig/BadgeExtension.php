@@ -26,19 +26,17 @@ class BadgeExtension extends AbstractExtension
             'ROLE_ADMIN' => [
                 'state' => 'danger',
             ],
-            'ROLE_REPORT_MANAGER' => [
-                'state' => 'warning',
+            'ROLE_SUPER_ADMIN' => [
+                'state' => 'danger',
+            ],
+            'ROLE_BUSINESS_MANAGER' => [
+                'state' => 'danger',
+            ],
+            'ROLE_CONTENT_MANAGER' => [
+                'state' => 'danger',
             ],
             'ROLE_USER' => [
                 'state' => 'success',
-            ],
-            'seen' => [
-                'state' => 'success',
-                'style' => 'dim',
-            ],
-            'unseen' => [
-                'state' => 'danger',
-                'style' => 'dim',
             ],
             'draft' => [
                 'state' => 'warning',

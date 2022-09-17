@@ -51,6 +51,35 @@ trait FlashMessageTrait
         ));
     }
 
+    protected function addSuccessfullActionFlash(?string $action = null): void
+    {
+        $this->addFlash('success', $this->translator->trans(
+            id: 'global.flashes.action_done_successfully',
+            parameters: [
+                '%action%' => $action ?? "l'action",
+            ],
+            domain: 'messages'
+        ));
+    }
+
+    protected function addSuccessFlash(string $message, array $parameters = [], ?string $domain = null): void
+    {
+        $this->addFlash('success', $this->translator->trans(
+            id: $message,
+            parameters: $parameters,
+            domain: $domain ?? 'messages'
+        ));
+    }
+
+    protected function addErrorFlash(string $message, array $parameters = [], ?string $domain = null): void
+    {
+        $this->addFlash('error', $this->translator->trans(
+            id: $message,
+            parameters: $parameters,
+            domain: $domain ?? 'messages'
+        ));
+    }
+
     protected function flashFormErrors(FormInterface $form): void
     {
         $errors = $this->getFormErrors($form);

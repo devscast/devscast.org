@@ -20,12 +20,12 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
         {% block meta %}{% endblock %}
-        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('admin') }}
         {% block stylesheets %}{% endblock %}
 
-        <script defer data-turbo-track="reload" src="{{ asset('/static/bundle.js') }}"></script>
+        <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
 
-        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('admin') }}
     </head>
     <body class="nk-body bg-lighter has-sidebar ui-shady" {{ stimulus_controller('turbo') }}>
     {% include '@admin/shared/component/_flash.html.twig' %}

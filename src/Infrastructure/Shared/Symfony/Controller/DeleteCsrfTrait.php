@@ -13,11 +13,17 @@ use Symfony\Component\HttpFoundation\Request;
  */
 trait DeleteCsrfTrait
 {
-    public function isDeleteCsrfTokenValid(string $id, Request $request): bool
+    public function isDeleteCsrfTokenValid(object $entity, Request $request): bool
     {
-        return $this->isCsrfTokenValid(
-            "delete_{$id}",
-            (string) $request->request->get('_token')
-        );
+        if (method_exists($entity, 'getId')) {
+            $id = $entity->getId();
+
+            return $this->isCsrfTokenValid(
+                "delete_{$id}",
+                (string) $request->request->get('_token')
+            );
+        }
+
+        throw new \RuntimeException('$entity should have a getId method !');
     }
 }

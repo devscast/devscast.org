@@ -11,6 +11,12 @@ authentication.titles.settings.two_factor: Paramètres authentification à facte
 # forms messages
 authentication.forms.labels.identifier: Identifiant
 authentication.forms.labels.username: Nom d'utilisateur
+authentication.forms.labels.name: Nom complet
+authentication.forms.labels.job_title: Titre
+authentication.forms.labels.biography: Biographie
+authentication.forms.labels.pronouns: Pronoms
+authentication.forms.labels.phone_number: Téléphone
+authentication.forms.labels.country: Pays
 authentication.forms.labels.password: Mot de passe
 authentication.forms.labels.password_confirm: Confirmer le mot de passe
 authentication.forms.labels.email: Adresse Email
@@ -75,6 +81,7 @@ authentication.exceptions.username_already_used: Désolé ce nom d'utilisateur n
 authentication.exceptions.invalid_registration_confirmation_token: Désolé ce lien de confirmation n'est pas valide !
 authentication.exceptions.user_registration_not_confirmed: Désolé nous ne pouvons vous connecter car, votre inscription n'a pas encore été confirmée
 authentication.exceptions.invalid_reset_login_attempts_token: Impossible de déverrouiller votre compte, le jeton de sécurité n'est pas valide !
+authentication.exceptions.password_not_set: Vous devez rajouter un mot de passe à votre compte pour finaliser cette action.
 
 # Emails subjects messages
 authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"

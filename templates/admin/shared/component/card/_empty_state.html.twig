@@ -1,0 +1,13 @@
+<div class="card card-stretch">
+    <div class="card-body">
+        <div class="d-flex justify-content-center align-center">
+            <div class="nk-block-content nk-error-ld d-flex align-center flex-column">
+                <div class="user-avatar lg bg-danger-dim mb-2"><span>{{ 'alert' | icon }}</span></div>
+                <p class="nk-error-description">Aucune donnée disponible pour l'instant</p>
+                <a href="{{ _path }}" class="btn btn-primary">
+                    {{ _action | default("Ajouter une nouvelle entrée") }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

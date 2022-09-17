@@ -5,9 +5,3 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-
-    Symfony\Component\DependencyInjection\ContainerInterface:
-        alias: 'service_container'
-
-    Infrastructure\Administration\Symfony\Twig\UI\MainSidebar:
-        public: true

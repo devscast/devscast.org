@@ -1,0 +1,87 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Utilisateurs' %}
+
+{% block header %}
+    {% embed '@admin/shared/component/_header.html.twig' %}
+        {% block header_title 'Utilisateurs' %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
+                    {{ 'plus' | icon }}
+                    <span>Ajouter un utilisateur</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('administration_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Importer des utilisateurs" title="Importer des utilisateurs">
+                    {{ 'file' | icon }}
+                    <span>Importer des utilisateurs</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    <div class="row g-gs mb-4">
+        <div class="col-xxl-6 col-sm-6">
+            {% embed '@admin/shared/component/card/_stats.html.twig' %}
+                {% import '@admin/shared/component/_macros.html.twig' as m %}
+                {% block stats_card_label 'Utilisateurs confirmés' %}
+                {% block stats_card_value 49 %}
+                {% block stats_card_info %}{{ m.stats_infos(49, 'rapport') }}{% endblock %}
+            {% endembed %}
+        </div>
+        <div class="col-xxl-6 col-sm-6">
+            {% embed '@admin/shared/component/card/_stats.html.twig' %}
+                {% import '@admin/shared/component/_macros.html.twig' as m %}
+                {% block stats_card_label 'Utilisateurs non confirmés' %}
+                {% block stats_card_value 45 %}
+                {% block stats_card_info %}{{ m.stats_infos(-43, 'évaluation') }}{% endblock %}
+            {% endembed %}
+        </div>
+
+        <div class="col-12">
+            {% embed "@admin/shared/component/card/_list.html.twig" with {
+                _action: 'Ajouter un utilisateur',
+                _path: path('administration_authentication_user_new')
+            } %}
+                {% block list_card_table_head %}
+                    <th>#</th>
+                    <th>Utilisateur</th>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <th>Confirmé</th>
+                    <th>&nbsp;</th>
+                {% endblock %}
+                {% block list_card_table_body %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>
+                                <div class="user-card">
+                                    <div class="user-avatar xs bg-primary">
+                                        <span>{{ row.username | first | upper }}</span>
+                                    </div>
+                                    <div class="user-name">
+                                        <span class="tb-lead">{{ row.username | u.truncate(60, '...') }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ row.email }}</td>
+                            <td>{{ row.roles | last | badge }}</td>
+                            <td>{{ row.isConfirmed | boolean }}</td>
+                            <td class="tb-odr-action">
+                                <div class="tb-odr-btns d-none d-md-inline">
+                                    <a href="{{ path('administration_authentication_user_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                        {{ 'eye-alt-fill' | icon }}
+                                        <span>{{ 'global.show' | trans([], 'messages') }}</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

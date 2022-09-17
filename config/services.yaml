@@ -29,3 +29,9 @@ services:
         resource: '../src/Infrastructure'
         exclude:
             - '../src/Infrastructure/Shared/Symfony/Kernel.php'
+
+    Symfony\Component\DependencyInjection\ContainerInterface:
+        alias: 'service_container'
+
+    Infrastructure\Administration\Symfony\Twig\UI\MainSidebar:
+        public: true
