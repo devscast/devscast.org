@@ -26,7 +26,11 @@ final class BanUserHandler
 
     public function __invoke(BanUserCommand $command): void
     {
-        $this->repository->save($command->user->setIsBanned(true));
+        $this->repository->save(
+            $command->user
+                ->setIsBanned(true)
+                ->setBannedAt(new \DateTimeImmutable())
+        );
         $this->dispatcher->dispatch(new UserBannedEvent($command->user));
     }
 }

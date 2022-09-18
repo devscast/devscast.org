@@ -15,6 +15,7 @@ use Domain\Authentication\Event\LoginWithAnotherIpAddressEvent;
 use Domain\Authentication\Event\PasswordUpdatedEvent;
 use Domain\Authentication\Event\ResetPasswordConfirmedEvent;
 use Domain\Authentication\Event\ResetPasswordRequestedEvent;
+use Domain\Authentication\Event\UserEmailedEvent;
 use Domain\Authentication\Event\UserRegisteredEvent;
 use Domain\Authentication\Event\UserRegistrationConfirmedEvent;
 use Infrastructure\Shared\Symfony\Mailer\Mailer;
@@ -52,6 +53,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
             PasswordUpdatedEvent::class => 'onPasswordUpdated',
             UserRegisteredEvent::class => 'onUserRegistered',
             UserRegistrationConfirmedEvent::class => 'onUserRegistrationConfirmed',
+            UserEmailedEvent::class => 'onUserEmailed',
         ];
     }
 
@@ -141,6 +143,16 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
             template: '@app/domain/authentication/mail/reset_password_request.mail.twig',
             subject: 'authentication.mails.subjects.reset_password_requested',
             domain: 'authentication'
+        );
+    }
+
+    public function onUserEmailed(UserEmailedEvent $event): void
+    {
+        $this->mailer->sendNotificationEmail(
+            $event,
+            template: '@admin/domain/authentication/mail/admin_contact.mail.twig',
+            subject: $event->subject,
+            domain:  'authentication'
         );
     }
 

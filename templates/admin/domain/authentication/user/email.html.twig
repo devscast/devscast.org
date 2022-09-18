@@ -1,0 +1,24 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Envoier un email à #{data.username}' | title %}
+
+{% block header %}
+    {% embed "@admin/shared/component/_header.html.twig" %}
+        {% block header_title "Envoier un email à #{data.username}" | title %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_authentication_user_show', {id: data.id}) }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                    {{ 'arrow-long-left' | icon }}
+                    <span>Voir l'utilisateur</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% embed "@admin/shared/component/card/_simple.html.twig" %}
+        {% block simple_card_body %}
+            {% include '@admin/shared/component/_form.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

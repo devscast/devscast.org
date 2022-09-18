@@ -26,7 +26,11 @@ final class UnbanUserHandler
 
     public function __invoke(UnbanUserCommand $command): void
     {
-        $this->repository->save($command->user->setIsBanned(false));
+        $this->repository->save(
+            $command->user
+                ->setIsBanned(false)
+                ->setBannedAt(null)
+        );
         $this->dispatcher->dispatch(new UserUnbannedEvent($command->user));
     }
 }

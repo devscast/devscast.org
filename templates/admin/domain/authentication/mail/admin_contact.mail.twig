@@ -1,0 +1,10 @@
+{% extends _layout %}
+{% import '@app/shared/layout/mail/macro.html.twig' as e %}
+
+{% block body %}
+    {% apply markdown_email %}
+        # Hey {{ user.username }},
+
+        {{ event.message | nl2br }}
+    {% endapply %}
+{% endblock %}

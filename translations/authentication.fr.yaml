@@ -24,6 +24,9 @@ authentication.forms.labels.two_factor_google_authenticator_provider: Avec Googl
 authentication.forms.labels.two_factor_email_provider: Avec Email
 authentication.forms.labels.is_subscribed_newsletter: S'abonner à la newsletter
 authentication.forms.labels.is_subscribed_marketing: S'abonner aux emails marketing
+authentication.forms.labels.subject: Sujet
+authentication.forms.labels.message: Message
+authentication.forms.labels.reason: Raison
 
 authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères
@@ -82,6 +85,7 @@ authentication.exceptions.invalid_registration_confirmation_token: Désolé ce l
 authentication.exceptions.user_registration_not_confirmed: Désolé nous ne pouvons vous connecter car, votre inscription n'a pas encore été confirmée
 authentication.exceptions.invalid_reset_login_attempts_token: Impossible de déverrouiller votre compte, le jeton de sécurité n'est pas valide !
 authentication.exceptions.password_not_set: Vous devez rajouter un mot de passe à votre compte pour finaliser cette action.
+authentication.exceptions.user_email_not_found: L'utilisateur n'as pas défini une adresse email.
 
 # Emails subjects messages
 authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"

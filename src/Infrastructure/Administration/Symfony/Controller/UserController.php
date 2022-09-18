@@ -7,11 +7,13 @@ namespace Infrastructure\Administration\Symfony\Controller;
 use Application\Authentication\Command\BanUserCommand;
 use Application\Authentication\Command\CreateUserCommand;
 use Application\Authentication\Command\DeleteUserCommand;
+use Application\Authentication\Command\EmailUserCommand;
 use Application\Authentication\Command\UnbanUserCommand;
 use Application\Authentication\Command\UpdateUserCommand;
 use Domain\Authentication\Entity\User;
 use Infrastructure\Authentication\Doctrine\Repository\UserRepository;
 use Infrastructure\Authentication\Symfony\Form\CreateUserForm;
+use Infrastructure\Authentication\Symfony\Form\EmailUserForm;
 use Infrastructure\Authentication\Symfony\Form\UpdateUserForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Infrastructure\Shared\Symfony\Controller\DeleteCsrfTrait;
@@ -149,6 +151,40 @@ final class UserController extends AbstractController
             params: [
                 'id' => $row->getId(),
             ]
+        );
+    }
+
+    #[Route('/email/{id<\d+>}', name: 'email', methods: ['GET', 'POST'])]
+    public function email(User $row, Request $request): Response
+    {
+        $command = new EmailUserCommand($row);
+        $form = $this->createForm(EmailUserForm::class, $command)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->dispatchSync($command);
+                $this->addSuccessfullActionFlash("envoie de l'email");
+
+                return $this->redirectSeeOther(
+                    route: 'administration_authentication_user_show',
+                    params: [
+                        'id' => $row->getId(),
+                    ]
+                );
+            } catch (\Throwable $e) {
+                $this->addSafeMessageExceptionFlash($e);
+                $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+        }
+
+        return $this->renderForm(
+            view: '@admin/domain/authentication/user/email.html.twig',
+            parameters: [
+                'form' => $form,
+                'data' => $row,
+            ],
+            response: $response ?? null
         );
     }
 
