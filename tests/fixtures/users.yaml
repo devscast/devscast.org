@@ -4,6 +4,12 @@ include:
 Domain\Authentication\Entity\User:
     user{1..5} (extends user):
 
+    user_two_factor (extends user):
+        username: twofactor
+        email: twofactor@twofactor.com
+        email_auth_code: 999999
+        is_email_auth_enabled: 1
+
     user_unconfirmed (extends user):
         username: unconfirmed
         email: unconfirmed@unconfirmed.com

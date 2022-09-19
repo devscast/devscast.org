@@ -26,7 +26,7 @@ scheb_two_factor:
         sender_email: noreply@devscast.org
         sender_name: Devscast Community
         digits: 6
-        template: domain/authentication/login_two_factor.html.twig
+        template: '@app/domain/authentication/login_two_factor.html.twig'
 
     # Google Authenticator config
     google:
@@ -35,4 +35,4 @@ scheb_two_factor:
         issuer: Devscast Community
         digits: 6
         window: 1
-        template: domain/authentication/login_two_factor.html.twig
+        template: '@app/domain/authentication/login_two_factor.html.twig'
