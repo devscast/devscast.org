@@ -22,6 +22,7 @@
         <embedded name="username" class="Domain\Authentication\ValueObject\Username" use-column-prefix="false" />
         <embedded name="gender" class="Domain\Authentication\ValueObject\Gender" use-column-prefix="false" />
         <embedded name="roles" class="Domain\Authentication\ValueObject\Roles" use-column-prefix="false" />
+        <embedded name="rss_url" class="Domain\Authentication\ValueObject\RssUrl" use-column-prefix="false" />
 
         <!-- fields -->
         <field name="name" type="string" length="80" nullable="true"/>
@@ -46,9 +47,20 @@
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="is_dark_theme" type="boolean">
+            <options>
+                <option name="default">1</option>
+            </options>
+        </field>
+
+        <!-- ecosystem -->
+        <field name="linkedin_url" type="string" length="255" nullable="true"/>
+        <field name="twitter_url" type="string" length="255" nullable="true"/>
+        <field name="github_url" type="string" length="255" nullable="true"/>
+        <field name="website_url" type="string" length="255" nullable="true"/>
 
         <!-- States -->
-        <field name="reset_login_attempts_token" type="string" length="355" nullable="true" />
+        <field name="reset_login_attempts_token" type="string" length="255" nullable="true" />
         <field name="email_verification_token" type="string" length="255" nullable="true"/>
         <field name="is_email_verified" type="boolean">
             <options>

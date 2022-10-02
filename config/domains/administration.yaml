@@ -1,7 +1,0 @@
-parameters:
-    devscast.administration.default_sidebar: Infrastructure\Administration\Symfony\Twig\UI\MainSidebar
-
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Application\Authentication\Command;
 
+use Application\Shared\Mapper;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
+use Domain\Authentication\ValueObject\RssUrl;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,16 +32,12 @@ final class UpdateUserCommand
         #[Assert\Country] public ?string $country = null,
         public bool $is_subscribed_newsletter = false,
         public bool $is_subscribed_marketing = false,
+        public ?string $github_url = null,
+        public ?string $linkedin_url = null,
+        public ?string $twitter_url = null,
+        public ?string $website_url = null,
+        public ?RssUrl $rss_url = null,
     ) {
-        $this->roles = Roles::fromArray($this->user->getRoles());
-        $this->gender = $this->user->getGender();
-        $this->email = $this->user->getEmail();
-        $this->job_title = $this->user->getJobTitle();
-        $this->biography = $this->user->getBiography();
-        $this->pronouns = $this->user->getPronouns();
-        $this->pronouns = $this->user->getPhoneNumber();
-        $this->country = $this->user->getCountry();
-        $this->is_subscribed_marketing = $this->user->isIsSubscribedMarketing();
-        $this->is_subscribed_newsletter = $this->user->isIsSubscribedNewsletter();
+        Mapper::hydrate($this->user, $this);
     }
 }

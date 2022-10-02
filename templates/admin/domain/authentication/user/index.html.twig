@@ -49,7 +49,7 @@
                     <th>#</th>
                     <th>Utilisateur</th>
                     <th>Email</th>
-                    <th>Rôle</th>
+                    <th>Pays</th>
                     <th>Confirmé</th>
                     <th>&nbsp;</th>
                 {% endblock %}
@@ -68,7 +68,7 @@
                                 </div>
                             </td>
                             <td>{{ row.email }}</td>
-                            <td>{{ row.roles | last | badge }}</td>
+                            <td>{{ row.country | flag }}</td>
                             <td>{{ row.isConfirmed | boolean }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">

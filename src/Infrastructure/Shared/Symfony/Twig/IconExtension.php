@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig;
+namespace Infrastructure\Shared\Symfony\Twig;
 
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;

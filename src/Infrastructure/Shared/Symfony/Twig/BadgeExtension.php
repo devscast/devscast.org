@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig;
+namespace Infrastructure\Shared\Symfony\Twig;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;

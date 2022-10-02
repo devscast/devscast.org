@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Controller;
+namespace Infrastructure\Authentication\Symfony\Controller\Admin;
 
 use Application\Authentication\Command\BanUserCommand;
 use Application\Authentication\Command\CreateUserCommand;
@@ -76,6 +76,8 @@ final class UserController extends AbstractController
             try {
                 $this->dispatchSync($command);
                 $this->addSuccessfullActionFlash('création');
+
+                return $this->redirectSeeOther('administration_authentication_user_index');
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
                 $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -102,6 +104,13 @@ final class UserController extends AbstractController
             try {
                 $this->dispatchSync($command);
                 $this->addSuccessfullActionFlash('édition');
+
+                return $this->redirectSeeOther(
+                    route: 'administration_authentication_user_show',
+                    params: [
+                        'id' => $row->getId(),
+                    ]
+                );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
                 $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);

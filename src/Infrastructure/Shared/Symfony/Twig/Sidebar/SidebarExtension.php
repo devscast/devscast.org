@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig\Sidebar;
+namespace Infrastructure\Shared\Symfony\Twig\Sidebar;
 
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarGroup;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarHeader;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarLink;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarGroup;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarHeader;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarLink;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;

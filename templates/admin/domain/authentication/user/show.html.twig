@@ -87,6 +87,11 @@
                     {{ component.user_data_item('Genre', data.gender) }}
                     {{ component.user_data_item('Pays', data.country) }}
                     {{ component.user_data_item('Rôle', data.roles | last | badge) }}
+                    {{ component.user_data_link('Linkedin', data.linkedinUrl, data.linkedinUrl) }}
+                    {{ component.user_data_link('Twitter', data.twitterUrl, data.twitterUrl) }}
+                    {{ component.user_data_link('Github', data.githubUrl, data.githubUrl) }}
+                    {{ component.user_data_link('Site Internet', data.websiteUrl, data.websiteUrl) }}
+                    {{ component.user_data_link('Flux Rss', data.rssUrl, data.rssUrl) }}
                 </div>
             </div>
             <div class="nk-divider divider md"></div>

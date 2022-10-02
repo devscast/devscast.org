@@ -14,6 +14,7 @@ Domain\Authentication\Entity\User:
         password: \$2y\$13\$PzaAzoYYBl1VyuAU9M/3GuFQaOgO2vyHct1iN0b4vULoIXtcBICuu # 000000
 
         # States
+        is_dark_theme: 1
         is_email_verified: 1
         is_phone_number_verified: 1
         is_banned: 0
@@ -27,6 +28,13 @@ Domain\Authentication\Entity\User:
         github_id: ~
         facebook_id: ~
         google_id: ~
+
+        # Links
+        linkedin_url: ~
+        twitter_url: ~
+        github_url: ~
+        website_url: ~
+        rss_url: ~
 
 #        # 2FA
         is_email_auth_enabled: 0

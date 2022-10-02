@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig\Sidebar;
+namespace Infrastructure\Shared\Symfony\Twig\Sidebar;
 
 use ArrayIterator;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarItemInterface;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarItemInterface;
 
 /**
  * Class SidebarBuilder.

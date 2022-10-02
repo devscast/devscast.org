@@ -30,6 +30,11 @@ final class CreateUserCommand
         #[Assert\Country] public ?string $country = null,
         public bool $is_subscribed_newsletter = false,
         public bool $is_subscribed_marketing = false,
+        public ?string $github_url = null,
+        public ?string $linkedin_url = null,
+        public ?string $twitter_url = null,
+        public ?string $website_url = null,
+        public ?string $rss_url = null,
     ) {
         $this->roles = Roles::developer();
         $this->gender = Gender::queer();

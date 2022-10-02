@@ -50,7 +50,7 @@ class ResetPasswordToken
         return $this->token;
     }
 
-    public function setToken(?string $token): self
+    public function setToken(?string $token = null): self
     {
         $this->token = $token;
 

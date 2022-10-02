@@ -6,6 +6,7 @@ namespace Domain\Authentication\Entity;
 
 use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
+use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Scheb\TwoFactorBundle\Model\BackupCodeInterface as BackupCodesTwoFactor;
@@ -26,6 +27,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     use TwoFactorTrait;
     use IdentityTrait;
     use TimestampTrait;
+
+    public ?string $linkedin_url = null;
+
+    public ?string $github_url = null;
+
+    public ?string $twitter_url = null;
+
+    public ?string $website_url = null;
+
+    public ?RssUrl $rss_url = null;
 
     private ?string $name = null;
 
@@ -71,6 +82,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     private ?string $last_login_ip = null;
 
+    private bool $is_dark_theme = true;
+
     public function __construct()
     {
         $this->gender = Gender::male();
@@ -110,11 +123,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function setUsername(Username|string $username): self
     {
-        if ($username instanceof Username) {
-            $this->username = $username;
-        } else {
-            $this->username = Username::fromString($username);
-        }
+        $this->username = match (true) {
+            $username instanceof Username => $username,
+            default => Username::fromString($username)
+        };
 
         return $this;
     }
@@ -126,11 +138,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function setGender(Gender|string $gender): self
     {
-        if ($gender instanceof Gender) {
-            $this->gender = $gender;
-        } else {
-            $this->gender = Gender::fromString($gender);
-        }
+        $this->gender = match (true) {
+            $gender instanceof Gender => $gender,
+            default => Gender::fromString($gender)
+        };
 
         return $this;
     }
@@ -164,7 +175,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this->country;
     }
 
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -178,11 +189,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function setRoles(Roles|array $roles): self
     {
-        if ($roles instanceof Roles) {
-            $this->roles = $roles;
-        } else {
-            $this->roles = Roles::fromArray($roles);
-        }
+        $this->roles = match (true) {
+            $roles instanceof Roles => $roles,
+            default => Roles::fromArray($roles)
+        };
 
         return $this;
     }
@@ -242,11 +252,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function setLastLoginAt(?\DateTimeInterface $last_login_at): self
     {
-        if (null !== $last_login_at) {
-            $this->last_login_at = \DateTimeImmutable::createFromInterface($last_login_at);
-        } else {
-            $this->last_login_at = null;
-        }
+        $this->last_login_at = match (true) {
+            null !== $last_login_at => \DateTimeImmutable::createFromInterface($last_login_at),
+            default => null
+        };
 
         return $this;
     }
@@ -309,11 +318,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
 
     public function setBannedAt(?\DateTimeInterface $banned_at): self
     {
-        if (null !== $banned_at) {
-            $this->banned_at = \DateTimeImmutable::createFromInterface($banned_at);
-        } else {
-            $this->banned_at = null;
-        }
+        $this->banned_at = match (true) {
+            null !== $banned_at => \DateTimeImmutable::createFromInterface($banned_at),
+            default => null
+        };
 
         return $this;
     }
@@ -323,7 +331,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         return $this->pronouns;
     }
 
-    public function setPronouns(string $pronouns): self
+    public function setPronouns(?string $pronouns): self
     {
         $this->pronouns = $pronouns;
 
@@ -391,6 +399,82 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     public function setResetLoginAttemptsToken(?string $token): self
     {
         $this->reset_login_attempts_token = $token;
+
+        return $this;
+    }
+
+    public function getLinkedinUrl(): ?string
+    {
+        return $this->linkedin_url;
+    }
+
+    public function setLinkedinUrl(?string $linkedin_url): self
+    {
+        $this->linkedin_url = $linkedin_url;
+
+        return $this;
+    }
+
+    public function getGithubUrl(): ?string
+    {
+        return $this->github_url;
+    }
+
+    public function setGithubUrl(?string $github_url): self
+    {
+        $this->github_url = $github_url;
+
+        return $this;
+    }
+
+    public function getTwitterUrl(): ?string
+    {
+        return $this->twitter_url;
+    }
+
+    public function setTwitterUrl(?string $twitter_url): self
+    {
+        $this->twitter_url = $twitter_url;
+
+        return $this;
+    }
+
+    public function getWebsiteUrl(): ?string
+    {
+        return $this->website_url;
+    }
+
+    public function setWebsiteUrl(?string $website_url): self
+    {
+        $this->website_url = $website_url;
+
+        return $this;
+    }
+
+    public function getRssUrl(): ?RssUrl
+    {
+        return $this->rss_url;
+    }
+
+    public function setRssUrl(RssUrl|string|null $rss_url): self
+    {
+        $this->rss_url = match (true) {
+            $rss_url instanceof RssUrl => $rss_url,
+            is_string($rss_url) => RssUrl::fromString($rss_url),
+            default => null
+        };
+
+        return $this;
+    }
+
+    public function isIsDarkTheme(): bool
+    {
+        return $this->is_dark_theme;
+    }
+
+    public function setIsDarkTheme(bool $is_dark_theme): self
+    {
+        $this->is_dark_theme = $is_dark_theme;
 
         return $this;
     }

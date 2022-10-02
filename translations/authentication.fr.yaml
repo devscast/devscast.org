@@ -27,6 +27,11 @@ authentication.forms.labels.is_subscribed_marketing: S'abonner aux emails market
 authentication.forms.labels.subject: Sujet
 authentication.forms.labels.message: Message
 authentication.forms.labels.reason: Raison
+authentication.forms.labels.twitter_url: Profile Twitter
+authentication.forms.labels.linkedin_url: Profile Linkedin
+authentication.forms.labels.github_url: Profile Github
+authentication.forms.labels.website_url: Site internet
+authentication.forms.labels.rss_url: Lien flux RSS
 
 authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères
@@ -63,6 +68,7 @@ authentication.validations.empty_username: Le nom d'utilisateur ne doit pas êtr
 authentication.validations.invalid_username_pattern: Le nom d'utilisateur ne peut contenir que des lettre et chiffre, _ et .
 authentication.validations.long_username: Ce nom d'utilisateur est trop long (maximum 30 caractères)
 authentication.validations.short_username: Ce nom d'utilisateur est trop court (maximum 5 caractères)
+authentication.validations.invalid_rss_url_pattern: Le lien de votre flux rss n'est pas valide (.rss ou .xml en https)
 
 # safe massages exceptions
 authentication.exceptions.user_not_found: Désolé cet adresse email, ne correspond à aucun de nos enregistrements.

@@ -15,6 +15,7 @@
         "doctrine/orm": "^2.11",
         "endroid/qr-code-bundle": "^4.0",
         "erusev/parsedown": "^1.7",
+        "geoip2/geoip2": "^2.13",
         "knplabs/knp-paginator-bundle": "^5.9",
         "knpuniversity/oauth2-client-bundle": "^2.10",
         "league/oauth2-facebook": "^2.2",

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig\UI;
+namespace Infrastructure\Shared\Symfony\Twig\UI;
 
-use Infrastructure\Administration\Symfony\Twig\Sidebar\AbstractSidebar;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\SidebarBuilderInterface;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\SidebarCollection;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarHeader;
-use Infrastructure\Administration\Symfony\Twig\Sidebar\Type\SidebarLink;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\AbstractSidebar;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\SidebarBuilderInterface;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\SidebarCollection;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarHeader;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarLink;
 
 /**
  * class MainSidebar.

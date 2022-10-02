@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig\Sidebar;
+namespace Infrastructure\Shared\Symfony\Twig\Sidebar;
 
 /**
  * Class AbstractSidebar.

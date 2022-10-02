@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Administration\Symfony\Twig\Sidebar\Type;
+namespace Infrastructure\Shared\Symfony\Twig\Sidebar\Type;
 
 /**
  * Class SidebarGroup.

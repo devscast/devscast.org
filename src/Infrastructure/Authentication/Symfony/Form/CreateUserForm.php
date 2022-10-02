@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\CreateUserCommand;
+use Infrastructure\Authentication\Symfony\Form\ValueObject\RssUrlType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\UsernameType;
 use Infrastructure\Shared\Symfony\Form\Type\AutoGrowTextareaType;
 use Symfony\Component\Form\AbstractType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -53,6 +55,29 @@ final class CreateUserForm extends AbstractType
             ])
             ->add('country', CountryType::class, [
                 'label' => 'authentication.forms.labels.country',
+                'required' => false,
+                'attr' => [
+                    'is' => 'app-select-choices',
+                ],
+            ])
+            ->add('linkedin_url', UrlType::class, [
+                'label' => 'authentication.forms.labels.linkedin_url',
+                'required' => false,
+            ])
+            ->add('github_url', UrlType::class, [
+                'label' => 'authentication.forms.labels.github_url',
+                'required' => false,
+            ])
+            ->add('twitter_url', UrlType::class, [
+                'label' => 'authentication.forms.labels.twitter_url',
+                'required' => false,
+            ])
+            ->add('website_url', UrlType::class, [
+                'label' => 'authentication.forms.labels.website_url',
+                'required' => false,
+            ])
+            ->add('rss_url', RssUrlType::class, [
+                'label' => false,
                 'required' => false,
             ])
             ->add('is_subscribed_newsletter', CheckboxType::class, [

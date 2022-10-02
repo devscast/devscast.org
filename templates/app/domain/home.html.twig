@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="{{ app.user ? (app.user.isDarkTheme ? 'dark' : 'light') : 'light' }}">
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/webp" href="{{ asset('images/favicon.webp') }}" />
