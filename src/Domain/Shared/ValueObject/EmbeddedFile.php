@@ -126,15 +126,15 @@ class EmbeddedFile
             'image/webp',
             'image/svg',
             'image/jpg',
-            'image/jpeg'
-        ]);
+            'image/jpeg',
+        ], true);
     }
 
     public function isAudio(): bool
     {
         return in_array($this->mimeType, [
             'audio/mp3',
-            'audio/wav'
-        ]);
+            'audio/wav',
+        ], true);
     }
 }

@@ -8,9 +8,34 @@ vich_uploader:
                 path: '%kernel.project_dir%/src/Infrastructure/Authentication/Uploader/Mapping',
                 namespace_prefix: 'Domain\Authentication'
             }
+            - {
+                  path: '%kernel.project_dir%/src/Infrastructure/Content/Uploader/Mapping',
+                  namespace_prefix: 'Domain\Content'
+            }
 
     mappings:
         authentication_user_avatar:
-            uri_prefix: 'uploads/authentication/user/avatar'
+            uri_prefix: '/uploads/authentication/user/avatar'
             upload_destination: '%kernel.project_dir%/public/uploads/authentication/user/avatar'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+        content_podcast_season_thumbnail:
+            uri_prefix: '/uploads/content/podcast_season/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast_season/thumbnail'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_podcast_episode_audio:
+            uri_prefix: '/streaming/podcast_episode/'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast_episode/audio'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_content_thumbnail:
+            uri_prefix: '/uploads/content/content/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/content/thumbnail'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }

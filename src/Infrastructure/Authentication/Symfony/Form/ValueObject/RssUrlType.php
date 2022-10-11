@@ -23,6 +23,7 @@ final class RssUrlType extends AbstractType implements DataMapperInterface
     {
         $builder->add('rss_url', UrlType::class, [
             'label' => 'authentication.forms.labels.rss_url',
+            'required' => false,
         ])->setDataMapper($this);
     }
 
@@ -32,6 +33,7 @@ final class RssUrlType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => RssUrl::class,
             'empty_data' => null,
+            'translation_domain' => 'authentication',
         ]);
 
         return $resolver;

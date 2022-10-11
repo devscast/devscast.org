@@ -25,6 +25,10 @@ final class UpdateUserCommand
         public readonly User $user,
         #[Assert\Email] public ?string $email = null,
         public ?string $name = null,
+        #[Assert\File(
+            maxSize: '2M',
+            mimeTypes: ['image/jpg', 'image/jpeg', 'image/png']
+        )] public ?object $avatar_file = null,
         public ?string $job_title = null,
         public ?string $biography = null,
         public ?string $pronouns = null,

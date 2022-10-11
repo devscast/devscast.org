@@ -10,12 +10,13 @@ class RssUrl implements \Stringable
 {
     public const FORMAT = '/^https?:\/\/.*\.(?:rss|xml)$/';
 
-    private ?string $rss_url = null;
+    private ?string $rss_url;
 
     public function __construct(string $url)
     {
+        $url = '' === $url ? null : $url;
         Assert::nullOrRegex($url, self::FORMAT, 'authentication.validations.invalid_rss_url_pattern');
-        Assert::nullOrLessThanEq(strlen($url), 255, 'authentication.validations.rss_url_too_long');
+        Assert::nullOrMaxLength($url, 255, 'authentication.validations.rss_url_too_long');
         $this->rss_url = $url;
     }
 

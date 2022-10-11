@@ -8,12 +8,13 @@ use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
 use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
-use Domain\Shared\ValueObject\EmbeddedFile;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
+use Domain\Shared\ValueObject\EmbeddedFile;
 use Scheb\TwoFactorBundle\Model\BackupCodeInterface as BackupCodesTwoFactor;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface as GoogleTwoFactor;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -483,5 +484,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         $this->is_dark_theme = $is_dark_theme;
 
         return $this;
+    }
+
+    public function getAvatar(): ?EmbeddedFile
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?EmbeddedFile $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatar_file;
+    }
+
+    public function setAvatarFile(?File $avatar_file): self
+    {
+        $this->avatar_file = $avatar_file;
+        if ($avatar_file instanceof UploadedFile) {
+            $this->setUpdatedAtOnPostUpdate();
+        }
+
+        return $this;
+    }
+
+    public function getInitials(): ?string
+    {
+        return mb_strtoupper((string) $this->username)[0];
     }
 }

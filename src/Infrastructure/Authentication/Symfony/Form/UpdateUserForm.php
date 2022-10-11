@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 /**
  * class UpdateUserForm.
@@ -28,15 +29,13 @@ final class UpdateUserForm extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'authentication.forms.labels.email',
-                'attr' => [
-                    'class' => 'col-6'
-                ]
             ])
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
-                'attr' => [
-                    'class' => 'col-6'
-                ],
+                'required' => false,
+            ])
+            ->add('avatar_file', DropzoneType::class, [
+                'label' => 'authentication.forms.labels.avatar',
                 'required' => false,
             ])
             ->add('job_title', TextType::class, [

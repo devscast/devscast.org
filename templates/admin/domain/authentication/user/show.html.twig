@@ -73,6 +73,16 @@
     {% embed "@admin/shared/component/card/_detail.html.twig" %}
         {% import '@admin/shared/component/_macros.html.twig' as component %}
         {% block detail_card_body %}
+        <div class="nk-block">
+            <div class="nk-block-head">
+                <div class="user-avatar xl mb-2">
+                    {% if data.avatar.name %}
+                        <img src="{{ vich_uploader_asset(data, 'avatar_file') }}" alt="avatar {{ data.username }}">
+                    {% else %}
+                        <span>{{ data.initials }}</span>
+                    {% endif %}
+                </div>
+            </div>
             <div class="nk-block">
                 <div class="nk-block-head">
                     <h5 class="title">Informations personnelles</h5>
@@ -85,7 +95,7 @@
                     {{ component.user_data_item('Biographie', data.biography) }}
                     {{ component.user_data_item('Poste', data.jobTitle) }}
                     {{ component.user_data_item('Genre', data.gender) }}
-                    {{ component.user_data_item('Pays', data.country) }}
+                    {{ component.user_data_item('Pays', data.country | flag) }}
                     {{ component.user_data_item('Rôle', data.roles | last | badge) }}
                     {{ component.user_data_link('Linkedin', data.linkedinUrl, data.linkedinUrl) }}
                     {{ component.user_data_link('Twitter', data.twitterUrl, data.twitterUrl) }}

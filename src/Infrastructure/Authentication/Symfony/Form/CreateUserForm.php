@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 /**
  * class CreateUserForm.
@@ -35,6 +36,10 @@ final class CreateUserForm extends AbstractType
             ])
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
+                'required' => false,
+            ])
+            ->add('avatar_file', DropzoneType::class, [
+                'label' => 'authentication.forms.labels.avatar',
                 'required' => false,
             ])
             ->add('job_title', TextType::class, [

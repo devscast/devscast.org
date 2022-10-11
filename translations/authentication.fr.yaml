@@ -32,6 +32,7 @@ authentication.forms.labels.linkedin_url: Profile Linkedin
 authentication.forms.labels.github_url: Profile Github
 authentication.forms.labels.website_url: Site internet
 authentication.forms.labels.rss_url: Lien flux RSS
+authentication.forms.labels.avatar: Avatar
 
 authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères
