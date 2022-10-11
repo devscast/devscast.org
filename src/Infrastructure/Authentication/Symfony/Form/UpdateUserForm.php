@@ -28,9 +28,15 @@ final class UpdateUserForm extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'authentication.forms.labels.email',
+                'attr' => [
+                    'class' => 'col-6'
+                ]
             ])
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
+                'attr' => [
+                    'class' => 'col-6'
+                ],
                 'required' => false,
             ])
             ->add('job_title', TextType::class, [
@@ -51,10 +57,8 @@ final class UpdateUserForm extends AbstractType
             ])
             ->add('country', CountryType::class, [
                 'label' => 'authentication.forms.labels.country',
-                'attr' => [
-                    'is' => 'app-select-choices',
-                ],
                 'required' => false,
+                'autocomplete' => true,
             ])
             ->add('linkedin_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.linkedin_url',

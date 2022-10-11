@@ -56,7 +56,7 @@
 
         <!-- value objects -->
         <embedded name="status" class="Domain\Content\ValueObject\ContentStatus" use-column-prefix="false" />
-        <embedded name="thumbnail" class="Domain\Shared\ValueObject\Image" use-column-prefix="true" />
+        <embedded name="thumbnail" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
         <embedded name="education_level" class="Domain\Content\ValueObject\EducationLevel" use-column-prefix="false" />
 
         <!-- relations -->

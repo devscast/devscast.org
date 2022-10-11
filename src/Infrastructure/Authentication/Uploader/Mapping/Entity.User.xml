@@ -1,0 +1,3 @@
+<vich_uploader class="Domain\Authentication\Entity\User">
+    <field mapping="authentication_user_avatar" name="avatar_file" filename_property="avatar"/>
+</vich_uploader>

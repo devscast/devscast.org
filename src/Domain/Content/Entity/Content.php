@@ -11,8 +11,9 @@ use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\OwnerTrait;
+use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\Entity\TimestampTrait;
-use Domain\Shared\ValueObject\Image;
+use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -25,6 +26,7 @@ class Content
     use OwnerTrait;
     use IdentityTrait;
     use TimestampTrait;
+    use ThumbnailTrait;
 
     private Uuid $uuid;
 
@@ -37,8 +39,6 @@ class Content
     private ContentStatus $status;
 
     private ContentType $content_type;
-
-    private Image $thumbnail;
 
     private EducationLevel $education_level;
 
@@ -64,7 +64,7 @@ class Content
         $this->uuid = Uuid::v4();
         $this->content_type = ContentType::post();
         $this->status = ContentStatus::draft();
-        $this->thumbnail = Image::default();
+        $this->thumbnail = EmbeddedFile::default();
         $this->education_level = EducationLevel::beginner();
         $this->tags = new ArrayCollection();
     }
@@ -161,18 +161,6 @@ class Content
         } else {
             $this->content_type = ContentType::fromString($content_type);
         }
-
-        return $this;
-    }
-
-    public function getThumbnail(): Image
-    {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail(Image $thumbnail): self
-    {
-        $this->thumbnail = $thumbnail;
 
         return $this;
     }

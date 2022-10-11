@@ -11,7 +11,7 @@
     >
         <!-- value objects -->
         <embedded name="episode_type" class="Domain\Content\ValueObject\PodcastEpisodeType" use-column-prefix="false" />
-        <embedded name="audio" class="Domain\Content\ValueObject\PodcastEpisodeAudio" use-column-prefix="true" />
+        <embedded name="audio" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
 
         <!-- relations -->
         <many-to-one field="season" target-entity="Domain\Content\Entity\PodcastSeason" inversed-by="episodes">

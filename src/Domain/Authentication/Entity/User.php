@@ -8,10 +8,12 @@ use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
 use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
+use Domain\Shared\ValueObject\EmbeddedFile;
 use Domain\Shared\Entity\{IdentityTrait, TimestampTrait};
 use Scheb\TwoFactorBundle\Model\BackupCodeInterface as BackupCodesTwoFactor;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface as GoogleTwoFactor;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -83,6 +85,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     private ?string $last_login_ip = null;
 
     private bool $is_dark_theme = true;
+
+    private ?EmbeddedFile $avatar = null;
+
+    private ?File $avatar_file = null;
 
     public function __construct()
     {

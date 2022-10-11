@@ -10,7 +10,7 @@ class RssUrl implements \Stringable
 {
     public const FORMAT = '/^https?:\/\/.*\.(?:rss|xml)$/';
 
-    private readonly string $rss_url;
+    private ?string $rss_url = null;
 
     public function __construct(string $url)
     {
@@ -21,7 +21,7 @@ class RssUrl implements \Stringable
 
     public function __toString(): string
     {
-        return $this->rss_url;
+        return (string) $this->rss_url;
     }
 
     public static function fromString(string $url): self

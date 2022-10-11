@@ -7,8 +7,9 @@ namespace Domain\Content\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\Entity\TimestampTrait;
-use Domain\Shared\ValueObject\Image;
+use Domain\Shared\ValueObject\EmbeddedFile;
 
 /**
  * Class PodcastSeason.
@@ -19,6 +20,7 @@ class PodcastSeason
 {
     use IdentityTrait;
     use TimestampTrait;
+    use ThumbnailTrait;
 
     private ?string $name = null;
 
@@ -33,11 +35,9 @@ class PodcastSeason
 
     private int $episode_count = 0;
 
-    private Image $thumbnail;
-
     public function __construct()
     {
-        $this->thumbnail = Image::default();
+        $this->thumbnail = EmbeddedFile::default();
         $this->episodes = new ArrayCollection();
     }
 
@@ -68,12 +68,12 @@ class PodcastSeason
         return $this;
     }
 
-    public function getThumbnail(): Image
+    public function getThumbnail(): EmbeddedFile
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(Image $thumbnail): self
+    public function setThumbnail(EmbeddedFile $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 

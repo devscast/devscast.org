@@ -23,6 +23,7 @@
         <embedded name="gender" class="Domain\Authentication\ValueObject\Gender" use-column-prefix="false" />
         <embedded name="roles" class="Domain\Authentication\ValueObject\Roles" use-column-prefix="false" />
         <embedded name="rss_url" class="Domain\Authentication\ValueObject\RssUrl" use-column-prefix="false" />
+        <embedded name="avatar" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
 
         <!-- fields -->
         <field name="name" type="string" length="80" nullable="true"/>
