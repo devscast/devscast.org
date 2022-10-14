@@ -14,6 +14,11 @@ use Webmozart\Assert\Assert;
 class EducationLevel
 {
     final public const VALUES = ['beginner', 'intermediate', 'advanced'];
+    final public const CHOICES = [
+        'content.value_object.education_level.beginner' => 'beginner',
+        'content.value_object.education_level.intermediate' => 'intermediate',
+        'content.value_object.education_level.advanced' => 'advanced'
+    ];
     private string $education_level = 'beginner';
 
     private function __construct(string $level)
@@ -25,6 +30,11 @@ class EducationLevel
     public function __toString(): string
     {
         return $this->education_level;
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->education_level, self::CHOICES));
     }
 
     public static function beginner(): self

@@ -14,6 +14,11 @@ use Webmozart\Assert\Assert;
 class SubjectProposalStatus
 {
     final public const VALUES = ['reviewing', 'accepted', 'rejected'];
+    final public const CHOICES = [
+        'content.value_object.subject_proposal_status.reviewing' => 'reviewing',
+        'content.value_object.subject_proposal_status.accepted' => 'accepted',
+        'content.value_object.subject_proposal_status.rejected' => 'rejected'
+    ];
     private string $status = 'reviewing';
 
     private function __construct(string $status)
@@ -25,6 +30,11 @@ class SubjectProposalStatus
     public function __toString(): string
     {
         return $this->status;
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->status, self::CHOICES));
     }
 
     public static function reviewing(): self

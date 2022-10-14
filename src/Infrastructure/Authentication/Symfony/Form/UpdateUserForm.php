@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\UpdateUserCommand;
+use Infrastructure\Authentication\Symfony\Form\ValueObject\GenderType;
+use Infrastructure\Authentication\Symfony\Form\ValueObject\RolesType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\RssUrlType;
 use Infrastructure\Shared\Symfony\Form\Type\AutoGrowTextareaType;
 use Symfony\Component\Form\AbstractType;
@@ -33,6 +35,10 @@ final class UpdateUserForm extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
                 'required' => false,
+            ])
+            ->add('gender', GenderType::class, [
+                'label' => false,
+                'required' => false
             ])
             ->add('avatar_file', DropzoneType::class, [
                 'label' => 'authentication.forms.labels.avatar',
@@ -86,6 +92,10 @@ final class UpdateUserForm extends AbstractType
             ->add('is_subscribed_marketing', CheckboxType::class, [
                 'label' => 'authentication.forms.labels.is_subscribed_marketing',
                 'required' => false,
+            ])
+            ->add('roles', RolesType::class, [
+                'label' => false,
+                'required' => false
             ])
         ;
     }

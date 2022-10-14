@@ -23,7 +23,7 @@ final class ContentTypeType extends AbstractType implements DataMapperInterface
     {
         $builder->add('content_type', ChoiceType::class, [
             'multiple' => false,
-            'choices' => [],
+            'choices' => ContentType::CHOICES,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +33,7 @@ final class ContentTypeType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => ContentType::class,
             'empty_data' => null,
+            'translation_domain' => 'content'
         ]);
 
         return $resolver;

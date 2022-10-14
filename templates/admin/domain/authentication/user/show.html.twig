@@ -86,15 +86,15 @@
             <div class="nk-block">
                 <div class="nk-block-head">
                     <h5 class="title">Informations personnelles</h5>
+                    <p>{{ data.biography }}</p>
                 </div>
                 <div class="profile-ud-list">
                     {{ component.user_data_item('Nom complet', data.name) }}
                     {{ component.user_data_item("Nom d'utilisateur", data.username) }}
                     {{ component.user_data_item('Email', data.email) }}
                     {{ component.user_data_item('Pronoms', data.pronouns) }}
-                    {{ component.user_data_item('Biographie', data.biography) }}
                     {{ component.user_data_item('Poste', data.jobTitle) }}
-                    {{ component.user_data_item('Genre', data.gender) }}
+                    {{ component.user_data_item('Genre', data.gender.translationKey | trans([], 'authentication')) }}
                     {{ component.user_data_item('Pays', data.country | flag) }}
                     {{ component.user_data_item('Rôle', data.roles | last | badge) }}
                     {{ component.user_data_link('Linkedin', data.linkedinUrl, data.linkedinUrl) }}
@@ -112,6 +112,7 @@
                 <div class="profile-ud-list">
                     {{ component.user_data_item("Bannis", data.banned | boolean) }}
                     {{ component.user_data_item("Email verifié", data.isEmailVerified | boolean) }}
+                    {{ component.user_data_item("Thème sombre", data.isDarkTheme | boolean) }}
                     {{ component.user_data_item("Téléphone verifié", data.isPhoneNumberVerified | boolean) }}
                     {{ component.user_data_item("Newsletter", data.isSubscribedNewsletter | boolean) }}
                     {{ component.user_data_item("Marketing", data.isSubscribedMarketing | boolean) }}

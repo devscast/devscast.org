@@ -23,7 +23,7 @@ final class EducationLevelType extends AbstractType implements DataMapperInterfa
     {
         $builder->add('education_level', ChoiceType::class, [
             'multiple' => false,
-            'choices' => [],
+            'choices' => EducationLevel::CHOICES,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +33,7 @@ final class EducationLevelType extends AbstractType implements DataMapperInterfa
         $resolver->setDefaults([
             'data_class' => EducationLevel::class,
             'empty_data' => null,
+            'translation_domain' => 'content'
         ]);
 
         return $resolver;

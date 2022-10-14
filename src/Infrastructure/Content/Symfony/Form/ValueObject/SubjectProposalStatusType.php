@@ -23,7 +23,7 @@ final class SubjectProposalStatusType extends AbstractType implements DataMapper
     {
         $builder->add('status', ChoiceType::class, [
             'multiple' => false,
-            'choices' => [],
+            'choices' => SubjectProposalStatus::CHOICES,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +33,7 @@ final class SubjectProposalStatusType extends AbstractType implements DataMapper
         $resolver->setDefaults([
             'data_class' => SubjectProposalStatus::class,
             'empty_data' => null,
+            'translation_domain' => 'content'
         ]);
 
         return $resolver;

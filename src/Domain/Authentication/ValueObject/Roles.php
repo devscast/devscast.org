@@ -14,11 +14,11 @@ use Webmozart\Assert\Assert;
 class Roles implements \Stringable
 {
     public const VALUES = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_CONTENT_MANAGER'];
-    public const ROLES_CHOICES = [
-        'ROLE_ADMIN' => 'ROLE_ADMIN',
-        'ROLE_USER' => 'ROLE_USER',
-        'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
-        'ROLE_CONTENT_MANAGER' => 'ROLE_CONTENT_MANAGER',
+    public const CHOICES = [
+        'authentication.value_object.roles.admin' => 'ROLE_ADMIN',
+        'authentication.value_object.roles.user' => 'ROLE_USER',
+        'authentication.value_object.roles.super_admin' => 'ROLE_SUPER_ADMIN',
+        'authentication.value_object.roles.content_manager' => 'ROLE_CONTENT_MANAGER',
     ];
 
     private readonly array $roles;
@@ -37,6 +37,16 @@ class Roles implements \Stringable
     public function __toString(): string
     {
         return implode(',', $this->roles);
+    }
+
+    public function getTranslationKey(): string
+    {
+        return match (true) {
+            $this->contains('ROLE_ADMIN') => 'authentication.value_object.roles.admin',
+            $this->contains('ROLE_USER') => 'authentication.value_object.roles.user',
+            $this->contains('ROLE_SUPER_ADMIN') => 'authentication.value_object.roles.super_admin',
+            $this->contains('ROLE_CONTENT_MANAGER') => 'authentication.value_object.roles.content_manager'
+        };
     }
 
     public function toArray(): array

@@ -33,4 +33,9 @@ abstract class AbstractController extends SymfonyAbstractController
     {
         return $this->redirectToRoute($route, $params, Response::HTTP_SEE_OTHER);
     }
+
+    protected function createUnprocessableEntityResponse(): Response
+    {
+        return new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
 }

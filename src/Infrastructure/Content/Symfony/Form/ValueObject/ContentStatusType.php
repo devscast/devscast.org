@@ -23,7 +23,7 @@ final class ContentStatusType extends AbstractType implements DataMapperInterfac
     {
         $builder->add('content_type', ChoiceType::class, [
             'multiple' => false,
-            'choices' => [],
+            'choices' => ContentStatus::CHOICES,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +33,7 @@ final class ContentStatusType extends AbstractType implements DataMapperInterfac
         $resolver->setDefaults([
             'data_class' => ContentStatus::class,
             'empty_data' => null,
+            'translation_domain' => 'content'
         ]);
 
         return $resolver;

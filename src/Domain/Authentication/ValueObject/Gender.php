@@ -14,10 +14,10 @@ use Webmozart\Assert\Assert;
 class Gender implements \Stringable
 {
     public const VALUES = ['M', 'F', 'O'];
-    public const GENDERS_CHOICES = [
-        'M' => 'M',
-        'F' => 'F',
-        'O' => 'O',
+    public const CHOICES = [
+        'authentication.value_object.gender.masculine' => 'M',
+        'authentication.value_object.gender.feminine' => 'F',
+        'authentication.value_object.gender.other' => 'O',
     ];
 
     private readonly string $gender;
@@ -31,6 +31,11 @@ class Gender implements \Stringable
     public function __toString(): string
     {
         return $this->gender;
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->gender, self::CHOICES));
     }
 
     public static function fromString(string $gender): self

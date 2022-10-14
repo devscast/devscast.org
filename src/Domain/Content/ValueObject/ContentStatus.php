@@ -14,6 +14,12 @@ use Webmozart\Assert\Assert;
 class ContentStatus
 {
     final public const VALUES = ['draft', 'reviewing', 'published', 'rejected'];
+    final public const CHOICES = [
+        'content.value_object.content_status.draft' => 'draft',
+        'content.value_object.content_status.reviewing' => 'reviewing',
+        'content.value_object.content_status.published' => 'published',
+        'content.value_object.content_status.rejected' => 'rejected'
+    ];
     private string $status = 'draft';
 
     private function __construct(string $status)
@@ -25,6 +31,11 @@ class ContentStatus
     public function __toString(): string
     {
         return $this->status;
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->status, self::CHOICES));
     }
 
     public static function draft(): self

@@ -15,9 +15,7 @@ use Infrastructure\Authentication\Doctrine\Repository\UserRepository;
 use Infrastructure\Authentication\Symfony\Form\CreateUserForm;
 use Infrastructure\Authentication\Symfony\Form\EmailUserForm;
 use Infrastructure\Authentication\Symfony\Form\UpdateUserForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
-use Infrastructure\Shared\Symfony\Controller\DeleteCsrfTrait;
-use Knp\Component\Pager\PaginatorInterface;
+use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -30,24 +28,22 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 #[AsController]
 #[Route('/admin/authentication/user', name: 'administration_authentication_user_')]
-final class UserController extends AbstractController
+final class UserController extends AbstractCrudController
 {
-    use DeleteCsrfTrait;
+    protected const DOMAIN = 'authentication';
+    protected const ENTITY = 'user';
 
     #[Route('', name: 'index', methods: ['GET'])]
-    public function index(
-        Request $request,
-        UserRepository $repository,
-        PaginatorInterface $paginator
-    ): Response {
+    public function index(UserRepository $repository): Response
+    {
         return $this->render(
-            view: '@admin/domain/authentication/user/index.html.twig',
+            view: $this->getViewPath('index'),
             parameters: [
-                'data' => $paginator->paginate(
+                'data' => $this->paginator->paginate(
                     target: $repository->findBy([], orderBy: [
                         'created_at' => 'DESC',
                     ]),
-                    page: $request->query->getInt('page', 1),
+                    page: $this->request->query->getInt('page', 1),
                     limit: 50
                 ),
             ]
@@ -58,7 +54,7 @@ final class UserController extends AbstractController
     public function show(User $row): Response
     {
         return $this->render(
-            view: '@admin/domain/authentication/user/show.html.twig',
+            view: $this->getViewPath('show'),
             parameters: [
                 'data' => $row,
             ]
@@ -66,26 +62,26 @@ final class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(): Response
     {
         $command = new CreateUserCommand();
         $form = $this->createForm(CreateUserForm::class, $command)
-            ->handleRequest($request);
+            ->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->dispatchSync($command);
                 $this->addSuccessfullActionFlash('création');
 
-                return $this->redirectSeeOther('administration_authentication_user_index');
+                return $this->redirectSeeOther($this->getRouteName('index'));
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
-                $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
+                $response = $this->createUnprocessableEntityResponse();
             }
         }
 
         return $this->renderForm(
-            view: '@admin/domain/authentication/user/new.html.twig',
+            view: $this->getViewPath('new'),
             parameters: [
                 'form' => $form,
             ],
@@ -106,19 +102,19 @@ final class UserController extends AbstractController
                 $this->addSuccessfullActionFlash('édition');
 
                 return $this->redirectSeeOther(
-                    route: 'administration_authentication_user_show',
+                    route: $this->getRouteName('show'),
                     params: [
                         'id' => $row->getId(),
                     ]
                 );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
-                $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
+                $response = $this->createUnprocessableEntityResponse();
             }
         }
 
         return $this->renderForm(
-            view: '@admin/domain/authentication/user/edit.html.twig',
+            view: $this->getViewPath('edit'),
             parameters: [
                 'form' => $form,
                 'data' => $row,
@@ -138,7 +134,7 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectSeeOther(
-            route: 'administration_authentication_user_show',
+            route: $this->getRouteName('show'),
             params: [
                 'id' => $row->getId(),
             ]
@@ -156,7 +152,7 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectSeeOther(
-            route: 'administration_authentication_user_show',
+            route: $this->getRouteName('show'),
             params: [
                 'id' => $row->getId(),
             ]
@@ -176,19 +172,19 @@ final class UserController extends AbstractController
                 $this->addSuccessfullActionFlash("envoie de l'email");
 
                 return $this->redirectSeeOther(
-                    route: 'administration_authentication_user_show',
+                    route: $this->getRouteName('show'),
                     params: [
                         'id' => $row->getId(),
                     ]
                 );
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
-                $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
+                $response = $this->createUnprocessableEntityResponse();
             }
         }
 
         return $this->renderForm(
-            view: '@admin/domain/authentication/user/email.html.twig',
+            view: $this->getViewPath('email'),
             parameters: [
                 'form' => $form,
                 'data' => $row,
@@ -209,6 +205,6 @@ final class UserController extends AbstractController
             }
         }
 
-        return $this->redirectSeeOther('administration_authentication_user_index');
+        return $this->redirectSeeOther($this->getRouteName('index'));
     }
 }

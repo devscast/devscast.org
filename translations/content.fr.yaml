@@ -6,6 +6,27 @@ content.forms.labels.identifier: Identifiant
 
 content.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 
+# value objects
+content.value_object.podcast_episode_type.full: épisode complet
+content.value_object.podcast_episode_type.bonus: épisode bonus
+content.value_object.podcast_episode_type.trailer: épisode trailer
+
+content.value_object.content_status.draft: Brouillon
+content.value_object.content_status.published: Publié
+content.value_object.content_status.rejected: Rejeté
+content.value_object.content_status.reviewing: En Revision
+
+content.value_object.subject_proposal_status.reviewing: En revision
+content.value_object.subject_proposal_status.accepted: accepté
+content.value_object.subject_proposal_status.rejected: Rejeté
+
+content.value_object.content_type.post: Article
+content.value_object.content_type.video: Vidéo
+content.value_object.content_type.podcast: Podcast
+
+content.value_object.education_level.beginner: Débutant
+content.value_object.education_level.advanced: Avancé
+content.value_object.education_level.intermediate: Intermédiaire
 
 # flash messages
 content.flashes.something_went_wrong: Désolé une erreur est survenue dans le processus d'authentification.

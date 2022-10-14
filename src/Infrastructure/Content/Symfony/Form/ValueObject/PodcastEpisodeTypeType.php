@@ -23,7 +23,7 @@ final class PodcastEpisodeTypeType extends AbstractType implements DataMapperInt
     {
         $builder->add('episode_type', ChoiceType::class, [
             'multiple' => false,
-            'choices' => [],
+            'choices' => PodcastEpisodeType::CHOICES,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +33,7 @@ final class PodcastEpisodeTypeType extends AbstractType implements DataMapperInt
         $resolver->setDefaults([
             'data_class' => PodcastEpisodeType::class,
             'empty_data' => null,
+            'translation_domain' => 'content'
         ]);
 
         return $resolver;

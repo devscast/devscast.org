@@ -20,7 +20,13 @@
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown" aria-expanded="false">
                                 <div class="user-toggle">
-                                    <div class="user-avatar sm">{{ 'user-alt' | icon }}</div>
+                                    <div class="user-avatar sm">
+                                        {% if app.user.avatar.name %}
+                                            <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
+                                        {% else %}
+                                            {{ 'user' | icon }}
+                                        {% endif %}
+                                    </div>
                                     <div class="user-info d-none d-xl-block">
                                         <div class="user-status user-status-verified">{{ app.user.roles | last | trans([], 'messages') }}</div>
                                         <div class="user-name dropdown-indicator">{{ app.user.email }}</div>
@@ -30,8 +36,15 @@
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                 <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                     <div class="user-card">
-                                        <div class="user-avatar"><span>{{ 'user-alt' | icon }}</span></div>
+                                        <div class="user-avatar">
+                                            {% if app.user.avatar.name %}
+                                                <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
+                                            {% else %}
+                                                {{ 'user' | icon }}
+                                            {% endif %}
+                                        </div>
                                         <div class="user-info">
+                                            <span class="sub-text">{{ app.user.username }}</span>
                                             <span class="sub-text">{{ app.user.email }}</span>
                                         </div>
                                     </div>

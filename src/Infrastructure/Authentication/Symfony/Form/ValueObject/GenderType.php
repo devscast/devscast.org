@@ -22,8 +22,10 @@ final class GenderType extends AbstractType implements DataMapperInterface
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('gender', ChoiceType::class, [
+            'label' => 'authentication.forms.labels.gender',
             'multiple' => false,
-            'choices' => Gender::GENDERS_CHOICES,
+            'choices' => Gender::CHOICES,
+            'autocomplete' => true,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +35,7 @@ final class GenderType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => Gender::class,
             'empty_data' => null,
+            'translation_domain' => 'authentication'
         ]);
 
         return $resolver;

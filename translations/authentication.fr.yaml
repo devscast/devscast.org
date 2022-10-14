@@ -33,11 +33,23 @@ authentication.forms.labels.github_url: Profile Github
 authentication.forms.labels.website_url: Site internet
 authentication.forms.labels.rss_url: Lien flux RSS
 authentication.forms.labels.avatar: Avatar
+authentication.forms.labels.gender: Genre
+authentication.forms.labels.roles: Rôles
 
 authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères
 authentication.forms.labels.placeholders.username: "nom d'utilisateur... (ex: bob44)"
 authentication.forms.labels.placeholders.email: Votre adresse email...
+
+# value objects
+authentication.value_object.gender.masculine: Masculin
+authentication.value_object.gender.feminine: Féminin
+authentication.value_object.gender.other: Autre (non binaire, etc...)
+
+authentication.value_object.roles.user: Utilisateur
+authentication.value_object.roles.admin: Administrateur
+authentication.value_object.roles.super_admin: Super administrateur
+authentication.value_object.roles.content_manager: Administrateur contenu
 
 # flash messages
 authentication.flashes.something_went_wrong: Désolé une erreur est survenue dans le processus d'authentification.

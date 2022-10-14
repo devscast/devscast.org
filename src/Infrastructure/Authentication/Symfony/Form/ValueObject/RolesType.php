@@ -22,8 +22,10 @@ final class RolesType extends AbstractType implements DataMapperInterface
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('roles', ChoiceType::class, [
+            'label' => 'authentication.forms.labels.roles',
             'multiple' => true,
-            'choices' => Roles::ROLES_CHOICES,
+            'choices' => Roles::CHOICES,
+            'autocomplete' => true,
         ])->setDataMapper($this);
     }
 
@@ -33,6 +35,7 @@ final class RolesType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => Roles::class,
             'empty_data' => null,
+            'translation_domain' => 'authentication'
         ]);
 
         return $resolver;

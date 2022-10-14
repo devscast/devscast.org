@@ -14,6 +14,11 @@ use Webmozart\Assert\Assert;
 class ContentType
 {
     final public const VALUES = ['podcast', 'post', 'video'];
+    final public const CHOICES = [
+        'content.value_object.content_type.post' => 'post',
+        'content.value_object.content_type.podcast' => 'podcast',
+        'content.value_object.content_type.video' => 'video'
+    ];
     private string $content_type = 'post';
 
     private function __construct(string $type)
@@ -25,6 +30,11 @@ class ContentType
     public function __toString(): string
     {
         return $this->content_type;
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->content_type, self::CHOICES));
     }
 
     public static function podcast(): self
