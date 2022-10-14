@@ -38,7 +38,7 @@ final class UpdateUserForm extends AbstractType
             ])
             ->add('gender', GenderType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('avatar_file', DropzoneType::class, [
                 'label' => 'authentication.forms.labels.avatar',
@@ -95,7 +95,7 @@ final class UpdateUserForm extends AbstractType
             ])
             ->add('roles', RolesType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
         ;
     }

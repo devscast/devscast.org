@@ -33,7 +33,7 @@ final class PodcastEpisodeTypeType extends AbstractType implements DataMapperInt
         $resolver->setDefaults([
             'data_class' => PodcastEpisodeType::class,
             'empty_data' => null,
-            'translation_domain' => 'content'
+            'translation_domain' => 'content',
         ]);
 
         return $resolver;

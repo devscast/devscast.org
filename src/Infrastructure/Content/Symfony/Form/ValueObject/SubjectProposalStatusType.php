@@ -33,7 +33,7 @@ final class SubjectProposalStatusType extends AbstractType implements DataMapper
         $resolver->setDefaults([
             'data_class' => SubjectProposalStatus::class,
             'empty_data' => null,
-            'translation_domain' => 'content'
+            'translation_domain' => 'content',
         ]);
 
         return $resolver;

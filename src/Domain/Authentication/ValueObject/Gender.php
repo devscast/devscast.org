@@ -35,7 +35,7 @@ class Gender implements \Stringable
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->gender, self::CHOICES));
+        return strval(array_search($this->gender, self::CHOICES, true));
     }
 
     public static function fromString(string $gender): self

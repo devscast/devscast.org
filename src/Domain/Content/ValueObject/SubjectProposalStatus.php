@@ -17,7 +17,7 @@ class SubjectProposalStatus
     final public const CHOICES = [
         'content.value_object.subject_proposal_status.reviewing' => 'reviewing',
         'content.value_object.subject_proposal_status.accepted' => 'accepted',
-        'content.value_object.subject_proposal_status.rejected' => 'rejected'
+        'content.value_object.subject_proposal_status.rejected' => 'rejected',
     ];
     private string $status = 'reviewing';
 
@@ -34,7 +34,7 @@ class SubjectProposalStatus
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->status, self::CHOICES));
+        return strval(array_search($this->status, self::CHOICES, true));
     }
 
     public static function reviewing(): self

@@ -17,7 +17,7 @@ class ContentType
     final public const CHOICES = [
         'content.value_object.content_type.post' => 'post',
         'content.value_object.content_type.podcast' => 'podcast',
-        'content.value_object.content_type.video' => 'video'
+        'content.value_object.content_type.video' => 'video',
     ];
     private string $content_type = 'post';
 
@@ -34,7 +34,7 @@ class ContentType
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->content_type, self::CHOICES));
+        return strval(array_search($this->content_type, self::CHOICES, true));
     }
 
     public static function podcast(): self

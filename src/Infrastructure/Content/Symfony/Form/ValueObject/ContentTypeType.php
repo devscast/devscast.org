@@ -33,7 +33,7 @@ final class ContentTypeType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => ContentType::class,
             'empty_data' => null,
-            'translation_domain' => 'content'
+            'translation_domain' => 'content',
         ]);
 
         return $resolver;

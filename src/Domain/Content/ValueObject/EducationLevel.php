@@ -17,7 +17,7 @@ class EducationLevel
     final public const CHOICES = [
         'content.value_object.education_level.beginner' => 'beginner',
         'content.value_object.education_level.intermediate' => 'intermediate',
-        'content.value_object.education_level.advanced' => 'advanced'
+        'content.value_object.education_level.advanced' => 'advanced',
     ];
     private string $education_level = 'beginner';
 
@@ -34,7 +34,7 @@ class EducationLevel
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->education_level, self::CHOICES));
+        return strval(array_search($this->education_level, self::CHOICES, true));
     }
 
     public static function beginner(): self

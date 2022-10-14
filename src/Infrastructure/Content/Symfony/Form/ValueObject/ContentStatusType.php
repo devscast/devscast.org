@@ -33,7 +33,7 @@ final class ContentStatusType extends AbstractType implements DataMapperInterfac
         $resolver->setDefaults([
             'data_class' => ContentStatus::class,
             'empty_data' => null,
-            'translation_domain' => 'content'
+            'translation_domain' => 'content',
         ]);
 
         return $resolver;

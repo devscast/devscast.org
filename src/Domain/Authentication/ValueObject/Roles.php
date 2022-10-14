@@ -43,9 +43,9 @@ class Roles implements \Stringable
     {
         return match (true) {
             $this->contains('ROLE_ADMIN') => 'authentication.value_object.roles.admin',
-            $this->contains('ROLE_USER') => 'authentication.value_object.roles.user',
             $this->contains('ROLE_SUPER_ADMIN') => 'authentication.value_object.roles.super_admin',
-            $this->contains('ROLE_CONTENT_MANAGER') => 'authentication.value_object.roles.content_manager'
+            $this->contains('ROLE_CONTENT_MANAGER') => 'authentication.value_object.roles.content_manager',
+            default => 'authentication.value_object.roles.user'
         };
     }
 

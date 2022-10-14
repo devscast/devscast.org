@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Webmozart\Assert\Assert;
 
 /**
  * class AbstractCrudController.
@@ -41,11 +40,11 @@ abstract class AbstractCrudController extends AbstractController
 
     public function getViewPath(string $name): string
     {
-        return sprintf('@admin/domain/%s/%s/%s.html.twig', self::DOMAIN, self::ENTITY, $name);
+        return sprintf('@admin/domain/%s/%s/%s.html.twig', static::DOMAIN, static::ENTITY, $name);
     }
 
     public function getRouteName(string $name): string
     {
-        return sprintf('%s%s_%s_%s', self::ROUTE_PREFIX, self::DOMAIN, self::ENTITY, $name);
+        return sprintf('%s%s_%s_%s', self::ROUTE_PREFIX, static::DOMAIN, static::ENTITY, $name);
     }
 }

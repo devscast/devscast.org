@@ -18,7 +18,7 @@ class ContentStatus
         'content.value_object.content_status.draft' => 'draft',
         'content.value_object.content_status.reviewing' => 'reviewing',
         'content.value_object.content_status.published' => 'published',
-        'content.value_object.content_status.rejected' => 'rejected'
+        'content.value_object.content_status.rejected' => 'rejected',
     ];
     private string $status = 'draft';
 
@@ -35,7 +35,7 @@ class ContentStatus
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->status, self::CHOICES));
+        return strval(array_search($this->status, self::CHOICES, true));
     }
 
     public static function draft(): self

@@ -35,7 +35,7 @@ final class RolesType extends AbstractType implements DataMapperInterface
         $resolver->setDefaults([
             'data_class' => Roles::class,
             'empty_data' => null,
-            'translation_domain' => 'authentication'
+            'translation_domain' => 'authentication',
         ]);
 
         return $resolver;

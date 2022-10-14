@@ -17,7 +17,7 @@ class PodcastEpisodeType implements \Stringable
     final public const CHOICES = [
         'content.value_object.podcast_episode_type.full' => 'Full',
         'content.value_object.podcast_episode_type.trailer' => 'Trailer',
-        'content.value_object.podcast_episode_type.bonus' => 'Bonus'
+        'content.value_object.podcast_episode_type.bonus' => 'Bonus',
     ];
     private string $episode_type = 'Full';
 
@@ -34,7 +34,7 @@ class PodcastEpisodeType implements \Stringable
 
     public function getTranslationKey(): string
     {
-        return strval(array_search($this->episode_type, self::CHOICES));
+        return strval(array_search($this->episode_type, self::CHOICES, true));
     }
 
     public static function full(): self
