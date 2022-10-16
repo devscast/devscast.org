@@ -7,6 +7,7 @@
     <entity
             name="Domain\Content\Entity\Content"
             repository-class="Infrastructure\Content\Doctrine\Repository\ContentRepository"
+            table="content"
             inheritance-type="JOINED"
     >
         <discriminator-column name="content_type" type="string" />
@@ -70,6 +71,16 @@
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="tag_id" referenced-column-name="id" nullable="false" unique="false"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <many-to-many field="technologies" target-entity="Domain\Content\Entity\Technology" >
+            <join-table name="content_assigned_technology" >
+                <join-columns>
+                    <join-column name="content_id" referenced-column-name="id" nullable="false" unique="false"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="technology_id" referenced-column-name="id" nullable="false" unique="false"/>
                 </inverse-join-columns>
             </join-table>
         </many-to-many>

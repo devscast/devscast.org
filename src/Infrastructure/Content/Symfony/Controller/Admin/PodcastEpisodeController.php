@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/podcast/episode', 'administration_content_podcast_episode_')]
+#[Route('/admin/content/podcasts/episodes', 'administration_content_podcast_episode_')]
 final class PodcastEpisodeController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';

@@ -93,6 +93,10 @@ final class UpdateUserForm extends AbstractType
                 'label' => 'authentication.forms.labels.is_subscribed_marketing',
                 'required' => false,
             ])
+            ->add('is_dark_theme', CheckboxType::class, [
+                'label' => 'authentication.forms.labels.is_dark_theme',
+                'required' => false
+            ])
             ->add('roles', RolesType::class, [
                 'label' => false,
                 'required' => false,

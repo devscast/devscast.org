@@ -36,6 +36,7 @@ final class UpdateUserCommand
         #[Assert\Country] public ?string $country = null,
         public bool $is_subscribed_newsletter = false,
         public bool $is_subscribed_marketing = false,
+        public bool $is_dark_theme = false,
         public ?string $github_url = null,
         public ?string $linkedin_url = null,
         public ?string $twitter_url = null,

@@ -28,6 +28,7 @@ final class MainSidebar extends AbstractSidebar
             ->add(new SidebarLink('administration_content_podcast_episode_index', 'podcasts episodes', 'mic'))
             ->add(new SidebarLink('administration_content_podcast_season_index', 'podcast seasons', 'mic'))
             ->add(new SidebarLink('administration_content_video_index', 'videos', 'video'))
+            ->add(new SidebarLink('administration_content_tag_index', 'tags', 'tag'))
             ->add(new SidebarHeader('Settings'))
         ;
 

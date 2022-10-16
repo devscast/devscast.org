@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/subject_proposal', 'administration_content_subject_proposal_')]
+#[Route('/admin/content/subject/proposals', 'administration_content_subject_proposal_')]
 final class SubjectProposalController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';

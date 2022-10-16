@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/video', 'administration_content_video_')]
+#[Route('/admin/content/videos', 'administration_content_video_')]
 final class VideoController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
