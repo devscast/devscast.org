@@ -20,9 +20,9 @@ class Rating
     use TimestampTrait;
     use OwnerTrait;
 
-    public final const UP_VOTE = 1;
+    final public const UP_VOTE = 1;
 
-    public final const DOWN_VOTE = -1;
+    final public const DOWN_VOTE = -1;
 
     private ?Content $target;
 
@@ -49,9 +49,10 @@ class Rating
         return $this->target;
     }
 
-    public function setTarget(?Content $target): Rating
+    public function setTarget(?Content $target): self
     {
         $this->target = $target;
+
         return $this;
     }
 
@@ -60,13 +61,14 @@ class Rating
         return $this->rating;
     }
 
-    public function setRating(int $rating): Rating
+    public function setRating(int $rating): self
     {
-        if ($rating !== 1 || $rating !== -1) {
+        if (1 !== $rating || -1 !== $rating) {
             throw new \InvalidArgumentException('expecting 1 or -1 as rating value');
         }
 
         $this->rating = $rating;
+
         return $this;
     }
 }

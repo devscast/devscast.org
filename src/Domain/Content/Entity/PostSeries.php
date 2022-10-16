@@ -7,7 +7,6 @@ namespace Domain\Content\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
-use Domain\Content\ValueObject\EducationLevel;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\ThumbnailTrait;
@@ -57,9 +56,10 @@ class PostSeries
         return $this->name;
     }
 
-    public function setName(?string $name): PostSeries
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -68,9 +68,10 @@ class PostSeries
         return $this->slug;
     }
 
-    public function setSlug(?string $slug): PostSeries
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -79,9 +80,10 @@ class PostSeries
         return $this->description;
     }
 
-    public function setDescription(?string $description): PostSeries
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -90,9 +92,10 @@ class PostSeries
         return $this->status;
     }
 
-    public function setStatus(ContentStatus $status): PostSeries
+    public function setStatus(ContentStatus $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -101,9 +104,10 @@ class PostSeries
         return $this->technology;
     }
 
-    public function setTechnology(?Technology $technology): PostSeries
+    public function setTechnology(?Technology $technology): self
     {
         $this->technology = $technology;
+
         return $this;
     }
 
@@ -112,9 +116,10 @@ class PostSeries
         return $this->tags;
     }
 
-    public function setTags(Collection $tags): PostSeries
+    public function setTags(Collection $tags): self
     {
         $this->tags = $tags;
+
         return $this;
     }
 }

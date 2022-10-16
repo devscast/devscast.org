@@ -41,6 +41,7 @@ class Technology
     public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -52,6 +53,7 @@ class Technology
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -63,6 +65,7 @@ class Technology
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 }

@@ -101,7 +101,7 @@ final class CreateUserForm extends AbstractType
             ])
             ->add('is_dark_theme', CheckboxType::class, [
                 'label' => 'authentication.forms.labels.is_dark_theme',
-                'required' => false
+                'required' => false,
             ])
             ->add('roles', RolesType::class, [
                 'label' => false,

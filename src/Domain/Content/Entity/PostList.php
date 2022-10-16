@@ -43,9 +43,10 @@ class PostList
         return $this->name;
     }
 
-    public function setName(?string $name): PostList
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -54,9 +55,10 @@ class PostList
         return $this->description;
     }
 
-    public function setDescription(?string $description): PostList
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -65,9 +67,10 @@ class PostList
         return $this->is_public;
     }
 
-    public function setIsPublic(bool $is_public): PostList
+    public function setIsPublic(bool $is_public): self
     {
         $this->is_public = $is_public;
+
         return $this;
     }
 }
