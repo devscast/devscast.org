@@ -13,6 +13,7 @@ use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\Entity\TimestampTrait;
+use Domain\Shared\Entity\UuidTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Uid\Uuid;
 
@@ -27,8 +28,7 @@ class Content
     use IdentityTrait;
     use TimestampTrait;
     use ThumbnailTrait;
-
-    private Uuid $uuid;
+    use UuidTrait;
 
     private ?string $name = null;
 
@@ -42,10 +42,21 @@ class Content
 
     private EducationLevel $education_level;
 
+    private int $up_vote_count = 0;
+
+    private int $down_vote_count = 0;
+
+    private int $average_vote_count = 0;
+
     /**
      * @var Collection<Tag>
      */
     private Collection $tags;
+
+    /**
+     * @var Collection<Technology>
+     */
+    private Collection $technologies;
 
     private ?int $duration = null;
 
@@ -67,22 +78,7 @@ class Content
         $this->thumbnail = EmbeddedFile::default();
         $this->education_level = EducationLevel::beginner();
         $this->tags = new ArrayCollection();
-    }
-
-    public function getUuid(): Uuid
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(Uuid|string $uuid): self
-    {
-        if ($uuid instanceof Uuid) {
-            $this->uuid = $uuid;
-        } else {
-            $this->uuid = Uuid::fromString($uuid);
-        }
-
-        return $this;
+        $this->technologies = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -128,11 +124,10 @@ class Content
 
     public function setStatus(ContentStatus|string $status): self
     {
-        if ($status instanceof ContentStatus) {
-            $this->status = $status;
-        } else {
-            $this->status = ContentStatus::fromString($status);
-        }
+        $this->status = match (true) {
+            $status instanceof ContentStatus => $status,
+            default => ContentStatus::fromString($status)
+        };
 
         return $this;
     }
@@ -156,11 +151,10 @@ class Content
 
     public function setContentType(ContentType|string $content_type): self
     {
-        if ($content_type instanceof ContentType) {
-            $this->content_type = $content_type;
-        } else {
-            $this->content_type = ContentType::fromString($content_type);
-        }
+        $this->content_type = match (true) {
+            $content_type instanceof ContentType => $content_type,
+            default => ContentType::fromString($content_type)
+        };
 
         return $this;
     }
@@ -244,11 +238,10 @@ class Content
 
     public function setEducationLevel(EducationLevel|string $education_level): self
     {
-        if ($education_level instanceof EducationLevel) {
-            $this->education_level = $education_level;
-        } else {
-            $this->education_level = EducationLevel::fromString($education_level);
-        }
+        $this->education_level = match (true) {
+            $education_level instanceof EducationLevel => $education_level,
+            default => EducationLevel::fromString($education_level)
+        };
 
         return $this;
     }

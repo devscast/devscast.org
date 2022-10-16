@@ -49,11 +49,10 @@ class PodcastEpisode extends Content
 
     public function setEpisodeType(PodcastEpisodeType|string $episode_type): self
     {
-        if ($episode_type instanceof PodcastEpisodeType) {
-            $this->episode_type = $episode_type;
-        } else {
-            $this->episode_type = PodcastEpisodeType::fromString($episode_type);
-        }
+        $this->episode_type = match (true) {
+            $episode_type instanceof PodcastEpisodeType => $episode_type,
+            default => PodcastEpisodeType::fromString($episode_type)
+        };
 
         return $this;
     }

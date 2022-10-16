@@ -85,11 +85,10 @@ class SubjectProposal
 
     public function setStatus(SubjectProposalStatus|string $status): self
     {
-        if ($status instanceof SubjectProposalStatus) {
-            $this->status = $status;
-        } else {
-            $this->status = SubjectProposalStatus::fromString($status);
-        }
+        $this->status = match (true) {
+            $status instanceof SubjectProposalStatus => $status,
+            default => SubjectProposalStatus::fromString($status)
+        };
 
         return $this;
     }
