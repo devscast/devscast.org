@@ -13,5 +13,8 @@
         <many-to-one field="category" target-entity="Domain\Content\Entity\Category" >
             <join-column on-delete="SET NULL" nullable="true" />
         </many-to-one>
+        <many-to-one field="series" target-entity="Domain\Content\Entity\PostSeries" >
+            <join-column on-delete="SET NULL" nullable="true" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>
