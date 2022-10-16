@@ -35,6 +35,7 @@ authentication.forms.labels.rss_url: Lien flux RSS
 authentication.forms.labels.avatar: Avatar
 authentication.forms.labels.gender: Genre
 authentication.forms.labels.roles: Rôles
+authentication.forms.labels.is_dark_theme: Thème sombre
 
 authentication.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
 authentication.forms.labels.placeholders.password: Mot de passe 6+ caractères

@@ -1,6 +1,5 @@
 // dashlite theme
 import './scss/dashlite.min.css'
-import './scss/skins/theme-green.css'
 
 // start stimulus app
 import './js/bootstrap'
