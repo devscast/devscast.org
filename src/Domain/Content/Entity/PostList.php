@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\TimestampTrait;
@@ -28,9 +30,12 @@ class PostList
 
     private bool $is_public = false;
 
+    private Collection $posts;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
+        $this->posts = new ArrayCollection();
     }
 
     public function getName(): ?string
