@@ -35,7 +35,7 @@ trait ThumbnailTrait
     {
         $this->thumbnail_file = $avatar_file;
         if ($avatar_file instanceof UploadedFile) {
-            $this->setUpdatedAtOnPostUpdate();
+            $this->setUpdatedAtWithCurrentTime();
         }
 
         return $this;

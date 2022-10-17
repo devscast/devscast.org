@@ -16,7 +16,7 @@ final class ContentTypeTest extends TestCase
 {
     public function testInstanceValueCastToStringValue(): void
     {
-        $values = ['podcast', 'post', 'video'];
+        $values = ['podcast', 'post', 'video', 'training'];
 
         foreach ($values as $name) {
             $this->assertSame($name, (string) ContentType::fromString($name));
@@ -25,7 +25,7 @@ final class ContentTypeTest extends TestCase
 
     public function testInstanceValueHasExceptedOptions(): void
     {
-        $this->assertSame(ContentType::VALUES, ['podcast', 'post', 'video']);
+        $this->assertSame(ContentType::VALUES, ['podcast', 'post', 'video', 'training']);
     }
 
     public function testInstanceAndValueAreEquals(): void
@@ -33,6 +33,7 @@ final class ContentTypeTest extends TestCase
         $this->assertSame(true, ContentType::podcast()->equals('podcast'));
         $this->assertSame(true, ContentType::post()->equals('post'));
         $this->assertSame(true, ContentType::video()->equals('video'));
+        $this->assertSame(true, ContentType::training()->equals('training'));
     }
 
     public function testSameInstanceValueAreEquals(): void

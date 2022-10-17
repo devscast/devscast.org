@@ -9,6 +9,10 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\SubjectProposalVoteRepository"
             table="content_subject_proposal_vote"
     >
+        <unique-constraints>
+            <unique-constraint columns="owner_id,proposal_id"/>
+        </unique-constraints>
+
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

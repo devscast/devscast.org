@@ -63,7 +63,7 @@ class Rating
 
     public function setRating(int $rating): self
     {
-        if (1 !== $rating || -1 !== $rating) {
+        if (1 !== $rating && -1 !== $rating) {
             throw new \InvalidArgumentException('expecting 1 or -1 as rating value');
         }
 

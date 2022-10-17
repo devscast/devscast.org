@@ -15,14 +15,14 @@ trait TimestampTrait
 
     private ?\DateTimeImmutable $updated_at = null;
 
-    public function setCreatedAtOnPrePersist(): void
+    public function setCreatedAtWithCurrentTime(): void
     {
         if (null !== $this->created_at) {
             $this->created_at = new \DateTimeImmutable();
         }
     }
 
-    public function setUpdatedAtOnPostUpdate(): void
+    public function setUpdatedAtWithCurrentTime(): void
     {
         $this->updated_at = new \DateTimeImmutable();
     }

@@ -13,11 +13,12 @@ use Webmozart\Assert\Assert;
  */
 class ContentType
 {
-    final public const VALUES = ['podcast', 'post', 'video'];
+    final public const VALUES = ['podcast', 'post', 'video', 'training'];
     final public const CHOICES = [
         'content.value_object.content_type.post' => 'post',
         'content.value_object.content_type.podcast' => 'podcast',
         'content.value_object.content_type.video' => 'video',
+        'content.value_object.content_type.training' => 'training',
     ];
     private string $content_type = 'post';
 
@@ -50,6 +51,11 @@ class ContentType
     public static function post(): self
     {
         return new self('post');
+    }
+
+    public static function training(): self
+    {
+        return new self('training');
     }
 
     public static function fromString(string $type): self

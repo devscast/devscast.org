@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\Content\Entity\Training"
+            repository-class="Infrastructure\Content\Doctrine\Repository\TrainingRepository"
+            table="video_training"
+    >
+        <!-- fields -->
+        <field name="youtube_playlist" type="string" nullable="true" />
+        <field name="links" type="string" nullable="true" />
+
+        <!-- relations -->
+        <one-to-many field="videos" target-entity="Domain\Content\Entity\Video" mapped-by="training" />
+        <one-to-many field="chapters" target-entity="Domain\Content\Entity\TrainingChapter" mapped-by="training" />
+    </entity>
+</doctrine-mapping>

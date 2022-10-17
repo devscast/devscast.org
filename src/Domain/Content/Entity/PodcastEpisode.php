@@ -78,7 +78,7 @@ class PodcastEpisode extends Content
     {
         $this->audio_file = $audio_file;
         if ($audio_file instanceof UploadedFile) {
-            $this->setUpdatedAtOnPostUpdate();
+            $this->setUpdatedAtWithCurrentTime();
         }
 
         return $this;

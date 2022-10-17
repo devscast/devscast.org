@@ -23,6 +23,7 @@ content.value_object.subject_proposal_status.rejected: Rejeté
 content.value_object.content_type.post: Article
 content.value_object.content_type.video: Vidéo
 content.value_object.content_type.podcast: Podcast
+content.value_object.content_type.training: Formation
 
 content.value_object.education_level.beginner: Débutant
 content.value_object.education_level.advanced: Avancé

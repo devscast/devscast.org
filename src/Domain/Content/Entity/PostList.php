@@ -30,6 +30,9 @@ class PostList
 
     private bool $is_public = false;
 
+    /**
+     * @var Collection<Post>
+     */
     private Collection $posts;
 
     public function __construct()

@@ -11,5 +11,11 @@
     >
         <!-- fields -->
         <field name="source_url" type="string" nullable="false" />
+        <field name="timecodes" type="text" nullable="true" />
+
+        <!-- relations -->
+        <many-to-one field="training" target-entity="Domain\Content\Entity\Training" inversed-by="videos" >
+            <join-column on-delete="SET NULL" nullable="true" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

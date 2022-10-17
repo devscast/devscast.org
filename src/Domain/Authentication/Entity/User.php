@@ -507,7 +507,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     {
         $this->avatar_file = $avatar_file;
         if ($avatar_file instanceof UploadedFile) {
-            $this->setUpdatedAtOnPostUpdate();
+            $this->setUpdatedAtWithCurrentTime();
         }
 
         return $this;

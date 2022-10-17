@@ -46,7 +46,7 @@ class Content
 
     private int $down_vote_count = 0;
 
-    private int $average_vote_count = 0;
+    private float $ratio_vote_count = 0.0;
 
     /**
      * @var Collection<Tag>
@@ -69,6 +69,8 @@ class Content
     private bool $is_online = false;
 
     private bool $is_premium = false;
+
+    private ?\DateTimeImmutable $scheduled_at = null;
 
     public function __construct()
     {
@@ -132,14 +134,23 @@ class Content
         return $this;
     }
 
-    public function getTags(): Collection
+    public function getTag(): Collection
     {
         return $this->tags;
     }
 
-    public function setTags(Collection $tags): self
+    public function addTag(Tag $tag): self
     {
-        $this->tags = $tags;
+        if (! $this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }
@@ -242,6 +253,75 @@ class Content
             $education_level instanceof EducationLevel => $education_level,
             default => EducationLevel::fromString($education_level)
         };
+
+        return $this;
+    }
+
+    public function getUpVoteCount(): int
+    {
+        return $this->up_vote_count;
+    }
+
+    public function setUpVoteCount(int $up_vote_count): self
+    {
+        $this->up_vote_count = $up_vote_count;
+
+        return $this;
+    }
+
+    public function getDownVoteCount(): int
+    {
+        return $this->down_vote_count;
+    }
+
+    public function setDownVoteCount(int $down_vote_count): self
+    {
+        $this->down_vote_count = $down_vote_count;
+
+        return $this;
+    }
+
+    public function getScheduledAt(): ?\DateTimeImmutable
+    {
+        return $this->scheduled_at;
+    }
+
+    public function setScheduledAt(\DateTimeImmutable|string|null $scheduled_at): self
+    {
+        $this->scheduled_at = $this->createDateTime($scheduled_at);
+
+        return $this;
+    }
+
+    public function getRatioVoteCount(): float
+    {
+        return $this->ratio_vote_count;
+    }
+
+    public function setRatioVoteCount(float $ratio_vote_count): self
+    {
+        $this->ratio_vote_count = $ratio_vote_count;
+
+        return $this;
+    }
+
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(Technology $technology): self
+    {
+        if (! $this->technologies->contains($technology)) {
+            $this->technologies[] = $technology;
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Technology $technology): self
+    {
+        $this->technologies->removeElement($technology);
 
         return $this;
     }
