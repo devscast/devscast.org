@@ -1,0 +1,126 @@
+.input-attachment {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    border: solid 1px var(--border);
+    background: var(--background);
+    transition: 0.2s;
+}
+
+.input-attachment:hover {
+    border-color: var(--contrast);
+    box-shadow: 0px 0px 3px var(--contrast);
+}
+
+.input-attachment::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    opacity: 0.06;
+    background: url(../images/upload.svg) center center / 100% 100% no-repeat;
+}
+
+.input-attachment.is-hovered {
+    background-color: var(--contrast);
+.input-attachment__preview {
+        opacity: 0.6;
+    }
+}
+
+.input-attachment__preview {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: transparent center center / cover no-repeat;
+    transition: 0.2s;
+}
+
+.input-attachment__loader {
+    z-index: 3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color);
+}
+
+modal-dialog {
+    --modal-padding: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+
+    opacity: 1;
+    transition: 0.3s;
+    animation: modalIn .3s;
+}
+
+modal-dialog[hidden] {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+.modal-box {
+    position: relative;
+    width: 430px;
+    max-width: calc(100vw - 40px);
+    background-color: var(--background-light);
+    border: solid 1px var(--border);
+    padding: var(--modal-padding);
+    border-radius: 8px;
+}
+
+.modal-box header {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.modal-close {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    position: absolute;
+    top: var(--modal-padding);
+    right: var(--modal-padding);
+    border: none;
+    cursor: pointer;
+
+    .icon {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        color: var(--contrast);
+    }
+}
+
+@keyframes modalIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

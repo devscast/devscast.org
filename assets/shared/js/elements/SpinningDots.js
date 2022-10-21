@@ -30,12 +30,13 @@ export default class SpinningDots extends HTMLElement {
         if (this.root.querySelector(".circles") != null) this.root.querySelector(".circles").innerHTML = this.buildCircles(width, circles, strokeWidth / 2)
     }
 
-    disconnectedCallback() {
+    disconnectedCallback()
+    {
         this.root.innerHTML = ''
     }
 
     /**
-     * Builds a SVG with n circles equally spaced around a circle
+     * Builds an SVG with n circles equally spaced around a circle
      * @param {number} w canvas width
      * @param {number} n circles count
      * @param {number} r circles radius
@@ -54,7 +55,7 @@ export default class SpinningDots extends HTMLElement {
     }
 
     /**
-     * Builds a SVG circle
+     * Builds an SVG circle
      * @param {number} w canvas width
      * @param {number} stroke stroke width
      * @return {string}

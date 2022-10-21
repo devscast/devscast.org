@@ -63,7 +63,7 @@
             <div class="nk-block">
                 <div class="nk-block-head">
                     <h5 class="title">Informations personnelles</h5>
-                    <p>{{ data.biography | nl2br }}</p>
+                    <p>{{ data.biography | markdown }}</p>
                 </div>
                 <div class="profile-ud-list">
                     {{ _.user_data_item('Nom complet', data.name) }}
@@ -100,8 +100,8 @@
         </div>
         {% endblock %}
         {% block detail_card_aside %}
-            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl content-active"
-                 data-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="true" data-toggle-body="true">
+            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
+                 data-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
                 <div class="card-inner-group">
                     <div class="simplebar-wrapper" style="margin: 0px;">
                         <div class="simplebar-height-auto-observer-wrapper">

@@ -19,6 +19,19 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/uploads/authentication/user/avatar'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
+        content_attachment:
+            uri_prefix: '/uploads/content/attachment'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/attachment'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            directory_namer:
+                service: Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer
+                options:
+                    date_time_format: 'Y' # will create directory "2018/23/09" for curent date "2018-09-23"
+                    date_time_property: created_at # see above example
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
         content_podcast_season_thumbnail:
             uri_prefix: '/uploads/content/podcast_season/thumbnail'
             upload_destination: '%kernel.project_dir%/public/uploads/content/podcast_season/thumbnail'

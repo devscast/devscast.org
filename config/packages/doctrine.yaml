@@ -39,6 +39,17 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/ValueObject'
                 prefix: 'Domain\Content\ValueObject'
                 is_bundle: false
+        dql:
+            numeric_functions:
+                RANDOM: DoctrineExtensions\Query\Sqlite\Random
+                ROUND: DoctrineExtensions\Query\Mysql\Round
+            datetime_functions:
+                EXTRACT: DoctrineExtensions\Query\Mysql\Extract
+                TO_CHAR: DoctrineExtensions\Query\Mysql\DateFormat
+                NOW: DoctrineExtensions\Query\Mysql\Now
+            string_functions:
+                LPAD: DoctrineExtensions\Query\Mysql\Lpad
+                CAST: DoctrineExtensions\Query\Mysql\Cast
 
 when@test:
     doctrine:

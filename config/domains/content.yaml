@@ -21,3 +21,4 @@ services:
     Domain\Content\Repository\TagRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\TagRepository'
     Domain\Content\Repository\TechnologyRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\TechnologyRepository'
     Domain\Content\Repository\VideoRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\VideoRepository'
+    Domain\Content\Repository\AttachmentRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\AttachmentRepository'
