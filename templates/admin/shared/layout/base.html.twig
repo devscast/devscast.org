@@ -24,10 +24,11 @@
         {% block stylesheets %}{% endblock %}
 
         <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
+        <script defer data-turbo-track="reload" src="{{ asset('admin/assets/scripts.js') }}"></script>
 
         {{ encore_entry_script_tags('admin') }}
     </head>
-    <body class="nk-body bg-theme has-sidebar ui-bordered {{ app.user.isDarkTheme ? 'dark-mode' : 'light-mode' }}" {{ stimulus_controller('turbo') }}>
+    <body class="nk-body bg-theme has-sidebar ui-shady {{ app.user.isDarkTheme ? 'dark-mode' : 'light-mode' }}" {{ stimulus_controller('turbo') }}>
     {% include '@admin/shared/component/_flash.html.twig' %}
     <div class="nk-app-root">
         <div class="nk-main">
@@ -43,9 +44,11 @@
                         <div class="nk-content-inner">
                             {% block body %}
                                 <div class="nk-content-body">
-                                    {% block header %}{% endblock %}
-                                    <div class="nk-block">
-                                        {% block content %}{% endblock %}
+                                    <div class="mx-auto {% block wideContentClass %}wide-lg{% endblock %}">
+                                        {% block header %}{% endblock %}
+                                        <div class="nk-block">
+                                            {% block content %}{% endblock %}
+                                        </div>
                                     </div>
                                 </div>
                             {% endblock %}

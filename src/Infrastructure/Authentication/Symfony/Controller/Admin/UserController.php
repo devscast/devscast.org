@@ -36,18 +36,7 @@ final class UserController extends AbstractCrudController
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(UserRepository $repository): Response
     {
-        return $this->render(
-            view: $this->getViewPath('index'),
-            parameters: [
-                'data' => $this->paginator->paginate(
-                    target: $repository->findBy([], orderBy: [
-                        'created_at' => 'DESC',
-                    ]),
-                    page: $this->request->query->getInt('page', 1),
-                    limit: 50
-                ),
-            ]
-        );
+        return $this->queryIndex($repository);
     }
 
     #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
@@ -64,147 +53,49 @@ final class UserController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        $command = new CreateUserCommand();
-        $form = $this->createForm(CreateUserForm::class, $command)
-            ->handleRequest($this->request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $this->dispatchSync($command);
-                $this->addSuccessfullActionFlash('création');
-
-                return $this->redirectSeeOther($this->getRouteName('index'));
-            } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-                $response = $this->createUnprocessableEntityResponse();
-            }
-        }
-
-        return $this->renderForm(
-            view: $this->getViewPath('new'),
-            parameters: [
-                'form' => $form,
-            ],
-            response: $response ?? null
+        return $this->executeFormCommand(
+            command: new CreateUserCommand(),
+            formClass: CreateUserForm::class
         );
     }
 
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(User $row, Request $request): Response
     {
-        $command = new UpdateUserCommand($row);
-        $form = $this->createForm(UpdateUserForm::class, $command)
-            ->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $this->dispatchSync($command);
-                $this->addSuccessfullActionFlash('édition');
-
-                return $this->redirectSeeOther(
-                    route: $this->getRouteName('show'),
-                    params: [
-                        'id' => $row->getId(),
-                    ]
-                );
-            } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-                $response = $this->createUnprocessableEntityResponse();
-            }
-        }
-
-        return $this->renderForm(
-            view: $this->getViewPath('edit'),
-            parameters: [
-                'form' => $form,
-                'data' => $row,
-            ],
-            response: $response ?? null
+        return $this->executeFormCommand(
+            command: new UpdateUserCommand($row),
+            formClass: UpdateUserForm::class,
+            row: $row,
+            view: 'edit'
         );
     }
 
     #[Route('/ban/{id<\d+>}', name: 'ban', methods: ['POST'])]
     public function ban(User $row): Response
     {
-        try {
-            $this->dispatchSync(new BanUserCommand($row));
-            $this->addSuccessfullActionFlash('bannissement');
-        } catch (\Throwable $e) {
-            $this->addSafeMessageExceptionFlash($e);
-        }
-
-        return $this->redirectSeeOther(
-            route: $this->getRouteName('show'),
-            params: [
-                'id' => $row->getId(),
-            ]
-        );
+        return $this->executeCommand(new BanUserCommand($row), $row);
     }
 
     #[Route('/unban/{id<\d+>}', name: 'unban', methods: ['POST'])]
     public function unban(User $row): Response
     {
-        try {
-            $this->dispatchSync(new UnbanUserCommand($row));
-            $this->addSuccessfullActionFlash('annulation du bannissement');
-        } catch (\Throwable $e) {
-            $this->addSafeMessageExceptionFlash($e);
-        }
-
-        return $this->redirectSeeOther(
-            route: $this->getRouteName('show'),
-            params: [
-                'id' => $row->getId(),
-            ]
-        );
+        return $this->executeCommand(new UnbanUserCommand($row), $row);
     }
 
     #[Route('/email/{id<\d+>}', name: 'email', methods: ['GET', 'POST'])]
     public function email(User $row, Request $request): Response
     {
-        $command = new EmailUserCommand($row);
-        $form = $this->createForm(EmailUserForm::class, $command)
-            ->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $this->dispatchSync($command);
-                $this->addSuccessfullActionFlash("envoie de l'email");
-
-                return $this->redirectSeeOther(
-                    route: $this->getRouteName('show'),
-                    params: [
-                        'id' => $row->getId(),
-                    ]
-                );
-            } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-                $response = $this->createUnprocessableEntityResponse();
-            }
-        }
-
-        return $this->renderForm(
-            view: $this->getViewPath('email'),
-            parameters: [
-                'form' => $form,
-                'data' => $row,
-            ],
-            response: $response ?? null
+        return $this->executeFormCommand(
+            command: new EmailUserCommand($row),
+            formClass: EmailUserForm::class,
+            row: $row,
+            view: 'email'
         );
     }
 
     #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(User $row, Request $request): Response
+    public function delete(User $row): Response
     {
-        if ($this->isDeleteCsrfTokenValid($row, $request)) {
-            try {
-                $this->dispatchSync(new DeleteUserCommand($row));
-                $this->addSuccessfullActionFlash('suppression');
-            } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-            }
-        }
-
-        return $this->redirectSeeOther($this->getRouteName('index'));
+        return $this->executeDeleteCommand(new DeleteUserCommand($row), $row);
     }
 }

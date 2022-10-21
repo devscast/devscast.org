@@ -16,7 +16,8 @@ global.home: Connectez-vous, apprenez, partagez et progressez
 global.flashes.something_went_wrong: Désolé une erreur est survenue de notre côté, veuillez réessayer
 global.flashes.action_done_successfully: '%action% effectué(e) avec succès !'
 
-ROLE_ADMIN: Administrateur
+ROLE_SUPER_ADMIN: Super Admin.
+ROLE_ADMIN: Admin.
 ROLE_USER: Utilisateur
-ROLE_CONTENT_MANAGER: Ad. Contenus
-ROLE_BUSINESS_MANAGER: Ad. Business
+ROLE_CONTENT_MANAGER: Admin. Contenus
+ROLE_BUSINESS_MANAGER: Admin. Business

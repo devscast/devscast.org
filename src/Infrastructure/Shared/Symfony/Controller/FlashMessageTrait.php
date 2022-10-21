@@ -16,30 +16,32 @@ trait FlashMessageTrait
 {
     protected function addSafeMessageExceptionFlash(\Throwable $e): void
     {
-        $previous = $e->getPrevious();
-        if ($previous instanceof SafeMessageException) {
-            $message = $this->getSafeMessageException($previous);
-        } elseif ($e instanceof SafeMessageException) {
-            $message = $this->getSafeMessageException($e);
-        } else {
-            $message = $this->translator->trans(
-                id: 'global.flashes.something_went_wrong',
-                parameters: [],
-                domain: 'messages'
-            );
-        }
-
+        $message = $this->getSafeMessageException($e);
         $this->logger->error($e->getMessage(), $e->getTrace());
         $this->addFlash('error', $message);
     }
 
-    protected function getSafeMessageException(SafeMessageException $e): string
+    protected function getSafeMessageException(\Throwable $e): string
     {
-        return $this->translator->trans(
-            id: $e->getMessageKey(),
-            parameters: $e->getMessageData(),
-            domain: $e->getMessageDomain()
-        );
+        $previous = $e->getPrevious();
+
+        return match (true) {
+            $previous instanceof SafeMessageException => $this->translator->trans(
+                id: $previous->getMessageKey(),
+                parameters: $previous->getMessageData(),
+                domain: $previous->getMessageDomain()
+            ),
+            $e instanceof SafeMessageException => $this->translator->trans(
+                id: $e->getMessageKey(),
+                parameters: $e->getMessageData(),
+                domain: $e->getMessageDomain()
+            ),
+            default =>  $this->translator->trans(
+                id: 'global.flashes.something_went_wrong',
+                parameters: [],
+                domain: 'messages'
+            )
+        };
     }
 
     protected function addSomethingWentWrongFlash(): void

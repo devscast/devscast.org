@@ -12,7 +12,7 @@ namespace Application\Content\Command;
 final class CreateTagCommand
 {
     public function __construct(
-        public ?string $name
+        public ?string $name = null
     ) {
     }
 }

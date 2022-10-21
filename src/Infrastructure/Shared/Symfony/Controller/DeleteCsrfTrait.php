@@ -15,13 +15,17 @@ trait DeleteCsrfTrait
 {
     public function isDeleteCsrfTokenValid(object $entity, Request $request): bool
     {
+        $token = (string) $request->request->get('_token');
+
+        if ($this->request->isXmlHttpRequest()) {
+            $content = json_decode($this->request->getContent());
+            $token = $content->_token;
+        }
+
         if (method_exists($entity, 'getId')) {
             $id = $entity->getId();
 
-            return $this->isCsrfTokenValid(
-                "delete_{$id}",
-                (string) $request->request->get('_token')
-            );
+            return $this->isCsrfTokenValid("delete_{$id}", $token);
         }
 
         throw new \RuntimeException('$entity should have a getId method !');

@@ -68,3 +68,11 @@ export const toast = async(type, message) => {
         html: message,
     });
 }
+
+export const timedToast = async(type, message, timer= 1500) => {
+    await toastSwalMixin.fire({
+        timer: timer,
+        icon: type,
+        html: message,
+    });
+}

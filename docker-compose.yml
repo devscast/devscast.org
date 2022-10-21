@@ -48,12 +48,10 @@ services:
 
   ## Development Tools
   maildev:
-    image: maildev/maildev:2.0.2
+    image: mailhog/mailhog
     container_name: devscast_community_maildev
-    restart: unless-stopped
-    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
     ports:
-      - "1080:80"
+      - "1080:8025"
     labels:
       com.symfony.server.service-prefix: 'MAILER'
 

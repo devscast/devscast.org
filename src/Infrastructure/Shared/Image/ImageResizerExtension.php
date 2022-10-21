@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class ImageResizerTwigExtension extends AbstractExtension
+class ImageResizerExtension extends AbstractExtension
 {
     public function __construct(
         private readonly ImageResizerUrlGenerator $imageResizer,

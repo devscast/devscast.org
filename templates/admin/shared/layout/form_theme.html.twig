@@ -34,7 +34,7 @@
 
 {% block date_widget -%}
     {%- if widget != 'single_text' and not valid -%}
-        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control is-invalid')|trim}) -%}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control form-control-lg is-invalid')|trim}) -%}
         {% set valid = true %}
     {%- endif -%}
     {{- parent() -}}
@@ -42,7 +42,7 @@
 
 {% block time_widget -%}
     {%- if widget != 'single_text' and not valid -%}
-        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control is-invalid')|trim}) -%}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control l form-control-lg is-invalid')|trim}) -%}
         {% set valid = true %}
     {%- endif -%}
     {{- parent() -}}
@@ -50,7 +50,7 @@
 
 {% block dateinterval_widget -%}
     {%- if widget != 'single_text' and not valid -%}
-        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control is-invalid')|trim}) -%}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control l form-control-lg is-invalid')|trim}) -%}
         {% set valid = true %}
     {%- endif -%}
     {%- if widget == 'single_text' -%}
@@ -135,7 +135,7 @@
 
 {% block form_widget_simple -%}
     {% if type is not defined or type != 'hidden' %}
-        {%- set attr = attr|merge({class: (attr.class|default('') ~ (type|default('') == 'file' ? ' custom-file-input' : ' form-control '))|trim}) -%}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ (type|default('') == 'file' ? ' custom-file-input' : ' form-control l form-control-lg'))|trim}) -%}
     {% endif %}
     {%- if type is defined and (type == 'range' or type == 'color') %}
         {# Attribute "required" is not supported #}
@@ -162,7 +162,7 @@
 {%- endblock submit_widget %}
 
 {% block checkbox_widget -%}
-    {%- set parent_label_class = parent_label_class|default(label_attr.class|default('custom-switch')) -%}
+    {%- set parent_label_class = parent_label_class|default(label_attr.class|default('custom-switch custom-switch-lg')) -%}
     {%- if 'custom-checkbox' in parent_label_class -%}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
         <div class="mb-3 custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">

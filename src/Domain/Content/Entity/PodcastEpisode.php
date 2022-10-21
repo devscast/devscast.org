@@ -20,7 +20,7 @@ class PodcastEpisode extends Content
 
     private PodcastEpisodeType $episode_type;
 
-    private ?EmbeddedFile $audio = null;
+    private ?EmbeddedFile $audio;
 
     private ?File $audio_file = null;
 
@@ -28,6 +28,7 @@ class PodcastEpisode extends Content
     {
         parent::__construct();
         $this->episode_type = PodcastEpisodeType::full();
+        $this->audio = EmbeddedFile::default();
     }
 
     public function getSeason(): ?PodcastSeason

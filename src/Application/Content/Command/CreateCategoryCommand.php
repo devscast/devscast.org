@@ -11,7 +11,9 @@ namespace Application\Content\Command;
  */
 final class CreateCategoryCommand
 {
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $name = null,
+        public ?string $description = null,
+    ) {
     }
 }

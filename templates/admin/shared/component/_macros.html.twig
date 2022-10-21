@@ -38,3 +38,16 @@
         </div>
     </div>
 {% endmacro %}
+
+{% macro delete_icon_button(path, row, redirect) %}
+<button
+        class="text-soft btn btn-icon btn-trigger"
+        is="app-delete-button"
+        token="{{ csrf_token("delete_#{row.id}") }}"
+        endpoint="{{ path(path, {id: row.id}) }}"
+        redirect="{{ redirect ? path(redirect) : '' }}"
+        title="{{ 'global.delete' | trans([], 'messages') }}"
+>
+    {{ 'cross' | icon }}
+</button>
+{% endmacro %}

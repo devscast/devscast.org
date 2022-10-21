@@ -1,0 +1,16 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Tags' %}
+
+{% block header %}
+    {% embed '@admin/shared/component/_header.html.twig' %}
+        {% block header_title 'Tags' %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_content_tag_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un tag" title="Ajouter un tag">
+                    {{ 'plus' | icon }}
+                    <span>Ajouter un tag</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

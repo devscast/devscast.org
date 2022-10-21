@@ -1,18 +1,21 @@
-<div class="nk-block-head nk-block-head-sm">
-    <div class="nk-block-between g-3">
+<div class="nk-block-head nk-block-head-lg">
+    <div class="nk-block-between">
         <div class="nk-block-head-content">
-            <h3 class="nk-block-title page-title fw-bolder">
+            <div class="block-head-sub">
+                {% block header_back_to %}{% endblock %}
+            </div>
+            <h3 class="nk-block-title fw-bolder">
                 {% block header_title %}
                     {% if block("title") is defined %}
                         {{ block('title') | title }}
                     {% endif %}
                 {% endblock %}
             </h3>
-            <div class="nk-block-des text-soft">
+            <div class="nk-block-des fw-normal">
                 {% block header_description %}
                     {% if data is defined and data.getTotalItemCount is defined and data.getTotalItemCount > 0 %}
                         <span class="fw-bolder">{{ data.getTotalItemCount }}</span> éléments,
-                        page <span class="fw-bolder">{{ data.getCurrentPageNumber }}</span> sur {{ data.getPageCount }}
+                                                                                    page <span class="fw-bolder">{{ data.getCurrentPageNumber }}</span> sur {{ data.getPageCount }}
                     {% endif %}
                 {% endblock %}
             </div>

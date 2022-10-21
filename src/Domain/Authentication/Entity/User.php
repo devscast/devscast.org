@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\FileAbstraction\ReplacingFile;
 
 /**
  * @TODO find a way to remove symfony interfaces from the domain model user
@@ -95,6 +96,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
     {
         $this->gender = Gender::male();
         $this->roles = Roles::developer();
+        $this->avatar = EmbeddedFile::default();
+        $this->avatar_file = new ReplacingFile(sprintf("%s/public/images/default.png", dirname(__DIR__, 4)));
     }
 
     public static function createBasicWithRequiredFields(
