@@ -25,7 +25,8 @@ class ImageResizerResponseFactory implements ResponseFactoryInterface
      * Create the response.
      *
      * @param FilesystemOperator $cache the cache file system
-     * @param string $path the cached file path
+     * @param string             $path  the cached file path
+     *
      * @throws \Exception
      * @throws FilesystemException
      */

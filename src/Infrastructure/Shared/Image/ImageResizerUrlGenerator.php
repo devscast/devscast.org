@@ -31,9 +31,15 @@ class ImageResizerUrlGenerator
         }
 
         if (null === $width && null === $height) {
-            $url = $this->urlGenerator->generate('image_jpg', ['path' => trim($url, '/')]);
+            $url = $this->urlGenerator->generate('image_jpg', [
+                'path' => trim($url, '/'),
+            ]);
         } else {
-            $url = $this->urlGenerator->generate('image_resizer', ['path' => trim($url, '/'), 'width' => $width, 'height' => $height]);
+            $url = $this->urlGenerator->generate('image_resizer', [
+                'path' => trim($url, '/'),
+                'width' => $width,
+                'height' => $height,
+            ]);
         }
 
         $urlBuilder = UrlBuilderFactory::create('/', $this->sign_key);

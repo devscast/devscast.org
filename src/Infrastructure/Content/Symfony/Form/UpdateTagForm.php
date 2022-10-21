@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\UpdateTagCommand;
@@ -18,7 +20,7 @@ final class UpdateTagForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class, [
-            'label' => 'content.forms.labels.name'
+            'label' => 'content.forms.labels.name',
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreateCategoryCommand;
@@ -20,11 +22,11 @@ final class CreateCategoryForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'content.forms.labels.name'
+                'label' => 'content.forms.labels.name',
             ])
             ->add('description', AutoGrowTextareaType::class, [
                 'label' => 'content.forms.labels.description',
-                'required' => false
+                'required' => false,
             ])
         ;
     }

@@ -37,7 +37,9 @@ final class VideoController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(new CreateVideoCommand(), CreateVideoForm::class);
+        $owner = $this->getUser();
+
+        return $this->executeFormCommand(new CreateVideoCommand($owner), CreateVideoForm::class);
     }
 
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]

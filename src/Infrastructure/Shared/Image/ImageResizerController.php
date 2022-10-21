@@ -27,8 +27,8 @@ class ImageResizerController
 
     public function __construct(string $projectDir)
     {
-        $this->cache_path = sprintf("%s/var/images", $projectDir);
-        $this->public_path = sprintf("%s/public", $projectDir);
+        $this->cache_path = sprintf('%s/var/images', $projectDir);
+        $this->public_path = sprintf('%s/public', $projectDir);
         $this->resize_key = $_ENV['GLIDE_KEY'];
     }
 
@@ -50,9 +50,18 @@ class ImageResizerController
         ]);
         [$url] = explode('?', $request->getRequestUri());
         try {
-            SignatureFactory::create($this->resize_key)->validateRequest($url, ['s' => $request->get('s')]);
+            SignatureFactory::create($this->resize_key)->validateRequest($url, [
+                's' => $request->get('s'),
+            ]);
 
-            return $server->getImageResponse($path, ['w' => $width, 'h' => $height, 'fit' => 'crop']);
+            /** @var Response $response */
+            $response = $server->getImageResponse($path, [
+                'w' => $width,
+                'h' => $height,
+                'fit' => 'crop',
+            ]);
+
+            return $response;
         } catch (SignatureException) {
             throw new HttpException(403, 'Signature invalide');
         }
@@ -76,9 +85,16 @@ class ImageResizerController
         ]);
         [$url] = explode('?', $request->getRequestUri());
         try {
-            SignatureFactory::create($this->resize_key)->validateRequest($url, ['s' => $request->get('s')]);
+            SignatureFactory::create($this->resize_key)->validateRequest($url, [
+                's' => $request->get('s'),
+            ]);
 
-            return $server->getImageResponse($path, ['fm' => 'jpg']);
+            /** @var Response $response */
+            $response = $server->getImageResponse($path, [
+                'fm' => 'jpg',
+            ]);
+
+            return $response;
         } catch (SignatureException) {
             throw new HttpException(403, 'Signature invalide');
         }

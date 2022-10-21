@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Domain\Content\Entity\PostList;
+
 /**
  * class DeletePostListCommand.
  *
@@ -11,7 +13,8 @@ namespace Application\Content\Command;
  */
 final class DeletePostListCommand
 {
-    public function __construct()
-    {
+    public function __construct(
+        public readonly PostList $list
+    ) {
     }
 }

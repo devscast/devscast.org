@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Symfony\Controller;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Domain\Authentication\Entity\User;
+use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -15,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -58,7 +56,7 @@ abstract class AbstractCrudController extends AbstractController
         return sprintf('%s%s_%s_%s', self::ROUTE_PREFIX, static::DOMAIN, static::ENTITY, $name);
     }
 
-    public function queryIndex(ServiceEntityRepositoryInterface $repository): Response
+    public function queryIndex(AbstractRepository $repository): Response
     {
         return $this->render(
             view: $this->getViewPath('index'),
@@ -124,7 +122,7 @@ abstract class AbstractCrudController extends AbstractController
             view: $this->getViewPath($view),
             parameters: [
                 'form' => $form,
-                'data' => $row
+                'data' => $row,
             ],
             response: $response ?? null
         );
@@ -144,7 +142,7 @@ abstract class AbstractCrudController extends AbstractController
             } catch (\Throwable $e) {
                 if ($this->request->isXmlHttpRequest()) {
                     return new JsonResponse([
-                        'message' => $this->getSafeMessageException($e)
+                        'message' => $this->getSafeMessageException($e),
                     ], Response::HTTP_BAD_REQUEST);
                 }
 

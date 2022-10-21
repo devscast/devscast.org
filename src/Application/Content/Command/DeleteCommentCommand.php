@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Domain\Content\Entity\Comment;
+
 /**
  * class DeleteCommentCommand.
  *
@@ -11,7 +13,8 @@ namespace Application\Content\Command;
  */
 final class DeleteCommentCommand
 {
-    public function __construct()
-    {
+    public function __construct(
+        public readonly Comment $comment
+    ) {
     }
 }

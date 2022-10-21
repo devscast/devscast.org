@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Application\Content\Handler;
 
-use Application\Content\Command\CreateRatingCommand;
+use Application\Content\Command\DeleteVideoCommand;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
- * class CreateRatingHandler.
+ * class DeleteVideoHandler.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsMessageHandler]
-final class CreateRatingHandler
+final class DeleteVideoHandler
 {
-    public function __invoke(CreateRatingCommand $command): void
+    public function __invoke(DeleteVideoCommand $command): void
     {
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\UpdateTrainingChapterCommand;

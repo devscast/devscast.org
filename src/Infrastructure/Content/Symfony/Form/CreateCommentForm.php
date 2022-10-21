@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreateCommentCommand;
@@ -13,7 +15,7 @@ final class CreateCommentForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('content', AutoGrowTextareaType::class, [
-            'label' => 'content.forms.labels.content'
+            'label' => 'content.forms.labels.content',
         ]);
     }
 

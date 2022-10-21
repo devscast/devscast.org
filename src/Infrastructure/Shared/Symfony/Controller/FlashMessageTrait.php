@@ -36,7 +36,7 @@ trait FlashMessageTrait
                 parameters: $e->getMessageData(),
                 domain: $e->getMessageDomain()
             ),
-            default =>  $this->translator->trans(
+            default => $this->translator->trans(
                 id: 'global.flashes.something_went_wrong',
                 parameters: [],
                 domain: 'messages'

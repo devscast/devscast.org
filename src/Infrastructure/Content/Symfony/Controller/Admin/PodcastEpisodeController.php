@@ -37,7 +37,9 @@ final class PodcastEpisodeController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(new CreatePodcastEpisodeCommand(), CreatePodcastEpisodeForm::class);
+        $owner = $this->getUser();
+
+        return $this->executeFormCommand(new CreatePodcastEpisodeCommand($owner), CreatePodcastEpisodeForm::class);
     }
 
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]

@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Vich\UploaderBundle\FileAbstraction\ReplacingFile;
 
 /**
@@ -97,7 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, GoogleT
         $this->gender = Gender::male();
         $this->roles = Roles::developer();
         $this->avatar = EmbeddedFile::default();
-        $this->avatar_file = new ReplacingFile(sprintf("%s/public/images/default.png", dirname(__DIR__, 4)));
+        $this->avatar_file = new ReplacingFile(sprintf('%s/public/images/default.png', dirname(__DIR__, 4)));
     }
 
     public static function createBasicWithRequiredFields(

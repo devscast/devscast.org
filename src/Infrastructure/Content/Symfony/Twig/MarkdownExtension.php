@@ -19,9 +19,16 @@ class MarkdownExtension extends AbstractExtension
     {
         return [
             new TwigFilter('excerpt', [$this, 'excerpt']),
-            new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
-            new TwigFilter('markdown_excerpt', [$this, 'markdownExcerpt'], ['is_safe' => ['html']]),
-            new TwigFilter('markdown_untrusted', [$this, 'markdownUntrusted'], ['is_safe' => ['html']]),
+            new TwigFilter('markdown', [$this, 'markdown'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFilter('markdown_excerpt', [$this, 'markdownExcerpt'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFilter('markdown_untrusted', [$this, 'markdownUntrusted'], [
+                'is_safe' => ['html',
+                ],
+            ]),
         ];
     }
 
@@ -41,7 +48,7 @@ class MarkdownExtension extends AbstractExtension
             return $content;
         }
 
-        return sprintf("%s...", substr($content, 0, $lastSpace));
+        return sprintf('%s...', substr($content, 0, $lastSpace));
     }
 
     /**
@@ -76,7 +83,7 @@ class MarkdownExtension extends AbstractExtension
             $title = $matches[3];
             $timecode = (int) ($times[2] ?? 0) * 60 * 60 + (int) $times[1] * 60 + (int) $times[0];
 
-            return "<a href=\"#t{$timecode}\">{$matches[1]}</a> $title";
+            return "<a href=\"#t{$timecode}\">{$matches[1]}</a> ${title}";
         }, $content) ?: $content;
     }
 
@@ -93,6 +100,7 @@ class MarkdownExtension extends AbstractExtension
             ->text($content), '<p><pre><code><ul><ol><li><h4><h3><h5><a><strong><br><em>');
 
         $content = str_replace('<a href="http', '<a target="_blank" rel="noreferrer nofollow" href="http', $content);
+
         return str_replace('<a href="//', '<a target="_blank" rel="noreferrer nofollow" href="http', $content);
     }
 }

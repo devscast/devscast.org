@@ -6,6 +6,7 @@ namespace Application\Content\Command;
 
 use Application\Shared\Mapper;
 use Domain\Content\Entity\Comment;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class UpdateCommentCommand.
@@ -16,7 +17,7 @@ final class UpdateCommentCommand
 {
     public function __construct(
         public readonly Comment $comment,
-        public ?string $content = null,
+        #[Assert\NotBlank] public ?string $content = null,
     ) {
         Mapper::hydrate($this->comment, $this);
     }

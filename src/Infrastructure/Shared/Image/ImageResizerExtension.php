@@ -27,16 +27,18 @@ class ImageResizerExtension extends AbstractExtension
             new TwigFunction('uploads_path', [$this, 'uploadsPath']),
             new TwigFunction('image_url', [$this, 'imageUrl']),
             new TwigFunction('image_url_raw', [$this, 'imageUrlRaw']),
-            new TwigFunction('image', [$this, 'imageTag'], ['is_safe' => ['html']]),
+            new TwigFunction('image', [$this, 'imageTag'], [
+                'is_safe' => ['html'],
+            ]),
         ];
     }
 
     public function uploadsPath(string $path): string
     {
-        return sprintf("/uploads/%s", trim($path, '/'));
+        return sprintf('/uploads/%s', trim($path, '/'));
     }
 
-    public function imageUrl(?object $entity, ?int $width = null, ?int $height = null): ?string
+    public function imageUrl(object $entity, ?int $width = null, ?int $height = null): ?string
     {
         $path = $this->helper->asset($entity);
 
@@ -51,12 +53,12 @@ class ImageResizerExtension extends AbstractExtension
         return $this->imageResizer->resize($this->helper->asset($entity), $width, $height);
     }
 
-    public function imageUrlRaw(?object $entity): string
+    public function imageUrlRaw(object $entity): string
     {
         return $this->helper->asset($entity) ?: '';
     }
 
-    public function imageTag(?object $entity, ?int $width = null, ?int $height = null, ?string $alt = null): ?string
+    public function imageTag(object $entity, ?int $width = null, ?int $height = null, ?string $alt = null): ?string
     {
         $url = $this->imageUrl($entity, $width, $height);
         if (null !== $url) {

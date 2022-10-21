@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Application\Shared\Mapper;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Domain\Content\Entity\PostSeries;
+use Domain\Content\Entity\Technology;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * class UpdatePostSeriesCommand.
  *
@@ -11,7 +19,15 @@ namespace Application\Content\Command;
  */
 final class UpdatePostSeriesCommand
 {
-    public function __construct()
-    {
+    public function __construct(
+        public readonly PostSeries $series,
+        #[Assert\NotBlank] public ?string $name = null,
+        public ?string $slug = null,
+        #[Assert\Length(min: 10)] public ?string $description = null,
+        public ?Technology $technology = null,
+        public Collection $tags = new ArrayCollection(),
+        public ?File $thumbnail_file = null,
+    ) {
+        Mapper::hydrate($this->series, $this);
     }
 }

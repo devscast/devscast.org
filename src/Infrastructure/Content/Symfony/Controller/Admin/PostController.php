@@ -37,7 +37,9 @@ final class PostController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(new CreatePostCommand(), CreatePostForm::class);
+        $owner = $this->getUser();
+
+        return $this->executeFormCommand(new CreatePostCommand($owner), CreatePostForm::class);
     }
 
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]

@@ -18,8 +18,9 @@ trait DeleteCsrfTrait
         $token = (string) $request->request->get('_token');
 
         if ($this->request->isXmlHttpRequest()) {
-            $content = json_decode($this->request->getContent());
-            $token = $content->_token;
+            /** @var array $content */
+            $content = json_decode($this->request->getContent(), associative: true);
+            $token = (string) $content['_token'];
         }
 
         if (method_exists($entity, 'getId')) {
