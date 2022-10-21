@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller\Admin;
 
+use Application\Content\Command\CreateSubjectProposalCommand;
+use Application\Content\Command\DeleteSubjectProposalCommand;
+use Application\Content\Command\UpdateSubjectProposalCommand;
+use Domain\Authentication\Entity\User;
+use Domain\Content\Entity\SubjectProposal;
 use Infrastructure\Content\Doctrine\Repository\SubjectProposalRepository;
+use Infrastructure\Content\Symfony\Form\CreateSubjectProposalForm;
+use Infrastructure\Content\Symfony\Form\UpdateSubjectProposalForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -16,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/subject/proposals', 'administration_content_subject_proposal_')]
+#[Route('/admin/content/subject_proposals', 'administration_content_subject_proposal_')]
 final class SubjectProposalController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -25,17 +32,30 @@ final class SubjectProposalController extends AbstractCrudController
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(SubjectProposalRepository $repository): Response
     {
-        return $this->render(
-            view: $this->getViewPath('index'),
-            parameters: [
-                'data' => $this->paginator->paginate(
-                    target: $repository->findBy([], orderBy: [
-                        'created_at' => 'DESC',
-                    ]),
-                    page: $this->request->query->getInt('page', 1),
-                    limit: 50
-                ),
-            ]
+        return $this->queryIndex($repository);
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        $owner = $this->getUser();
+        return $this->executeFormCommand(new CreateSubjectProposalCommand($owner), CreateSubjectProposalForm::class);
+    }
+
+    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(SubjectProposal $row): Response
+    {
+        return $this->executeFormCommand(
+            command: new UpdateSubjectProposalCommand($row),
+            formClass: UpdateSubjectProposalForm::class,
+            row: $row,
+            view: 'edit'
         );
+    }
+
+    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
+    public function delete(SubjectProposal $row): Response
+    {
+        return $this->executeDeleteCommand(new DeleteSubjectProposalCommand($row), $row);
     }
 }

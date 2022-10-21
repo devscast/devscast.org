@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller\Admin;
 
+use Application\Content\Command\CreatePostCommand;
+use Application\Content\Command\DeletePostCommand;
+use Application\Content\Command\UpdatePostCommand;
+use Domain\Content\Entity\Post;
 use Infrastructure\Content\Doctrine\Repository\PostRepository;
+use Infrastructure\Content\Symfony\Form\CreatePostForm;
+use Infrastructure\Content\Symfony\Form\UpdatePostForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class PodcastController.
+ * class PostController.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
@@ -25,17 +31,29 @@ final class PostController extends AbstractCrudController
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(PostRepository $repository): Response
     {
-        return $this->render(
-            view: $this->getViewPath('index'),
-            parameters: [
-                'data' => $this->paginator->paginate(
-                    target: $repository->findBy([], orderBy: [
-                        'created_at' => 'DESC',
-                    ]),
-                    page: $this->request->query->getInt('page', 1),
-                    limit: 50
-                ),
-            ]
+        return $this->queryIndex($repository);
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        return $this->executeFormCommand(new CreatePostCommand(), CreatePostForm::class);
+    }
+
+    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Post $row): Response
+    {
+        return $this->executeFormCommand(
+            command: new UpdatePostCommand($row),
+            formClass: UpdatePostForm::class,
+            row: $row,
+            view: 'edit'
         );
+    }
+
+    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
+    public function delete(Post $row): Response
+    {
+        return $this->executeDeleteCommand(new DeletePostCommand($row), $row);
     }
 }

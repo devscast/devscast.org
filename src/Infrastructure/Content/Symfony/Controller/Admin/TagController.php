@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller\Admin;
 
+use Application\Content\Command\CreateTagCommand;
+use Application\Content\Command\DeleteTagCommand;
+use Application\Content\Command\UpdateTagCommand;
+use Domain\Content\Entity\Tag;
 use Infrastructure\Content\Doctrine\Repository\TagRepository;
+use Infrastructure\Content\Symfony\Form\CreateTagForm;
+use Infrastructure\Content\Symfony\Form\UpdateTagForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -25,17 +31,29 @@ final class TagController extends AbstractCrudController
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(TagRepository $repository): Response
     {
-        return $this->render(
-            view: $this->getViewPath('index'),
-            parameters: [
-                'data' => $this->paginator->paginate(
-                    target: $repository->findBy([], orderBy: [
-                        'created_at' => 'DESC',
-                    ]),
-                    page: $this->request->query->getInt('page', 1),
-                    limit: 50
-                ),
-            ]
+        return $this->queryIndex($repository);
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        return $this->executeFormCommand(new CreateTagCommand(), CreateTagForm::class);
+    }
+
+    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Tag $row): Response
+    {
+        return $this->executeFormCommand(
+            command: new UpdateTagCommand($row),
+            formClass: UpdateTagForm::class,
+            row: $row,
+            view: 'edit'
         );
+    }
+
+    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
+    public function delete(Tag $row): Response
+    {
+        return $this->executeDeleteCommand(new DeleteTagCommand($row), $row);
     }
 }

@@ -1,20 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Infrastructure\Content\Symfony\Form;
 
-use Domain\Content\Entity\PodcastSeason;
+use Application\Content\Command\UpdateVideoCommand;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * class PodcastSeasonForm.
- *
- * @author bernard-ng <bernard@devscast.tech>
- */
-final class PodcastSeasonForm extends AbstractType
+final class UpdateVideoForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,7 +16,7 @@ final class PodcastSeasonForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PodcastSeason::class,
+            'data_class' => UpdateVideoCommand::class,
             'translation_domain' => 'content',
         ]);
     }
