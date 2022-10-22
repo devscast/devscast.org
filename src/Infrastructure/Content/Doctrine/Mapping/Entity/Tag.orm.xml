@@ -9,6 +9,9 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\TagRepository"
             table="content_tag"
     >
+        <unique-constraints>
+            <unique-constraint columns="name"/>
+        </unique-constraints>
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

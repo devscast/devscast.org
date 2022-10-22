@@ -33,11 +33,9 @@ final class AttachmentRepository extends AbstractRepository implements Attachmen
             ->getQuery()
             ->getResult();
 
-        /**
-         * @var Attachment[] $result
-         */
+        /** @var Attachment[] $result */
         $result = array_map(fn (array $row) => [
-            'path' => sprintf("%s/%s", $row['year'], str_pad((string) $row['month'], 2, '0', STR_PAD_LEFT)),
+            'path' => sprintf('%s/%s', $row['year'], str_pad((string) $row['month'], 2, '0', STR_PAD_LEFT)),
             'count' => $row['count'],
         ], $rows);
 
@@ -77,7 +75,7 @@ final class AttachmentRepository extends AbstractRepository implements Attachmen
             ->where('a.thumbnail.name LIKE :search')
             ->orderBy('a.created_at', 'DESC')
             ->setMaxResults(25)
-            ->setParameter('search', "%$query%")
+            ->setParameter('search', "%${query}%")
             ->getQuery()
             ->getResult();
     }

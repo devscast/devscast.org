@@ -22,4 +22,11 @@ final class Mapper
             }
         }
     }
+
+    public static function getHydratedObject(object $source, object $destination, array $ignore = []): object
+    {
+        self::hydrate($source, $destination, $ignore);
+
+        return $destination;
+    }
 }

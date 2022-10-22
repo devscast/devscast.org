@@ -16,7 +16,7 @@ class AttachmentExistValidator extends ConstraintValidator
 {
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (!$value instanceof NonExistingAttachment) {
+        if (! $value instanceof NonExistingAttachment) {
             return;
         }
 

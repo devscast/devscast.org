@@ -6,11 +6,46 @@
         {% block header_title 'Tags' %}
         {% block header_action_list %}
             <li>
-                <a href="{{ path('administration_content_tag_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un tag" title="Ajouter un tag">
+                <a href="{{ path('administration_content_tag_new') }}"
+                   class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un tag"
+                   title="Ajouter un utilisateur">
                     {{ 'plus' | icon }}
-                    <span>Ajouter un tag</span>
+                    <span>Ajouter</span>
                 </a>
             </li>
         {% endblock %}
     {% endembed %}
+{% endblock %}
+
+{% block content %}
+    <div class="row g-gs mb-4">
+        <div class="col-12">
+            {% embed "@admin/shared/component/card/_list.html.twig" with {_action: 'Ajouter un tag',_path: path('administration_content_tag_new')} %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block list_card_table_head %}
+                    <th>#</th>
+                    <th>Tags</th>
+                    <th>Contenu</th>
+                    <th>&nbsp;</th>
+                {% endblock %}
+                {% block list_card_table_body %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>0</td>
+                            <td>
+                                <div class="tb-odr-btns d-none d-md-inline">
+                                    <a href="{{ path('administration_content_tag_edit', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                        {{ 'global.edit' | trans([], 'messages') }}
+                                    </a>
+                                </div>
+                                {{ _.delete_icon_button('administration_content_tag_delete', row) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
 {% endblock %}

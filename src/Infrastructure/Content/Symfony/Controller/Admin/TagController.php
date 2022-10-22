@@ -46,7 +46,6 @@ final class TagController extends AbstractCrudController
         return $this->executeFormCommand(
             command: new UpdateTagCommand($row),
             formClass: UpdateTagForm::class,
-            row: $row,
             view: 'edit'
         );
     }

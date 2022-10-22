@@ -38,6 +38,7 @@ content.validations.password_must_match: Les deux mots de passe ne sont pas iden
 # safe massages exceptions
 content.exceptions.subject_proposal_limit_reached: Vous ne pouvez proposer que 2 sujets pour mois et il faudrait être inscrit depuis plus d'un mois.
 content.exceptions.cannot_mutate_accepted_subject_proposal: Vous ne pouvez pas supprimer un sujet qui a déjà été accepté.
+content.exceptions.duplicate_tag: Désolé, ce tag a déjà été créé !
 
 # Emails subjects messages
 content.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"

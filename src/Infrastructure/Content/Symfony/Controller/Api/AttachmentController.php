@@ -38,7 +38,7 @@ final class AttachmentController extends AbstractController
     public function files(AttachmentRepository $repository, Request $request): JsonResponse
     {
         ['path' => $path, 'q' => $q] = $this->getFilterParams($request);
-        if (!empty($q)) {
+        if (! empty($q)) {
             $attachments = $repository->search($q);
         } elseif (null === $path) {
             $attachments = $repository->findLatest();
@@ -57,7 +57,7 @@ final class AttachmentController extends AbstractController
         ValidatorInterface $validator
     ): JsonResponse {
         [$valid, $response] = $this->validateRequest($request, $validator);
-        if (!$valid) {
+        if (! $valid) {
             return $response;
         }
 
@@ -76,6 +76,7 @@ final class AttachmentController extends AbstractController
     public function delete(Attachment $attachment, AttachmentRepositoryInterface $repository): JsonResponse
     {
         $repository->delete($attachment);
+
         return $this->json([]);
     }
 
@@ -107,6 +108,8 @@ final class AttachmentController extends AbstractController
             return [true, null];
         }
 
-        return [false, new JsonResponse(['error' => $errors->get(0)->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY)];
+        return [false, new JsonResponse([
+            'error' => $errors->get(0)->getMessage(),
+        ], Response::HTTP_UNPROCESSABLE_ENTITY)];
     }
 }

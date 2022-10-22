@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Validator;
 
 use Domain\Content\Entity\Attachment;
-use Symfony\Component\Validator\Constraint;
 
 /**
  * class NonExistingAttachment.

@@ -23,7 +23,7 @@ class AttachmentNormalizer extends AbstractNormalizer
     }
 
     /**
-     * @var Attachment $object
+     * @var Attachment
      */
     public function normalize(mixed $object, string $format = null, array $context = []): array
     {
