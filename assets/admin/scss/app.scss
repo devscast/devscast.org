@@ -1,0 +1,21 @@
+@import 'dashlite.min.css';
+@import './skins/theme-green.css';
+@import './attachment.scss';
+@import 'filemanager-element/FileManager.css';
+
+.editor-toolbar.fullscreen {
+  z-index: 100000 !important;
+}
+
+.editor-preview-side {
+  z-index: 100000 !important;
+}
+
+.CodeMirror-fullscreen {
+  z-index: 100000 !important;
+}
+
+code {
+  padding: 16px !important;
+  border-radius: 16px;
+}

@@ -26,6 +26,9 @@
         <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
         <script defer data-turbo-track="reload" src="{{ asset('admin/assets/scripts.js') }}"></script>
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
+
         {{ encore_entry_script_tags('admin') }}
     </head>
     <body class="nk-body bg-theme has-sidebar ui-shady {{ app.user.isDarkTheme ? 'dark-mode' : 'light-mode' }}" {{ stimulus_controller('turbo') }}>

@@ -63,7 +63,7 @@
             <div class="nk-block">
                 <div class="nk-block-head">
                     <h5 class="title">Informations personnelles</h5>
-                    <p>{{ data.biography | markdown }}</p>
+                    <div>{{ data.biography }}</div>
                 </div>
                 <div class="profile-ud-list">
                     {{ _.user_data_item('Nom complet', data.name) }}
