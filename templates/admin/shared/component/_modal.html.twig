@@ -1,0 +1,17 @@
+<div {{ stimulus_target('modal-form', 'modal') }} class="modal fade" id="form-modal" style="display: none;" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ _action }}</h5>
+                <a {{ stimulus_action('modal-form', 'close')}} href="#" class="close" aria-label="Close">{{ 'cross' | icon }}</a>
+            </div>
+            <turbo-frame class="modal-body" id="{{ _id ?? 'form-modal-frame' }}" src="{{ _path }}?modal=true" loading="lazy">
+                <div class="text-center">
+                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </turbo-frame>
+        </div>
+    </div>
+</div>

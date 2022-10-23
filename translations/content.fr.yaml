@@ -2,9 +2,9 @@
 content.titles.reset_password_confirm: Mise à jour du mot de passe
 
 # forms messages
-content.forms.labels.identifier: Identifiant
-
-content.forms.labels.placeholders.identifier: "Email ou Nom d'utilisateur..."
+content.forms.labels.name: Nom
+content.forms.labels.slug: Slug (permalien)
+content.forms.labels.description: Description
 
 # value objects
 content.value_object.podcast_episode_type.full: épisode complet

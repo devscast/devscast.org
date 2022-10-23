@@ -21,6 +21,9 @@ final class CreateTagForm extends AbstractType
     {
         $builder->add('name', TextType::class, [
             'label' => 'content.forms.labels.name',
+            'attr' => [
+                'autofocus' => true,
+            ]
         ]);
     }
 

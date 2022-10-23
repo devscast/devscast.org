@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -95,7 +96,12 @@ abstract class AbstractCrudController extends AbstractController
 
     public function executeFormCommand(object $command, string $formClass, ?object $row = null, string $view = 'new'): Response
     {
-        $form = $this->createForm($formClass, $command)->handleRequest($this->request);
+        $form = $this->createForm($formClass, $command, [
+            'action' => $this->generateUrl(
+                route: strval($this->request->attributes->get('_route')),
+                parameters: $this->request->attributes->get('_route_params'),
+            )
+        ])->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
@@ -123,6 +129,7 @@ abstract class AbstractCrudController extends AbstractController
             parameters: [
                 'form' => $form,
                 'data' => $row,
+                '_turbo_frame_target' => $this->request->headers->get('Turbo-Frame', '_top')
             ],
             response: $response ?? null
         );

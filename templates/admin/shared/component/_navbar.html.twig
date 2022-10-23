@@ -18,7 +18,7 @@
                     {% block navbar_tool_list %}{% endblock %}
                     {% if app.user %}
                         <li class="dropdown user-dropdown">
-                            <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle mr-n1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="user-toggle">
                                     <div class="user-avatar sm">
                                         {% if app.user.avatar.name %}
@@ -55,6 +55,12 @@
                                             <a href="#" title="Paramètres">
                                                 {{ 'setting' | icon }}
                                                 <span>Paramètres</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dark-switch" href="#">
+                                                {{ 'moon' | icon }}
+                                                <span>Mode Sombre</span>
                                             </a>
                                         </li>
                                         <li>

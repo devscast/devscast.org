@@ -1,6 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const path = require("path");
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -31,11 +30,6 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-    .enablePreactPreset({ preactCompat: true })
-    .addAliases({
-        'react': 'preact/compat',
-        'react-dom': 'preact/compat'
-    })
 
     .enableSassLoader()
     .enablePostCssLoader((config) => {
@@ -57,5 +51,9 @@ Encore.addPlugin(new WorkboxPlugin.InjectManifest({
     swDest: '../sw.js', // public/sw.js
     mode: Encore.isProduction ? 'production' : 'development'
 }), -10);
+
+Encore.addExternals({
+    'bootstrap': 'bootstrap'
+})
 
 module.exports = Encore.getWebpackConfig();

@@ -6,12 +6,10 @@
         {% block header_title 'Tags' %}
         {% block header_action_list %}
             <li>
-                <a href="{{ path('administration_content_tag_new') }}"
-                   class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un tag"
-                   title="Ajouter un utilisateur">
+                <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
-                </a>
+                </button>
             </li>
         {% endblock %}
     {% endembed %}
@@ -20,6 +18,7 @@
 {% block content %}
     <div class="row g-gs mb-4">
         <div class="col-12">
+            {% include '@admin/shared/component/_modal.html.twig' with {_action: 'Ajouter un tag', _path: path('administration_content_tag_new')} %}
             {% embed "@admin/shared/component/card/_list.html.twig" with {_action: 'Ajouter un tag',_path: path('administration_content_tag_new')} %}
                 {% import '@admin/shared/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
