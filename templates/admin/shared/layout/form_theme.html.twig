@@ -338,15 +338,23 @@
 
 {# Errors #}
 
+{#{% block form_errors -%}#}
+{#    {%- if errors|length > 0 -%}#}
+{#        <span class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">#}
+{#            {%- for error in errors -%}#}
+{#                <span class="d-block">#}
+{#                    <span class="form-error-message">{{ error.message }}</span>#}
+{#                </span>#}
+{#            {%- endfor -%}#}
+{#        </span>#}
+{#    {%- endif %}#}
+{#{%- endblock form_errors %}#}
+
 {% block form_errors -%}
     {%- if errors|length > 0 -%}
-        <span class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
-            {%- for error in errors -%}
-                <span class="d-block">
-                    <span class="form-error-message">{{ error.message }}</span>
-                </span>
-            {%- endfor -%}
-        </span>
+        {%- for error in errors -%}
+            <app-toast type="error" message="{{ error.message }}"></app-toast>
+        {%- endfor -%}
     {%- endif %}
 {%- endblock form_errors %}
 

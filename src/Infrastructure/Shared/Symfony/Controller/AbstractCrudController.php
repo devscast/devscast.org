@@ -96,6 +96,7 @@ abstract class AbstractCrudController extends AbstractController
 
     public function executeFormCommand(object $command, string $formClass, ?object $row = null, string $view = 'new'): Response
     {
+        $turbo = $this->request->headers->get('Turbo-Frame');
         $form = $this->createForm($formClass, $command, [
             'action' => $this->generateUrl(
                 route: strval($this->request->attributes->get('_route')),
@@ -119,8 +120,12 @@ abstract class AbstractCrudController extends AbstractController
 
                 return $this->redirectSeeOther($this->getRouteName('index'));
             } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-                $response = $this->createUnprocessableEntityResponse();
+                if ($turbo) {
+                    $form->addError($this->addSafeMessageExceptionError($e));
+                } else {
+                    $this->addSafeMessageExceptionFlash($e);
+                    $response = $this->createUnprocessableEntityResponse();
+                }
             }
         }
 
@@ -129,7 +134,7 @@ abstract class AbstractCrudController extends AbstractController
             parameters: [
                 'form' => $form,
                 'data' => $row,
-                '_turbo_frame_target' => $this->request->headers->get('Turbo-Frame', '_top')
+                '_turbo_frame_target' => $turbo
             ],
             response: $response ?? null
         );

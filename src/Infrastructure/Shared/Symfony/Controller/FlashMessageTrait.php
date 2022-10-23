@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Shared\Symfony\Controller;
 
 use Domain\Shared\Exception\SafeMessageException;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -19,6 +20,11 @@ trait FlashMessageTrait
         $message = $this->getSafeMessageException($e);
         $this->logger->error($e->getMessage(), $e->getTrace());
         $this->addFlash('error', $message);
+    }
+
+    protected function addSafeMessageExceptionError(\Throwable $e): FormError
+    {
+        return new FormError($this->getSafeMessageException($e));
     }
 
     protected function getSafeMessageException(\Throwable $e): string
