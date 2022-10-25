@@ -16,10 +16,11 @@
 {% endblock %}
 
 {% block content %}
+    {% include '@admin/shared/component/_modal.html.twig' with {_action: 'Ajouter un tag', _path: path('administration_content_tag_new')} %}
+
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% include '@admin/shared/component/_modal.html.twig' with {_action: 'Ajouter un tag', _path: path('administration_content_tag_new')} %}
-            {% embed "@admin/shared/component/card/_list.html.twig" with {_action: 'Ajouter un tag',_path: path('administration_content_tag_new')} %}
+            {% embed "@admin/shared/component/card/_list.html.twig" %}
                 {% import '@admin/shared/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
                     <th>#</th>

@@ -38,6 +38,6 @@ export default class ModalFormController extends Controller {
 
     async close(event)
     {
-        this.modal.hide()
+        this.modal.dispose()
     }
 }
