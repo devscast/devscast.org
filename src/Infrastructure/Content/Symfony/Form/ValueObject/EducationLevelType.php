@@ -22,8 +22,10 @@ final class EducationLevelType extends AbstractType implements DataMapperInterfa
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('education_level', ChoiceType::class, [
+            'label' => 'content.forms.labels.education_level',
             'multiple' => false,
             'choices' => EducationLevel::CHOICES,
+            'autocomplete' => true,
         ])->setDataMapper($this);
     }
 

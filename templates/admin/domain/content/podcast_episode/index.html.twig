@@ -1,0 +1,19 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Podcasts' %}
+
+{% block header %}
+    {% embed '@admin/shared/component/_header.html.twig' %}
+        {% block header_title 'Podcasts' %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_content_podcast_episode_new') }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'plus' | icon }}
+                    <span>Ajouter</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}

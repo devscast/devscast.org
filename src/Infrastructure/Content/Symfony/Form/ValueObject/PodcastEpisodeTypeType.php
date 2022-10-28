@@ -22,8 +22,10 @@ final class PodcastEpisodeTypeType extends AbstractType implements DataMapperInt
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('episode_type', ChoiceType::class, [
+            'label' => 'content.forms.labels.episode_type',
             'multiple' => false,
             'choices' => PodcastEpisodeType::CHOICES,
+            'autocomplete' => true,
         ])->setDataMapper($this);
     }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Domain\Content\ValueObject\ContentType;
 use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
@@ -13,4 +14,5 @@ use Domain\Shared\Repository\DataRepositoryInterface;
  */
 interface ContentRepositoryInterface extends DataRepositoryInterface
 {
+    public function overrideContentTopPromoted(ContentType $type): bool;
 }

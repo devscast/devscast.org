@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\PodcastEpisodeType;
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\HttpFoundation\File\File;
@@ -29,6 +30,7 @@ class PodcastEpisode extends Content
         parent::__construct();
         $this->episode_type = PodcastEpisodeType::full();
         $this->audio = EmbeddedFile::default();
+        $this->content_type = ContentType::podcast();
     }
 
     public function getSeason(): ?PodcastSeason

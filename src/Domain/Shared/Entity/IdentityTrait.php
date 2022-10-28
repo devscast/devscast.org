@@ -11,7 +11,7 @@ namespace Domain\Shared\Entity;
  */
 trait IdentityTrait
 {
-    private ?int $id = null;
+    protected ?int $id = null;
 
     public function getId(): ?int
     {

@@ -79,7 +79,7 @@ class EmbeddedFile
      */
     public function getWidth(): ?int
     {
-        return $this->dimensions[0] ?? null;
+        return intval($this->dimensions[0]) ?? null;
     }
 
     /**
@@ -90,7 +90,7 @@ class EmbeddedFile
      */
     public function getHeight(): ?int
     {
-        return $this->dimensions[1] ?? null;
+        return intval($this->dimensions[1]) ?? null;
     }
 
     /**

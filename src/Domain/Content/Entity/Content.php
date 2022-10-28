@@ -30,47 +30,47 @@ class Content
     use ThumbnailTrait;
     use UuidTrait;
 
-    private ?string $name = null;
+    protected ?string $name = null;
 
-    private ?string $slug = null;
+    protected ?string $slug = null;
 
-    private ?string $content = null;
+    protected ?string $content = null;
 
-    private ContentStatus $status;
+    protected ContentStatus $status;
 
-    private ContentType $content_type;
+    protected ContentType $content_type;
 
-    private EducationLevel $education_level;
+    protected EducationLevel $education_level;
 
-    private int $up_vote_count = 0;
+    protected int $up_vote_count = 0;
 
-    private int $down_vote_count = 0;
+    protected int $down_vote_count = 0;
 
-    private float $ratio_vote_count = 0.0;
+    protected float $ratio_vote_count = 0.0;
 
     /**
      * @var Collection<Tag>
      */
-    private Collection $tags;
+    protected Collection $tags;
 
     /**
      * @var Collection<Technology>
      */
-    private Collection $technologies;
+    protected Collection $technologies;
 
-    private ?int $duration = null;
+    protected ?int $duration = null;
 
-    private bool $is_commentable = true;
+    protected bool $is_commentable = true;
 
-    private bool $is_featured = false;
+    protected bool $is_featured = false;
 
-    private bool $is_top_promoted = false;
+    protected bool $is_top_promoted = false;
 
-    private bool $is_online = false;
+    protected bool $is_online = false;
 
-    private bool $is_premium = false;
+    protected bool $is_premium = false;
 
-    private ?\DateTimeImmutable $scheduled_at = null;
+    protected ?\DateTimeImmutable $scheduled_at = null;
 
     public function __construct()
     {
@@ -134,9 +134,14 @@ class Content
         return $this;
     }
 
-    public function getTag(): Collection
+    public function getTags(): Collection
     {
         return $this->tags;
+    }
+
+    public function setTags(Collection $tags): self
+    {
+        $this->tags = $tags;
     }
 
     public function addTag(Tag $tag): self
@@ -286,7 +291,7 @@ class Content
         return $this->scheduled_at;
     }
 
-    public function setScheduledAt(\DateTimeImmutable|string|null $scheduled_at): self
+    public function setScheduledAt(\DateTimeInterface|string|null $scheduled_at): self
     {
         $this->scheduled_at = $this->createDateTime($scheduled_at);
 

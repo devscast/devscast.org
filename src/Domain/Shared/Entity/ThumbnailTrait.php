@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait ThumbnailTrait
 {
-    private EmbeddedFile $thumbnail;
+    protected EmbeddedFile $thumbnail;
 
-    private ?File $thumbnail_file = null;
+    protected ?File $thumbnail_file = null;
 
     public function getThumbnail(): EmbeddedFile
     {

@@ -13,7 +13,7 @@ use Domain\Authentication\Entity\User;
  */
 trait OwnerTrait
 {
-    private ?User $owner;
+    protected ?User $owner;
 
     public function getOwner(): ?User
     {

@@ -18,12 +18,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class CreatePodcastEpisodeCommand
+final class CreatePodcastEpisodeCommand extends AbstractContentCommand
 {
-    public ContentStatus $status;
-    public EducationLevel $education_level;
     public PodcastEpisodeType $episode_type;
-    public ContentType $content_type;
 
     public function __construct(
         public readonly User $owner,
@@ -38,7 +35,8 @@ final class CreatePodcastEpisodeCommand
         public bool $is_top_promoted = false,
         public bool $is_online = false,
         public bool $is_premium = false,
-        public ?\DateTimeImmutable $scheduled_at = null,
+        public ?\DateTimeInterface $scheduled_at = null,
+        public ?File $thumbnail_file = null,
         public ?PodcastSeason $season = null,
         public ?File $audio_file = null,
     ) {

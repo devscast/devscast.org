@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\DeletePostCommand;
+use Domain\Content\Repository\PostRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +16,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class DeletePostHandler
 {
+    public function __construct(
+        private readonly PostRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(DeletePostCommand $command): void
     {
+        $this->repository->delete($command->post);
     }
 }

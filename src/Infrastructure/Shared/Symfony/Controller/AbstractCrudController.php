@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -101,7 +100,7 @@ abstract class AbstractCrudController extends AbstractController
             'action' => $this->generateUrl(
                 route: strval($this->request->attributes->get('_route')),
                 parameters: $this->request->attributes->get('_route_params'),
-            )
+            ),
         ])->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -134,7 +133,7 @@ abstract class AbstractCrudController extends AbstractController
             parameters: [
                 'form' => $form,
                 'data' => $row,
-                '_turbo_frame_target' => $turbo
+                '_turbo_frame_target' => $turbo,
             ],
             response: $response ?? null
         );

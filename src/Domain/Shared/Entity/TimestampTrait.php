@@ -11,9 +11,9 @@ namespace Domain\Shared\Entity;
  */
 trait TimestampTrait
 {
-    private ?\DateTimeImmutable $created_at = null;
+    protected ?\DateTimeImmutable $created_at = null;
 
-    private ?\DateTimeImmutable $updated_at = null;
+    protected ?\DateTimeImmutable $updated_at = null;
 
     public function setCreatedAtWithCurrentTime(): void
     {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\DeleteTechnologyCommand;
+use Domain\Content\Repository\TechnologyRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +16,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class DeleteTechnologyHandler
 {
+    public function __construct(
+        private readonly TechnologyRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(DeleteTechnologyCommand $command): void
     {
+        $this->repository->delete($command->technology);
     }
 }

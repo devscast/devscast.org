@@ -22,8 +22,10 @@ final class ContentStatusType extends AbstractType implements DataMapperInterfac
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('content_type', ChoiceType::class, [
+            'label' => 'content.forms.labels.content_status',
             'multiple' => false,
             'choices' => ContentStatus::CHOICES,
+            'autocomplete' => true,
         ])->setDataMapper($this);
     }
 

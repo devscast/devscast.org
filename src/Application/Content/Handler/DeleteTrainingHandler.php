@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\DeleteTrainingCommand;
+use Domain\Content\Repository\TrainingRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +16,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class DeleteTrainingHandler
 {
+    public function __construct(
+        private readonly TrainingRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(DeleteTrainingCommand $command): void
     {
+        $this->repository->delete($command->training);
     }
 }

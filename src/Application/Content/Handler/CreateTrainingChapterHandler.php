@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\CreateTrainingChapterCommand;
+use Application\Shared\Mapper;
+use Domain\Content\Entity\TrainingChapter;
+use Domain\Content\Repository\TrainingChapterRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +18,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class CreateTrainingChapterHandler
 {
+    public function __construct(
+        private readonly TrainingChapterRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(CreateTrainingChapterCommand $command): void
     {
+        $this->repository->save(Mapper::getHydratedObject($command, new TrainingChapter()));
     }
 }

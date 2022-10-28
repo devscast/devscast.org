@@ -5,6 +5,23 @@ content.titles.reset_password_confirm: Mise à jour du mot de passe
 content.forms.labels.name: Nom
 content.forms.labels.slug: Slug (permalien)
 content.forms.labels.description: Description
+content.forms.labels.content: Contenu
+content.forms.labels.thumbnail: Photo de couverture
+content.forms.labels.tags: Tags
+content.forms.labels.technology: Technologies
+content.forms.labels.duration: Durée (secondes)
+content.forms.labels.schedule: Date de publication
+content.forms.labels.education_level: Niveau de difficulté
+content.forms.labels.content_status: Status
+content.forms.labels.content_type: Type de contenu
+content.forms.labels.is_commentable: commentaires autorisés
+content.forms.labels.is_featured: Featured
+content.forms.labels.is_top_promoted: Top recommandation
+content.forms.labels.is_online: En ligne
+content.forms.labels.is_premium: Premium
+content.forms.labels.audio: Audio (mp3)
+content.forms.labels.season: Saison
+content.forms.labels.episode_type: Type de l'épisode
 
 # value objects
 content.value_object.podcast_episode_type.full: épisode complet
@@ -39,6 +56,7 @@ content.validations.password_must_match: Les deux mots de passe ne sont pas iden
 content.exceptions.subject_proposal_limit_reached: Vous ne pouvez proposer que 2 sujets pour mois et il faudrait être inscrit depuis plus d'un mois.
 content.exceptions.cannot_mutate_accepted_subject_proposal: Vous ne pouvez pas supprimer un sujet qui a déjà été accepté.
 content.exceptions.duplicate_tag: Désolé, ce tag a déjà été créé !
+content.exceptions.content_schedule_date_must_be_in_future: La date de publication doit être dans le future !
 
 # Emails subjects messages
 content.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"

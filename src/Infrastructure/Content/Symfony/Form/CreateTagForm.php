@@ -23,7 +23,7 @@ final class CreateTagForm extends AbstractType
             'label' => 'content.forms.labels.name',
             'attr' => [
                 'autofocus' => true,
-            ]
+            ],
         ]);
     }
 

@@ -1,15 +1,14 @@
 {% form_theme form '@admin/shared/layout/form_theme.html.twig' %}
 
-<turbo-frame id="form-modal-frame" target="_top">
-    {{ form_start(form, {attr: {'data-turbo-frame': _turbo_frame_target ?? '_top'}}) }}
+ {{ form_start(form, {attr: {'data-turbo-frame': _turbo_frame_target ?? '_top', 'novalidate': 'novalidate'}}) }}
         {% if _turbo_frame_target %}
             {{ form_errors(form) }}
         {% endif %}
 
         {{ form_rest(form) }}
-        <button class="mt-3 btn btn-primary">
-            {{ 'save-fill' | icon }}
-            <span>{{ 'global.submit' | trans([], 'messages') }}</span>
-        </button>
-    {{ form_end(form) }}
-</turbo-frame>
+<button class="mt-3 btn btn-primary">
+    {{ 'save-fill' | icon }}
+    <span>{{ 'global.submit' | trans([], 'messages') }}</span>
+</button>
+{{ form_end(form) }}
+

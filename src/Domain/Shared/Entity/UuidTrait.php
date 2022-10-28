@@ -8,7 +8,7 @@ use Symfony\Component\Uid\Uuid;
 
 trait UuidTrait
 {
-    private Uuid $uuid;
+    protected Uuid $uuid;
 
     public function getUuid(): Uuid
     {

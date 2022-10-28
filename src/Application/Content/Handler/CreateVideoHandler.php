@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\CreateVideoCommand;
+use Application\Shared\Mapper;
+use Domain\Content\Entity\Video;
+use Domain\Content\Repository\VideoRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +18,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class CreateVideoHandler
 {
+    public function __construct(
+        private readonly VideoRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(CreateVideoCommand $command): void
     {
+        $this->repository->save(Mapper::getHydratedObject($command, new Video()));
     }
 }

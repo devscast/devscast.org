@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdateCommentCommand;
+use Application\Shared\Mapper;
+use Domain\Content\Repository\CommentRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -15,7 +17,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class UpdateCommentHandler
 {
+    public function __construct(
+        private readonly CommentRepositoryInterface $repository
+    ) {
+    }
+
     public function __invoke(UpdateCommentCommand $command): void
     {
+        $this->repository->save(Mapper::getHydratedObject($command, $command->comment));
     }
 }
