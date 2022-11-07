@@ -15,15 +15,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class CreateTagForm extends AbstractType
+class CreateTagForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class, [
             'label' => 'content.forms.labels.name',
-            'attr' => [
-                'autofocus' => true,
-            ],
         ]);
     }
 

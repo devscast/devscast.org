@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\UpdatePostListCommand;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class UpdatePostListForm extends AbstractType
+/**
+ * class UpdatePostListForm.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
+final class UpdatePostListForm extends CreatePostListForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

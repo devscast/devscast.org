@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class CreateCategoryForm extends AbstractType
+class CreateCategoryForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

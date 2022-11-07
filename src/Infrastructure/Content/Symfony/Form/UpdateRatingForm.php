@@ -9,6 +9,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * class UpdateRatingForm.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 final class UpdateRatingForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

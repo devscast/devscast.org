@@ -16,8 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class AbstractController.
  *
- *
  * @method User|null getUser();
+ *
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractController extends SymfonyAbstractController
