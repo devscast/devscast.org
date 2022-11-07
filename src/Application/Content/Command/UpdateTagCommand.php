@@ -15,9 +15,9 @@ use Domain\Content\Entity\Tag;
 final class UpdateTagCommand
 {
     public function __construct(
-        public readonly Tag $tag,
+        public readonly Tag $state,
         public ?string $name = null
     ) {
-        Mapper::hydrate($this->tag, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

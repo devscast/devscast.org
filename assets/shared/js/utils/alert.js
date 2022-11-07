@@ -62,14 +62,7 @@ export const confirmation = async(action, onConfirm, onCancel) => {
         });
 }
 
-export const toast = async(type, message) => {
-    await toastSwalMixin.fire({
-        icon: type,
-        html: message,
-    });
-}
-
-export const ftimedToast = async(type, message, timer= 1500) => {
+export const toast = async(type, message, timer= 1500) => {
     await toastSwalMixin.fire({
         timer: timer,
         icon: type,

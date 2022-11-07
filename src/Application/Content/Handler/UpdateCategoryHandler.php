@@ -24,6 +24,6 @@ final class UpdateCategoryHandler
 
     public function __invoke(UpdateCategoryCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->category));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

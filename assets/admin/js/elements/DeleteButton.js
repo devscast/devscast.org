@@ -1,5 +1,5 @@
 import axios from "../../../shared/js/utils/axios"
-import {confirmation, timedToast} from "../../../shared/js/utils/alert"
+import {confirmation, toast} from "../../../shared/js/utils/alert"
 import {closest, createButtonLoader, removeButtonLoader, removeFadeOut} from "../../../shared/js/utils/dom"
 import {redirect} from "../../../shared/js/utils/url";
 
@@ -24,15 +24,15 @@ export default class DeleteButton extends HTMLButtonElement {
                             removeFadeOut(closest(this, 'tr'));
                         }
 
-                        await timedToast("success", "Suppression effectuée avec succès");
+                        await toast("success", "Suppression effectuée avec succès");
                     } else {
                         removeButtonLoader(this, content);
-                        await timedToast("error", "Désolé, une erreur est survenue lors de la suppression");
+                        await toast("error", "Désolé, une erreur est survenue lors de la suppression");
                     }
                 } catch (e) {
                     console.error({e});
                     removeButtonLoader(this, content);
-                    await timedToast("error", e.response.data.message);
+                    await toast("error", e.response.data.message);
                 }
             });
         })

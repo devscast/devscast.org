@@ -7,7 +7,6 @@ namespace Application\Content\Command;
 use Application\Shared\Mapper;
 use Domain\Content\Entity\PodcastSeason;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class UpdatePodcastSeasonCommand.
@@ -17,12 +16,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class UpdatePodcastSeasonCommand
 {
     public function __construct(
-        public readonly PodcastSeason $season,
-        #[Assert\NotBlank] public ?string $name = null,
-        #[Assert\NotBlank] public ?string $short_code = null,
-        #[Assert\Length(min: 10)] public ?string $description = null,
+        public readonly PodcastSeason $state,
+        public ?string $name = null,
+        public ?string $short_code = null,
+        public ?string $description = null,
         public ?File $thumbnail_file = null,
     ) {
-        Mapper::hydrate($this->season, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

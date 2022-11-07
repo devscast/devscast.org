@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'preact/hooks'
 import { ApiError, jsonFetch } from './api'
 import { strToDom } from './dom'
-import {timedToast} from "./alert";
+import {toast} from "./alert";
 
 /**
  * Alterne une valeur
@@ -94,9 +94,9 @@ export function useJsonFetchOrFlash(url, params = {})
                 return response
             } catch (e) {
                 if (e instanceof ApiError) {
-                    await timedToast('danger', e.name, 4000)
+                    await toast('danger', e.name, 4000)
                 } else {
-                    await timedToast('danger', e.message, 4000)
+                    await toast('danger', e.message, 4000)
                 }
             }
             setState(s => ({ ...s, loading: false }))

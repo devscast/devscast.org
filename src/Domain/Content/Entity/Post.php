@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Domain\Content\ValueObject\ContentType;
+
 /**
  * Class Post.
  *
@@ -14,6 +16,11 @@ class Post extends Content
     private ?Category $category = null;
 
     private ?PostSeries $series = null;
+
+    public function getContentType(): ContentType
+    {
+        return ContentType::post();
+    }
 
     public function getCategory(): ?Category
     {

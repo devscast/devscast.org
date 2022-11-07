@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class UpdatePostSeriesCommand
 {
     public function __construct(
-        public readonly PostSeries $series,
+        public readonly PostSeries $state,
         #[Assert\NotBlank] public ?string $name = null,
         public ?string $slug = null,
         #[Assert\Length(min: 10)] public ?string $description = null,
@@ -28,6 +28,6 @@ final class UpdatePostSeriesCommand
         public Collection $tags = new ArrayCollection(),
         public ?File $thumbnail_file = null,
     ) {
-        Mapper::hydrate($this->series, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

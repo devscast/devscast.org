@@ -24,6 +24,6 @@ final class UpdateTrainingChapterHandler
 
     public function __invoke(UpdateTrainingChapterCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->chapter));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

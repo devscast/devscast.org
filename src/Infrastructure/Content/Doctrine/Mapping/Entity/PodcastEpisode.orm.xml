@@ -9,6 +9,11 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository"
             table="podcast_episode"
     >
+        <unique-constraints>
+            <unique-constraint columns="episode_number"/>
+        </unique-constraints>
+        <field name="episode_number" type="integer"/>
+
         <!-- value objects -->
         <embedded name="episode_type" class="Domain\Content\ValueObject\PodcastEpisodeType" use-column-prefix="false" />
         <embedded name="audio" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />

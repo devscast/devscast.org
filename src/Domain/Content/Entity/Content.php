@@ -22,7 +22,7 @@ use Symfony\Component\Uid\Uuid;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Content
+abstract class Content
 {
     use OwnerTrait;
     use IdentityTrait;
@@ -142,6 +142,8 @@ class Content
     public function setTags(Collection $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
     }
 
     public function addTag(Tag $tag): self
@@ -160,12 +162,9 @@ class Content
         return $this;
     }
 
-    public function getContentType(): ContentType
-    {
-        return $this->content_type;
-    }
+    abstract public function getContentType(): ContentType;
 
-    public function setContentType(ContentType|string $content_type): self
+    public function setContentType(ContentType|string|null $content_type): self
     {
         $this->content_type = match (true) {
             $content_type instanceof ContentType => $content_type,

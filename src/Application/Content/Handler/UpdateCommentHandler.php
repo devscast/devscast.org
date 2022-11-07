@@ -24,6 +24,6 @@ final class UpdateCommentHandler
 
     public function __invoke(UpdateCommentCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->comment));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

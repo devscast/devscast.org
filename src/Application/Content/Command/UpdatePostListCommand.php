@@ -6,7 +6,6 @@ namespace Application\Content\Command;
 
 use Application\Shared\Mapper;
 use Domain\Content\Entity\PostList;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class UpdatePostListCommand.
@@ -16,11 +15,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class UpdatePostListCommand
 {
     public function __construct(
-        public readonly PostList $list,
-        #[Assert\NotBlank] public ?string $name = null,
+        public readonly PostList $state,
+        public ?string $name = null,
         public ?string $description = null,
         public bool $is_public = false
     ) {
-        Mapper::hydrate($this->list, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

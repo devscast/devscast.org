@@ -24,6 +24,6 @@ final class UpdatePodcastEpisodeHandler
 
     public function __invoke(UpdatePodcastEpisodeCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->episode));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

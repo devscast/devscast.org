@@ -6,6 +6,7 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Content\ValueObject\ContentType;
 
 /**
  * class Training.
@@ -33,6 +34,11 @@ class Training extends Content
         $this->videos = new ArrayCollection();
         $this->chapters = new ArrayCollection();
         parent::__construct();
+    }
+
+    public function getContentType(): ContentType
+    {
+        return ContentType::training();
     }
 
     public function getYoutubePlaylist(): ?string

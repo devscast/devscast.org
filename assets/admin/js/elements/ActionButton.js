@@ -1,5 +1,5 @@
 import axios from "../../../shared/js/utils/axios"
-import {confirmation, timedToast} from "../../../shared/js/utils/alert"
+import {confirmation, toast} from "../../../shared/js/utils/alert"
 import {createButtonLoader, removeButtonLoader} from "../../../shared/js/utils/dom"
 import {redirect} from "../../../shared/js/utils/url";
 
@@ -18,10 +18,10 @@ export default class ActionButton extends HTMLButtonElement {
                 try {
                     const response = await axios.post(endpoint, _token ? {_token} : {})
                     if (response.status === 202 || response.status === 200) {
-                        await timedToast("success", response.data.message ?? 'action effectué avec succès !');
+                        await toast("success", response.data.message ?? 'action effectué avec succès !');
                         redirectUrl && await redirect(redirectUrl);
                     } else {
-                        await timedToast("error", response.data.message);
+                        await toast("error", response.data.message);
                     }
                 } catch (e) {
                     console.error({e});

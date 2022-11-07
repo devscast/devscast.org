@@ -24,6 +24,6 @@ final class UpdateTrainingHandler
 
     public function __invoke(UpdateTrainingCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->training));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

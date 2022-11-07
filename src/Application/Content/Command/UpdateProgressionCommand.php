@@ -15,9 +15,9 @@ use Domain\Content\Entity\Progression;
 final class UpdateProgressionCommand
 {
     public function __construct(
-        public readonly Progression $progression,
+        public readonly Progression $state,
         public int $progress = 0
     ) {
-        Mapper::hydrate($this->progression, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

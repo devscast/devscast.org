@@ -80,18 +80,14 @@ class BadgeExtension extends AbstractExtension
 
     public function badge(string $label): string
     {
-        if (array_key_exists($label, $this->badges)) {
-            $style = $this->badges[$label]['style'] ?? 'dim';
-            $state = $this->badges[$label]['state'] ?? 'primary';
-            $label = $this->translator->trans($label);
+        $style = $this->badges[$label]['style'] ?? 'dim';
+        $state = $this->badges[$label]['state'] ?? 'primary';
+        $label = $this->translator->trans($label);
 
-            return <<< HTML
-                <span aria-label="${label}" class="badge badge-${style} badge-outline-${state}">
-                    ${label}
-                </span>
-            HTML;
-        }
-
-        throw new \InvalidArgumentException(sprintf('Unknown %s badge, did you forget to configure it ?', $label));
+        return <<< HTML
+            <span aria-label="${label}" class="badge badge-${style} badge-outline-${state}">
+                ${label}
+            </span>
+        HTML;
     }
 }

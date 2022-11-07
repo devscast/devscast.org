@@ -24,7 +24,7 @@ final class UpdateUserHandler
 
     public function __invoke(UpdateUserCommand $command): void
     {
-        Mapper::hydrate($command, $command->user);
-        $this->repository->save($command->user);
+        Mapper::hydrate($command, $command->state);
+        $this->repository->save($command->state);
     }
 }

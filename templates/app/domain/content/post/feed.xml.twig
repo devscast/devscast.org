@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="{{ url('content_post_feed') }}" rel="self" type="application/rss+xml" />
+        <title>Devscast Community Posts</title>
+        <description>
+            Les dernières nouvelles sur le Web, UI / UX Design et plus : Les propriétaires de sites Web, les développeurs,
+            les concepteurs et les entrepreneurs peuvent rester à jour avec nos nouvelles quotidiennes.
+        </description>
+        <link>https://devscast.org</link>
+        {% for item in data %}
+            <item>
+                <title>{{ item.name }}</title>
+                <guid>{{ item.uuid }}</guid>
+                <link>{{ url('content_post_show', {id: item.id, slug: item.slug}) }}</link>
+                <description>{{ item.content | excerpt }}</description>
+                <pubDate>{{ item.createdAt.format('r') }}</pubDate>
+            </item>
+        {% endfor %}
+        <copyright>© Devscast 2019 - {{ 'now' | date('Y') }}. Tous droits réservés</copyright>
+    </channel>
+</rss>

@@ -24,6 +24,6 @@ final class UpdateTagHandler
 
     public function __invoke(UpdateTagCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->tag));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

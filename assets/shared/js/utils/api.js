@@ -1,4 +1,4 @@
-import {timedToast} from "./alert";
+import {toast} from "./alert";
 
 export const HTTP_UNPROCESSABLE_ENTITY = 422
 export const HTTP_NOT_FOUND = 404
@@ -50,9 +50,9 @@ export async function jsonFetchOrFlash (url, params = {}) {
     return await jsonFetch(url, params)
   } catch (e) {
     if (e instanceof ApiError) {
-      timedToast('error', e.name, 4000)
+      toast('error', e.name, 4000)
     } else {
-      timedToast('error', e.message, 4000)
+      toast('error', e.message, 4000)
     }
     return null
   }

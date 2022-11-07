@@ -6,7 +6,6 @@ namespace Application\Content\Command;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreateTrainingChapterCommand.
@@ -16,11 +15,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class CreateTrainingChapterCommand
 {
     public function __construct(
-        #[Assert\NotBlank] public ?string $name = null,
+        public ?string $name = null,
         public ?string $slug = null,
-        #[Assert\Length(min: 10)] public ?string $description = null,
-        public Collection $videos = new ArrayCollection(),
+        public ?string $description = null,
+        public array $videos = [],
         public int $order = 1
     ) {
+    }
+
+    public function setVideos(array|Collection $data): self
+    {
+        match (true) {
+            $data instanceof Collection => $data->toArray(),
+            default => new ArrayCollection($data)
+        };
+
+        return $this;
     }
 }

@@ -24,6 +24,6 @@ final class UpdateVideoHandler
 
     public function __invoke(UpdateVideoCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->video));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

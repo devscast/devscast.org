@@ -15,8 +15,8 @@ use Domain\Content\Entity\Rating;
 final class DownVoteRatingCommand
 {
     public function __construct(
-        public readonly Rating $rating,
+        public readonly Rating $state,
     ) {
-        Mapper::hydrate($this->rating, $this);
+        Mapper::hydrate($this->state, $this);
     }
 }

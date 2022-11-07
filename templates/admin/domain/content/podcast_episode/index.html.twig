@@ -16,4 +16,58 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row g-gs mb-4">
+        <div class="col-xxl-6 col-sm-6">
+            {% embed '@admin/shared/component/card/_stats.html.twig' %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block stats_card_label 'Utilisateurs confirmés' %}
+                {% block stats_card_value 49 %}
+                {% block stats_card_info %}{{ _.stats_infos(49, 'rapport') }}{% endblock %}
+            {% endembed %}
+        </div>
+        <div class="col-xxl-6 col-sm-6">
+            {% embed '@admin/shared/component/card/_stats.html.twig' %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block stats_card_label 'Utilisateurs non confirmés' %}
+                {% block stats_card_value 45 %}
+                {% block stats_card_info %}{{ _.stats_infos(-43, 'évaluation') }}{% endblock %}
+            {% endembed %}
+        </div>
+
+        <div class="col-12">
+            {% embed "@admin/shared/component/card/_list.html.twig" with {
+                _action: 'Ajouter un épisode',
+                _path: path('administration_content_podcast_episode_new')
+            } %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block list_card_table_head %}
+                    <th>Name</th>
+                    <th>Durée</th>
+                    <th>Audio</th>
+                    <th>Type</th>
+                    <th>&nbsp;</th>
+                {% endblock %}
+                {% block list_card_table_body %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
+                            <td><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(row, 'audio_file') }}"></audio></td>
+                            <td>{{ row.episodeType.translationKey | trans([], 'content') | badge }}</td>
+                            <td class="tb-odr-action">
+                                <div class="tb-odr-btns d-none d-md-inline">
+                                    <a href="{{ path('administration_content_podcast_episode_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                        {{ 'global.show' | trans([], 'messages') }}
+                                    </a>
+                                    <a href="{{ path('administration_content_podcast_episode_edit', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                        {{ 'global.edit' | trans([], 'messages') }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
 {% endblock %}

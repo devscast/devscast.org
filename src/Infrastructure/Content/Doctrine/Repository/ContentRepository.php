@@ -28,13 +28,13 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
     {
         return boolval(
             $this->createQueryBuilder()
-            ->update(Content::class, 'c')
-            ->set('c.is_top_promoted', false)
-            ->where('c.is_top_promoted = :promoted')
-            ->andWhere('c.content_type', (string) $type)
-            ->setParameter('promoted', true)
-            ->getQuery()
-            ->execute()
+                ->update(Content::class, 'c')
+                ->set('c.is_top_promoted', false)
+                ->where('c.is_top_promoted = :promoted')
+                ->andWhere('c.content_type', (string) $type)
+                ->setParameter('promoted', true)
+                ->getQuery()
+                ->execute()
         );
     }
 }

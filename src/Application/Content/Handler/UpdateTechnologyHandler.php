@@ -24,6 +24,6 @@ final class UpdateTechnologyHandler
 
     public function __invoke(UpdateTechnologyCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->technology));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

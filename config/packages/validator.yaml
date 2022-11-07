@@ -7,6 +7,10 @@ framework:
         #auto_mapping:
         #    App\Entity\: []
 
+        mapping:
+            paths:
+                - "%kernel.project_dir%/src/Infrastructure/Authentication/Validation/Mapping"
+                - "%kernel.project_dir%/src/Infrastructure/Content/Validation/Mapping"
 when@test:
     framework:
         validation:

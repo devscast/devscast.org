@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class PodcastEpisode extends Content
 {
+    private ?int $episode_number = null;
+
     private ?PodcastSeason $season = null;
 
     private PodcastEpisodeType $episode_type;
@@ -31,6 +33,11 @@ class PodcastEpisode extends Content
         $this->episode_type = PodcastEpisodeType::full();
         $this->audio = EmbeddedFile::default();
         $this->content_type = ContentType::podcast();
+    }
+
+    public function getContentType(): ContentType
+    {
+        return ContentType::podcast();
     }
 
     public function getSeason(): ?PodcastSeason
@@ -83,6 +90,18 @@ class PodcastEpisode extends Content
         if ($audio_file instanceof UploadedFile) {
             $this->setUpdatedAtWithCurrentTime();
         }
+
+        return $this;
+    }
+
+    public function getEpisodeNumber(): ?int
+    {
+        return $this->episode_number;
+    }
+
+    public function setEpisodeNumber(?int $episode_number): self
+    {
+        $this->episode_number = $episode_number;
 
         return $this;
     }

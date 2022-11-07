@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import {redirect} from "../../../shared/js/utils/url";
-import {timedToast} from "../../../shared/js/utils/alert";
+import {toast} from "../../../shared/js/utils/alert";
 
 export default class ModalFormController extends Controller {
     static targets = ['modal'];
@@ -25,7 +25,7 @@ export default class ModalFormController extends Controller {
                 this.modal.dispose()
 
                 await redirect(fetchResponse.location)
-                await timedToast("success", "action effectuée avec succès")
+                await toast("success", "action effectuée avec succès")
             }
         })
     }

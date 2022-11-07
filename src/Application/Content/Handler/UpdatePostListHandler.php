@@ -24,6 +24,6 @@ final class UpdatePostListHandler
 
     public function __invoke(UpdatePostListCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->list));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

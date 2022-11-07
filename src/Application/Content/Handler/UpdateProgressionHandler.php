@@ -24,6 +24,6 @@ final class UpdateProgressionHandler
 
     public function __invoke(UpdateProgressionCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->progression));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

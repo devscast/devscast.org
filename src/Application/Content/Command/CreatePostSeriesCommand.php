@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreatePostSeriesCommand.
@@ -19,13 +18,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class CreatePostSeriesCommand
 {
     public function __construct(
-        public readonly User $owner,
-        #[Assert\NotBlank] public ?string $name = null,
+        public ?User $owner = null,
+        public ?string $name = null,
         public ?string $slug = null,
-        #[Assert\Length(min: 10)] public ?string $description = null,
+        public ?string $description = null,
         public ?Technology $technology = null,
-        public Collection $tags = new ArrayCollection(),
+        public array $tags = [],
         public ?File $thumbnail_file = null,
     ) {
+    }
+
+    public function setTags(array|Collection $data): self
+    {
+        match (true) {
+            $data instanceof Collection => $data->toArray(),
+            default => new ArrayCollection($data)
+        };
+
+        return $this;
     }
 }

@@ -34,6 +34,17 @@ final class PodcastEpisodeController extends AbstractCrudController
         return $this->queryIndex($repository);
     }
 
+    #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
+    public function show(PodcastEpisode $row): Response
+    {
+        return $this->render(
+            view: $this->getViewPath('show'),
+            parameters: [
+                'data' => $row,
+            ]
+        );
+    }
+
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {

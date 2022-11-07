@@ -22,6 +22,7 @@ content.forms.labels.is_premium: Premium
 content.forms.labels.audio: Audio (mp3)
 content.forms.labels.season: Saison
 content.forms.labels.episode_type: Type de l'épisode
+content.forms.labels.episode_number: Numéro de l'épisode
 
 # value objects
 content.value_object.podcast_episode_type.full: épisode complet

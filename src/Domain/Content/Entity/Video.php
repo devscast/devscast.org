@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Domain\Content\ValueObject\ContentType;
+
 /**
  * Class Video.
  *
@@ -16,6 +18,11 @@ class Video extends Content
     private ?string $timecodes = null;
 
     private ?Training $training = null;
+
+    public function getContentType(): ContentType
+    {
+        return ContentType::video();
+    }
 
     public function getSourceUrl(): ?string
     {

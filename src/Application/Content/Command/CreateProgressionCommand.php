@@ -15,8 +15,8 @@ use Domain\Content\Entity\Content;
 final class CreateProgressionCommand
 {
     public function __construct(
-        public readonly User $owner,
-        public readonly Content $target,
+        public ?User $owner = null,
+        public ?Content $target = null,
         public int $progress = 0
     ) {
     }

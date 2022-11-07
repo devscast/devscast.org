@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:spotify="https://www.spotify.com/ns/rss" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="{{ url('content_podcast_episode_feed') }}" rel="self" type="application/rss+xml" />
+        <title>Devscast Community Podcast</title>
+        <link>{{ url('content_podcast_episode_index') }}</link>
+        <description>
+            Le monde de la technologie évolue à un rythme très élevé.
+            L'ensemble du secteur associé à l'informatique, à la conception de sites Web, etc. change pratiquement à chaque seconde.
+
+            Devscast est le podcast qui vous tient au courant de tout développement majeur dans le monde de la technologie au travers des
+            discussions, interviews avec les différents acteurs (développeurs et entrepreneurs)
+        </description>
+        <language>fr</language>
+        <itunes:author>Devscast</itunes:author>
+        <itunes:category text="Technology"/>
+        <itunes:type>episodic</itunes:type>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:owner>
+            <itunes:name>Bernard Ng</itunes:name>
+            <itunes:email>bernard@devscast.tech</itunes:email>
+        </itunes:owner>
+        <itunes:image href="{{ url(asset('/images/podcast_cover.jpg')) }}"/>
+        {% for item in data %}
+            <item>
+                <guid>{{ item.uuid }}</guid>
+                <title>{{ item.name }}</title>
+                <description>{{ item.content }}</description>
+                <pubDate>{{ item.createdAt.format('r') }}</pubDate>
+                <link>{{ url('content_podcast_episode_show', {id: item.id, slug: item.slug}) }}</link>
+                <itunes:episodeType>{{ item.episodeType }}</itunes:episodeType>
+                <itunes:episodeNumber>{{ item.episodeNumber }}</itunes:episodeNumber>
+                <itunes:order>{{ item.id }}</itunes:order>
+                <itunes:duration>{{ item.duration }}</itunes:duration>
+                <itunes:explicit>false</itunes:explicit>
+                {% if item.thumbnailUrl %}
+                    <itunes:image href="{{ absolute_url(vich_uploader_asset(item, 'thumbnail_file')) }}"/>
+                {% endif %}
+                <enclosure length="{{ item.audio.size }}" url="{{ absolute_url(vich_uploader_asset(item, 'audio_file')) }}" type="{{ item.audio.type }}"/>
+            </item>
+        {% endfor %}
+        <copyright>© Devscast 2019 - {{ 'now' | date('Y') }}. Tous droits réservés</copyright>
+    </channel>
+</rss>
