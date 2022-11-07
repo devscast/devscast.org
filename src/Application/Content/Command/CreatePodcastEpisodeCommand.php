@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\PodcastSeason;
 use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
@@ -21,6 +22,7 @@ final class CreatePodcastEpisodeCommand extends AbstractContentCommand
     public PodcastEpisodeType $episode_type;
 
     public function __construct(
+        public ?User $owner = null,
         public ?PodcastSeason $season = null,
         public ?File $audio_file = null,
         public ?int $episode_number = null

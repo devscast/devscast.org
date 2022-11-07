@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Symfony\Controller;
 
+use Domain\Authentication\Entity\User;
 use Infrastructure\Shared\Symfony\Messenger\DispatchTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
@@ -15,6 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class AbstractController.
  *
+ *
+ * @method User|null getUser();
  * @author bernard-ng <bernard@devscast.tech>
  */
 abstract class AbstractController extends SymfonyAbstractController

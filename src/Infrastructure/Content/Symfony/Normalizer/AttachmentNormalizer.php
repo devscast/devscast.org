@@ -23,11 +23,11 @@ class AttachmentNormalizer extends AbstractNormalizer
     }
 
     /**
-     * @var Attachment
+     * @param Attachment $object
      */
     public function normalize(mixed $object, string $format = null, array $context = []): array
     {
-        $info = pathinfo($object->getThumbnail()->getName());
+        $info = pathinfo((string) $object->getThumbnail()->getName());
         $filenameParts = explode('-', $info['filename']);
         $filenameParts = array_slice($filenameParts, 0, -1);
         $filename = implode('-', $filenameParts);
@@ -35,7 +35,7 @@ class AttachmentNormalizer extends AbstractNormalizer
 
         return [
             'id' => $object->getId(),
-            'createdAt' => $object->getCreatedAt()->getTimestamp(),
+            'createdAt' => $object->getCreatedAt()?->getTimestamp(),
             'name' => "{$filename}.{$extension}",
             'size' => $object->getThumbnail()->getSize(),
             'url' => $this->uploaderHelper->asset($object),

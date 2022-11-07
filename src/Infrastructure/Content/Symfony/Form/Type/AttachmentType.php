@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form\Type;
 
 use Domain\Content\Entity\Attachment;
-use Domain\Content\Repository\AttachmentRepositoryInterface;
+use Infrastructure\Content\Doctrine\Repository\AttachmentRepository;
 use Infrastructure\Content\Symfony\Validator\AttachmentExist;
 use Infrastructure\Content\Symfony\Validator\NonExistingAttachment;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
@@ -24,8 +25,9 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class AttachmentType extends TextType implements DataTransformerInterface
 {
     public function __construct(
-        private readonly AttachmentRepositoryInterface $repository,
+        private readonly AttachmentRepository $repository,
         private readonly UploaderHelper $uploaderHelper,
+        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -38,7 +40,9 @@ class AttachmentType extends TextType implements DataTransformerInterface
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         if (null !== $form->getData()) {
-            $view->vars['attr']['preview'] = $this->uploaderHelper->asset($form->getData());
+            /** @var Attachment|null $data */
+            $data = $form->getData();
+            $view->vars['attr']['preview'] = $this->uploaderHelper->asset($data ?? []);
         }
         $view->vars['attr']['overwrite'] = true;
         parent::buildView($view, $form, $options);
@@ -50,7 +54,7 @@ class AttachmentType extends TextType implements DataTransformerInterface
             'required' => false,
             'attr' => [
                 'is' => 'app-input-attachment',
-                'data-endpoint' => 'http://localhost:8000/api/content/attachment',
+                'data-endpoint' => $this->urlGenerator->generate('api_content_attachment_'),
             ],
             'constraints' => [
                 new AttachmentExist(),

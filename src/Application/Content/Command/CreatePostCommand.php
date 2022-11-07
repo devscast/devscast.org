@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Category;
 use Domain\Content\Entity\PostSeries;
 use Domain\Content\ValueObject\ContentStatus;
@@ -18,6 +19,7 @@ use Domain\Content\ValueObject\EducationLevel;
 final class CreatePostCommand extends AbstractContentCommand
 {
     public function __construct(
+        public ?User $owner = null,
         public ?Category $category = null,
         public ?PostSeries $series = null,
     ) {

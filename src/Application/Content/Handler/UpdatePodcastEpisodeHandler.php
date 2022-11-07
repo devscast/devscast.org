@@ -6,6 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
 use Application\Shared\Mapper;
+use Domain\Content\Entity\PodcastEpisode;
 use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -24,6 +25,8 @@ final class UpdatePodcastEpisodeHandler
 
     public function __invoke(UpdatePodcastEpisodeCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        /** @var PodcastEpisode $podcast */
+        $podcast = Mapper::getHydratedObject($command, $command->state);
+        $this->repository->save($podcast);
     }
 }

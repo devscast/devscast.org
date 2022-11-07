@@ -168,7 +168,7 @@ abstract class Content
     {
         $this->content_type = match (true) {
             $content_type instanceof ContentType => $content_type,
-            default => ContentType::fromString($content_type)
+            default => ContentType::fromString((string) $content_type)
         };
 
         return $this;

@@ -27,8 +27,8 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
     public function overrideContentTopPromoted(ContentType $type): bool
     {
         return boolval(
-            $this->createQueryBuilder()
-                ->update(Content::class, 'c')
+            $this->createQueryBuilder('c')
+                ->update(Content::class)
                 ->set('c.is_top_promoted', false)
                 ->where('c.is_top_promoted = :promoted')
                 ->andWhere('c.content_type', (string) $type)

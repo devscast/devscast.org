@@ -38,6 +38,8 @@ final class CreatePodcastEpisodeHandler
             $this->contentRepository->overrideContentTopPromoted(ContentType::podcast());
         }
 
-        $this->repository->save(Mapper::getHydratedObject($command, new PodcastEpisode()));
+        /** @var PodcastEpisode $podcast */
+        $podcast = Mapper::getHydratedObject($command, new PodcastEpisode());
+        $this->repository->save($podcast);
     }
 }

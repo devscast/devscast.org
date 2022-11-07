@@ -14,7 +14,7 @@ use Domain\Authentication\Entity\User;
 final class CreateSubjectProposalCommand
 {
     public function __construct(
-        public ?User $owner = null,
+        public readonly User $owner,
         public ?string $subject = null,
     ) {
     }

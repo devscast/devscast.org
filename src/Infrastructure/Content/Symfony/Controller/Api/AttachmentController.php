@@ -8,6 +8,7 @@ use Domain\Content\Entity\Attachment;
 use Domain\Content\Repository\AttachmentRepositoryInterface;
 use Infrastructure\Content\Doctrine\Repository\AttachmentRepository;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,7 +44,7 @@ final class AttachmentController extends AbstractController
         } elseif (null === $path) {
             $attachments = $repository->findLatest();
         } else {
-            $attachments = $repository->findForPath($request->get('path'));
+            $attachments = $repository->findForPath(strval($request->get('path')));
         }
 
         return $this->json($attachments);
@@ -64,9 +65,13 @@ final class AttachmentController extends AbstractController
         if (null === $attachment) {
             $attachment = new Attachment();
         }
-        $attachment->setThumbnailFile($request->files->get('file'));
-        $attachment->setCreatedAt(new \DateTime());
-        $attachment->setOwner($this->getUser());
+
+        /** @var File|null $file */
+        $file = $request->files->get('file');
+        $attachment
+            ->setThumbnailFile($file)
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setOwner($this->getUser());
         $repository->save($attachment);
 
         return $this->json($attachment);

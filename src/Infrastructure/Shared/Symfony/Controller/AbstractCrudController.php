@@ -99,7 +99,7 @@ abstract class AbstractCrudController extends AbstractController
         $form = $this->createForm($formClass, $command, [
             'action' => $this->generateUrl(
                 route: strval($this->request->attributes->get('_route')),
-                parameters: $this->request->attributes->get('_route_params'),
+                parameters: (array) $this->request->attributes->get('_route_params', []),
             ),
         ])->handleRequest($this->request);
 
