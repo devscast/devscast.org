@@ -15,7 +15,11 @@
         <property name="avatar_file">
             <constraint name="File">
                 <option name="maxSize">2M</option>
-                <option name="mimeTypes">image/jpg, image/jpeg, image/png</option>
+                <option name="mimeTypes">
+                    <value>image/jpg</value>
+                    <value>image/jpeg</value>
+                    <value>image/png</value>
+                </option>
             </constraint>
         </property>
         <property name="country">

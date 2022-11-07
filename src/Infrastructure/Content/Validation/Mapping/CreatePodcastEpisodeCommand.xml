@@ -13,7 +13,10 @@
         <property name="audio_file">
             <constraint name="File">
                 <option name="maxSize">300M</option>
-                <option name="mimeType">audio/mpeg, audio/mp3</option>
+                <option name="mimeTypes">
+                    <value>audio/mpeg</value>
+                    <value>audio/mp3</value>
+                </option>
             </constraint>
         </property>
     </class>

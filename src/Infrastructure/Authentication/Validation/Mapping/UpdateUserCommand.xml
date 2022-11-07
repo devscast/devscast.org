@@ -5,9 +5,6 @@
         https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="Application\Authentication\Command\UpdateUserCommand">
-        <property name="username">
-            <constraint name="NotBlank"/>
-        </property>
         <property name="email">
             <constraint name="NotBlank"/>
             <constraint name="Email"/>
@@ -15,7 +12,11 @@
         <property name="avatar_file">
             <constraint name="File">
                 <option name="maxSize">2M</option>
-                <option name="mimeTypes">image/jpg, image/jpeg, image/png</option>
+                <option name="mimeTypes">
+                    <value>image/jpg</value>
+                    <value>image/jpeg</value>
+                    <value>image/png</value>
+                </option>
             </constraint>
         </property>
         <property name="country">

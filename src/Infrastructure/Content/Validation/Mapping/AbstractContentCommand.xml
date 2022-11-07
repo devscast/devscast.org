@@ -19,7 +19,12 @@
         <property name="thumbnail_file">
             <constraint name="File">
                 <option name="maxSize">5M</option>
-                <option name="mimeTypes">image/png, image/jpeg, image/webp</option>
+                <option name="mimeTypes">
+                    <value>image/jpg</value>
+                    <value>image/jpeg</value>
+                    <value>image/png</value>
+                    <value>image/webp</value>
+                </option>
             </constraint>
         </property>
     </class>
