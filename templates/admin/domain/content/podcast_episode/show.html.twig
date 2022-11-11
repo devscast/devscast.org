@@ -38,8 +38,7 @@
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
-                        {{ 'user-circle' | icon }}
-                        <span>Personal</span>
+                        <span>Détails</span>
                     </a>
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
@@ -52,11 +51,7 @@
         {% block detail_card_body %}
             <div class="nk-block">
                 <div class="nk-block">
-                    <div class="nk-block-head">
-                        {% apply markdown %}
-                            {{ data.content }}
-                        {% endapply %}
-                    </div>
+                    <div class="nk-block-head">{{ data.content }}</div>
                     <div class="profile-ud-list">
                         {{ _.user_data_item('Nom', data.name) }}
                         {{ _.user_data_item("Slug", data.slug) }}
@@ -69,6 +64,9 @@
                     </div>
                     <div class="profile-ud-list">
                         {{ _.user_data_item("Commentaires autorisés", data.isCommentable | boolean) }}
+                        {{ _.user_data_item("Featured", data.isFeatured | boolean) }}
+                        {{ _.user_data_item("Top promoted", data.isTopPromoted | boolean) }}
+                        {{ _.user_data_item("Premium", data.isPremium | boolean) }}
                     </div>
                 </div>
             </div>
@@ -119,24 +117,40 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-3">Tags</h6>
-                                            <ul class="g-1">
-                                                {% for tag in data.tags %}
-                                                    <li class="btn-group">
-                                                        <a class="btn btn-xs btn-info btn-dim" href="#">{{ tag.name }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-3">Technologies</h6>
-                                            <ul class="g-1">
-                                                {% for technology in data.technologies %}
-                                                    <li class="btn-group">
-                                                        <a class="btn btn-xs btn-info btn-dim" href="#">{{ technology.name }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                                        {% if data.season %}
+                                            <div class="card-inner">
+                                                <h6 class="overline-title-alt mb-3">Saison</h6>
+                                                <span>
+                                                    <a href="{{ path('administration_content_podcast_season_show', {id: data.season.id}) }}">
+                                                        {{ data.season.name }}
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                        {% if data.tags | length > 0 %}
+                                            <div class="card-inner">
+                                                <h6 class="overline-title-alt mb-3">Tags</h6>
+                                                <ul class="g-1">
+                                                    {% for tag in data.tags %}
+                                                        <li class="btn-group">
+                                                            <a class="btn btn-xs btn-info btn-dim" href="#">{{ tag.name }}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        {% if data.technologies | length > 0 %}
+                                            <div class="card-inner">
+                                                <h6 class="overline-title-alt mb-3">Technologies</h6>
+                                                <ul class="g-1">
+                                                    {% for technology in data.technologies %}
+                                                        <li class="btn-group">
+                                                            <a class="btn btn-xs btn-info btn-dim" href="#">{{ technology.name }}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

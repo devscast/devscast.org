@@ -9,6 +9,7 @@ use Application\Content\Service\ContentService;
 use Application\Shared\Mapper;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Repository\ContentRepositoryInterface;
+use Domain\Content\Repository\PodcastSeasonRepositoryInterface;
 use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
 use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
@@ -24,6 +25,7 @@ final class CreatePodcastEpisodeHandler
 {
     public function __construct(
         private readonly PodcastEpisodeRepository $repository,
+        private readonly PodcastSeasonRepositoryInterface $seasonRepository,
         private readonly ContentRepositoryInterface $contentRepository,
         private readonly ContentService $contentService
     ) {
@@ -36,6 +38,11 @@ final class CreatePodcastEpisodeHandler
 
         if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
             $this->contentRepository->overrideContentTopPromoted(ContentType::podcast());
+        }
+
+        if (null === $command->season) {
+            $command->season->increaseEpisodeCount();
+            $this->seasonRepository->save($command->season);
         }
 
         /** @var PodcastEpisode $podcast */

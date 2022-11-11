@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\TimestampTrait;
 
@@ -22,6 +24,13 @@ class Category
     private ?string $description = null;
 
     private int $post_count = 0;
+
+    private Collection $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     public function getName(): ?string
     {
@@ -55,6 +64,34 @@ class Category
     public function setPostCount(int $post_count): self
     {
         $this->post_count = $post_count;
+
+        return $this;
+    }
+
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (! $this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setCategory($this);
+            $this->post_count = $this->posts->count();
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            if ($post->getCategory() === $this) {
+                $post->setCategory(null);
+                $this->post_count = $this->posts->count();
+            }
+        }
 
         return $this;
     }

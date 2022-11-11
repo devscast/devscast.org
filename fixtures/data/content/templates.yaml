@@ -1,0 +1,188 @@
+Domain\Content\Entity\Attachment:
+    attachment (template):
+        thumbnail: ~
+        owner: ~
+        created_at: ~
+        updated_at: ~
+
+Domain\Content\Entity\Category:
+    category (template):
+        name: <name()>
+        description: <text()>
+        post_count: 0
+        posts: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Comment:
+    comment (template):
+        content: <text()>
+        has_replies: 0
+        target: ~
+        owner: ~
+        replies: ~
+        parent: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Content:
+    content (template):
+        content_type: 'post'
+
+        #        fields
+        uuid: ~
+        name: <name()>
+        slug: <slug()>
+        content: <text()>
+        duration: <numberBetween(1, 1000)>
+        up_vote_count: 0
+        down_vote_count: 0
+        ratio_vote_count: 0
+        comment_count: 0
+
+        #        options
+        is_commentable: 0
+        is_featured: 0
+        is_top_promoted: 0
+        is_online: 0
+        is_premium: 0
+
+        #        value objects
+        owner: ~
+        tags: ~
+        technologies: ~
+        comments: ~
+
+        #        timestamp
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+        scheduled_at: ~
+
+Domain\Content\Entity\PodcastEpisode:
+    podcast_episode (template) (extends content):
+        episode_number: <current()>
+        audio: ~
+        season: ~
+        episode_type: Full
+
+Domain\Content\Entity\PodcastSeason:
+    podcast_season (template):
+        name: <name()>
+        slug: <slug()>
+        short_code: S<current()>
+        description: <text()>
+        episode_count: 0
+        thumbnail: ~
+        episodes: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Post:
+    post (template) (extends content):
+        category: ~
+        series: ~
+
+Domain\Content\Entity\PostList:
+    post_list (template):
+        uuid: ~
+        name: <name()>
+        description: <description()>
+        is_public: 0
+        post_count: 0
+        owner: ~
+        posts: ~
+        created_at: <dateTimeThisYear()>
+        update_at: ~
+
+Domain\Content\Entity\PostSeries:
+    post_series (template):
+        uuid: ~
+        name: <name()>
+        slug: <slug()>
+        description: <text()>
+        post_count: 0
+        status: draft
+        thumbnail: ~
+        owner: ~
+        technology: ~
+        posts: ~
+        created_at: <dateTimeThisYear()>
+        update_at: ~
+
+Domain\Content\Entity\Progression:
+    progression (template):
+        progress: 1
+        owner: ~
+        target: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Rating:
+    rating (template):
+        rating: <randomElement([1, -1])>
+        owner: ~
+        target: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\SubjectProposal:
+    subject_proposal (template):
+        subject: <name()>
+        votes_count: 0
+        status: accepted
+        owner: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\SubjectProposalVote:
+    subject_proposal_vote (template):
+        owner: ~
+        proposal: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Tag:
+    tag (template):
+        name: <name()>
+        content_count: 0
+        contents: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Technology:
+    technology (template):
+        uuid: ~
+        name: <name()>
+        slug: <slug()>
+        description: <text()>
+        content_count: 0
+        thumbnail: ~
+        contents: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Training:
+    training (template) (extends content):
+        youtube_playlist: ~
+        links: ~
+        video_count: 0
+        chapter_count: 0
+        videos: ~
+        chapters: ~
+
+Domain\Content\Entity\TrainingChapter:
+    training_chapter (template):
+        name: <name()>
+        slug: <slug()>
+        description: <text()>
+        order: <current()>
+        video_count: 0
+        training: ~
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+
+Domain\Content\Entity\Video:
+    video (content) (extends content):
+        source_url: ~
+        timecodes: ~
+        training: ~

@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\PodcastEpisode"
             repository-class="Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository"
-            table="podcast_episode"
+            table="content_podcast_episode"
     >
         <unique-constraints>
             <unique-constraint columns="episode_number"/>

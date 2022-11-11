@@ -5,90 +5,70 @@
     {% embed '@admin/shared/component/_header.html.twig' %}
         {% block header_title 'Utilisateurs' %}
         {% block header_action_list %}
-            <li>
-                <button {{ stimulus_action('modal-form', 'open') }}
-                   class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur"
-                   title="Ajouter un utilisateur">
+            <li class="btn-group">
+                <a href="{{ path('administration_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
-                </button>
+                </a>
+                <a href="{{ path('administration_authentication_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'bar-chart' | icon }}
+                    <span>Statistiques</span>
+                </a>
             </li>
         {% endblock %}
     {% endembed %}
 {% endblock %}
 
 {% block content %}
-    <div class="row g-gs mb-4">
-        <div class="col-xxl-6 col-sm-6">
-            {% embed '@admin/shared/component/card/_stats.html.twig' %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
-                {% block stats_card_label 'Utilisateurs confirmés' %}
-                {% block stats_card_value 49 %}
-                {% block stats_card_info %}{{ _.stats_infos(49, 'rapport') }}{% endblock %}
-            {% endembed %}
-        </div>
-        <div class="col-xxl-6 col-sm-6">
-            {% embed '@admin/shared/component/card/_stats.html.twig' %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
-                {% block stats_card_label 'Utilisateurs non confirmés' %}
-                {% block stats_card_value 45 %}
-                {% block stats_card_info %}{{ _.stats_infos(-43, 'évaluation') }}{% endblock %}
-            {% endembed %}
-        </div>
-
-        <div class="col-12">
-            {% include '@admin/shared/component/_modal.html.twig' with {_action: 'Ajouter un utilisateur', _path: path('administration_authentication_user_new')} %}
-            {% embed "@admin/shared/component/card/_list.html.twig" with {
-                _action: 'Ajouter un utilisateur',
-                _path: path('administration_authentication_user_new')
-            } %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
-                    <th>#</th>
-                    <th>Utilisateur</th>
-                    <th>Email</th>
-                    <th>Pays</th>
-                    <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.id }}</td>
-                            <td>
-                                <div class="user-card">
-                                    <div class="user-avatar xs bg-primary">
-                                        {{ image(row) }}
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">{{ row.username | u.truncate(60, '...') }}</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ row.email }}</td>
-                            <td>{{ row.country | flag }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_authentication_user_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        {{ 'global.show' | trans([], 'messages') }}
-                                    </a>
-                                </div>
-                                <div class="dropdown">
-                                    <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-bs-offset="-8,0" aria-expanded="false">
-                                        {{ 'more-h' | icon }}
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                        <ul class="link-list-plain">
-                                            <li><a href="{{ path('administration_authentication_user_edit', {id: row.id}) }}" class="text-primary">éditer</a></li>
-                                            <li><a href="{{ path('administration_authentication_user_email', {id: row.id}) }}" class="text-primary">email</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                {{ _.delete_icon_button('administration_authentication_user_delete', row) }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endblock %}
-            {% endembed %}
-        </div>
-    </div>
+    {% embed "@admin/shared/component/card/_list.html.twig" with {
+        _action: 'Ajouter un utilisateur',
+        _path: path('administration_authentication_user_new')
+    } %}
+        {% import '@admin/shared/component/_macros.html.twig' as _ %}
+        {% block list_card_table_head %}
+            <th>#</th>
+            <th>Utilisateur</th>
+            <th>Email</th>
+            <th>Pays</th>
+            <th>&nbsp;</th>
+        {% endblock %}
+        {% block list_card_table_body %}
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>
+                        <div class="user-card">
+                            <div class="user-avatar xs bg-primary">
+                                {{ image(row) }}
+                            </div>
+                            <div class="user-name">
+                                <span class="tb-lead">{{ row.username | u.truncate(60, '...') }}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.country | flag }}</td>
+                    <td class="tb-odr-action">
+                        <div class="tb-odr-btns d-none d-md-inline">
+                            <a href="{{ path('administration_authentication_user_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                {{ 'global.show' | trans([], 'messages') }}
+                            </a>
+                        </div>
+                        <div class="dropdown">
+                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-bs-offset="-8,0" aria-expanded="false">
+                                {{ 'more-h' | icon }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                <ul class="link-list-plain">
+                                    <li><a href="{{ path('administration_authentication_user_edit', {id: row.id}) }}" class="text-primary">éditer</a></li>
+                                    <li><a href="{{ path('administration_authentication_user_email', {id: row.id}) }}" class="text-primary">email</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{ _.delete_icon_button('administration_authentication_user_delete', row) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

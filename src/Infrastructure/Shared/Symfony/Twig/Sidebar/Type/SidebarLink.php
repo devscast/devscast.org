@@ -15,6 +15,8 @@ class SidebarLink implements SidebarItemInterface
 
     private string $badge;
 
+    private ?SidebarGroup $parent = null;
+
     public function __construct(
         private string $route,
         private string $label,
@@ -82,6 +84,18 @@ class SidebarLink implements SidebarItemInterface
     public function setBadge(string $badge): self
     {
         $this->badge = $badge;
+
+        return $this;
+    }
+
+    public function getParent(): ?SidebarGroup
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?SidebarGroup $parent): self
+    {
+        $this->parent = $parent;
 
         return $this;
     }

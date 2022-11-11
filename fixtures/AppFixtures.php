@@ -21,8 +21,9 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 class AppFixtures extends Fixture
 {
-    public function __construct(private KernelInterface $kernel)
-    {
+    public function __construct(
+        private readonly KernelInterface $kernel
+    ) {
     }
 
     /**

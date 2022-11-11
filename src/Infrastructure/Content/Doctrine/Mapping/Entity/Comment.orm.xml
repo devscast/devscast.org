@@ -14,10 +14,15 @@
         </id>
 
         <field name="content" type="string" nullable="true" />
+        <field name="has_replies" type="boolean" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
 
         <!-- relations -->
-        <many-to-one field="target" target-entity="Domain\Content\Entity\Content" >
+        <many-to-one field="target" target-entity="Domain\Content\Entity\Content" inversed-by="comments" orphan-removal="true">
             <join-column on-delete="CASCADE" nullable="false" />
         </many-to-one>
         <many-to-one field="owner" target-entity="Domain\Authentication\Entity\User" >

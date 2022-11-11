@@ -30,6 +30,8 @@ class PostList
 
     private bool $is_public = false;
 
+    private int $post_count = 0;
+
     /**
      * @var Collection<Post>
      */
@@ -74,6 +76,47 @@ class PostList
     {
         $this->is_public = $is_public;
 
+        return $this;
+    }
+
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function setPosts(Collection $posts): self
+    {
+        $this->posts = $posts;
+
+        return $this;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (! $this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $this->post_count = $this->posts->count();
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        $this->posts->removeElement($post);
+        $this->post_count = $this->posts->count();
+
+        return $this;
+    }
+
+    public function getPostCount(): int
+    {
+        return $this->post_count;
+    }
+
+    public function setPostCount(int $posts_count): PostList
+    {
+        $this->post_count = $posts_count;
         return $this;
     }
 }

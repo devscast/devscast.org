@@ -1,0 +1,10 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'Administration' %}
+
+{% block body %}
+    <div class="alert alert-pro alert-primary">
+        <div class="alert-text"><h6>Hello {{ app.user.name }},</h6>
+            <p>Your order has been successfully placed for diposit. Your will be redirect for make your payment.</p>
+        </div>
+    </div>
+{% endblock %}

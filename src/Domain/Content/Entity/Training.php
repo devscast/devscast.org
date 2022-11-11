@@ -24,6 +24,10 @@ class Training extends Content
      */
     private Collection $videos;
 
+    private int $video_count = 0;
+
+    private int $chapter_count = 0;
+
     /**
      * @var Collection<TrainingChapter>
      */
@@ -75,6 +79,7 @@ class Training extends Content
         if (! $this->videos->contains($video)) {
             $this->videos[] = $video;
             $video->setTraining($this);
+            $this->video_count = $this->videos->count();
         }
 
         return $this;
@@ -86,6 +91,8 @@ class Training extends Content
             if ($video->getTraining() === $this) {
                 $video->setTraining(null);
             }
+
+            $this->video_count = $this->videos->count();
         }
 
         return $this;
@@ -101,6 +108,7 @@ class Training extends Content
         if (! $this->chapters->contains($chapter)) {
             $this->chapters[] = $chapter;
             $chapter->setTraining($this);
+            $this->chapter_count = $this->chapters->count();
         }
 
         return $this;
@@ -112,8 +120,32 @@ class Training extends Content
             if ($chapter->getTraining() === $this) {
                 $chapter->setTraining(null);
             }
+
+            $this->chapter_count = $this->chapters->count();
         }
 
+        return $this;
+    }
+
+    public function getVideoCount(): int
+    {
+        return $this->video_count;
+    }
+
+    public function setVideoCount(int $video_count): Training
+    {
+        $this->video_count = $video_count;
+        return $this;
+    }
+
+    public function getChapterCount(): int
+    {
+        return $this->chapter_count;
+    }
+
+    public function setChapterCount(int $chapter_count): Training
+    {
+        $this->chapter_count = $chapter_count;
         return $this;
     }
 }

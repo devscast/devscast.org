@@ -1,9 +1,9 @@
 {% extends '@admin/shared/layout/base.html.twig' %}
-{% block title 'Modifier un utilisateur' %}
+{% block title 'Édition Utilisateur' %}
 
 {% block header %}
     {% embed "@admin/shared/component/_header.html.twig" %}
-        {% block header_title "Modifier un utilisateur" | title %}
+        {% block header_title "Édition Utilisateur" | title %}
         {% block header_action_list %}
             <li>
                 <a href="{{ path('administration_authentication_user_show', {id: data.id}) }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">

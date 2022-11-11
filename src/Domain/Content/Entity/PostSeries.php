@@ -38,17 +38,16 @@ class PostSeries
 
     private ?Technology $technology = null;
 
-    /**
-     * @var Collection<Tag>
-     */
-    private Collection $tags;
+    private int $post_count = 0;
+
+    private Collection $posts;
 
     public function __construct()
     {
         $this->uuid = Uuid::v4();
         $this->status = ContentStatus::draft();
         $this->thumbnail = EmbeddedFile::default();
-        $this->tags = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -111,14 +110,48 @@ class PostSeries
         return $this;
     }
 
-    public function getTags(): Collection
+    public function getPostCount(): int
     {
-        return $this->tags;
+        return $this->post_count;
     }
 
-    public function setTags(Collection $tags): self
+    public function setPostCount(int $post_count): PostSeries
     {
-        $this->tags = $tags;
+        $this->post_count = $post_count;
+        return $this;
+    }
+
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function setPosts(Collection $posts): self
+    {
+        $this->posts = $posts;
+
+        return $this;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (! $this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setSeries($this);
+            $this->post_count = $this->posts->count();
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            if ($post->getSeries() === $this) {
+                $post->setSeries(null);
+                $this->post_count = $this->posts->count();
+            }
+        }
 
         return $this;
     }

@@ -7,11 +7,21 @@
     <entity
             name="Domain\Content\Entity\Training"
             repository-class="Infrastructure\Content\Doctrine\Repository\TrainingRepository"
-            table="video_training"
+            table="content_video_training"
     >
         <!-- fields -->
         <field name="youtube_playlist" type="string" nullable="true" />
         <field name="links" type="string" nullable="true" />
+        <field name="video_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="chapter_count" type="integer" nullable="false">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- relations -->
         <one-to-many field="videos" target-entity="Domain\Content\Entity\Video" mapped-by="training" />

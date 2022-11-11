@@ -27,6 +27,8 @@ class Comment
 
     private ?self $parent = null;
 
+    private bool $has_replies = false;
+
     /**
      * @var Collection<self>
      */
@@ -83,8 +85,33 @@ class Comment
         if (! $this->replies->contains($comment)) {
             $this->replies->add($comment);
             $comment->setParent($this);
+            $this->setHasReplies(true);
         }
 
+        return $this;
+    }
+
+    public function removeReply(self $comment): self
+    {
+        if ($this->replies->contains($comment)) {
+            $this->replies->removeElement($comment);
+
+            if ($this->replies->isEmpty()) {
+                $this->setHasReplies(false);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isHasReplies(): bool
+    {
+        return $this->has_replies;
+    }
+
+    public function setHasReplies(bool $has_replies): Comment
+    {
+        $this->has_replies = $has_replies;
         return $this;
     }
 }

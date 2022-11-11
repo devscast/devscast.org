@@ -10,6 +10,7 @@ use Domain\Shared\Entity\IdentityTrait;
 use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\Entity\TimestampTrait;
 use Domain\Shared\Entity\UuidTrait;
+use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -30,6 +31,8 @@ class Technology
 
     private ?string $description = null;
 
+    private int $content_count = 0;
+
     /**
      * @var Collection<Content>
      */
@@ -38,6 +41,7 @@ class Technology
     public function __construct()
     {
         $this->uuid = Uuid::v4();
+        $this->thumbnail = EmbeddedFile::default();
         $this->contents = new ArrayCollection();
     }
 
@@ -87,6 +91,7 @@ class Technology
         if (! $this->contents->contains($content)) {
             $this->contents[] = $content;
             $content->addTechnology($this);
+            $this->content_count = $this->contents->count();
         }
 
         return $this;
@@ -96,6 +101,7 @@ class Technology
     {
         if ($this->contents->removeElement($content)) {
             $content->removeTechnology($this);
+            $this->content_count = $this->contents->count();
         }
 
         return $this;

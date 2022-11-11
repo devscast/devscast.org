@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\PostSeries"
             repository-class="Infrastructure\Content\Doctrine\Repository\PostSeriesRepository"
-            table="post_series"
+            table="content_post_series"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -18,6 +18,11 @@
         <field name="name" type="string" length="255" nullable="false" />
         <field name="slug" type="string" length="300" nullable="false" />
         <field name="description" type="text" nullable="false" />
+        <field name="post_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- value objects -->
         <embedded name="status" class="Domain\Content\ValueObject\ContentStatus" use-column-prefix="false" />
@@ -30,6 +35,7 @@
         <many-to-one field="technology" target-entity="Domain\Content\Entity\Technology">
             <join-column on-delete="SET NULL" nullable="true" />
         </many-to-one>
+        <one-to-many field="posts" target-entity="Domain\Content\Entity\Post" mapped-by="series" />
 
         <!-- Timestamp -->
         <field name="created_at" type="datetime_immutable"/>

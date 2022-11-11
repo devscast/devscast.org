@@ -1,0 +1,52 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title "Listes d'articles" %}
+
+{% block header %}
+    {% embed '@admin/shared/component/_header.html.twig' %}
+        {% block header_title "Listes d'articles" %}
+        {% block header_action_list %}
+            <li class="btn-group">
+                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'bar-chart' | icon }}
+                    <span>Statistiques</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    <div class="row g-gs mb-4">
+        <div class="col-12">
+            {% embed "@admin/shared/component/card/_list.html.twig" %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block list_card_table_head %}
+                    <th>Name</th>
+                    <th>Auteur</th>
+                    <th>Articles</th>
+                    <th>&nbsp;</th>
+                {% endblock %}
+                {% block list_card_table_body %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>
+                                <a href="{{ path('administration_authentication_user_show', {id: row.owner.id}) }}">
+                                    {{ row.owner.username }}
+                                </a>
+                            </td>
+                            <td>10</td>
+                            <td class="tb-odr-action">
+                                <div class="tb-odr-btns d-none d-md-inline">
+                                    <a href="{{ path('administration_content_post_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                        {{ 'global.show' | trans([], 'messages') }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

@@ -46,7 +46,6 @@ final class TechnologyController extends AbstractCrudController
         return $this->executeFormCommand(
             command: new UpdateTechnologyCommand($row),
             formClass: UpdateTechnologyForm::class,
-            row: $row,
             view: 'edit'
         );
     }

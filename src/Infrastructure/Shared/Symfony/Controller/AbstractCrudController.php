@@ -35,19 +35,24 @@ abstract class AbstractCrudController extends AbstractController
     protected readonly Request $request;
 
     public function __construct(
-        protected readonly MessageBusInterface $commandBus,
-        protected readonly TranslatorInterface $translator,
-        protected readonly LoggerInterface $logger,
+        MessageBusInterface $commandBus,
+        TranslatorInterface $translator,
+        LoggerInterface $logger,
         protected readonly RequestStack $requestStack,
         protected readonly PaginatorInterface $paginator
     ) {
+        parent::__construct($commandBus, $translator, $logger);
         if (null !== $this->requestStack->getCurrentRequest()) {
             $this->request = $this->requestStack->getCurrentRequest();
         }
     }
 
-    public function getViewPath(string $name): string
+    public function getViewPath(string $name, bool $overrideFormViews = false): string
     {
+        if (($name === 'new' || $name === 'edit' || $name === 'form') && false === $overrideFormViews) {
+            return '@admin/shared/layout/form.html.twig';
+        }
+
         return sprintf('@admin/domain/%s/%s/%s.html.twig', static::DOMAIN, static::ENTITY, $name);
     }
 
@@ -93,8 +98,13 @@ abstract class AbstractCrudController extends AbstractController
         return $this->redirectSeeOther($this->getRouteName('index'));
     }
 
-    public function executeFormCommand(object $command, string $formClass, ?object $row = null, string $view = 'new'): Response
-    {
+    public function executeFormCommand(
+        object $command,
+        string $formClass,
+        ?object $row = null,
+        string $view = 'new',
+        bool $overrideFormViews = false
+    ): Response {
         $turbo = $this->request->headers->get('Turbo-Frame');
         $form = $this->createForm($formClass, $command, [
             'action' => $this->generateUrl(
@@ -129,11 +139,17 @@ abstract class AbstractCrudController extends AbstractController
         }
 
         return $this->renderForm(
-            view: $this->getViewPath($view),
+            view: $this->getViewPath($view, $overrideFormViews),
             parameters: [
                 'form' => $form,
                 'data' => $row,
+                '_domain' => static::DOMAIN,
+                '_entity' => static::ENTITY,
                 '_turbo_frame_target' => $turbo,
+                '_index_url' => $this->generateUrl($this->getRouteName('index')),
+                '_show_url' => $row !== null ? $this->generateUrl($this->getRouteName('show'), [
+                    'id' => $row->getId()
+                ]) : null
             ],
             response: $response ?? null
         );

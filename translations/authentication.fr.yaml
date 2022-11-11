@@ -1,3 +1,6 @@
+# entities
+user: Utilisateur
+
 # pages titles
 authentication.titles.reset_password_confirm: Mise à jour du mot de passe
 authentication.titles.reset_password_request: Mot de passe oublié ?

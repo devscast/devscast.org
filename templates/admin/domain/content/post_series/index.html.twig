@@ -1,0 +1,62 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title "Séries d'articles" %}
+
+{% block header %}
+    {% embed '@admin/shared/component/_header.html.twig' %}
+        {% block header_title "Séries d'articles" %}
+        {% block header_action_list %}
+            <li class="btn-group">
+                <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'plus' | icon }}
+                    <span>Ajouter</span>
+                </button>
+                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'bar-chart' | icon }}
+                    <span>Statistiques</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% include '@admin/shared/component/_modal.html.twig' with {_action: 'créer une nouvelle série', _path: path('administration_content_post_series_new')} %}
+
+    <div class="row g-gs mb-4">
+        <div class="col-12">
+            {% embed "@admin/shared/component/card/_list.html.twig" with {
+                _action: 'créer une nouvelle série',
+                _path: path('administration_content_post_series_new')
+            } %}
+                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% block list_card_table_head %}
+                    <th>Name</th>
+                    <th>Articles</th>
+                    <th>Technologie</th>
+                    <th>Statut</th>
+                    <th>&nbsp;</th>
+                {% endblock %}
+                {% block list_card_table_body %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.postCount }}</td>
+                            <td>{{ row.technology.name ?? '-' }}</td>
+                            <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
+                            <td class="tb-odr-action">
+                                <div class="tb-odr-btns d-none d-md-inline">
+                                    <a href="{{ path('administration_content_post_series_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                        {{ 'global.show' | trans([], 'messages') }}
+                                    </a>
+                                    <a href="{{ path('administration_content_post_series_edit', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                        {{ 'global.edit' | trans([], 'messages') }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

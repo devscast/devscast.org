@@ -1,21 +1,36 @@
 Domain\Authentication\Entity\User:
     user (template):
+#        value object
+        username: devscast-user<current()>
+        gender: <randomElement(['M', 'F', 'O'])>
+        roles: [ 'ROLE_USER' ]
+        rss_url: ~
+        avatar: ~
+
+#        fields
         name: <name()>
-        username: user<current()>23
+        pronouns: <randomElement(['She\Her', 'He\Him', 'They\Their'])>
         job_title: <jobTitle()>
         biography: <realText(500)>
-        gender: <randomElement(['M', 'F', 'O'])>
-
         email: user_<current()>\@devscast.org
         phone_number: <e164PhoneNumber()>
-        pronouns: <randomElement(['She\Her', 'He\Him', 'They\Their'])>
         country: <countryCode()>
-        roles: [ 'ROLE_USER' ]
         password: \$2y\$13\$PzaAzoYYBl1VyuAU9M/3GuFQaOgO2vyHct1iN0b4vULoIXtcBICuu # 000000
+        is_subscribed_newsletter: 0
+        is_subscribed_marketing: 0
+        is_dark_theme: 1
+
+#        ecosystem
+        linkedin_url: ~
+        twitter_url: ~
+        github_url: ~
+        website_url: ~
 
         # States
-        is_dark_theme: 1
+        reset_login_attempts_token: ~
+        email_verification_token: ~
         is_email_verified: 1
+        phone_number_verification_token: ~
         is_phone_number_verified: 1
         is_banned: 0
         banned_at: ~
@@ -29,19 +44,12 @@ Domain\Authentication\Entity\User:
         facebook_id: ~
         google_id: ~
 
-        # Links
-        linkedin_url: ~
-        twitter_url: ~
-        github_url: ~
-        website_url: ~
-        rss_url: ~
-
 #        # 2FA
         is_email_auth_enabled: 0
+        email_auth_code: ~
         is_google_auth_enabled: 0
-#        email_auth_code: ~
-#        google_auth_secret: ~
-#        backup_codes: []
+        google_auth_secret: ~
+        backup_codes: []
 
         # Timestamp
         created_at: <dateTimeThisYear()>

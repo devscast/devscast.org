@@ -18,6 +18,7 @@ final class UpdatePodcastSeasonCommand
     public function __construct(
         public readonly PodcastSeason $state,
         public ?string $name = null,
+        public ?string $slug = null,
         public ?string $short_code = null,
         public ?string $description = null,
         public ?File $thumbnail_file = null,

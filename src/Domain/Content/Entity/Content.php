@@ -48,6 +48,8 @@ abstract class Content
 
     protected float $ratio_vote_count = 0.0;
 
+    protected int $comment_count = 0;
+
     /**
      * @var Collection<Tag>
      */
@@ -57,6 +59,11 @@ abstract class Content
      * @var Collection<Technology>
      */
     protected Collection $technologies;
+
+    /**
+     * @var Collection<Comment>
+     */
+    protected Collection $comments;
 
     protected ?int $duration = null;
 
@@ -81,6 +88,7 @@ abstract class Content
         $this->education_level = EducationLevel::beginner();
         $this->tags = new ArrayCollection();
         $this->technologies = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -327,6 +335,41 @@ abstract class Content
     {
         $this->technologies->removeElement($technology);
 
+        return $this;
+    }
+
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (! $this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setTarget($this);
+            $this->comment_count = $this->comments->count();
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        $this->comments->removeElement($comment);
+        $this->comment_count = $this->comments->count();
+
+        return $this;
+    }
+
+    public function getCommentsCount(): int
+    {
+        return $this->comments_count;
+    }
+
+    public function setCommentsCount(int $comments_count): Content
+    {
+        $this->comments_count = $comments_count;
         return $this;
     }
 }

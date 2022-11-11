@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\PostList"
             repository-class="Infrastructure\Content\Doctrine\Repository\PostListRepository"
-            table="post_list"
+            table="content_post_list"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -22,13 +22,18 @@
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="post_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- relations -->
         <many-to-one field="owner" target-entity="Domain\Authentication\Entity\User" >
             <join-column on-delete="CASCADE" nullable="false" />
         </many-to-one>
         <many-to-many field="posts" target-entity="Domain\Content\Entity\Post" >
-            <join-table name="post_list_assigned_post" >
+            <join-table name="content_post_list_assigned_post" >
                 <join-columns>
                     <join-column name="post_list_id" referenced-column-name="id" nullable="false" unique="false"/>
                 </join-columns>

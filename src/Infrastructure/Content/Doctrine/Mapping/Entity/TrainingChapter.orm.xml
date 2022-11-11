@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\TrainingChapter"
             repository-class="Infrastructure\Content\Doctrine\Repository\TrainingChapterRepository"
-            table="video_training_chapter"
+            table="content_video_training_chapter"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -19,6 +19,11 @@
         <field name="order" type="integer">
             <options>
                 <option name="default">1</option>
+            </options>
+        </field>
+        <field name="video_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
             </options>
         </field>
 

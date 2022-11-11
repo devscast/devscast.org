@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Infrastructure\Shared\Symfony\Twig\Sidebar;
 
 use ArrayIterator;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarGroup;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarHeader;
 use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarItemInterface;
+use Infrastructure\Shared\Symfony\Twig\Sidebar\Type\SidebarLink;
 
 /**
  * Class SidebarBuilder.
@@ -82,6 +85,27 @@ class SidebarBuilder implements \IteratorAggregate, SidebarBuilderInterface
     public function setTranslationDomain(string $domain): SidebarBuilderInterface
     {
         $this->translation_domain = $domain;
+
+        return $this;
+    }
+
+    public function addLink(string $route, string $label, ?string $icon = null, ?string $badge = null, array $params = []): SidebarBuilderInterface
+    {
+        $this->add(new SidebarLink($route, $label, $icon, $badge, $params));
+
+        return $this;
+    }
+
+    public function addGroup(string $label, string $icon, array $links = []): SidebarBuilderInterface
+    {
+        $this->add(new SidebarGroup($label, $icon, $links));
+
+        return $this;
+    }
+
+    public function addHeader(string $label): SidebarBuilderInterface
+    {
+        $this->add(new SidebarHeader($label));
 
         return $this;
     }

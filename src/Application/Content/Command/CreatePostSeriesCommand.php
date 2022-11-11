@@ -23,18 +23,7 @@ final class CreatePostSeriesCommand
         public ?string $slug = null,
         public ?string $description = null,
         public ?Technology $technology = null,
-        public array $tags = [],
         public ?File $thumbnail_file = null,
     ) {
-    }
-
-    public function setTags(array|Collection $data): self
-    {
-        match (true) {
-            $data instanceof Collection => $data->toArray(),
-            default => new ArrayCollection($data)
-        };
-
-        return $this;
     }
 }

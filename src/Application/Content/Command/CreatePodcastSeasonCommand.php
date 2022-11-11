@@ -15,6 +15,7 @@ final class CreatePodcastSeasonCommand
 {
     public function __construct(
         public ?string $name = null,
+        public ?string $slug = null,
         public ?string $short_code = null,
         public ?string $description = null,
         public ?File $thumbnail_file = null,

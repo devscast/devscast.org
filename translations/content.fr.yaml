@@ -1,3 +1,15 @@
+# entities
+post_series: Séries d'article
+post_list: Listes d'article
+podcast_episode: Podcast
+podcast_season: Saison de podcast
+tags: Tags
+comment: Commentaire
+video: Vidéo
+training: Formation
+training_chapter: Chapitre de formation
+category: Catégorie
+
 # pages titles
 content.titles.reset_password_confirm: Mise à jour du mot de passe
 
@@ -23,6 +35,9 @@ content.forms.labels.audio: Audio (mp3)
 content.forms.labels.season: Saison
 content.forms.labels.episode_type: Type de l'épisode
 content.forms.labels.episode_number: Numéro de l'épisode
+content.forms.labels.category: Catégorie
+content.forms.labels.series: Séries
+content.forms.labels.short_code: "Code court (ex: S2)"
 
 # value objects
 content.value_object.podcast_episode_type.full: épisode complet

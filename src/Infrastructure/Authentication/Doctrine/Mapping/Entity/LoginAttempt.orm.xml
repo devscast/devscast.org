@@ -7,7 +7,7 @@
     <entity
             name="Domain\Authentication\Entity\LoginAttempt"
             repository-class="Infrastructure\Authentication\Doctrine\Repository\LoginAttemptRepository"
-            table="login_attempt"
+            table="authentication_login_attempt"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>

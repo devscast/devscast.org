@@ -43,6 +43,11 @@
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="comment_count" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- options -->
         <field name="is_commentable" type="boolean" nullable="false">
@@ -100,6 +105,7 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+        <one-to-many field="comments" target-entity="Domain\Content\Entity\Comment" mapped-by="target" />
 
         <!-- Timestamp -->
         <field name="created_at" type="datetime_immutable"/>

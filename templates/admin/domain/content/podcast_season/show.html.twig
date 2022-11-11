@@ -1,0 +1,137 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title "Saisons #{data.name}" %}
+{% block wideContentClass 'wide-xxl' %}
+
+{% block header %}
+    {% embed "@admin/shared/component/_header.html.twig" %}
+        {% block header_title %}
+            Saisons / <strong class="text-primary small">{{ data.name }}</strong>
+        {% endblock %}
+        {% block header_description %}
+            <ul class="list-inline">
+                <li>ID : <span class="text-base">{{ data.id }}</span></li>
+                <li>Création : <span class="text-base">{{ data.createdAt | date }}</span></li>
+            </ul>
+        {% endblock %}
+        {% block header_action_list %}
+            <li>
+                <a href="{{ path('administration_content_podcast_season_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                    {{ 'arrow-long-left' | icon }}
+                    <span>Toutes les saisons</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('administration_content_podcast_season_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
+                    {{ 'edit-alt-fill' | icon }}
+                    <span>{{ 'global.edit' | trans([], 'messages') }}</span>
+                </a>
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% embed "@admin/shared/component/card/_detail.html.twig" %}
+        {% import '@admin/shared/component/_macros.html.twig' as _ %}
+        {% block detail_card_tabs %}
+            <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <span>Détails</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-trigger d-xxl-none">
+                    <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
+                        {{ 'user-list-fill' | icon }}
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+        {% block detail_card_body %}
+            <div class="nk-block">
+                <div class="nk-block">
+                    <div class="nk-block-head">
+                        {{ data.description }}
+                    </div>
+                    <div class="profile-ud-list">
+                        {{ _.user_data_item('Nom', data.name) }}
+                        {{ _.user_data_item("Slug", data.slug) }}
+                        {{ _.user_data_item('Short Code', data.shortCode) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="nk-block mt-5 center row">
+                {% for episode in data.episodes %}
+                    <div class="nk-tb-item col-12">
+                        <div class="nk-tb-col col-6">
+                            <a href="{{ path('administration_content_podcast_episode_show', {id: episode.id}) }}">
+                                <div class="user-card">
+                                    <div class="user-info">
+                                        <span class="tb-lead">{{ episode.name }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="nk-tb-col col-4">
+                            <audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(episode, 'audio_file') }}"></audio>
+                        </div>
+                        <div class="nk-tb-col col-2">
+                            {% if episode.isOnline %}
+                                <span class="badge badge-dim badge-danger">En ligne</span>
+                            {% endif %}
+                        </div>
+                        <div class="nk-tb-col col-2">
+                            <a href="{{ path('administration_content_podcast_episode_show', {id: episode.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
+                                {{ 'global.show' | trans([], 'messages') }}
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% endblock %}
+        {% block detail_card_aside %}
+            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
+                 data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
+                <div class="card-inner-group">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <div class="card-inner">
+                                            <div class="user-card user-card-s2">
+                                                <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
+                                            </div>
+                                        </div>
+                                        <div class="card-inner card-inner-sm">
+                                            <ul class="btn-toolbar justify-center gx-1">
+                                                <li>{{ _.delete_icon_button('administration_content_podcast_season_delete', data, 'administration_content_podcast_season_index') }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <span class="sub-text">lecture (unique)</span>
+                                                    <span>4599</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="sub-text">lecture (total)</span>
+                                                    <span>9000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

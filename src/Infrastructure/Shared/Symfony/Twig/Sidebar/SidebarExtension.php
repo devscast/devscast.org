@@ -120,8 +120,10 @@ class SidebarExtension extends AbstractExtension
                 }
 
                 if ($item instanceof SidebarGroup) {
+                    $links = $this->renderItems($item->getLinks(), $translation_domain, $item);
+                    $groupActiveClass = $item->isIsActive() ? 'active' : '';
                     $s .= <<< HTML
-                        <li class="nk-menu-item has-sub">
+                        <li class="nk-menu-item has-sub {$groupActiveClass}">
                             <a 
                                 href="#" 
                                 class="nk-menu-link nk-menu-toggle" 
@@ -131,7 +133,7 @@ class SidebarExtension extends AbstractExtension
                                 <span class="nk-menu-text">{$this->translator->trans($item->getLabel(), domain: $translation_domain)}</span>
                             </a>
                             <ul class="nk-menu-sub">
-                                {$this->renderItems($item->getLinks(), $translation_domain)}
+                                {$links}
                             </ul>
                         </li>
                     HTML;
@@ -147,10 +149,11 @@ class SidebarExtension extends AbstractExtension
     /**
      * @param SidebarLink[] $items
      */
-    private function renderItems(array $items, string $translation_domain = 'messages'): string
+    private function renderItems(array $items, string $translation_domain = 'messages', ?SidebarGroup $parent = null): string
     {
         $html = '';
         foreach ($items as $item) {
+            $item->setParent($parent);
             $html = $this->renderItem($html, $item, $translation_domain);
         }
 
@@ -162,14 +165,19 @@ class SidebarExtension extends AbstractExtension
         $label = $this->translator->trans($item->getLabel(), domain: $translation_domain);
         $badge = $this->translator->trans($item->getBadge(), domain: $translation_domain);
         $url = $this->router->generate($item->getRoute(), $item->getParams());
-        $active = $this->activeClass($url, activeClass: 'active current-page', relative: true);
-        $current = $this->activeClass($item->getRoute(), activeClass: 'aria-current="page"');
+        $activeClass = $this->activeClass($url, activeClass: 'active current-page', relative: true);
+        $currentClass = $this->activeClass($item->getRoute(), activeClass: 'aria-current="page"');
         $icon = ! empty($item->getIcon()) ?
             "<span class='nk-menu-icon'><em class='icon ni ni-{$item->getIcon()}'></em></span>" : '';
 
+        $active = $activeClass === 'active current-page';
+        if ($active && $item->getParent() !== null) {
+            $item->getParent()->setIsActive(true);
+        }
+
         $html .= <<< HTML
-            <li class="nk-menu-item ${active}">
-                <a ${current} aria-label="${label}" title="${label}" href="${url}" class="nk-menu-link">
+            <li class="nk-menu-item ${activeClass}">
+                <a ${currentClass} aria-label="${label}" title="${label}" href="${url}" class="nk-menu-link">
                     ${icon}
                     <span class="nk-menu-text">${label}</span>
                     <span class="nk-menu-badge bg-primary">${badge}</span>

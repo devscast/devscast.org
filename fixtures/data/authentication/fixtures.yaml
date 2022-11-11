@@ -1,0 +1,11 @@
+include:
+    - authentication/templates.yaml
+    - content/templates.yaml
+
+Domain\Authentication\Entity\User:
+    user_admin (extends user):
+        username: admin77
+        email: admin\@admin.com
+        roles: [ 'ROLE_USER', 'ROLE_ADMIN' ]
+
+    user{1..10} (extends user):

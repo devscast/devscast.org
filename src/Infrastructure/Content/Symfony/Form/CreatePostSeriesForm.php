@@ -39,10 +39,6 @@ class CreatePostSeriesForm extends AbstractContentType
                 'autocomplete' => true,
                 'required' => false,
             ])
-            ->add('tags', TagType::class, [
-                'label' => 'content.forms.labels.tags',
-                'required' => false,
-            ])
             ->add('thumbnail_file', DropzoneType::class, [
                 'label' => 'content.forms.labels.thumbnail',
                 'required' => ! $this->isEdition($builder),

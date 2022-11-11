@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\Technology"
             repository-class="Infrastructure\Content\Doctrine\Repository\TechnologyRepository"
-            table="technology"
+            table="content_technology"
     >
         <unique-constraints>
             <unique-constraint columns="name"/>
@@ -22,6 +22,11 @@
         <field name="name" type="string" length="255" nullable="false" />
         <field name="slug" type="string" length="255" nullable="false" />
         <field name="description" type="text" nullable="true" />
+        <field name="content_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- value objects -->
         <embedded name="thumbnail" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />

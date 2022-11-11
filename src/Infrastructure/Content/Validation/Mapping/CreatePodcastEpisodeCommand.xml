@@ -19,5 +19,8 @@
                 </option>
             </constraint>
         </property>
+        <property name="episode_number">
+            <constraint name="NotBlank" />
+        </property>
     </class>
 </constraint-mapping>

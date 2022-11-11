@@ -25,7 +25,6 @@ final class UpdatePostSeriesCommand
         public ?string $slug = null,
         #[Assert\Length(min: 10)] public ?string $description = null,
         public ?Technology $technology = null,
-        public Collection $tags = new ArrayCollection(),
         public ?File $thumbnail_file = null,
     ) {
         Mapper::hydrate($this->state, $this);

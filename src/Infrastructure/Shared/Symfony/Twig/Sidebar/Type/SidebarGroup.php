@@ -20,6 +20,8 @@ class SidebarGroup implements SidebarItemInterface
 
     private string $icon;
 
+    private bool $is_active = false;
+
     /**
      * SidebarGroup constructor.
      *
@@ -34,8 +36,6 @@ class SidebarGroup implements SidebarItemInterface
 
     /**
      * @return SidebarLink[]
-     *
-     * @author bernard-ng <bernard@devscast.tech>
      */
     public function getLinks(): array
     {
@@ -44,10 +44,6 @@ class SidebarGroup implements SidebarItemInterface
 
     /**
      * @param SidebarLink[] $links
-     *
-     * @return $this
-     *
-     * @author bernard-ng <bernard@devscast.tech>
      */
     public function setLinks(array $links): self
     {
@@ -56,19 +52,11 @@ class SidebarGroup implements SidebarItemInterface
         return $this;
     }
 
-    /**
-     * @author bernard-ng <bernard@devscast.tech>
-     */
     public function getIcon(): string
     {
         return $this->icon;
     }
 
-    /**
-     * @return SidebarGroup
-     *
-     * @author bernard-ng <bernard@devscast.tech>
-     */
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
@@ -76,22 +64,26 @@ class SidebarGroup implements SidebarItemInterface
         return $this;
     }
 
-    /**
-     * @author bernard-ng <bernard@devscast.tech>
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @return SidebarGroup
-     *
-     * @author bernard-ng <bernard@devscast.tech>
-     */
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function isIsActive(): bool
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive(bool $is_active): self
+    {
+        $this->is_active = $is_active;
 
         return $this;
     }

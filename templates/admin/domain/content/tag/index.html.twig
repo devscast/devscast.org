@@ -5,11 +5,15 @@
     {% embed '@admin/shared/component/_header.html.twig' %}
         {% block header_title 'Tags' %}
         {% block header_action_list %}
-            <li>
+            <li class="btn-group">
                 <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </button>
+                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ 'bar-chart' | icon }}
+                    <span>Statistiques</span>
+                </a>
             </li>
         {% endblock %}
     {% endembed %}
@@ -23,7 +27,6 @@
             {% embed "@admin/shared/component/card/_list.html.twig" %}
                 {% import '@admin/shared/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
-                    <th>#</th>
                     <th>Tags</th>
                     <th>Contenu</th>
                     <th>&nbsp;</th>
@@ -31,7 +34,6 @@
                 {% block list_card_table_body %}
                     {% for row in data %}
                         <tr>
-                            <td>{{ row.id }}</td>
                             <td>{{ row.name }}</td>
                             <td>0</td>
                             <td>

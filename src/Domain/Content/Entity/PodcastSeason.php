@@ -26,6 +26,8 @@ class PodcastSeason
 
     private ?string $short_code = null;
 
+    private ?string $slug = null;
+
     private ?string $description = null;
 
     /**
@@ -51,6 +53,17 @@ class PodcastSeason
         if (! $this->episodes->contains($episode)) {
             $this->episodes->add($episode);
             $episode->setSeason($this);
+            $this->episode_count = $this->episodes->count();
+        }
+
+        return $this;
+    }
+
+    public function removeEpisode(PodcastEpisode $episode): self
+    {
+        if ($this->episodes->contains($episode)) {
+            $this->episodes->removeElement($episode);
+            $this->episode_count = $this->episodes->count();
         }
 
         return $this;
@@ -64,18 +77,6 @@ class PodcastSeason
     public function setEpisodeCount(int $episode_count): self
     {
         $this->episode_count = $episode_count;
-
-        return $this;
-    }
-
-    public function getThumbnail(): EmbeddedFile
-    {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail(EmbeddedFile $thumbnail): self
-    {
-        $this->thumbnail = $thumbnail;
 
         return $this;
     }
@@ -112,6 +113,18 @@ class PodcastSeason
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

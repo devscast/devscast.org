@@ -24,6 +24,8 @@ class TrainingChapter
      */
     public Collection $videos;
 
+    private int $video_count = 0;
+
     private ?string $name = null;
 
     private ?string $description = null;
@@ -108,6 +110,7 @@ class TrainingChapter
     {
         if (! $this->videos->contains($video)) {
             $this->videos[] = $video;
+            $this->video_count = $this->videos->count();
         }
 
         return $this;
@@ -116,6 +119,7 @@ class TrainingChapter
     public function removeVideo(Video $video): self
     {
         $this->videos->removeElement($video);
+        $this->video_count = $this->videos->count();
 
         return $this;
     }

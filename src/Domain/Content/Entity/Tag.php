@@ -21,6 +21,8 @@ class Tag
 
     private ?string $name = null;
 
+    private int $content_count = 0;
+
     /**
      * @var Collection<Content>
      */
@@ -53,6 +55,7 @@ class Tag
         if (! $this->contents->contains($content)) {
             $this->contents[] = $content;
             $content->addTag($this);
+            $this->content_count = $this->contents->count();
         }
 
         return $this;
@@ -62,7 +65,20 @@ class Tag
     {
         if ($this->contents->removeElement($content)) {
             $content->removeTag($this);
+            $this->content_count = $this->contents->count();
         }
+
+        return $this;
+    }
+
+    public function getContentCount(): int
+    {
+        return $this->content_count;
+    }
+
+    public function setContentCount(int $content_count): Tag
+    {
+        $this->content_count = $content_count;
 
         return $this;
     }

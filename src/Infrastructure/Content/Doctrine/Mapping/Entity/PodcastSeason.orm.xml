@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\PodcastSeason"
             repository-class="Infrastructure\Content\Doctrine\Repository\PodcastSeasonRepository"
-            table="podcast_season"
+            table="content_podcast_season"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -15,6 +15,7 @@
 
         <!-- fields -->
         <field name="name" type="string" nullable="false" />
+        <field name="slug" type="string" nullable="false" />
         <field name="short_code" type="string" nullable="false">
             <options>
                 <option name="default">S1</option>

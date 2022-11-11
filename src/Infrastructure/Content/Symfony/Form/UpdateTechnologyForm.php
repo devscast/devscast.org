@@ -15,10 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class UpdateTechnologyForm extends CreateTechnologyForm
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

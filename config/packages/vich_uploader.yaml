@@ -40,8 +40,29 @@ vich_uploader:
                 options: { property: 'slug', transliterate: true }
 
         content_podcast_episode_audio:
-            uri_prefix: '/streaming/podcast_episode/'
-            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast_episode/audio'
+            uri_prefix: '/streaming/podcast'
+            upload_destination: '%kernel.project_dir%/uploads/content/podcast_episode/audio'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_video_video:
+            uri_prefix: '/streaming/video'
+            upload_destination: '%kernel.project_dir%/uploads/content/video'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_post_series_thumbnail:
+            uri_prefix: '/uploads/content/post_series/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/post_series/thumbnail'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_technology_thumbnail:
+            uri_prefix: '/uploads/content/technology/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/technology/thumbnail'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }

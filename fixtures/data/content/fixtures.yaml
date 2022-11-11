@@ -1,0 +1,8 @@
+include:
+    - templates.yaml
+
+Domain\Content\Entity\Tag:
+    tag{1..10} (extends tag):
+
+Domain\Content\Entity\Technology:
+    technology{1..30} (template):

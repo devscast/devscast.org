@@ -7,7 +7,7 @@
     <entity
             name="Domain\Content\Entity\Video"
             repository-class="Infrastructure\Content\Doctrine\Repository\VideoRepository"
-            table="video"
+            table="content_video"
     >
         <!-- fields -->
         <field name="source_url" type="string" nullable="false" />

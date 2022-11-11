@@ -40,6 +40,17 @@ final class PodcastSeasonController extends AbstractCrudController
         return $this->executeFormCommand(new CreatePodcastSeasonCommand(), CreatePodcastSeasonForm::class);
     }
 
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(PodcastSeason $row): Response
+    {
+        return $this->render(
+            view: $this->getViewPath('show'),
+            parameters: [
+                'data' => $row,
+            ],
+        );
+    }
+
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(PodcastSeason $row): Response
     {

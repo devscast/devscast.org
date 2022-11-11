@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
+use Application\Content\Service\ContentService;
 use Application\Shared\Mapper;
-use Domain\Content\Entity\PodcastEpisode;
-use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
+use Domain\Content\Repository\PodcastEpisodeRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -19,14 +19,14 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class UpdatePodcastEpisodeHandler
 {
     public function __construct(
-        private readonly PodcastEpisodeRepository $repository
+        private readonly PodcastEpisodeRepositoryInterface $repository,
+        private readonly ContentService $contentService,
     ) {
     }
 
     public function __invoke(UpdatePodcastEpisodeCommand $command): void
     {
-        /** @var PodcastEpisode $podcast */
-        $podcast = Mapper::getHydratedObject($command, $command->state);
-        $this->repository->save($podcast);
+        $this->contentService->assertPublishableContent($command);
+        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
     }
 }

@@ -29,4 +29,15 @@ final class Mapper
 
         return $destination;
     }
+
+    public static function hasProperties(object $source, array $properties): bool
+    {
+        foreach ($properties as $property) {
+            if (! property_exists($source, $property)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -55,7 +55,7 @@ final class UserController extends AbstractCrudController
     {
         return $this->executeFormCommand(
             command: new CreateUserCommand(),
-            formClass: CreateUserForm::class
+            formClass: CreateUserForm::class,
         );
     }
 
@@ -66,7 +66,8 @@ final class UserController extends AbstractCrudController
             command: new UpdateUserCommand($row),
             formClass: UpdateUserForm::class,
             row: $row,
-            view: 'edit'
+            view: 'edit',
+            overrideFormViews: true
         );
     }
 

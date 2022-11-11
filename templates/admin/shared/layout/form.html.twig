@@ -1,0 +1,31 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% set _title = (data is defined and data) ? "Édition #{ _entity | trans([], _domain) }" : "Création #{_entity | trans([], _domain)}" %}
+{% block title _title %}
+
+{% block header %}
+    {% embed "@admin/shared/component/_header.html.twig" %}
+        {% block header_title _title %}
+        {% block header_action_list %}
+            <li class="btn-group">
+                <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                    {{ 'arrow-long-left' | icon }}
+                    <span>Toutes les entrées</span>
+                </a>
+                {% if _show_url %}
+                    <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
+                        {{ 'eye' | icon }}
+                        <span>revenir aux détails</span>
+                    </a>
+                {% endif %}
+            </li>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% embed "@admin/shared/component/card/_simple.html.twig" %}
+        {% block simple_card_body %}
+            {% include '@admin/shared/component/_form.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
