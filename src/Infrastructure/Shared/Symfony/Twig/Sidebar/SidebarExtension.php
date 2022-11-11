@@ -170,8 +170,8 @@ class SidebarExtension extends AbstractExtension
         $icon = ! empty($item->getIcon()) ?
             "<span class='nk-menu-icon'><em class='icon ni ni-{$item->getIcon()}'></em></span>" : '';
 
-        $active = $activeClass === 'active current-page';
-        if ($active && $item->getParent() !== null) {
+        $active = 'active current-page' === $activeClass;
+        if ($active && null !== $item->getParent()) {
             $item->getParent()->setIsActive(true);
         }
 

@@ -114,9 +114,10 @@ class PostList
         return $this->post_count;
     }
 
-    public function setPostCount(int $posts_count): PostList
+    public function setPostCount(int $posts_count): self
     {
         $this->post_count = $posts_count;
+
         return $this;
     }
 }

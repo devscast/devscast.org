@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;

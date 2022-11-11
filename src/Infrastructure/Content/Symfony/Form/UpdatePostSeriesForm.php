@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\UpdatePostSeriesCommand;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

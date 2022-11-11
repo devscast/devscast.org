@@ -132,9 +132,10 @@ class Training extends Content
         return $this->video_count;
     }
 
-    public function setVideoCount(int $video_count): Training
+    public function setVideoCount(int $video_count): self
     {
         $this->video_count = $video_count;
+
         return $this;
     }
 
@@ -143,9 +144,10 @@ class Training extends Content
         return $this->chapter_count;
     }
 
-    public function setChapterCount(int $chapter_count): Training
+    public function setChapterCount(int $chapter_count): self
     {
         $this->chapter_count = $chapter_count;
+
         return $this;
     }
 }

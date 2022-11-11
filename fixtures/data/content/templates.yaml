@@ -10,7 +10,7 @@ Domain\Content\Entity\Category:
         name: <name()>
         description: <text()>
         post_count: 0
-        posts: ~
+        posts: []
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
@@ -25,12 +25,9 @@ Domain\Content\Entity\Comment:
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
-Domain\Content\Entity\Content:
-    content (template):
-        content_type: 'post'
-
-        #        fields
-        uuid: ~
+Domain\Content\Entity\PodcastEpisode:
+    podcast_episode (template):
+        #uuid: ~
         name: <name()>
         slug: <slug()>
         content: <text()>
@@ -40,26 +37,22 @@ Domain\Content\Entity\Content:
         ratio_vote_count: 0
         comment_count: 0
 
-        #        options
         is_commentable: 0
         is_featured: 0
         is_top_promoted: 0
         is_online: 0
         is_premium: 0
 
-        #        value objects
         owner: ~
-        tags: ~
-        technologies: ~
-        comments: ~
+        tags: [ ]
+        technologies: [ ]
+        comments: [ ]
 
-        #        timestamp
         created_at: <dateTimeThisYear()>
         updated_at: ~
         scheduled_at: ~
 
-Domain\Content\Entity\PodcastEpisode:
-    podcast_episode (template) (extends content):
+        content_type: 'podcast'
         episode_number: <current()>
         audio: ~
         season: ~
@@ -72,42 +65,68 @@ Domain\Content\Entity\PodcastSeason:
         short_code: S<current()>
         description: <text()>
         episode_count: 0
-        thumbnail: ~
-        episodes: ~
+        #thumbnail: ~
+        episodes: []
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
 Domain\Content\Entity\Post:
-    post (template) (extends content):
+    post (template):
+        #uuid: ~
+        name: <name()>
+        slug: <slug()>
+        content: <text()>
+        duration: <numberBetween(1, 1000)>
+        up_vote_count: 0
+        down_vote_count: 0
+        ratio_vote_count: 0
+        comment_count: 0
+
+        is_commentable: 0
+        is_featured: 0
+        is_top_promoted: 0
+        is_online: 0
+        is_premium: 0
+
+        owner: ~
+        tags: [ ]
+        technologies: [ ]
+        comments: [ ]
+
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+        scheduled_at: ~
+
+        content_type: 'post'
         category: ~
         series: ~
 
 Domain\Content\Entity\PostList:
     post_list (template):
-        uuid: ~
+        #uuid: ~
         name: <name()>
-        description: <description()>
+        description: <text()>
         is_public: 0
         post_count: 0
         owner: ~
         posts: ~
         created_at: <dateTimeThisYear()>
-        update_at: ~
+        updated_at: ~
 
 Domain\Content\Entity\PostSeries:
     post_series (template):
-        uuid: ~
+        #uuid: ~
         name: <name()>
         slug: <slug()>
         description: <text()>
         post_count: 0
         status: draft
-        thumbnail: ~
+        #thumbnail: ~
         owner: ~
         technology: ~
-        posts: ~
+        posts: []
         created_at: <dateTimeThisYear()>
-        update_at: ~
+        updated_at: ~
 
 Domain\Content\Entity\Progression:
     progression (template):
@@ -145,24 +164,50 @@ Domain\Content\Entity\Tag:
     tag (template):
         name: <name()>
         content_count: 0
-        contents: ~
+        #contents: ~
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
 Domain\Content\Entity\Technology:
     technology (template):
-        uuid: ~
+        #uuid: ~
         name: <name()>
         slug: <slug()>
         description: <text()>
         content_count: 0
-        thumbnail: ~
-        contents: ~
+        #thumbnail: ~
+        contents: []
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
 Domain\Content\Entity\Training:
-    training (template) (extends content):
+    training (template):
+        #uuid: ~
+        name: <name()>
+        slug: <slug()>
+        content: <text()>
+        duration: <numberBetween(1, 1000)>
+        up_vote_count: 0
+        down_vote_count: 0
+        ratio_vote_count: 0
+        comment_count: 0
+
+        is_commentable: 0
+        is_featured: 0
+        is_top_promoted: 0
+        is_online: 0
+        is_premium: 0
+
+        owner: ~
+        tags: [ ]
+        technologies: [ ]
+        comments: [ ]
+
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+        scheduled_at: ~
+
+        content_type: 'training'
         youtube_playlist: ~
         links: ~
         video_count: 0
@@ -182,7 +227,33 @@ Domain\Content\Entity\TrainingChapter:
         updated_at: ~
 
 Domain\Content\Entity\Video:
-    video (content) (extends content):
+    video (template):
+        #uuid: ~
+        name: <name()>
+        slug: <slug()>
+        content: <text()>
+        duration: <numberBetween(1, 1000)>
+        up_vote_count: 0
+        down_vote_count: 0
+        ratio_vote_count: 0
+        comment_count: 0
+
+        is_commentable: 0
+        is_featured: 0
+        is_top_promoted: 0
+        is_online: 0
+        is_premium: 0
+
+        owner: ~
+        tags: [ ]
+        technologies: [ ]
+        comments: [ ]
+
+        created_at: <dateTimeThisYear()>
+        updated_at: ~
+        scheduled_at: ~
+
+        content_type: 'video'
         source_url: ~
         timecodes: ~
         training: ~

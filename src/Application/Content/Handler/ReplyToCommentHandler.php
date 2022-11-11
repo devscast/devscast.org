@@ -26,7 +26,7 @@ final class ReplyToCommentHandler
     public function __invoke(ReplyToCommentCommand $command): void
     {
         // one level comment reply
-        if ($command->parent->getParent() !== null) {
+        if (null !== $command->parent->getParent()) {
             $command->parent = $command->parent->getParent();
         }
 

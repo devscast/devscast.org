@@ -106,4 +106,16 @@ class Technology
 
         return $this;
     }
+
+    public function getContentCount(): int
+    {
+        return $this->content_count;
+    }
+
+    public function setContentCount(int $content_count): self
+    {
+        $this->content_count = $content_count;
+
+        return $this;
+    }
 }

@@ -76,7 +76,7 @@ class Tag
         return $this->content_count;
     }
 
-    public function setContentCount(int $content_count): Tag
+    public function setContentCount(int $content_count): self
     {
         $this->content_count = $content_count;
 

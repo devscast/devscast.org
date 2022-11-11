@@ -7,7 +7,6 @@ namespace Infrastructure\Content\Symfony\Form;
 use Application\Content\Command\CreatePostSeriesCommand;
 use Domain\Content\Entity\Technology;
 use Infrastructure\Content\Symfony\Form\Type\AbstractContentType;
-use Infrastructure\Content\Symfony\Form\Type\TagType;
 use Infrastructure\Shared\Symfony\Form\Type\EditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

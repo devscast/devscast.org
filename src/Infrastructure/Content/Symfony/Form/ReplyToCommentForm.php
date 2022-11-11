@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\ReplyToCommentCommand;
@@ -14,7 +16,7 @@ final class ReplyToCommentForm extends AbstractType
     {
         $builder->add('content', EditorType::class, [
             'label' => 'content.forms.labels.content',
-            'required' => false
+            'required' => false,
         ]);
     }
 

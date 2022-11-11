@@ -46,7 +46,7 @@ final class CategoryController extends AbstractCrudController
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row
+                'data' => $row,
             ]
         );
     }

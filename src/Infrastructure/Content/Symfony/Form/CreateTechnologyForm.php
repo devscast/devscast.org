@@ -27,7 +27,7 @@ class CreateTechnologyForm extends AbstractContentType
             ])
             ->add('slug', TextType::class, [
                 'label' => 'content.forms.labels.slug',
-                'required' => false
+                'required' => false,
             ])
             ->add('description', EditorType::class, [
                 'label' => 'content.forms.labels.description',

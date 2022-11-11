@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Application\Content\Handler;
 
-use Application\Content\Command\CreatePostSeriesCommand;
 use Application\Content\Command\UpdatePostSeriesCommand;
 use Application\Content\Service\ContentService;
 use Application\Shared\Mapper;
-use Domain\Content\Entity\PostSeries;
 use Domain\Content\Repository\PostSeriesRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 

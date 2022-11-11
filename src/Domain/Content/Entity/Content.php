@@ -362,14 +362,15 @@ abstract class Content
         return $this;
     }
 
-    public function getCommentsCount(): int
+    public function getCommentCount(): int
     {
-        return $this->comments_count;
+        return $this->comment_count;
     }
 
-    public function setCommentsCount(int $comments_count): Content
+    public function setCommentCount(int $comments_count): self
     {
-        $this->comments_count = $comments_count;
+        $this->comment_count = $comments_count;
+
         return $this;
     }
 }

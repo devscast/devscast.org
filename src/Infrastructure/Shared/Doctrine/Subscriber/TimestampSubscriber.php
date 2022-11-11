@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Doctrine\Subscriber;
 
-use Application\Content\Service\ContentService;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;

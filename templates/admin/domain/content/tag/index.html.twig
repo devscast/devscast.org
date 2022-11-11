@@ -27,15 +27,15 @@
             {% embed "@admin/shared/component/card/_list.html.twig" %}
                 {% import '@admin/shared/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
-                    <th>Tags</th>
-                    <th>Contenu</th>
+                    <th>Nom</th>
+                    <th>Contenus</th>
                     <th>&nbsp;</th>
                 {% endblock %}
                 {% block list_card_table_body %}
                     {% for row in data %}
                         <tr>
                             <td>{{ row.name }}</td>
-                            <td>0</td>
+                            <td>{{ row.contentCount }}</td>
                             <td>
                                 <div class="tb-odr-btns d-none d-md-inline">
                                     <a href="{{ path('administration_content_tag_edit', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.edit' | trans([], 'messages') }}">

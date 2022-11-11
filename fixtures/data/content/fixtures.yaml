@@ -5,4 +5,36 @@ Domain\Content\Entity\Tag:
     tag{1..10} (extends tag):
 
 Domain\Content\Entity\Technology:
-    technology{1..30} (template):
+    technology{1..30} (extends technology):
+
+Domain\Content\Entity\Category:
+    category{1..5} (extends category):
+
+Domain\Content\Entity\Post:
+    post_{1..500} (extends post):
+        tags: [ '@tag*' ]
+        technologies: [ '@technology*' ]
+        category: '@category*'
+        owner: '@user*'
+
+Domain\Content\Entity\PostSeries:
+    postSeries{1..10} (extends post_series):
+        technology: '@technology*'
+        owner: '@user_admin'
+        posts: [ '@post_*' ]
+
+Domain\Content\Entity\PostList:
+    postList{1..45} (extends post_list):
+        owner: '@user*'
+        posts: [ '@post_*' ]
+        is_public: <randomElement([0, 1])>
+
+Domain\Content\Entity\PodcastEpisode:
+    podcastEpisode{1..50} (extends podcast_episode):
+        owner: '@user_admin'
+        tags: [ '@tag*' ]
+        technologies: [ '@technology*' ]
+
+Domain\Content\Entity\PodcastSeason:
+    podcastSeason{1..10} (extends podcast_season):
+        episodes: [ '@podcastEpisode*' ]

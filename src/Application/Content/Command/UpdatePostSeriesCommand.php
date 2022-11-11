@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Application\Content\Command;
 
 use Application\Shared\Mapper;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Domain\Content\Entity\PostSeries;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;

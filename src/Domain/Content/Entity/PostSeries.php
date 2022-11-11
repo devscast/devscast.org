@@ -91,9 +91,12 @@ class PostSeries
         return $this->status;
     }
 
-    public function setStatus(ContentStatus $status): self
+    public function setStatus(ContentStatus|string $status): self
     {
-        $this->status = $status;
+        $this->status = match (true) {
+            $status instanceof ContentStatus => $status,
+            default => ContentStatus::fromString($status)
+        };
 
         return $this;
     }
@@ -115,9 +118,10 @@ class PostSeries
         return $this->post_count;
     }
 
-    public function setPostCount(int $post_count): PostSeries
+    public function setPostCount(int $post_count): self
     {
         $this->post_count = $post_count;
+
         return $this;
     }
 

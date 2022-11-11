@@ -1,6 +1,5 @@
 include:
-    - authentication/templates.yaml
-    - content/templates.yaml
+    - templates.yaml
 
 Domain\Authentication\Entity\User:
     user_admin (extends user):

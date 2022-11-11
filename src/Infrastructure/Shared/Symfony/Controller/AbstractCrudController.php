@@ -49,7 +49,7 @@ abstract class AbstractCrudController extends AbstractController
 
     public function getViewPath(string $name, bool $overrideFormViews = false): string
     {
-        if (($name === 'new' || $name === 'edit' || $name === 'form') && false === $overrideFormViews) {
+        if (('new' === $name || 'edit' === $name || 'form' === $name) && false === $overrideFormViews) {
             return '@admin/shared/layout/form.html.twig';
         }
 
@@ -147,9 +147,9 @@ abstract class AbstractCrudController extends AbstractController
                 '_entity' => static::ENTITY,
                 '_turbo_frame_target' => $turbo,
                 '_index_url' => $this->generateUrl($this->getRouteName('index')),
-                '_show_url' => $row !== null ? $this->generateUrl($this->getRouteName('show'), [
-                    'id' => $row->getId()
-                ]) : null
+                '_show_url' => null !== $row ? $this->generateUrl($this->getRouteName('show'), [
+                    'id' => $row->getId(),
+                ]) : null,
             ],
             response: $response ?? null
         );

@@ -48,7 +48,7 @@ final class PostSeriesController extends AbstractCrudController
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row
+                'data' => $row,
             ]
         );
     }

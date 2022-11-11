@@ -35,7 +35,7 @@
                                     {{ row.owner.username }}
                                 </a>
                             </td>
-                            <td>10</td>
+                            <td>{{ row.postCount }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
                                     <a href="{{ path('administration_content_post_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">

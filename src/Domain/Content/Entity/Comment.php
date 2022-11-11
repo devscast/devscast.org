@@ -109,9 +109,10 @@ class Comment
         return $this->has_replies;
     }
 
-    public function setHasReplies(bool $has_replies): Comment
+    public function setHasReplies(bool $has_replies): self
     {
         $this->has_replies = $has_replies;
+
         return $this;
     }
 }
