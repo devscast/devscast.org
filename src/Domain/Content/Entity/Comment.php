@@ -6,19 +6,16 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * Class Comment.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Comment
+class Comment extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     private ?string $content = null;

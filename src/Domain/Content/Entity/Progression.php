@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * class Progression.
@@ -14,10 +13,8 @@ use Domain\Shared\Entity\TimestampTrait;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Progression
+class Progression extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     private int $progress = 0;

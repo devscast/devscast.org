@@ -6,19 +6,16 @@ namespace Domain\Content\Entity;
 
 use Domain\Authentication\Entity\User;
 use Domain\Content\ValueObject\SubjectProposalStatus;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * class SubjectProposal.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class SubjectProposal
+class SubjectProposal extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     public ?string $subject;

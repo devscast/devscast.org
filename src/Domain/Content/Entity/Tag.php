@@ -6,19 +6,15 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\IdentityTrait;
-use Domain\Shared\Entity\TimestampTrait;
+use Domain\Shared\Entity\AbstractEntity;
 
 /**
  * Class Tag.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Tag
+class Tag extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
-
     private ?string $name = null;
 
     private int $content_count = 0;

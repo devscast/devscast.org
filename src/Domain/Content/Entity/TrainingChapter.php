@@ -6,19 +6,15 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\IdentityTrait;
-use Domain\Shared\Entity\TimestampTrait;
+use Domain\Shared\Entity\AbstractEntity;
 
 /**
  * class TrainingChapter.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class TrainingChapter
+class TrainingChapter extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
-
     /**
      * @var Collection<Video>
      */
@@ -120,6 +116,18 @@ class TrainingChapter
     {
         $this->videos->removeElement($video);
         $this->video_count = $this->videos->count();
+
+        return $this;
+    }
+
+    public function getVideoCount(): int
+    {
+        return $this->video_count;
+    }
+
+    public function setVideoCount(int $video_count): self
+    {
+        $this->video_count = $video_count;
 
         return $this;
     }

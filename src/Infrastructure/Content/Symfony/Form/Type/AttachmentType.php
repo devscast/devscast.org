@@ -81,6 +81,9 @@ class AttachmentType extends TextType implements DataTransformerInterface
             return null;
         }
 
-        return $this->repository->find($data) ?: new NonExistingAttachment(intval($data));
+        /** @var Attachment $result */
+        $result = $this->repository->find($data) ?: new NonExistingAttachment(intval($data));
+
+        return $result;
     }
 }

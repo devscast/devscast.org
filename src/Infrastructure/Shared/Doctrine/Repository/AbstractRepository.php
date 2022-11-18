@@ -15,11 +15,6 @@ use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * @template E of object
- *
- * @method E|null find(mixed $id, ?int $lockMode = null, ?int $lockVersion = null)
- * @method E|null findOneBy(array $criteria, array $orderBy = null)
- * @method E[]    findAll()
- * @method E[]    findBy(array $criteria, array $orderBy = null, ?int $limit = null, ?int $offset = null)
  */
 abstract class AbstractRepository extends ServiceEntityRepository implements DataRepositoryInterface
 {
@@ -34,7 +29,7 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
     /**
      * Trouve une entité par sa clef primaire et renvoie une exception en cas d'absence.
      *
-     * @return E
+     * @psmal-return E
      *
      * @throws EntityNotFoundException
      */
@@ -48,13 +43,19 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Dat
         return $entity;
     }
 
+    /**
+     * @psmal-return E[]
+     */
     public function findByCaseInsensitive(array $conditions): array
     {
-        return (array) $this->findByCaseInsensitiveQuery($conditions)->getResult();
+        /** @var E[] $result */
+        $result = $this->findByCaseInsensitiveQuery($conditions)->getResult();
+
+        return $result;
     }
 
     /**
-     * @return E|null
+     * @psmal-return E|null
      *
      * @throws NonUniqueResultException
      */

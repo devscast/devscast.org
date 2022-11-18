@@ -6,9 +6,8 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 use Domain\Shared\Entity\UuidTrait;
 use Symfony\Component\Uid\Uuid;
 
@@ -17,10 +16,8 @@ use Symfony\Component\Uid\Uuid;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class PostList
+class PostList extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
     use UuidTrait;
 

@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace Domain\Content\Entity;
 
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * class SubjectProposalVote.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class SubjectProposalVote
+class SubjectProposalVote extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     private ?SubjectProposal $proposal;

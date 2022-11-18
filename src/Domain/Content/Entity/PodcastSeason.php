@@ -6,9 +6,8 @@ namespace Domain\Content\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\ThumbnailTrait;
-use Domain\Shared\Entity\TimestampTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 
 /**
@@ -16,10 +15,8 @@ use Domain\Shared\ValueObject\EmbeddedFile;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class PodcastSeason
+class PodcastSeason extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use ThumbnailTrait;
 
     private ?string $name = null;

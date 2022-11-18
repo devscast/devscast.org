@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * Class ResetPasswordToken.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class ResetPasswordToken
+class ResetPasswordToken extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     private ?string $token;

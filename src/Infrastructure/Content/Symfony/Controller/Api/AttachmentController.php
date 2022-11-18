@@ -69,9 +69,9 @@ final class AttachmentController extends AbstractController
         /** @var File|null $file */
         $file = $request->files->get('file');
         $attachment
+            ->setOwner($this->getUser())
             ->setThumbnailFile($file)
-            ->setCreatedAt(new \DateTimeImmutable())
-            ->setOwner($this->getUser());
+            ->setCreatedAt(new \DateTimeImmutable());
         $repository->save($attachment);
 
         return $this->json($attachment);

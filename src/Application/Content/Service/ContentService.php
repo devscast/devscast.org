@@ -9,7 +9,6 @@ use Application\Content\Command\CreatePodcastEpisodeCommand;
 use Application\Content\Command\CreatePostCommand;
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
 use Application\Content\Command\UpdatePostCommand;
-use Application\Shared\Mapper;
 use Domain\Content\Exception\ContentScheduleDateMustBeInFutureException;
 use Domain\Content\Exception\InvalidSlugException;
 use Domain\Content\Repository\ContentRepositoryInterface;
@@ -57,6 +56,7 @@ final class ContentService
     public function assertValidDuration(AbstractContentCommand $command): void
     {
         if (0 === $command->duration) {
+            /** @var CreatePostCommand|UpdatePostCommand $command */
             if ($command->content_type->equals(ContentType::post())) {
                 /*
                  * The average reading rate is actually 238, but 200 is a nice compromise and is easier to remember.
@@ -78,8 +78,8 @@ final class ContentService
                 $command->duration = intval((str_word_count((string) $command->content) / 200) * 60);
             }
 
+            /** @var CreatePodcastEpisodeCommand|UpdatePodcastEpisodeCommand $command */
             if ($command->content_type->equals(ContentType::podcast()) && null !== $command->audio_file) {
-                /** @var CreatePodcastEpisodeCommand|UpdatePodcastEpisodeCommand $command */
                 $command->duration = FileMetaService::getDuration($command->audio_file->getFileInfo()->getPathname());
             }
         }
@@ -87,7 +87,7 @@ final class ContentService
 
     public function assertValidSlug(object $command): void
     {
-        if (Mapper::hasProperties($command, ['name', 'slug'])) {
+        if (property_exists($command, 'name') && property_exists($command, 'slug')) {
             try {
                 Assert::nullOrRegex($command->slug, '/^[a-z0-9]+(?:-[a-z0-9]+)*$/');
             } catch (\Throwable $e) {

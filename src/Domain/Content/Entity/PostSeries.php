@@ -7,10 +7,9 @@ namespace Domain\Content\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\ThumbnailTrait;
-use Domain\Shared\Entity\TimestampTrait;
 use Domain\Shared\Entity\UuidTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Uid\Uuid;
@@ -20,10 +19,8 @@ use Symfony\Component\Uid\Uuid;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class PostSeries
+class PostSeries extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use ThumbnailTrait;
     use OwnerTrait;
     use UuidTrait;
@@ -40,6 +37,9 @@ class PostSeries
 
     private int $post_count = 0;
 
+    /**
+     * @var Collection<Post>
+     */
     private Collection $posts;
 
     public function __construct()

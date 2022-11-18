@@ -27,9 +27,12 @@ final class SubjectProposalVoteRepository extends AbstractRepository implements 
 
     public function findVote(User $voter, SubjectProposal $proposal): ?SubjectProposalVote
     {
-        return $this->findOneBy([
+        /** @var SubjectProposalVote|null $result */
+        $result = $this->findOneBy([
             'owner' => $voter,
             'proposal' => $proposal,
         ]);
+
+        return $result;
     }
 }

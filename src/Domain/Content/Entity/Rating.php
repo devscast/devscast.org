@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace Domain\Content\Entity;
 
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\TimestampTrait;
 
 /**
  * class Rating.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class Rating
+class Rating extends AbstractEntity
 {
-    use IdentityTrait;
-    use TimestampTrait;
     use OwnerTrait;
 
     final public const UP_VOTE = 1;

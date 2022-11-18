@@ -9,10 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
-use Domain\Shared\Entity\IdentityTrait;
+use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\Entity\ThumbnailTrait;
-use Domain\Shared\Entity\TimestampTrait;
 use Domain\Shared\Entity\UuidTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Uid\Uuid;
@@ -22,11 +21,9 @@ use Symfony\Component\Uid\Uuid;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-abstract class Content
+abstract class Content extends AbstractEntity
 {
     use OwnerTrait;
-    use IdentityTrait;
-    use TimestampTrait;
     use ThumbnailTrait;
     use UuidTrait;
 

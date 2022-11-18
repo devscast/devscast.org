@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Shared\Symfony\Controller;
 
 use Domain\Authentication\Entity\User;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
+use Domain\Shared\Entity\HasIdentityInterface;
+use Domain\Shared\Repository\DataRepositoryInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -61,7 +62,7 @@ abstract class AbstractCrudController extends AbstractController
         return sprintf('%s%s_%s_%s', self::ROUTE_PREFIX, static::DOMAIN, static::ENTITY, $name);
     }
 
-    public function queryIndex(AbstractRepository $repository): Response
+    public function queryIndex(DataRepositoryInterface $repository): Response
     {
         return $this->render(
             view: $this->getViewPath('index'),
@@ -77,7 +78,7 @@ abstract class AbstractCrudController extends AbstractController
         );
     }
 
-    public function executeCommand(object $command, ?object $row = null): Response
+    public function executeCommand(object $command, ?HasIdentityInterface $row = null): Response
     {
         try {
             $this->dispatchSync($command);
@@ -86,7 +87,7 @@ abstract class AbstractCrudController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        if (null !== $row && method_exists($row, 'getId')) {
+        if (null !== $row) {
             return $this->redirectSeeOther(
                 route: $this->getRouteName('show'),
                 params: [
@@ -101,7 +102,7 @@ abstract class AbstractCrudController extends AbstractController
     public function executeFormCommand(
         object $command,
         string $formClass,
-        ?object $row = null,
+        ?HasIdentityInterface $row = null,
         string $view = 'new',
         bool $overrideFormViews = false
     ): Response {
