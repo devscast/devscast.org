@@ -1,5 +1,5 @@
-public/* linguist-vendored
-assets/* linguist-vendored
+public/* linguist-detectable=false
+assets/* linguist-detectable=false
 # Enforce Unix newlines
 *.css   text eol=lf
 *.html  text eol=lf
