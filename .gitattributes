@@ -1,5 +1,11 @@
-public/* linguist-detectable=false
-assets/* linguist-detectable=false
+public/* linguist-vendored
+assets/* linguist-vendored
+
+linguist-detectable=false
+
+*.css linguist-detectable=false
+*.scss linguist-detectable=false
+
 # Enforce Unix newlines
 *.css   text eol=lf
 *.html  text eol=lf
