@@ -518,4 +518,14 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     {
         return mb_strtoupper((string) $this->username)[0];
     }
+
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->roles->toArray(), true);
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->roles->contains($role);
+    }
 }

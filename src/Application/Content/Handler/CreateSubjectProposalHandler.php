@@ -24,11 +24,12 @@ final class CreateSubjectProposalHandler
     {
         if (
             $command->owner->getCreatedAt() < new \DateTime('-1 month') &&
-            $this->repository->countRecentFor($command->owner) < self::LIMIT_PER_MONTH
+            $this->repository->countRecentFor($command->owner) < self::LIMIT_PER_MONTH ||
+            $command->owner->isAdmin()
         ) {
             $this->repository->save(SubjectProposal::create($command->owner, (string) $command->subject));
+        } else {
+            throw new SubjectProposalLimitReachedException();
         }
-
-        throw new SubjectProposalLimitReachedException();
     }
 }

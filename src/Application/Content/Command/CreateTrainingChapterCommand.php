@@ -6,6 +6,7 @@ namespace Application\Content\Command;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Content\Entity\Training;
 
 /**
  * class CreateTrainingChapterCommand.
@@ -15,6 +16,7 @@ use Doctrine\Common\Collections\Collection;
 final class CreateTrainingChapterCommand
 {
     public function __construct(
+        public ?Training $training = null,
         public ?string $name = null,
         public ?string $slug = null,
         public ?string $description = null,

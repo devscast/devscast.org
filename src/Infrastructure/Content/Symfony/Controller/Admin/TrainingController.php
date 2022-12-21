@@ -42,6 +42,17 @@ final class TrainingController extends AbstractCrudController
         return $this->executeFormCommand(new CreateTrainingCommand($owner), CreateTrainingForm::class);
     }
 
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Training $row): Response
+    {
+        return $this->render(
+            view: $this->getViewPath('show'),
+            parameters: [
+                'data' => $row,
+            ]
+        );
+    }
+
     #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Training $row): Response
     {

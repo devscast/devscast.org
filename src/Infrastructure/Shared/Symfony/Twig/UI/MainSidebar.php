@@ -35,8 +35,7 @@ final class MainSidebar extends AbstractSidebar
             ])
             ->addGroup('Formation', 'folder', [
                 new SidebarLink('administration_content_video_index', 'Videos', 'folder'),
-                new SidebarLink('administration_content_training_index', 'Formation', 'folder'),
-                new SidebarLink('administration_content_training_chapter_index', 'Chapitres', 'folder'),
+                new SidebarLink('administration_content_training_index', 'Formations', 'folder'),
             ])
             ->addGroup('Autres', 'folder', [
                 new SidebarLink('administration_content_technology_index', 'Technologies', 'folder'),

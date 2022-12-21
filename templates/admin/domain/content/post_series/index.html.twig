@@ -45,11 +45,11 @@
                             <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_content_post_series_show', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        {{ 'global.show' | trans([], 'messages') }}
+                                    <a href="{{ path('administration_content_post_series_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                        {{ 'eye' | icon }}
                                     </a>
-                                    <a href="{{ path('administration_content_post_series_edit', {id: row.id}) }}" class="btn btn-sm btn-primary" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        {{ 'global.edit' | trans([], 'messages') }}
+                                    <a href="{{ path('administration_content_post_series_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                        {{ 'edit' | icon }}
                                     </a>
                                 </div>
                             </td>

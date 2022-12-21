@@ -20,13 +20,10 @@ final class DeleteSubjectProposalHandler
 
     public function __invoke(DeleteSubjectProposalCommand $command): void
     {
-        if (
-            $command->proposal->status->equals(SubjectProposalStatus::reviewing()) ||
-            $command->proposal->status->equals(SubjectProposalStatus::rejected())
-        ) {
+        if (! $command->proposal->status->equals(SubjectProposalStatus::accepted())) {
             $this->repository->delete($command->proposal);
+        } else {
+            throw new CannotMutateAcceptedSubjectProposalException();
         }
-
-        throw new CannotMutateAcceptedSubjectProposalException();
     }
 }

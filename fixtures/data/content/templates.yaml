@@ -220,7 +220,7 @@ Domain\Content\Entity\TrainingChapter:
         name: <name()>
         slug: <slug()>
         description: <text()>
-        order: <current()>
+        order: 0
         video_count: 0
         training: ~
         created_at: <dateTimeThisYear()>

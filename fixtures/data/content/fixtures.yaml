@@ -38,3 +38,26 @@ Domain\Content\Entity\PodcastEpisode:
 Domain\Content\Entity\PodcastSeason:
     podcastSeason{1..10} (extends podcast_season):
         episodes: [ '@podcastEpisode*' ]
+
+Domain\Content\Entity\SubjectProposal:
+    subjectProposal{1..35} (extends subject_proposal):
+        owner: '@user*'
+
+Domain\Content\Entity\Video:
+    video{1..500} (extends video):
+        owner: '@user_admin'
+        tags: [ '@tag*' ]
+        technologies: [ '@technology*' ]
+        source_url: 'https://www.youtube.com/watch?v=zaqoGWp2GMo'
+
+Domain\Content\Entity\Training:
+    training_{1..5} (extends training):
+        owner: '@user*'
+        videos: [ '@video*' ]
+        chapters: []
+
+Domain\Content\Entity\Comment:
+    comment{1..500} (extends comment):
+        owner: '@user*'
+        target: '@post_*'
+        replies: []

@@ -6,9 +6,11 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 
 use Application\Content\Command\CreateSubjectProposalCommand;
 use Application\Content\Command\DeleteSubjectProposalCommand;
+use Application\Content\Command\UpdateSubjectProposalCommand;
 use Domain\Content\Entity\SubjectProposal;
 use Infrastructure\Content\Doctrine\Repository\SubjectProposalRepository;
 use Infrastructure\Content\Symfony\Form\CreateSubjectProposalForm;
+use Infrastructure\Content\Symfony\Form\UpdateSubjectProposalForm;
 use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -38,6 +40,15 @@ final class SubjectProposalController extends AbstractCrudController
         $owner = $this->getUser();
 
         return $this->executeFormCommand(new CreateSubjectProposalCommand($owner), CreateSubjectProposalForm::class);
+    }
+
+    #[Route('/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(SubjectProposal $row): Response
+    {
+        return $this->executeFormCommand(
+            command: new UpdateSubjectProposalCommand($this->getUser(), state: $row),
+            formClass: UpdateSubjectProposalForm::class
+        );
     }
 
     #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]

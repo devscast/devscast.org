@@ -1,12 +1,12 @@
 {% extends '@admin/shared/layout/base.html.twig' %}
-{% block title 'Podcasts' %}
+{% block title 'Vidéos' %}
 
 {% block header %}
     {% embed '@admin/shared/component/_header.html.twig' %}
-        {% block header_title 'Podcasts' %}
+        {% block header_title 'Vidéos' %}
         {% block header_action_list %}
             <li class="btn-group">
-                <a href="{{ path('administration_content_podcast_episode_new') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('administration_content_video_new') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </a>
@@ -23,28 +23,28 @@
     <div class="row g-gs mb-4">
         <div class="col-12">
             {% embed "@admin/shared/component/card/_list.html.twig" with {
-                _action: 'Ajouter un épisode',
-                _path: path('administration_content_podcast_episode_new')
+                _action: 'Ajouter une vidéo',
+                _path: path('administration_content_video_new')
             } %}
                 {% import '@admin/shared/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
                     <th>Name</th>
-                    <th>Audio</th>
-                    <th>En ligne</th>
+                    <th>Lecture</th>
+                    <th>Statut</th>
                     <th>&nbsp;</th>
                 {% endblock %}
                 {% block list_card_table_body %}
                     {% for row in data %}
                         <tr>
-                            <td>{{ row.name | u.truncate(50, '...') }}</td>
-                            <td><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(row, 'audio_file') }}"></audio></td>
-                            <td>{{ row.isOnline | boolean }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
+                            <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_content_podcast_episode_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                    <a href="{{ path('administration_content_video_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
                                         {{ 'eye' | icon }}
                                     </a>
-                                    <a href="{{ path('administration_content_podcast_episode_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                    <a href="{{ path('administration_content_video_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
                                         {{ 'edit' | icon }}
                                     </a>
                                 </div>

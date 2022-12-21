@@ -50,6 +50,9 @@ class BadgeExtension extends AbstractExtension
                 'state' => 'danger',
                 'style' => 'dim',
             ],
+            'rejected' => [
+                'state' => 'danger',
+            ],
         ];
     }
 
@@ -85,7 +88,7 @@ class BadgeExtension extends AbstractExtension
         $label = $this->translator->trans($label);
 
         return <<< HTML
-            <span aria-label="${label}" class="badge badge-${style} badge-outline-${state}">
+            <span aria-label="${label}" class="badge badge-${style} bg-${state}">
                 ${label}
             </span>
         HTML;

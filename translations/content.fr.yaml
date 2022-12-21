@@ -38,6 +38,13 @@ content.forms.labels.episode_number: Numéro de l'épisode
 content.forms.labels.category: Catégorie
 content.forms.labels.series: Séries
 content.forms.labels.short_code: "Code court (ex: S2)"
+content.forms.labels.source_url: Url de la vidéo
+content.forms.labels.timecodes: Timecodes
+content.forms.labels.training: Formation
+content.forms.labels.youtube_playlist: Lien de la Playlist Youtube
+content.forms.labels.links: Liens utiles
+content.forms.labels.title: Titre
+content.forms.labels.subject_proposal_status: Status
 
 # value objects
 content.value_object.podcast_episode_type.full: épisode complet
@@ -70,7 +77,7 @@ content.validations.password_must_match: Les deux mots de passe ne sont pas iden
 
 # safe massages exceptions
 content.exceptions.subject_proposal_limit_reached: Vous ne pouvez proposer que 2 sujets pour mois et il faudrait être inscrit depuis plus d'un mois.
-content.exceptions.cannot_mutate_accepted_subject_proposal: Vous ne pouvez pas supprimer un sujet qui a déjà été accepté.
+content.exceptions.cannot_mutate_accepted_subject_proposal: Vous ne pouvez pas supprimer ou modifier un sujet qui a déjà été accepté.
 content.exceptions.duplicate_tag: Désolé, ce tag a déjà été créé !
 content.exceptions.content_schedule_date_must_be_in_future: La date de publication doit être dans le future !
 
