@@ -10,9 +10,6 @@ use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
 use Domain\Shared\Entity\{AbstractEntity, IdentityTrait, TimestampTrait};
 use Domain\Shared\ValueObject\EmbeddedFile;
-use Scheb\TwoFactorBundle\Model\BackupCodeInterface as BackupCodesTwoFactor;
-use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface as EmailTwoFactor;
-use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface as GoogleTwoFactor;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -25,7 +22,7 @@ use Vich\UploaderBundle\FileAbstraction\ReplacingFile;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-class User extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface, GoogleTwoFactor, EmailTwoFactor, BackupCodesTwoFactor
+class User extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface, TwoFactorUserInterface
 {
     use OAuthTrait;
     use TwoFactorTrait;
