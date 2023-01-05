@@ -30,6 +30,7 @@
                 {% block list_card_table_head %}
                     <th>Name</th>
                     <th>Lecture</th>
+                    <th>Auteur</th>
                     <th>Statut</th>
                     <th>&nbsp;</th>
                 {% endblock %}
@@ -38,6 +39,7 @@
                         <tr>
                             <td>{{ row.name }}</td>
                             <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
+                            <td><a href="{{ path('administration_authentication_user_show', {id: row.owner.id}) }}">{{ row.owner.name }}</a></td>
                             <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">

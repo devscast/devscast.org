@@ -37,4 +37,16 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
                 ->execute()
         );
     }
+
+    public function findAllByType(ContentType $type): array
+    {
+        /** @var Content[] $data */
+        $data = $this->createQueryBuilder('c')
+            ->where('c.content_type = :type')
+            ->setParameter('type', (string) $type)
+            ->getQuery()
+            ->getResult();
+
+        return $data;
+    }
 }

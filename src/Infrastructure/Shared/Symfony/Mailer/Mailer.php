@@ -49,7 +49,7 @@ final class Mailer
         );
 
         return (new Email())
-            ->from(new Address('noreply@devscast.org', 'Devscast Community'))
+            ->from(new Address('noreply@devscast.tech', 'Devscast Community'))
             ->html($html)
             ->text($text);
     }

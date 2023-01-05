@@ -15,4 +15,6 @@ use Domain\Shared\Repository\DataRepositoryInterface;
 interface ContentRepositoryInterface extends DataRepositoryInterface
 {
     public function overrideContentTopPromoted(ContentType $type): bool;
+
+    public function findAllByType(ContentType $type): array;
 }

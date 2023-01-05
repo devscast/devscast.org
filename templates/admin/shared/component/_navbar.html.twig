@@ -22,7 +22,7 @@
                                 <div class="user-toggle">
                                     <div class="user-avatar sm">
                                         {% if app.user.avatar.name %}
-                                            <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
+                                            <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.userIdentifier }}">
                                         {% else %}
                                             {{ 'user' | icon }}
                                         {% endif %}
@@ -38,7 +38,7 @@
                                     <div class="user-card">
                                         <div class="user-avatar">
                                             {% if app.user.avatar.name %}
-                                                <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
+                                                <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.userIdentifier }}">
                                             {% else %}
                                                 {{ 'user' | icon }}
                                             {% endif %}

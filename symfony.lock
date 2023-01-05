@@ -11,6 +11,18 @@
     "beberlei/assert": {
         "version": "v3.3.2"
     },
+    "beelab/recaptcha2-bundle": {
+        "version": "2.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "ad714d23c3c754619d9f2e1bd7b621c0d6185165"
+        },
+        "files": [
+            "config/packages/beelab_recaptcha2.yaml"
+        ]
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.5"
     },
@@ -157,6 +169,18 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "google/recaptcha": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.1",
+            "ref": "e5a4aa21f2e98d7440ae9aab6b56e307f99dd084"
+        },
+        "files": [
+            "config/packages/google_recaptcha.yaml"
+        ]
     },
     "guzzlehttp/guzzle": {
         "version": "7.4.2"
@@ -313,6 +337,9 @@
             "phpunit.xml.dist",
             "tests/bootstrap.php"
         ]
+    },
+    "presta/sitemap-bundle": {
+        "version": "v3.3.0"
     },
     "psr/cache": {
         "version": "3.0.0"

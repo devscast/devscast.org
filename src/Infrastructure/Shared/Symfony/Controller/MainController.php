@@ -22,4 +22,10 @@ final class MainController extends AbstractController
     {
         return $this->render('@app/domain/home.html.twig');
     }
+
+    #[Route('/offline', name: 'app_offline', methods: ['GET'])]
+    public function offline(): Response
+    {
+        return $this->render('@app/domain/offline.html.twig');
+    }
 }

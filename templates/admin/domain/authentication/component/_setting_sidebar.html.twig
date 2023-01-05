@@ -3,7 +3,11 @@
         <div class="card-inner">
             <div class="user-card">
                 <div class="user-avatar bg-primary">
-                    {{ 'user' | icon }}
+                    {% if app.user.avatar.name %}
+                        <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.userIdentifier }}">
+                    {% else %}
+                        {{ 'user' | icon }}
+                    {% endif %}
                 </div>
                 <div class="user-info">
                     <span class="lead-text">{{ app.user.userIdentifier }}</span>
@@ -16,7 +20,7 @@
                 <li class="{{ active_class('/profile/settings/security', 'active', '', true) }}">
                     <a href="{{ path('authentication_setting_security') }}">
                         <em class="icon ni ni-lock-alt-fill"></em>
-                        <span>Paramètres de securités</span>
+                        <span>Paramètres de sécurités</span>
                     </a>
                 </li>
 

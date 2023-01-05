@@ -23,7 +23,7 @@ scheb_two_factor:
     email:
         enabled: true
         mailer: Infrastructure\Authentication\Symfony\Mailer\TwoFactorEmailCodeMailer
-        sender_email: noreply@devscast.org
+        sender_email: noreply@devscast.tech
         sender_name: Devscast Community
         digits: 6
         template: '@app/domain/authentication/login_two_factor.html.twig'

@@ -12,7 +12,7 @@ Domain\Authentication\Entity\User:
         pronouns: <randomElement(['She\Her', 'He\Him', 'They\Their'])>
         job_title: <jobTitle()>
         biography: <realText(500)>
-        email: user_<current()>\@devscast.org
+        email: user_<current()>\@devscast.tech
         phone_number: <e164PhoneNumber()>
         country: <countryCode()>
         password: \$2y\$13\$PzaAzoYYBl1VyuAU9M/3GuFQaOgO2vyHct1iN0b4vULoIXtcBICuu # 000000

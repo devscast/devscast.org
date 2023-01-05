@@ -7,7 +7,12 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
     devscast.administration.default_sidebar: Infrastructure\Shared\Symfony\Twig\UI\MainSidebar
+
+    # sitemap generator
+    router.request_context.host: devscast.tech
+    router.request_context.scheme: https
 
 services:
     # default configuration for services in *this* file
@@ -38,3 +43,7 @@ services:
 
     Infrastructure\Shared\Symfony\Twig\UI\MainSidebar:
         public: true
+
+#    Devscast\Tinify\Client:
+#        arguments:
+#            $token: '%env(TINIFY_KEY)%'

@@ -33,10 +33,10 @@
                 <itunes:order>{{ item.id }}</itunes:order>
                 <itunes:duration>{{ item.duration }}</itunes:duration>
                 <itunes:explicit>false</itunes:explicit>
-                {% if item.thumbnailUrl %}
+                {% if item.thumbnail %}
                     <itunes:image href="{{ absolute_url(vich_uploader_asset(item, 'thumbnail_file')) }}"/>
                 {% endif %}
-                <enclosure length="{{ item.audio.size }}" url="{{ absolute_url(vich_uploader_asset(item, 'audio_file')) }}" type="{{ item.audio.type }}"/>
+                <enclosure length="{{ item.audio.size }}" url="{{ absolute_url(vich_uploader_asset(item, 'content_podcast_episode_audio')) }}" type="{{ item.audio.mimeType }}"/>
             </item>
         {% endfor %}
         <copyright>© Devscast 2019 - {{ 'now' | date('Y') }}. Tous droits réservés</copyright>
