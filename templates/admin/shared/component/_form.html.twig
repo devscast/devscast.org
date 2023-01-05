@@ -2,7 +2,7 @@
 
 <turbo-frame id="form-modal-frame">
     {{ form_start(form, {attr: {'data-turbo-frame': _turbo_frame_target ?? '_top', 'novalidate': 'novalidate'}}) }}
-    {% if _turbo_frame_target %}
+    {% if _turbo_frame_target is defined and _turbo_frame_target %}
         {{ form_errors(form) }}
     {% endif %}
 

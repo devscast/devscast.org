@@ -1,0 +1,109 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'authentication.titles.settings.security' | trans([], 'authentication') %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-aside-wrap">
+            <div class="card-inner card-inner-lg">
+                <div class="nk-block-head nk-block-head-lg">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title">Paramètres de securités</h4>
+                            <div class="nk-block-des">
+                                <p>Ces paramètres vous aident à assurer la sécurité de votre compte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block">
+                    <div class="card border border-light">
+                        <div class="card-inner-group">
+                            <div class="card-inner">
+                                <div class="between-center flex-wrap g-3">
+                                    <div class="nk-block-text">
+                                        <h6>Mot de passe</h6>
+                                        <p>Définissez un mot de passe unique pour protéger votre compte.
+                                        </p>
+                                    </div>
+                                    <div class="nk-block-actions flex-shrink-sm-0">
+                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
+                                            {%  if app.user.updatedAt %}
+                                                <li class="order-md-last">
+                                                    <em class="text-soft text-date fs-12px">Dernière mise à jour : {{ app.user.updatedAt | date }}</em>
+                                                </li>
+                                            {% endif %}
+                                            <li>
+                                                <a href="{{ path('authentication_setting_security_password') }}" class="btn btn-primary">Modifier le mot de passe</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-inner">
+                                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                                    <div class="nk-block-text">
+                                        <h6>
+                                            Authentification à facteur double &nbsp;
+                                            {% if app.user.isTwoFactorEnabled %}
+                                                <span class="badge badge-success ms-0">Activée</span>
+                                            {% else %}
+                                                <span class="badge badge-danger ms-0">Désactivée</span>
+                                            {% endif %}
+                                        </h6>
+                                        <p>
+                                            Sécurisez votre compte avec la sécurité 2FA. Lorsqu'elle est activée, vous devez
+                                            saisir non seulement votre mot de passe, mais aussi un code spécial en utilisant
+                                            l'application. Vous pouvez recevoir ce code par dans l'application mobile.
+                                        </p>
+                                    </div>
+                                    <div class="nk-block-actions flex-shrink-sm-0">
+                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
+                                            <li class="order-md-last">
+                                                <a href="{{ path('authentication_setting_security_2fa') }}" class="btn btn-primary">Modifier</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-inner">
+                                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                                    <div class="flex-column">
+                                        <div class="nk-block-text">
+                                            <h6>Codes d'accès hors ligne</h6>
+                                            <p>
+                                                <code class="pb-4">
+                                                    {% for index, code in app.user.backupCodes %}
+                                                        <strong class="font-weight-bold fs-22px">{{ code ~ '\t' }}</strong>
+                                                        {% if index == 2 %}
+                                                            <br>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </code>
+                                            </p>
+                                        </div>
+                                        <div class="nk-block-actions mt-4">
+                                            <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
+                                                <li>
+                                                    <form action="{{ path('authentication_setting_backup_codes_regenerate') }}" method="post" class="d-inline-block">
+                                                        <button type="submit" class="btn btn-primary">Régénérer</button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('authentication_setting_backup_codes_export') }}" class="btn btn-primary">
+                                                        {{ 'download' | icon }}
+                                                        <span>Télécharger (csv)</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include '@admin/domain/authentication/component/_setting_sidebar.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

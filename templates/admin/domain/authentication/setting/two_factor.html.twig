@@ -1,0 +1,54 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'authentication.titles.settings.two_factor' | trans([], 'authentication') %}
+{% form_theme form '@admin/shared/layout/form_theme.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-aside-wrap">
+            <div class="card-inner card-inner-lg">
+                <div class="nk-block-head nk-block-head-lg">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title">Authentification à facteur double</h4>
+                            <div class="nk-block-des">
+                                <p>Ces paramètres vous aident à assurer la sécurité de votre compte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block">
+                    <div class="card border border-light">
+                        <div class="card-inner-group">
+                            {{ form_start(form) }}
+                            <div class="card-inner">
+                                <div class="between-center flex-wrap g-3">
+                                    <div class="nk-block-text"> {{ form_row(form.email) }}</div>
+                                </div>
+                            </div>
+                            <div class="card-inner">
+                                <div class="flex-column">
+                                    <div class="between-center flex-wrap flex-md-nowrap g-3">
+                                        <div class="nk-block-text">
+                                            <p>
+                                                Si vous souhaitez vous utiliser <strong>Google Authenticator</strong>, <br>
+                                                activez l'option et scannez ce qrcode depuis votre mobile.
+                                            </p>
+                                            {{ form_row(form.google) }}
+                                            <img src="{{ qr_code_data_uri(qrcode_content) }}" alt="google authenticator qrcode">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary mt-4">
+                                        {{ 'save-fill' | icon }}
+                                        <span>{{ 'global.submit' | trans([], 'messages') }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include '@admin/domain/authentication/component/_setting_sidebar.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

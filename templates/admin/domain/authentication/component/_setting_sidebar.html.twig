@@ -1,0 +1,40 @@
+<div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+    <div class="card-inner-group">
+        <div class="card-inner">
+            <div class="user-card">
+                <div class="user-avatar bg-primary">
+                    {{ 'user' | icon }}
+                </div>
+                <div class="user-info">
+                    <span class="lead-text">{{ app.user.userIdentifier }}</span>
+                    <span class="sub-text">{{ app.user.email }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-inner p-0">
+            <ul class="link-list-menu">
+                <li class="{{ active_class('/profile/settings/security', 'active', '', true) }}">
+                    <a href="{{ path('authentication_setting_security') }}">
+                        <em class="icon ni ni-lock-alt-fill"></em>
+                        <span>Paramètres de securités</span>
+                    </a>
+                </li>
+
+                <li class="{{ active_class('/profile/settings/profile', 'active', '', true) }}">
+                    <a href="{{ path('authentication_setting_profile') }}">
+                        <em class="icon ni ni-user-fill-c"></em>
+                        <span>Informations personnelles</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-inner">
+            <div class="user-account-info py-0">
+                <h6 class="overline-title-alt">Dernière connexion</h6>
+                <p>{{ app.user.lastLoginAt | date }}</p>
+                <h6 class="overline-title-alt">Dernière IP</h6>
+                <p>{{ app.user.lastLoginIp }}</p>
+            </div>
+        </div>
+    </div>
+</div>

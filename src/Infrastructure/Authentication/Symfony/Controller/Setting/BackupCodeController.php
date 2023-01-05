@@ -20,28 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/profile/authentication/settings/backup_codes', name: 'authentication_setting_backup_codes_')]
 final class BackupCodeController extends AbstractController
 {
-    #[Route('', name: 'index', methods: ['GET', 'POST'])]
-    public function index(): Response
-    {
-        /** @var User $user */
-        $user = $this->getUser();
-
-        if (empty($user->getBackupCodes())) {
-            try {
-                $this->dispatchSync(new GenerateBackupCodeCommand($user));
-            } catch (\Throwable $e) {
-                $this->addSafeMessageExceptionFlash($e);
-            }
-        }
-
-        return $this->render(
-            view: '@app/domain/authentication/setting/backup_code.html.twig',
-            parameters: [
-                'codes' => $user->getBackupCodes(),
-            ]
-        );
-    }
-
     #[Route('/regenerate', name: 'regenerate', methods: ['POST'])]
     public function regenerate(): Response
     {
@@ -54,7 +32,7 @@ final class BackupCodeController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('authentication_setting_backup_codes_index');
+        return $this->redirectSeeOther('authentication_setting_security');
     }
 
     #[Route('/export', name: 'export', methods: ['GET', 'POST'])]
@@ -76,6 +54,6 @@ final class BackupCodeController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('authentication_setting_backup_codes_index');
+        return $this->redirectSeeOther('authentication_setting_security');
     }
 }

@@ -1,0 +1,31 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+{% block title 'authentication.titles.settings.profile' | trans([], 'authentication') %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-aside-wrap">
+            <div class="card-inner card-inner-lg">
+                <div class="nk-block-head nk-block-head-lg">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title">Informations personnelles</h4>
+                            <div class="nk-block-des">
+                                <p>Les informations concernant votre compte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block">
+                    <div class="card border border-light">
+                        <div class="card-inner-group">
+                            <div class="card-body">
+                                {% include '@admin/shared/component/_form.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include '@admin/domain/authentication/component/_setting_sidebar.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

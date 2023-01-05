@@ -8,8 +8,11 @@ authentication.titles.login_link: Un Problème de connexion ?
 authentication.titles.login_two_factor: Connexion 2FA
 authentication.titles.login: Connexion
 authentication.titles.register: Inscription
-authentication.titles.settings.index: Paramètres d'authentification
+authentication.titles.settings: Paramètres
+authentication.titles.settings.profile: Paramètres du profile
+authentication.titles.settings.security: Paramètres de sécurité
 authentication.titles.settings.two_factor: Paramètres authentification à facteur double
+authentication.titles.settings.password: Mettre à jour le mot de passe
 
 # forms messages
 authentication.forms.labels.identifier: Identifiant
@@ -22,6 +25,7 @@ authentication.forms.labels.phone_number: Téléphone
 authentication.forms.labels.country: Pays
 authentication.forms.labels.password: Mot de passe
 authentication.forms.labels.password_confirm: Confirmer le mot de passe
+authentication.forms.labels.current_password: Mot de passe actuel
 authentication.forms.labels.email: Adresse Email
 authentication.forms.labels.two_factor_google_authenticator_provider: Avec Google Authenticator
 authentication.forms.labels.two_factor_email_provider: Avec Email
