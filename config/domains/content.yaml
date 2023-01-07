@@ -24,3 +24,4 @@ services:
     Domain\Content\Repository\TechnologyRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\TechnologyRepository'
     Domain\Content\Repository\VideoRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\VideoRepository'
     Domain\Content\Repository\AttachmentRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\AttachmentRepository'
+    Domain\Content\Repository\ContentViewRepositoryInterface: '@Infrastructure\Content\Doctrine\Repository\ContentViewRepository'

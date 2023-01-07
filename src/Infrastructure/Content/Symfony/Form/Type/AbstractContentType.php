@@ -6,6 +6,7 @@ namespace Infrastructure\Content\Symfony\Form\Type;
 
 use Application\Content\Command\AbstractContentCommand;
 use Application\Content\Command\CreatePodcastEpisodeCommand;
+use Infrastructure\Content\Symfony\Form\ValueObject\ContentStatusType;
 use Infrastructure\Shared\Symfony\Form\Type\DatePickerType;
 use Infrastructure\Shared\Symfony\Form\Type\EditorType;
 use Symfony\Component\Form\AbstractType;
@@ -52,6 +53,9 @@ class AbstractContentType extends AbstractType
             ->add('scheduled_at', DatePickerType::class, [
                 'label' => 'content.forms.labels.schedule',
                 'required' => false,
+            ])
+            ->add('status', ContentStatusType::class, [
+                'label' => false,
             ])
         ;
     }

@@ -25,7 +25,6 @@ final class SearchController extends AbstractController
             'sitemap' => [
                 'priority' => 0.9,
                 'changefreg' => 'daily',
-                
             ],
         ],
         methods: ['GET'],

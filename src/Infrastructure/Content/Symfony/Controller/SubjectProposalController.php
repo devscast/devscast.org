@@ -24,7 +24,6 @@ final class SubjectProposalController extends AbstractController
             'sitemap' => [
                 'priority' => 0.6,
                 'changefreg' => 'daily',
-                
             ],
         ],
         methods: ['GET']

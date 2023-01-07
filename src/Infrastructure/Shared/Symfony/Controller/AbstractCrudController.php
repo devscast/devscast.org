@@ -82,7 +82,7 @@ abstract class AbstractCrudController extends AbstractController
     {
         try {
             $this->dispatchSync($command);
-            $this->addSuccessfullActionFlash('annulation du bannissement');
+            $this->addSuccessfullActionFlash('action');
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
         }

@@ -27,6 +27,8 @@ abstract class Content extends AbstractEntity
     use ThumbnailTrait;
     use UuidTrait;
 
+    private const VIEW_MILESTONES = [100, 500, 1_000, 2_500, 5_000, 10_000];
+
     protected ?string $name = null;
 
     protected ?string $slug = null;
@@ -46,6 +48,12 @@ abstract class Content extends AbstractEntity
     protected float $ratio_vote_count = 0.0;
 
     protected int $comment_count = 0;
+
+    protected int $unique_view_count = 0;
+
+    protected int $view_count = 0;
+
+    protected int $last_view_milestone_reached = 0;
 
     /**
      * @var Collection<Tag>
@@ -369,5 +377,69 @@ abstract class Content extends AbstractEntity
         $this->comment_count = $comments_count;
 
         return $this;
+    }
+
+    public function getUniqueViewCount(): int
+    {
+        return $this->unique_view_count;
+    }
+
+    public function setUniqueViewCount(int $unique_view_count): self
+    {
+        $this->unique_view_count = $unique_view_count;
+
+        return $this;
+    }
+
+    public function getViewCount(): int
+    {
+        return $this->view_count;
+    }
+
+    public function setViewCount(int $view_count): self
+    {
+        $this->view_count = $view_count;
+
+        return $this;
+    }
+
+    public function increaseViewCount(): self
+    {
+        ++$this->view_count;
+
+        return $this;
+    }
+
+    public function increaseUniqueViewCount(): self
+    {
+        ++$this->unique_view_count;
+
+        return $this;
+    }
+
+    public function getLastViewMilestoneReached(): int
+    {
+        return $this->last_view_milestone_reached;
+    }
+
+    public function setLastViewMilestoneReached(int $last): self
+    {
+        $this->last_view_milestone_reached = $last;
+
+        return $this;
+    }
+
+    public function hasReachedViewMilestone(): bool
+    {
+        if (
+            in_array($this->unique_view_count, self::VIEW_MILESTONES, true) &&
+            $this->last_view_milestone_reached < $this->unique_view_count
+        ) {
+            $this->last_view_milestone_reached = $this->unique_view_count;
+
+            return true;
+        }
+
+        return false;
     }
 }

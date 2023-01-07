@@ -44,6 +44,6 @@ services:
     Infrastructure\Shared\Symfony\Twig\UI\MainSidebar:
         public: true
 
-#    Devscast\Tinify\Client:
-#        arguments:
-#            $token: '%env(TINIFY_KEY)%'
+    Devscast\Tinify\Client:
+        arguments:
+            $token: '%env(TINIFY_KEY)%'

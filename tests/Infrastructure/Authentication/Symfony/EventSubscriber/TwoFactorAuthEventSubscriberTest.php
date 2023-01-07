@@ -14,13 +14,16 @@ use Tests\EventSubscriberTest;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorAuthSubscriberTest extends EventSubscriberTest
+final class TwoFactorAuthEventSubscriberTest extends EventSubscriberTest
 {
     public function testIsSubscribedToRightEvents(): void
     {
-        $events = TwoFactorEventSubscriber::getSubscribedEvents();
-
-        $this->assertArrayHasKey(TwoFactorEnabledEvent::class, $events);
-        $this->assertArrayHasKey(TwoFactorDisabledEvent::class, $events);
+        $this->assertSame(
+            [
+                TwoFactorEnabledEvent::class,
+                TwoFactorDisabledEvent::class,
+            ],
+            array_keys(TwoFactorEventSubscriber::getSubscribedEvents())
+        );
     }
 }

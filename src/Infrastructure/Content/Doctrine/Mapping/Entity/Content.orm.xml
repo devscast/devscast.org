@@ -48,6 +48,22 @@
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="unique_view_count" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="view_count" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="last_view_milestone_reached" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+
 
         <!-- options -->
         <field name="is_commentable" type="boolean" nullable="false">

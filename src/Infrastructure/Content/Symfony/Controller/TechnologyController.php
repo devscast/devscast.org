@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Insfrastucture\Content\Symfony\Controller;
+namespace Infrastructure\Content\Symfony\Controller;
 
 use Domain\Content\Entity\Technology;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
