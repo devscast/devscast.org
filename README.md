@@ -32,8 +32,8 @@ après avoir cloné le projet, vous devez installer les dépendances requises en
 pour éviter les problèmes de permission avec docker, assurez-vous que les deux variables d'environnement suivantes sont définies sur votre machine
 ```bash
 # dans .bashrc ou .zshrc 
-USER_ID=$(id -u)
-GROUP_ID=$(id -g)
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
 ```
 
 you can also add an alias to facilitate command execution in the container 
