@@ -40,14 +40,14 @@ vich_uploader:
                 options: { property: 'slug', transliterate: true }
 
         content_podcast_episode_audio:
-            uri_prefix: '/streaming/podcast'
+            uri_prefix: '/streaming/podcasts'
             upload_destination: '%kernel.project_dir%/uploads/content/podcast_episode/audio'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }
 
         content_video_video:
-            uri_prefix: '/streaming/video'
+            uri_prefix: '/streaming/videos'
             upload_destination: '%kernel.project_dir%/uploads/content/video'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer

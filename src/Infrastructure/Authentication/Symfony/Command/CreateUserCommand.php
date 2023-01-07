@@ -30,7 +30,7 @@ final class CreateUserCommand extends Command
     private SymfonyStyle $io;
 
     public function __construct(
-        private readonly MessageBusInterface $commandBus
+        private readonly MessageBusInterface $bus
     ) {
         parent::__construct();
     }
@@ -113,7 +113,7 @@ final class CreateUserCommand extends Command
         $email = strval($input->getArgument('email'));
         $isAdmin = boolval($input->getOption('admin'));
 
-        $this->commandBus->dispatch(new CreateBasicUserCommand($username, $email, $password));
+        $this->bus->dispatch(new CreateBasicUserCommand($username, $email, $password));
 
         $this->io->success(sprintf('%s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $username, $email));
         $event = $stopwatch->stop('create-user-command');

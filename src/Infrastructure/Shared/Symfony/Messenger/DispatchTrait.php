@@ -11,7 +11,7 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 trait DispatchTrait
 {
-    protected readonly MessageBusInterface $commandBus;
+    protected readonly MessageBusInterface $bus;
 
     /**
      * @throws \Throwable
@@ -19,7 +19,7 @@ trait DispatchTrait
     protected function dispatchSync(object $command): ?Envelope
     {
         try {
-            return $this->commandBus->dispatch($command);
+            return $this->bus->dispatch($command);
         } catch (HandlerFailedException $e) {
             while ($e instanceof HandlerFailedException) {
                 $e = $e->getPrevious();
@@ -48,6 +48,6 @@ trait DispatchTrait
 
     protected function dispatchAsync(object $command): Envelope
     {
-        return $this->commandBus->dispatch($command);
+        return $this->bus->dispatch($command);
     }
 }

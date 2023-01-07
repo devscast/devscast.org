@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Domain\Content\Entity\Training;
 use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
@@ -13,4 +14,5 @@ use Domain\Shared\Repository\DataRepositoryInterface;
  */
 interface VideoRepositoryInterface extends DataRepositoryInterface
 {
+    // public function findByTraining(Training $training): array;
 }

@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/tags', name: 'content_tag_')]
+#[Route('/tags<[a-zA-Z0-9-]+>', name: 'content_tag_')]
 final class TagController extends AbstractController
 {
     #[Route(

@@ -36,7 +36,11 @@ Domain\Content\Entity\PodcastEpisode:
         down_vote_count: 0
         ratio_vote_count: 0
         comment_count: 0
+        view_count: 0
+        unique_view_count: 0
+        last_view_milestone_reached: 0
 
+        is_community: 0
         is_commentable: 0
         is_featured: 0
         is_top_promoted: 0
@@ -81,7 +85,11 @@ Domain\Content\Entity\Post:
         down_vote_count: 0
         ratio_vote_count: 0
         comment_count: 0
+        view_count: 0
+        unique_view_count: 0
+        last_view_milestone_reached: 0
 
+        is_community: 0
         is_commentable: 0
         is_featured: 0
         is_top_promoted: 0
@@ -191,7 +199,11 @@ Domain\Content\Entity\Training:
         down_vote_count: 0
         ratio_vote_count: 0
         comment_count: 0
+        view_count: 0
+        unique_view_count: 0
+        last_view_milestone_reached: 0
 
+        is_community: 0
         is_commentable: 0
         is_featured: 0
         is_top_promoted: 0
@@ -237,7 +249,11 @@ Domain\Content\Entity\Video:
         down_vote_count: 0
         ratio_vote_count: 0
         comment_count: 0
+        view_count: 0
+        unique_view_count: 0
+        last_view_milestone_reached: 0
 
+        is_community: 0
         is_commentable: 0
         is_featured: 0
         is_top_promoted: 0

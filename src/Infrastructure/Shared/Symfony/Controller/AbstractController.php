@@ -26,7 +26,7 @@ abstract class AbstractController extends SymfonyAbstractController
     use FlashMessageTrait;
 
     public function __construct(
-        protected readonly MessageBusInterface $commandBus,
+        protected readonly MessageBusInterface $bus,
         protected readonly TranslatorInterface $translator,
         protected readonly LoggerInterface $logger
     ) {

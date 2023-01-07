@@ -36,13 +36,13 @@ abstract class AbstractCrudController extends AbstractController
     protected readonly Request $request;
 
     public function __construct(
-        MessageBusInterface $commandBus,
+        MessageBusInterface $bus,
         TranslatorInterface $translator,
         LoggerInterface $logger,
         protected readonly RequestStack $requestStack,
         protected readonly PaginatorInterface $paginator
     ) {
-        parent::__construct($commandBus, $translator, $logger);
+        parent::__construct($bus, $translator, $logger);
         if (null !== $this->requestStack->getCurrentRequest()) {
             $this->request = $this->requestStack->getCurrentRequest();
         }

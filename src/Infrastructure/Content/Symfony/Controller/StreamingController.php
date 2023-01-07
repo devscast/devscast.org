@@ -21,16 +21,16 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class StreamingController extends AbstractController
 {
-    #[Route('/streaming/{content_type}/{filename}', name: 'content_streaming', methods: ['GET'])]
+    #[Route('/streaming/{content_type<podcasts|videos>}/{filename<[a-zA-Z0-9-\.]+>}', name: 'content_streaming', methods: ['GET'])]
     public function __invoke(
         string $content_type,
         string $filename,
         Request $request
     ): BinaryFileResponse {
         try {
-            $path = match (true) {
-                ContentType::podcast()->equals($content_type) => strval($this->getParameter('content.podcast_episode.upload_path')),
-                ContentType::video()->equals($content_type) => strval($this->getParameter('content.video.upload_path')),
+            $path = match ($content_type) {
+                'podcasts' => strval($this->getParameter('content.podcast_episode.upload_path')),
+                'videos' => strval($this->getParameter('content.video.upload_path')),
                 default => throw new NotFoundHttpException(),
             };
 

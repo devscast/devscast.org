@@ -44,7 +44,7 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
     private function registerContentUrls(UrlContainerInterface $urls, ContentType $type, string $section, string $route): void
     {
         /** @var Content[] $contents */
-        $contents = $this->repository->findAllByType($type);
+        $contents = $this->repository->findContents($type);
         foreach ($contents as $content) {
             $urls->addUrl(
                 url: new UrlConcrete(

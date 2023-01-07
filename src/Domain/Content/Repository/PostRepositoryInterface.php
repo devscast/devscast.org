@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Domain\Content\Entity\Category;
+use Domain\Content\Entity\PostSeries;
 use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
@@ -13,4 +15,7 @@ use Domain\Shared\Repository\DataRepositoryInterface;
  */
 interface PostRepositoryInterface extends DataRepositoryInterface
 {
+    public function findBySeries(PostSeries $series): array;
+
+    public function findByCategory(Category $category): array;
 }

@@ -25,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ContentController extends AbstractController
 {
     #[Route(
-        '/{type<posts|podcasts|videos|trainings>}',
+        '/{content_type<posts|podcasts|videos|trainings>}',
         name: 'content_index',
         options: [
             'sitemap' => [
@@ -40,7 +40,7 @@ final class ContentController extends AbstractController
     }
 
     #[Route(
-        '/{type<posts|podcasts|videos|trainings>}/{slug<[a-zA-Z0-9-]+>}-{id<\d+>}',
+        '/{content_type<posts|podcasts|videos|trainings>}/{slug<[a-zA-Z0-9-]+>}-{id<\d+>}',
         name: 'content_show',
         methods: ['GET']
     )]
@@ -48,7 +48,7 @@ final class ContentController extends AbstractController
         EventDispatcherInterface $dispatcher,
         Request $request,
         Content $content,
-        string $type,
+        string $content_type,
         string $slug
     ): Response {
         // redirect to updated slug for better SEO
@@ -69,7 +69,7 @@ final class ContentController extends AbstractController
         }
 
         // if a content is found but does not match with the type requested
-        if (! str_starts_with($type, (string) $content->getContentType())) {
+        if (! str_starts_with($content_type, (string) $content->getContentType())) {
             throw new NotFoundHttpException();
         }
 

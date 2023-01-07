@@ -32,7 +32,7 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly Mailer $mailer,
-        private readonly MessageBusInterface $commandBus
+        private readonly MessageBusInterface $bus
     ) {
     }
 
@@ -62,12 +62,12 @@ final class AuthenticationEventSubscriber implements EventSubscriberInterface
         /** @var User $user */
         $user = $event->getAuthenticationToken()->getUser();
         $ip = (string) $event->getRequest()->getClientIp();
-        $this->commandBus->dispatch(new RegisterLoginIpAddressCommand($user, $ip));
+        $this->bus->dispatch(new RegisterLoginIpAddressCommand($user, $ip));
     }
 
     public function onBadPasswordSubmitted(BadPasswordSubmittedEvent $event): void
     {
-        $this->commandBus->dispatch(new RegisterLoginAttemptCommand($event->user));
+        $this->bus->dispatch(new RegisterLoginAttemptCommand($event->user));
     }
 
     public function onLoginWithAnotherIpAddress(LoginWithAnotherIpAddressEvent $event): void

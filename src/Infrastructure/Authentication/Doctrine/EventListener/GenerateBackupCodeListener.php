@@ -17,14 +17,14 @@ use Symfony\Component\Messenger\MessageBusInterface;
 final class GenerateBackupCodeListener
 {
     public function __construct(
-        private readonly MessageBusInterface $commandBus
+        private readonly MessageBusInterface $bus
     ) {
     }
 
     public function postUpdate(User $user, LifecycleEventArgs $event): void
     {
         if ($user->isEmptyBackupCodes()) {
-            $this->commandBus->dispatch(new GenerateBackupCodeCommand($user));
+            $this->bus->dispatch(new GenerateBackupCodeCommand($user));
         }
     }
 }

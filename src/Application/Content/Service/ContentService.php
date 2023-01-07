@@ -40,7 +40,7 @@ final class ContentService
     public function assertOneContentIsTopPromotedByType(AbstractContentCommand $command): void
     {
         if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
-            $this->repository->overrideContentTopPromoted($command->content_type);
+            $this->repository->resetTopPromotedContent($command->content_type);
         }
     }
 

@@ -15,10 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/technology', name: 'content_technology_')]
+#[Route('/technologies', name: 'content_technology_')]
 final class TechnologyController extends AbstractController
 {
-    #[Route('/{name}', name: 'show', methods: ['GET'])]
+    #[Route('/{slug<[a-zA-Z0-9-]+>}', name: 'show', methods: ['GET'])]
     public function show(Technology $row): void
     {
     }

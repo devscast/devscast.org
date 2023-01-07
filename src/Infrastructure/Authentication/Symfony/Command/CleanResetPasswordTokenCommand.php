@@ -23,14 +23,14 @@ use Symfony\Component\Messenger\MessageBusInterface;
 final class CleanResetPasswordTokenCommand extends Command
 {
     public function __construct(
-        private readonly MessageBusInterface $commandBus
+        private readonly MessageBusInterface $bus
     ) {
         parent::__construct();
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->commandBus->dispatch(new CleanRepositoryCommand());
+        $this->bus->dispatch(new CleanRepositoryCommand());
 
         return Command::SUCCESS;
     }

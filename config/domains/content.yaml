@@ -1,6 +1,6 @@
 parameters:
-    content.podcast_episode.upload_path: '%kernel.project_dir%/public/uploads/content/podcast_episode/audio'
-    content.video.upload_path: '%kernel.project_dir%/public/uploads/content/video'
+    content.podcast_episode.upload_path: '%kernel.project_dir%/uploads/content/podcast_episode/audio'
+    content.video.upload_path: '%kernel.project_dir%/uploads/content/video'
 
 services:
     _defaults:

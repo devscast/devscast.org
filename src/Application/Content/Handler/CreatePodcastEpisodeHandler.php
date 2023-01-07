@@ -23,8 +23,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class CreatePodcastEpisodeHandler
 {
     public function __construct(
-        private readonly PodcastEpisodeRepositoryInterface $repository,
-        private readonly ContentRepositoryInterface $contentRepository,
+        private readonly ContentRepositoryInterface $repository,
         private readonly ContentService $contentService
     ) {
     }
@@ -35,7 +34,7 @@ final class CreatePodcastEpisodeHandler
         $this->contentService->assertValidSlug($command);
 
         if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
-            $this->contentRepository->overrideContentTopPromoted(ContentType::podcast());
+            $this->repository->resetTopPromotedContent(ContentType::podcast());
         }
 
         /** @var PodcastEpisode $podcast */

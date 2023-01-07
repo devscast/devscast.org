@@ -23,7 +23,7 @@ final class ContentEventSubscriber implements EventSubscriberInterface
     use DispatchTrait;
 
     public function __construct(
-        protected readonly MessageBusInterface $commandBus,
+        protected readonly MessageBusInterface $bus,
         protected readonly LoggerInterface $logger,
         protected readonly Mailer $mailer
     ) {

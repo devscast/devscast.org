@@ -10,7 +10,7 @@
             table="content"
             inheritance-type="JOINED"
     >
-        <discriminator-column name="content_type" type="string" />
+        <discriminator-column name="_type" type="string" />
         <discriminator-map>
             <discriminator-mapping value="podcast" class="Domain\Content\Entity\PodcastEpisode" />
             <discriminator-mapping value="post" class="Domain\Content\Entity\Post" />
@@ -91,11 +91,17 @@
                 <option name="default">0</option>
             </options>
         </field>
+        <field name="is_community" type="boolean" nullable="false">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
 
         <!-- value objects -->
         <embedded name="status" class="Domain\Content\ValueObject\ContentStatus" use-column-prefix="false" />
         <embedded name="thumbnail" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
         <embedded name="education_level" class="Domain\Content\ValueObject\EducationLevel" use-column-prefix="false" />
+        <embedded name="content_type" class="Domain\Content\ValueObject\ContentType" use-column-prefix="false" />
 
         <!-- relations -->
         <many-to-one field="owner" target-entity="Domain\Authentication\Entity\User" >

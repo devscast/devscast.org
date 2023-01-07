@@ -82,6 +82,8 @@ abstract class Content extends AbstractEntity
 
     protected bool $is_premium = false;
 
+    protected bool $is_community = false;
+
     protected ?\DateTimeImmutable $scheduled_at = null;
 
     public function __construct()
@@ -441,5 +443,16 @@ abstract class Content extends AbstractEntity
         }
 
         return false;
+    }
+
+    public function isIsCommunity(): bool
+    {
+        return $this->is_community;
+    }
+
+    public function setIsCommunity(bool $is_community): Content
+    {
+        $this->is_community = $is_community;
+        return $this;
     }
 }

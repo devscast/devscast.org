@@ -6,7 +6,9 @@ namespace Infrastructure\Content\Symfony\Controller;
 
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Entity\Post;
+use Domain\Content\Repository\ContentRepositoryInterface;
 use Domain\Content\Repository\PostRepositoryInterface;
+use Domain\Content\ValueObject\ContentType;
 use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,29 +23,22 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class RssFeedController extends AbstractController
 {
-    #[Route('/podcasts/feed.rss', name: 'content_podcast_episode_feed', methods: ['GET'], priority: 20)]
-    public function podcasts(PodcastEpisodeRepository $repository): Response
-    {
-        /** @var PodcastEpisode[] $data */
-        $data = $repository->findAll();
-        $response = $this->render(
-            view: '@app/domain/content/podcast_episode/feed.xml.twig',
-            parameters: [
-                'data' => $data,
-            ]
-        );
-        $response->headers->set('Content-Type', 'application/rss+xml; charset=utf-8');
+    #[Route('/{content_type<podcasts|posts>}/feed.rss', name: 'content_feed', methods: ['GET'], priority: 20)]
+    public function __invoke(
+        ContentRepositoryInterface $repository,
+        string $content_type
+    ): Response {
+        /** @var PodcastEpisode[]|Post[] $data */
+        $data = match ($content_type) {
+            'podcasts' => $repository->findContents(ContentType::podcast()),
+            default => $repository->findLatestContents(ContentType::post(), 10)
+        };
 
-        return $response;
-    }
-
-    #[Route('/posts/feed.rss', name: 'content_post_feed', methods: ['GET'], priority: 20)]
-    public function posts(PostRepositoryInterface $repository): Response
-    {
-        /** @var Post[] $data */
-        $data = $repository->findBy([], limit: 10);
         $response = $this->render(
-            view: '@app/domain/content/post/feed.xml.twig',
+            view: match ($content_type) {
+                'podcasts' => '@app/domain/content/podcast_episode/feed.xml.twig',
+                default => '@app/domain/content/post/feed.xml.twig'
+            },
             parameters: [
                 'data' => $data,
             ]
