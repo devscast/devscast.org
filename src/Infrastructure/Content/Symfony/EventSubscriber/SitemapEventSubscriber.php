@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\EventSubscriber;
 
 use Domain\Content\Entity\Content;
+use Domain\Content\Entity\PodcastEpisode;
+use Domain\Content\Entity\Post;
+use Domain\Content\Entity\Training;
+use Domain\Content\Entity\Video;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Domain\Content\ValueObject\ContentType;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -35,13 +38,13 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
 
     public function populate(SitemapPopulateEvent $event): void
     {
-        $this->registerContentUrls($event->getUrlContainer(), ContentType::podcast(), 'podcast', 'content_podcast_episode_show');
-        $this->registerContentUrls($event->getUrlContainer(), ContentType::post(), 'post', 'content_post_show');
-        $this->registerContentUrls($event->getUrlContainer(), ContentType::video(), 'video', 'content_video_show');
-        $this->registerContentUrls($event->getUrlContainer(), ContentType::training(), 'training', 'content_training_show');
+        $this->registerContentUrls($event->getUrlContainer(), PodcastEpisode::class, 'podcast', 'content_podcast_episode_show');
+        $this->registerContentUrls($event->getUrlContainer(), Post::class, 'post', 'content_post_show');
+        $this->registerContentUrls($event->getUrlContainer(), Video::class, 'video', 'content_video_show');
+        $this->registerContentUrls($event->getUrlContainer(), Training::class, 'training', 'content_training_show');
     }
 
-    private function registerContentUrls(UrlContainerInterface $urls, ContentType $type, string $section, string $route): void
+    private function registerContentUrls(UrlContainerInterface $urls, string $type, string $section, string $route): void
     {
         /** @var Content[] $contents */
         $contents = $this->repository->findContents($type);

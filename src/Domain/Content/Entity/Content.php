@@ -450,9 +450,10 @@ abstract class Content extends AbstractEntity
         return $this->is_community;
     }
 
-    public function setIsCommunity(bool $is_community): Content
+    public function setIsCommunity(bool $is_community): self
     {
         $this->is_community = $is_community;
+
         return $this;
     }
 }

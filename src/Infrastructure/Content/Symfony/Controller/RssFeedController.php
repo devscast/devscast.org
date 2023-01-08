@@ -7,9 +7,6 @@ namespace Infrastructure\Content\Symfony\Controller;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Entity\Post;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Domain\Content\Repository\PostRepositoryInterface;
-use Domain\Content\ValueObject\ContentType;
-use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -30,8 +27,8 @@ final class RssFeedController extends AbstractController
     ): Response {
         /** @var PodcastEpisode[]|Post[] $data */
         $data = match ($content_type) {
-            'podcasts' => $repository->findContents(ContentType::podcast()),
-            default => $repository->findLatestContents(ContentType::post(), 10)
+            'podcasts' => $repository->findContents(PodcastEpisode::class),
+            default => $repository->findLatestContents(Post::class, 10)
         };
 
         $response = $this->render(

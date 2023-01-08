@@ -7,10 +7,10 @@ namespace Infrastructure\Content\Doctrine\Repository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Content\Entity\Content;
+use Domain\Content\Entity\Post;
 use Domain\Content\Entity\Tag;
 use Domain\Content\Repository\ContentRepositoryInterface;
 use Domain\Content\ValueObject\ContentStatus;
-use Domain\Content\ValueObject\ContentType;
 use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
@@ -27,23 +27,29 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         parent::__construct($registry, Content::class);
     }
 
-    public function resetTopPromotedContent(ContentType $type): bool
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function resetTopPromotedContent(string $type): bool
     {
         return boolval(
             $this->createQueryBuilder('c')
                 ->update(Content::class)
                 ->set('c.is_top_promoted', false)
                 ->where('c.is_top_promoted = TRUE')
-                ->andWhere('c.content_type.content_type = :type')
-                ->setParameter('type', (string) $type)
+                ->andWhere('c INSTANCE OF :type')
+                ->setParameter('type', $this->getEntityManager()->getClassMetadata($type))
                 ->getQuery()
                 ->execute()
         );
     }
 
-    public function findContents(ContentType $type): array
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findContents(string $type): array
     {
-        /** @var $result Content[] */
+        /** @var Content[] $result */
         $result = $this->findContentsQueryBuilder($type)
             ->getQuery()
             ->getResult();
@@ -51,7 +57,10 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $result;
     }
 
-    public function findContent(ContentType $type, int $id): ?Content
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findContent(string $type, int $id): ?Content
     {
         /** @var Content|null $result */
         $result = $this->findContentsQueryBuilder($type)
@@ -63,7 +72,10 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $result;
     }
 
-    public function findFeatured(ContentType $type): array
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findFeatured(string $type): array
     {
         /** @var Content[] $result */
         $result = $this->findContentsQueryBuilder($type)
@@ -74,7 +86,10 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $result;
     }
 
-    public function findTopPromoted(ContentType $type): array
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findTopPromoted(string $type): array
     {
         /** @var Content[] $result */
         $result = $this->findContentsQueryBuilder($type)
@@ -85,7 +100,10 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $result;
     }
 
-    public function findLatestContents(ContentType $type, int $limit): array
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findLatestContents(string $type, int $limit): array
     {
         /** @var Content[] $result */
         $result = $this->findContentsQueryBuilder($type)
@@ -96,7 +114,10 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $result;
     }
 
-    public function findContentsByTag(ContentType $type, Tag $tag): array
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    public function findContentsByTag(string $type, Tag $tag): array
     {
         return [];
     }
@@ -106,19 +127,22 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return [];
     }
 
-    private function findContentsQueryBuilder(?ContentType $type = null): QueryBuilder
+    /**
+     * @phpstan-param class-string<Content> $type
+     */
+    private function findContentsQueryBuilder(string $type = Post::class): QueryBuilder
     {
-        $qb = $this->createQueryBuilder('c')
+        return $this->findAllContentsQueryBuilder()
+            ->andWhere('c INSTANCE OF :type')
+            ->setParameter('type', $this->getEntityManager()->getClassMetadata($type));
+    }
+
+    private function findAllContentsQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
             ->where('c.status.status = :status AND c.is_online = TRUE')
             ->andWhere('c.created_at <= CURRENT_TIMESTAMP() OR c.scheduled_at <= CURRENT_TIMESTAMP()')
             ->setParameter('status', (string) ContentStatus::published())
             ->orderBy('c.created_at', 'DESC');
-
-        if ($type !== null) {
-            $qb->andWhere('c.content_type.content_type = :type')
-                ->setParameter('type', (string) $type);
-        }
-
-        return $qb;
     }
 }

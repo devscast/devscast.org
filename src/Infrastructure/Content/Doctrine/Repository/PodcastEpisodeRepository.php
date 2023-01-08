@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Doctrine\Repository;
 
-use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Entity\PodcastSeason;
@@ -32,10 +30,12 @@ final class PodcastEpisodeRepository extends AbstractRepository implements Podca
         return $this->findBy(
             [
                 'season' => $season,
-                'status' => (string)ContentStatus::published(),
-                'is_online' => true
+                'status' => (string) ContentStatus::published(),
+                'is_online' => true,
             ],
-            ['created_at' => 'DESC']
+            [
+                'created_at' => 'DESC',
+            ]
         );
     }
 }

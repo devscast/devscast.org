@@ -9,9 +9,7 @@ use Application\Content\Service\ContentService;
 use Application\Shared\Mapper;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Domain\Content\Repository\PodcastEpisodeRepositoryInterface;
 use Domain\Content\ValueObject\ContentStatus;
-use Domain\Content\ValueObject\ContentType;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -34,7 +32,7 @@ final class CreatePodcastEpisodeHandler
         $this->contentService->assertValidSlug($command);
 
         if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
-            $this->repository->resetTopPromotedContent(ContentType::podcast());
+            $this->repository->resetTopPromotedContent(PodcastEpisode::class);
         }
 
         /** @var PodcastEpisode $podcast */

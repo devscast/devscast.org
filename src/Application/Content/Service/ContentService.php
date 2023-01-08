@@ -9,6 +9,7 @@ use Application\Content\Command\CreatePodcastEpisodeCommand;
 use Application\Content\Command\CreatePostCommand;
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
 use Application\Content\Command\UpdatePostCommand;
+use Domain\Content\Entity\Post;
 use Domain\Content\Exception\ContentScheduleDateMustBeInFutureException;
 use Domain\Content\Exception\InvalidSlugException;
 use Domain\Content\Repository\ContentRepositoryInterface;
@@ -40,7 +41,7 @@ final class ContentService
     public function assertOneContentIsTopPromotedByType(AbstractContentCommand $command): void
     {
         if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
-            $this->repository->resetTopPromotedContent($command->content_type);
+            $this->repository->resetTopPromotedContent(Post::class); // todo use correct type
         }
     }
 

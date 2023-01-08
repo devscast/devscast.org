@@ -6,7 +6,6 @@ namespace Domain\Content\Repository;
 
 use Domain\Content\Entity\Content;
 use Domain\Content\Entity\Tag;
-use Domain\Content\ValueObject\ContentType;
 use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
@@ -16,19 +15,19 @@ use Domain\Shared\Repository\DataRepositoryInterface;
  */
 interface ContentRepositoryInterface extends DataRepositoryInterface
 {
-    public function resetTopPromotedContent(ContentType $type): bool;
+    public function resetTopPromotedContent(string $type): bool;
 
-    public function findContents(ContentType $type): array;
+    public function findContents(string $type): array;
 
-    public function findContent(ContentType $type, int $id): ?Content;
+    public function findContent(string $type, int $id): ?Content;
 
-    public function findFeatured(ContentType $type): array;
+    public function findFeatured(string $type): array;
 
-    public function findTopPromoted(ContentType $type): array;
+    public function findTopPromoted(string $type): array;
 
-    public function findLatestContents(ContentType $type, int $limit): array;
+    public function findLatestContents(string $type, int $limit): array;
 
-    public function findContentsByTag(ContentType $type, Tag $tag): array;
+    public function findContentsByTag(string $type, Tag $tag): array;
 
     public function findByTag(Tag $tag): array;
 }

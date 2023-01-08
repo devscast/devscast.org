@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller;
 
-use Domain\Content\ValueObject\ContentType;
 use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -21,7 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class StreamingController extends AbstractController
 {
-    #[Route('/streaming/{content_type<podcasts|videos>}/{filename<[a-zA-Z0-9-\.]+>}', name: 'content_streaming', methods: ['GET'])]
+    #[Route(
+        '/streaming/{content_type<podcasts|videos>}/{filename<[a-zA-Z0-9-\.]+>}',
+        name: 'content_streaming',
+        methods: ['GET']
+    )]
     public function __invoke(
         string $content_type,
         string $filename,
