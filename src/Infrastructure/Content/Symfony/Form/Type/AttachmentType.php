@@ -54,7 +54,7 @@ class AttachmentType extends TextType implements DataTransformerInterface
             'required' => false,
             'attr' => [
                 'is' => 'app-input-attachment',
-                'data-endpoint' => $this->urlGenerator->generate('api_content_attachment_'),
+                'data-endpoint' => '/api/content/attachment',
             ],
             'constraints' => [
                 new AttachmentExist(),

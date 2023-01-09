@@ -38,22 +38,31 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
 
     public function populate(SitemapPopulateEvent $event): void
     {
-        $this->registerContentUrls($event->getUrlContainer(), PodcastEpisode::class, 'podcast', 'content_podcast_episode_show');
-        $this->registerContentUrls($event->getUrlContainer(), Post::class, 'post', 'content_post_show');
-        $this->registerContentUrls($event->getUrlContainer(), Video::class, 'video', 'content_video_show');
-        $this->registerContentUrls($event->getUrlContainer(), Training::class, 'training', 'content_training_show');
+        $this->registerContentUrls($event->getUrlContainer(), PodcastEpisode::class);
+        $this->registerContentUrls($event->getUrlContainer(), Post::class);
+        $this->registerContentUrls($event->getUrlContainer(), Video::class);
+        $this->registerContentUrls($event->getUrlContainer(), Training::class);
     }
 
-    private function registerContentUrls(UrlContainerInterface $urls, string $type, string $section, string $route): void
+    private function registerContentUrls(UrlContainerInterface $urls, string $type): void
     {
+        $section = match ($type) {
+            Post::class => 'posts',
+            Video::class => 'videos',
+            Training::class => 'trainings',
+            PodcastEpisode::class => 'podcasts',
+            default => throw new \InvalidArgumentException(sprintf('unknown type %s', $type))
+        };
+
         /** @var Content[] $contents */
         $contents = $this->repository->findContents($type);
         foreach ($contents as $content) {
             $urls->addUrl(
                 url: new UrlConcrete(
                     loc: $this->generator->generate(
-                        name: $route,
+                        name: 'content_show',
                         parameters: [
+                            'type' => $section,
                             'id' => $content->getId(),
                             'slug' => $content->getSlug(),
                         ],

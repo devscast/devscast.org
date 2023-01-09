@@ -21,10 +21,8 @@ use Symfony\Component\Routing\Annotation\Route;
 final class RssFeedController extends AbstractController
 {
     #[Route('/{content_type<podcasts|posts>}/feed.rss', name: 'content_feed', methods: ['GET'], priority: 20)]
-    public function __invoke(
-        ContentRepositoryInterface $repository,
-        string $content_type
-    ): Response {
+    public function __invoke(ContentRepositoryInterface $repository, string $content_type): Response
+    {
         /** @var PodcastEpisode[]|Post[] $data */
         $data = match ($content_type) {
             'podcasts' => $repository->findContents(PodcastEpisode::class),

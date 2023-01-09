@@ -48,6 +48,10 @@ class AbstractContentType extends AbstractType
                 'label' => 'content.forms.labels.thumbnail',
                 'required' => ! $this->isEdition($builder),
             ])
+            ->add('attachment', AttachmentType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('tags', TagType::class)
             ->add('technologies', TechnologyType::class)
             ->add('scheduled_at', DatePickerType::class, [
