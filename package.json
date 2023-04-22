@@ -4,10 +4,10 @@
         "@hotwired/turbo": "^7.0.1",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
-        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
-        "@symfony/ux-cropperjs": "file:vendor/symfony/ux-cropperjs/Resources/assets",
-        "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/Resources/assets",
-        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
+        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
+        "@symfony/ux-cropperjs": "file:vendor/symfony/ux-cropperjs/assets",
+        "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/assets",
+        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^1.7.0",
         "autoprefixer": "^10.4.7",
         "chart.js": "^3.4.1",
@@ -49,7 +49,7 @@
         "stimulus": "^3.1.0",
         "stimulus-use": "^0.51.0",
         "sweetalert2": "^11.4.20",
-        "tom-select": "^2.0.1"
+        "tom-select": "^2.2.2"
     },
     "overrides": {
         "simplemde": {
