@@ -17,7 +17,7 @@ final class RegisterUserCommand
     public readonly Roles $roles;
 
     public function __construct(
-        #[Assert\NotBlank] public ?string $name = null,
+        public ?string $name = null,
         #[Assert\NotBlank] public ?string $username = null,
         #[Assert\NotBlank] #[Assert\Email] public ?string $email = null,
         #[Assert\NotBlank] #[Assert\Length(min: 6, max: 4096)] public ?string $password = null,

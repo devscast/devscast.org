@@ -83,7 +83,7 @@ final class RegistrationController extends AbstractController
             }
         }
 
-        return $this->renderForm(
+        return $this->render(
             view: '@app/domain/authentication/register.html.twig',
             parameters: [
                 'form' => $form,

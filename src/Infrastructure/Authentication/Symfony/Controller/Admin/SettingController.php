@@ -55,7 +55,7 @@ final class SettingController extends AbstractController
             }
         }
 
-        return $this->renderForm(
+        return $this->render(
             view: '@admin/domain/authentication/setting/profile.html.twig',
             parameters: [
                 'form' => $form,
@@ -94,7 +94,7 @@ final class SettingController extends AbstractController
             }
         }
 
-        return $this->renderForm(
+        return $this->render(
             view: '@admin/domain/authentication/setting/password.html.twig',
             parameters: [
                 'form' => $form,
@@ -148,7 +148,7 @@ final class SettingController extends AbstractController
 
         $qrcode = $authenticator->getQRContent($user);
 
-        return $this->renderForm(
+        return $this->render(
             view: '@admin/domain/authentication/setting/two_factor.html.twig',
             parameters: [
                 'qrcode_content' => $qrcode,

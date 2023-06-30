@@ -57,7 +57,7 @@ final class MailerHelper
         );
 
         return (new Email())
-            ->from(new Address('noreply@okademy.africa', 'Okademy'))
+            ->from(new Address('noreply@devscast.org', 'Devscast Community'))
             ->html($html)
             ->text($text);
     }
