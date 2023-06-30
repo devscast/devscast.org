@@ -14,7 +14,7 @@ use Domain\Content\Entity\Rating;
 final class DeleteRatingCommand
 {
     public function __construct(
-        public readonly Rating $rating
+        public readonly Rating $_entity
     ) {
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Progression;
 
 /**
@@ -15,9 +15,9 @@ use Domain\Content\Entity\Progression;
 final class UpdateProgressionCommand
 {
     public function __construct(
-        public readonly Progression $state,
+        public readonly Progression $_entity,
         public int $progress = 0
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

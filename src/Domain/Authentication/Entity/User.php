@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
 use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
 use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
-use Domain\Shared\Entity\{AbstractEntity, IdentityTrait, TimestampTrait};
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

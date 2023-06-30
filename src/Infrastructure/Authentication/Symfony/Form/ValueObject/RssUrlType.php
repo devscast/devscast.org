@@ -55,7 +55,9 @@ final class RssUrlType extends AbstractType implements DataMapperInterface
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = RssUrl::fromString(strval($forms['rss_url']->getData()));
+            /** @var string $url */
+            $url = $forms['rss_url']->getData();
+            $viewData = RssUrl::fromString($url);
         } catch (\InvalidArgumentException $e) {
             $forms['rss_url']->addError(new FormError($e->getMessage()));
         }

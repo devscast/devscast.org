@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Uid\Uuid;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
@@ -27,7 +27,6 @@ class AttachmentType extends TextType implements DataTransformerInterface
     public function __construct(
         private readonly AttachmentRepository $repository,
         private readonly UploaderHelper $uploaderHelper,
-        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -66,7 +65,7 @@ class AttachmentType extends TextType implements DataTransformerInterface
     /**
      * @param ?Attachment $data
      */
-    public function transform(mixed $data): ?int
+    public function transform(mixed $data): ?Uuid
     {
         if ($data instanceof Attachment) {
             return $data->getId();
@@ -77,13 +76,13 @@ class AttachmentType extends TextType implements DataTransformerInterface
 
     public function reverseTransform(mixed $data): ?Attachment
     {
-        if (empty($data)) {
-            return null;
+        if ($data instanceof Uuid) {
+            /** @var Attachment $result */
+            $result = $this->repository->find($data) ?: new NonExistingAttachment($data);
+
+            return $result;
         }
 
-        /** @var Attachment $result */
-        $result = $this->repository->find($data) ?: new NonExistingAttachment(intval($data));
-
-        return $result;
+        return null;
     }
 }

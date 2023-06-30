@@ -7,6 +7,7 @@ namespace Application\Content\Command;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreatePostSeriesCommand.
@@ -17,7 +18,7 @@ final class CreatePostSeriesCommand
 {
     public function __construct(
         public ?User $owner = null,
-        public ?string $name = null,
+        #[Assert\NotBlank] public ?string $name = null,
         public ?string $slug = null,
         public ?string $description = null,
         public ?Technology $technology = null,

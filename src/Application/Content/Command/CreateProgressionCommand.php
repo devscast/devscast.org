@@ -6,6 +6,7 @@ namespace Application\Content\Command;
 
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Content;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreateProgressionCommand.
@@ -17,7 +18,7 @@ final class CreateProgressionCommand
     public function __construct(
         public ?User $owner = null,
         public ?Content $target = null,
-        public int $progress = 0
+        #[Assert\GreaterThanOrEqual(0)] public int $progress = 0
     ) {
     }
 }

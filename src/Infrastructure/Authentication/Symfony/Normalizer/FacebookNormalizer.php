@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Normalizer;
 
-use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Normalizer\AbstractNormalizer;
 use League\OAuth2\Client\Provider\FacebookUser;
 
 /**

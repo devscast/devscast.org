@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdatePostCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Repository\PostRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -27,6 +27,6 @@ final class UpdatePostHandler
     public function __invoke(UpdatePostCommand $command): void
     {
         $this->contentService->assertPublishableContent($command);
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
     }
 }

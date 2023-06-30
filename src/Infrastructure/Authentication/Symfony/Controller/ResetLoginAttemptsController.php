@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ResetLoginAttemptsCommand;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;

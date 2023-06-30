@@ -23,6 +23,6 @@ final class DeleteTagHandler
 
     public function __invoke(DeleteTagCommand $command): void
     {
-        $this->repository->delete($command->tag);
+        $this->repository->delete($command->_entity);
     }
 }

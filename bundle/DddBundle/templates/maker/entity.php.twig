@@ -1,0 +1,59 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\{{ domain }}\Entity;
+
+/**
+ * Class {{ entityClassName }}.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
+class {{ entityClassName }}
+{
+    private ?{{ getType(info.fieldMappings[info.identifier[0]]['type']) }} ${{ info.fieldMappings[info.identifier[0]]['fieldName'] }} = null;
+{% for field in info.fieldMappings %}
+{% if field.id is not defined %}
+    private ?{{ getType(field.type) }} ${{ field.fieldName }} = null;
+{% endif %}
+{% endfor %}
+{% for field in info.associationMappings %}
+    private ?\{{ field.targetEntity }} ${{ field.fieldName }} = null;
+{% endfor %}
+
+    public function get{{ info.fieldMappings[info.identifier[0]]['fieldName'] | title }}(): ?{{ getType(info.fieldMappings[info.identifier[0]]['type']) }}
+    {
+        return $this->{{ info.fieldMappings[info.identifier[0]]['fieldName'] }};
+    }
+
+{% for field in info.fieldMappings %}
+{% if field.id is not defined %}
+    public function get{{ ucfirst(field.fieldName) }}(): ?{{ getType(field.type) }}
+    {
+        return $this->{{ field.fieldName }};
+    }
+
+    public function set{{ ucfirst(field.fieldName) }}(?{{ getType(field.type) }} ${{ field.fieldName }} = null): self
+    {
+        $this->{{ field.fieldName }} = ${{ field.fieldName }};
+
+        return $this;
+    }
+
+{% endif %}
+{% endfor %}
+{% for field in info.associationMappings %}
+    public function get{{ ucfirst(field.fieldName) }}(): ?\{{ field.targetEntity }}
+    {
+        return $this->{{ field.fieldName }};
+    }
+
+    public function set{{ ucfirst(field.fieldName) }}(?\{{ field.targetEntity }} ${{ field.fieldName }} = null): self
+    {
+        $this->{{ field.fieldName }} = ${{ field.fieldName }};
+
+        return $this;
+    }
+
+{% endfor %}
+}

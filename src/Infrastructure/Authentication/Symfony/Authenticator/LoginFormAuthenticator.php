@@ -8,6 +8,7 @@ use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
 use Domain\Authentication\Repository\UserRepositoryInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -46,7 +46,11 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $identifier = (string) $request->request->get('identifier', '');
+        /** @var string $token */
+        $token = $request->get('_token', '');
+
+        /** @var string $identifier */
+        $identifier = $request->request->get('identifier', '');
         $request->getSession()->set(Security::LAST_USERNAME, $identifier);
 
         $passport = new Passport(
@@ -56,7 +60,7 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             ),
             credentials: new PasswordCredentials((string) $request->request->get('password', '')),
             badges: [
-                new CsrfTokenBadge(csrfTokenId: 'authenticate', csrfToken: strval($request->get('_token', ''))),
+                new CsrfTokenBadge(csrfTokenId: 'authenticate', csrfToken: $token),
                 new RememberMeBadge(),
             ]
         );
@@ -80,7 +84,8 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         TokenInterface $token,
         string $firewallName
     ): RedirectResponse {
-        $redirect = strval($request->get('_redirect'));
+        /** @var string|null $redirect */
+        $redirect = $request->get('_redirect');
         if ($redirect) {
             return new RedirectResponse($redirect);
         }

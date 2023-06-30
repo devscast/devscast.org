@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\RequestLoginLinkCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Infrastructure\Authentication\Symfony\Form\RequestLoginLinkForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -51,7 +51,7 @@ final class LoginLinkController extends AbstractController
             $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return $this->renderForm(
+        return $this->render(
             view: '@app/domain/authentication/login_link.html.twig',
             parameters: [
                 'form' => $form,

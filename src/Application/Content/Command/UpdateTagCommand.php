@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Tag;
 
 /**
@@ -15,9 +15,9 @@ use Domain\Content\Entity\Tag;
 final class UpdateTagCommand
 {
     public function __construct(
-        public readonly Tag $state,
+        public readonly Tag $_entity,
         public ?string $name = null
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

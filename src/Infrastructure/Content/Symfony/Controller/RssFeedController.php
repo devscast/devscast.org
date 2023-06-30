@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Entity\Post;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;

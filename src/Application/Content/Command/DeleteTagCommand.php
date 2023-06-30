@@ -14,7 +14,7 @@ use Domain\Content\Entity\Tag;
 final class DeleteTagCommand
 {
     public function __construct(
-        public readonly Tag $tag
+        public readonly Tag $_entity
     ) {
     }
 }

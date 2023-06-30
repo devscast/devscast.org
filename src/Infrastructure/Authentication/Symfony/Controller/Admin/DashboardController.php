@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Controller\Admin;
 
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-#[Route('/admin/authentication', name: 'administration_authentication_dashboard_')]
+#[Route('/admin/authentication', name: 'admin_authentication_dashboard_')]
 final class DashboardController extends AbstractController
 {
     #[Route('', name: 'index', methods: ['GET'])]

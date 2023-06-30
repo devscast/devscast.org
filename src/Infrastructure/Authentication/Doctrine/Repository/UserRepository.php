@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\UserRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;

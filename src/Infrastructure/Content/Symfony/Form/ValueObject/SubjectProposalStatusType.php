@@ -55,7 +55,9 @@ final class SubjectProposalStatusType extends AbstractType implements DataMapper
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = SubjectProposalStatus::fromString(strval($forms['status']->getData()));
+            /** @var string $status */
+            $status = $forms['status']->getData();
+            $viewData = SubjectProposalStatus::fromString($status);
         } catch (\InvalidArgumentException $e) {
             $forms['status']->addError(new FormError($e->getMessage()));
         }

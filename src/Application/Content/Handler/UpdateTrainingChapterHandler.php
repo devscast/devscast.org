@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdateTrainingChapterCommand;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Repository\TrainingChapterRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -24,6 +24,6 @@ final class UpdateTrainingChapterHandler
 
     public function __invoke(UpdateTrainingChapterCommand $command): void
     {
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
     }
 }

@@ -57,7 +57,9 @@ final class ContentStatusType extends AbstractType implements DataMapperInterfac
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = ContentStatus::fromString(strval($forms['content_type']->getData()));
+            /** @var string $status */
+            $status = $forms['content_type']->getData();
+            $viewData = ContentStatus::fromString($status);
         } catch (\InvalidArgumentException $e) {
             $forms['content_type']->addError(new FormError($e->getMessage()));
         }

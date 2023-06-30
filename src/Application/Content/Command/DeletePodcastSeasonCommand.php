@@ -14,7 +14,7 @@ use Domain\Content\Entity\PodcastSeason;
 final class DeletePodcastSeasonCommand
 {
     public function __construct(
-        public readonly PodcastSeason $season
+        public readonly PodcastSeason $_entity
     ) {
     }
 }

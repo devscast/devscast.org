@@ -7,14 +7,17 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 use Application\Content\Command\CreateTrainingCommand;
 use Application\Content\Command\DeleteTrainingCommand;
 use Application\Content\Command\UpdateTrainingCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Content\Entity\Training;
 use Infrastructure\Content\Doctrine\Repository\TrainingRepository;
 use Infrastructure\Content\Symfony\Form\CreateTrainingForm;
 use Infrastructure\Content\Symfony\Form\UpdateTrainingForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class TrainingController.
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/trainings', 'administration_content_training_')]
+#[Route('/admin/content/trainings', 'admin_content_training_')]
 final class TrainingController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -37,36 +40,45 @@ final class TrainingController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        $owner = $this->getUser();
-
-        return $this->executeFormCommand(new CreateTrainingCommand($owner), CreateTrainingForm::class);
+        return $this->handleCommand(new CreateTrainingCommand(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: CreateTrainingForm::class
+        ));
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Training $row): Response
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show(Training $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
+                'data' => $item,
             ]
         );
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Training $row): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(Training $item): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdateTrainingCommand($row),
-            formClass: UpdateTrainingForm::class,
-            row: $row,
-            view: 'edit'
-        );
+        return $this->handleCommand(new UpdateTrainingCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdateTrainingForm::class
+        ));
     }
 
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(Training $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(Training $item): Response
     {
-        return $this->executeDeleteCommand(new DeleteTrainingCommand($row), $row);
+        return $this->handleCommand(new DeleteTrainingCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

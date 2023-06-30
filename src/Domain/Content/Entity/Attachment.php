@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
-use Domain\Shared\Entity\AbstractEntity;
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
+use Devscast\Bundle\DddBundle\Domain\Entity\ThumbnailTrait;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 
 /**

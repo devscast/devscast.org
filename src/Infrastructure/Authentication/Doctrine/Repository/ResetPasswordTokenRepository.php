@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\ResetPasswordTokenRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * Class ResetPasswordTokenRepositoryInterface.
@@ -61,11 +61,14 @@ final class ResetPasswordTokenRepository extends AbstractRepository implements R
 
     public function clean(): int
     {
-        return intval($this->createQueryBuilder('r')
+        /** @var int $result */
+        $result = $this->createQueryBuilder('r')
             ->where('r.created_at < :date')
             ->setParameter('date', new \DateTimeImmutable('-3 month'))
             ->delete(ResetPasswordToken::class, 'r')
             ->getQuery()
-            ->execute());
+            ->execute();
+
+        return $result;
     }
 }

@@ -6,6 +6,7 @@ namespace Infrastructure\Authentication\Symfony\EventSubscriber;
 
 use Application\Authentication\Command\RegisterLoginAttemptCommand;
 use Application\Authentication\Command\RegisterLoginIpAddressCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\MailerHelper;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Event\BadPasswordSubmittedEvent;
 use Domain\Authentication\Event\DefaultPasswordCreatedEvent;
@@ -18,7 +19,6 @@ use Domain\Authentication\Event\ResetPasswordRequestedEvent;
 use Domain\Authentication\Event\UserEmailedEvent;
 use Domain\Authentication\Event\UserRegisteredEvent;
 use Domain\Authentication\Event\UserRegistrationConfirmedEvent;
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -31,7 +31,7 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 final class AuthenticationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly Mailer $mailer,
+        private readonly MailerHelper $mailer,
         private readonly MessageBusInterface $bus
     ) {
     }

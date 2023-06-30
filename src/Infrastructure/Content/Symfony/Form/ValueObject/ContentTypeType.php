@@ -55,7 +55,9 @@ final class ContentTypeType extends AbstractType implements DataMapperInterface
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = ContentType::fromString(strval($forms['content_type']->getData()));
+            /** @var string $type */
+            $type = $forms['content_type']->getData();
+            $viewData = ContentType::fromString($type);
         } catch (\InvalidArgumentException $e) {
             $forms['content_type']->addError(new FormError($e->getMessage()));
         }

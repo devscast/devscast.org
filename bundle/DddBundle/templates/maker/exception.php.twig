@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\{{ domain }}\Exception;
+
+use Devscast\Bundle\DddBundle\Domain\Exception\SafeMessageException;
+
+/**
+ * Class {{ exceptionClassName }}.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+final class {{ exceptionClassName }} extends SafeMessageException
+{
+    protected string $messageDomain = '{{ domain | lower }}';
+
+    public function __construct(
+        string $message = '{{ domain | lower }}.exceptions.{{ exceptionMessage }}',
+        array $messageData = [],
+    ) {
+        parent::__construct($message, $messageData);
+    }
+}

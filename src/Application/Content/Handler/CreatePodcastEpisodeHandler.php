@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\CreatePodcastEpisodeCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Repository\ContentRepositoryInterface;
 use Domain\Content\ValueObject\ContentStatus;
@@ -35,8 +35,6 @@ final class CreatePodcastEpisodeHandler
             $this->repository->resetTopPromotedContent(PodcastEpisode::class);
         }
 
-        /** @var PodcastEpisode $podcast */
-        $podcast = Mapper::getHydratedObject($command, new PodcastEpisode());
-        $this->repository->save($podcast);
+        $this->repository->save(Mapper::getHydratedObject($command, new PodcastEpisode()));
     }
 }

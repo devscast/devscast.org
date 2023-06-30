@@ -1,0 +1,112 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Infrastructure\{{ domain }}\Symfony\Form\ValueObject;
+
+use Domain\{{ domain }}\ValueObject\{{ valueObjectClassName }};
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\DataMapperInterface;
+{% if valueObjectWithChoices %}
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+{% else %}
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+{% endif %}
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * class {{ valueObjectClassName }}Type.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+final class {{ valueObjectClassName }}Type extends AbstractType implements DataMapperInterface
+{
+{% if valueObjectWithChoices %}
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->add('{{ valueObjectVariableName }}', ChoiceType::class, [
+            'label' => '{{ domain | lower }}.forms.labels.{{ valueObjectVariableName }}',
+            'multiple' => false,
+            'choices' => {{ valueObjectClassName }}::CHOICES,
+            'autocomplete' => true,
+        ])->setDataMapper($this);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): OptionsResolver
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefaults([
+            'data_class' => {{ valueObjectClassName }}::class,
+            'empty_data' => null,
+            'translation_domain' => '{{ domain | lower }}',
+        ]);
+
+        return $resolver;
+    }
+
+    /**
+    * @param {{ valueObjectClassName }} $viewData
+    */
+    public function mapDataToForms(mixed $viewData, \Traversable $forms): void
+    {
+        $forms = iterator_to_array($forms);
+        $forms['{{ valueObjectVariableName }}']->setData((string) $viewData);
+    }
+
+    /**
+    * @param State $viewData
+    */
+    public function mapFormsToData(\Traversable $forms, mixed &$viewData): void
+    {
+        $forms = iterator_to_array($forms);
+        try {
+            $viewData = State::fromString(strval($forms['{{ valueObjectVariableName }}']->getData()));
+        } catch (\InvalidArgumentException $e) {
+            $forms['{{ valueObjectVariableName }}']->addError(new FormError($e->getMessage()));
+        }
+    }
+{% else %}
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->add('{{ valueObjectVariableName }}', TextType::class, [
+            'label' => '{{ domain | lower }}.forms.labels.{{ valueObjectVariableName }}',
+        ])->setDataMapper($this);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): OptionsResolver
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefaults([
+            'data_class' => {{ valueObjectClassName }}::class,
+            'empty_data' => null,
+            'translation_domain' => '{{ domain | lower }}',
+        ]);
+
+        return $resolver;
+    }
+
+    /**
+    * @param {{ valueObjectClassName }} $viewData
+    */
+    public function mapDataToForms(mixed $viewData, \Traversable $forms): void
+    {
+        $forms = iterator_to_array($forms);
+        $forms['{{ valueObjectVariableName }}']->setData((string) $viewData);
+    }
+
+    /**
+    * @param {{ valueObjectClassName }} $viewData
+    */
+    public function mapFormsToData(\Traversable $forms, mixed &$viewData): void
+    {
+        $forms = iterator_to_array($forms);
+        try {
+            $viewData = {{ valueObjectClassName }}::fromString(strval($forms['{{ valueObjectVariableName }}']->getData()));
+        } catch (\InvalidArgumentException $e) {
+            $forms['{{ valueObjectVariableName }}']->addError(new FormError($e->getMessage()));
+        }
+    }
+{% endif %}
+}

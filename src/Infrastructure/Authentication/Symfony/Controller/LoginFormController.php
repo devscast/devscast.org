@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\LoginCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Infrastructure\Authentication\Symfony\Form\LoginForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +34,7 @@ final class LoginFormController extends AbstractController
 
         $form = $this->createForm(LoginForm::class, $command);
 
-        return $this->renderForm(
+        return $this->render(
             view: '@app/domain/authentication/login.html.twig',
             parameters: [
                 'form' => $form,

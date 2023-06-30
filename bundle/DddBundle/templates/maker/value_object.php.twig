@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\{{ domain }}\ValueObject;
+
+use Webmozart\Assert\Assert;
+
+/**
+ * class {{ valueObjectClassName }}
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+class {{ valueObjectClassName }} implements \Stringable
+{
+{% if valueObjectWithChoices %}
+    public const VALUES = [];
+    public const CHOICES = [];
+
+    private readonly string ${{ valueObjectVariableName }};
+
+    private function __construct(string ${{ valueObjectVariableName }})
+    {
+        Assert::inArray(${{ valueObjectVariableName }}, self::VALUES);
+        $this->{{ valueObjectVariableName }} = ${{ valueObjectVariableName }};
+    }
+
+    public function __toString(): string
+    {
+        return $this->{{ valueObjectVariableName }};
+    }
+
+    public function getTranslationKey(): string
+    {
+        return strval(array_search($this->{{ valueObjectVariableName }}, self::CHOICES, true));
+    }
+
+    public static function fromString(string ${{ valueObjectVariableName }}): self
+    {
+        return new self(${{ valueObjectVariableName }});
+    }
+{% elseif %}
+    private readonly string ${{ valueObjectVariableName }};
+
+    private function __construct(string ${{ valueObjectVariableName }})
+    {
+        Assert::notEmpty(${{ valueObjectVariableName }}, '{{ domain | lower }}.validations.empty_username');
+        $this->username = $username;
+    }
+
+    public function __toString()
+    {
+        return $this->{{ valueObjectVariableName }};
+    }
+
+    public static function fromString(string ${{ valueObjectVariableName }}): self
+    {
+        return new self(${{ valueObjectVariableName }});
+    }
+
+{%  endif %}
+    public function equals({{ valueObjectVariableType }}|self ${{ valueObjectVariableName }}): bool
+    {
+        if (${{ valueObjectVariableName}} instanceof self) {
+        return $this->{{ valueObjectVariableName}} === ${{ valueObjectVariableName }}->{{ valueObjectVariableName }};
+        }
+
+        return $this->{{ valueObjectVariableName }} === ${{ valueObjectVariableName }};
+    }
+}

@@ -14,7 +14,7 @@ use Domain\Content\Entity\Video;
 final class DeleteVideoCommand
 {
     public function __construct(
-        public readonly Video $video
+        public readonly Video $_entity
     ) {
     }
 }

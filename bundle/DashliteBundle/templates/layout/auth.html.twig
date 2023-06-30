@@ -1,0 +1,47 @@
+{% apply spaceless %}
+    <!DOCTYPE html>
+    <html lang="{{ app.request.locale }}" class="js">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="devscast">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{{ asset('/images/icon.jpg') }}">
+        <title>{% block title %}Connexion{% endblock %} | Okademy Backend </title>
+        {{ encore_entry_link_tags('admin') }}
+
+        <script type="application/javascript" src="{{ asset('/static/bundle.js') }}"></script>
+        <script type="application/javascript" src="{{ asset('/static/scripts.js') }}"></script>
+        {{ encore_entry_script_tags('admin') }}
+    </head>
+
+    <body class="nk-body bg-white npc-default pg-auth">
+    {% include '@admin/shared/component/_flash.html.twig' %}
+    <div class="nk-app-root">
+        <div class="nk-main ">
+            <div class="nk-wrap nk-wrap-nosidebar">
+                <div class="nk-content ">
+                    <div class="nk-split nk-split-page nk-split-md">
+                        <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
+                            <div class="nk-block nk-block-middle nk-auth-body">
+                                <div class="brand-logo pb-5">
+                                    {% block logo %}
+                                        <a href="{{ path('app_index') }}" class="logo-link">
+                                            <img class="logo-img logo-img-lg" width="50%" src="{{ asset('/logo.png') }}" alt="logo">
+                                        </a>
+                                    {% endblock %}
+                                </div>
+                                {% block body %}{% endblock %}
+                            </div>
+                            <div class="nk-block nk-auth-footer">
+                                <div class="mt-3"><p>© {{ 'now' | date('Y') }} Developed by <a href="https://devscast.tech">Devscast</a> .</p></div>
+                            </div>
+                        </div>
+                        <div id="bg" class="nk-split-content nk-split-stretch bg-abstract" {{ stimulus_controller("background") }}></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endapply %}

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Mailer;
 
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
+use Devscast\Bundle\DddBundle\Infrastructure\MailerHelper;
+use Domain\Authentication\Entity\User;
 use Scheb\TwoFactorBundle\Mailer\AuthCodeMailerInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Mime\Address;
@@ -18,13 +19,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class TwoFactorEmailCodeMailer implements AuthCodeMailerInterface
 {
     public function __construct(
-        private readonly Mailer $mailer,
+        private readonly MailerHelper $mailer,
         private readonly TranslatorInterface $translator
     ) {
     }
 
     /**
-     * @psalm-param \Domain\Authentication\Entity\User $user
+     * @psalm-param User $user
      */
     public function sendAuthCode(TwoFactorInterface $user): void
     {

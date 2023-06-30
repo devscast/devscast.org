@@ -14,7 +14,7 @@ use Domain\Content\Entity\PodcastEpisode;
 final class DeletePodcastEpisodeCommand
 {
     public function __construct(
-        public readonly PodcastEpisode $episode
+        public readonly PodcastEpisode $_entity
     ) {
     }
 }

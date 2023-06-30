@@ -8,5 +8,5 @@ knp_paginator:
         filter_field_name: filterField # filter field query parameter name
         filter_value_name: filterValue # filter value query parameter name
     template:
-        pagination: '@admin/shared/layout/pagination/pagination.html.twig'
-        sortable: '@admin/shared/layout/pagination/sorting.html.twig'
+        pagination: '@DevscastDashlite/layout/pagination/pagination.html.twig'
+        sortable: '@DevscastDashlite/layout/pagination/sorting.html.twig'

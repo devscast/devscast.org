@@ -776,6 +776,15 @@
     "symfony/service-contracts": {
         "version": "v3.0.0"
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.8",
+            "ref": "9e33a8a3794b603fb4be6c04ee5ecab901ce549e"
+        }
+    },
     "symfony/stopwatch": {
         "version": "v6.0.3"
     },
@@ -847,8 +856,23 @@
     "symfony/ux-dropzone": {
         "version": "v2.3.0"
     },
+    "symfony/ux-live-component": {
+        "version": "2.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "73e69baf18f47740d6f58688c5464b10cdacae06"
+        },
+        "files": [
+            "config/routes/ux_live_component.yaml"
+        ]
+    },
     "symfony/ux-turbo": {
         "version": "v2.3.0"
+    },
+    "symfony/ux-twig-component": {
+        "version": "v2.9.1"
     },
     "symfony/validator": {
         "version": "6.0",

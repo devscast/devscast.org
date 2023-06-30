@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\CreatePostListCommand;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PostList;
 use Domain\Content\Repository\PostListRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

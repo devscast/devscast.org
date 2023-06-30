@@ -1,16 +1,16 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title 'Articles' %}
 
 {% block header %}
-    {% embed '@admin/shared/component/_header.html.twig' %}
+    {% embed '@DevscastDashlite/component/_header.html.twig' %}
         {% block header_title 'Articles' %}
         {% block header_action_list %}
             <li class="btn-group">
-                <a href="{{ path('administration_content_post_new') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_content_post_new') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </a>
-                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'bar-chart' | icon }}
                     <span>Statistiques</span>
                 </a>
@@ -22,11 +22,11 @@
 {% block content %}
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@admin/shared/component/card/_list.html.twig" with {
+            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
                 _action: 'Ajouter un article',
-                _path: path('administration_content_post_new')
+                _path: path('admin_content_post_new')
             } %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
                     <th>Name</th>
                     <th>Lecture</th>
@@ -39,14 +39,14 @@
                         <tr>
                             <td>{{ row.name }}</td>
                             <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
-                            <td><a href="{{ path('administration_authentication_user_show', {id: row.owner.id}) }}">{{ row.owner.name }}</a></td>
+                            <td><a href="{{ path('admin_authentication_user_show', {id: row.owner.id}) }}">{{ row.owner.name }}</a></td>
                             <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_content_post_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_post_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
                                         {{ 'eye' | icon }}
                                     </a>
-                                    <a href="{{ path('administration_content_post_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_post_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
                                         {{ 'edit' | icon }}
                                     </a>
                                 </div>

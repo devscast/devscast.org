@@ -14,7 +14,7 @@ use Domain\Content\Entity\SubjectProposal;
 final class DeleteSubjectProposalCommand
 {
     public function __construct(
-        public readonly SubjectProposal $proposal
+        public readonly SubjectProposal $_entity
     ) {
     }
 }

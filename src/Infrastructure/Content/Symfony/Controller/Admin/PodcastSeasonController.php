@@ -7,14 +7,17 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 use Application\Content\Command\CreatePodcastSeasonCommand;
 use Application\Content\Command\DeletePodcastSeasonCommand;
 use Application\Content\Command\UpdatePodcastSeasonCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Content\Entity\PodcastSeason;
 use Infrastructure\Content\Doctrine\Repository\PodcastSeasonRepository;
 use Infrastructure\Content\Symfony\Form\CreatePodcastSeasonForm;
 use Infrastructure\Content\Symfony\Form\UpdatePodcastSeasonForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class PodcastSeasonController.
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/seasons', 'administration_content_podcast_season_')]
+#[Route('/admin/content/podcasts/seasons', 'admin_content_podcast_season_')]
 final class PodcastSeasonController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -37,34 +40,45 @@ final class PodcastSeasonController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(new CreatePodcastSeasonCommand(), CreatePodcastSeasonForm::class);
+        return $this->handleCommand(new CreatePodcastSeasonCommand(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: CreatePodcastSeasonForm::class
+        ));
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(PodcastSeason $row): Response
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show(PodcastSeason $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
-            ],
+                'data' => $item,
+            ]
         );
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(PodcastSeason $row): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(PodcastSeason $item): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdatePodcastSeasonCommand($row),
-            formClass: UpdatePodcastSeasonForm::class,
-            row: $row,
-            view: 'edit'
-        );
+        return $this->handleCommand(new UpdatePodcastSeasonCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdatePodcastSeasonForm::class
+        ));
     }
 
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(PodcastSeason $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(PodcastSeason $item): Response
     {
-        return $this->executeDeleteCommand(new DeletePodcastSeasonCommand($row), $row);
+        return $this->handleCommand(new DeletePodcastSeasonCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

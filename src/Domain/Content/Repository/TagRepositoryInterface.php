@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
-use Domain\Shared\Repository\DataRepositoryInterface;
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 
 /**
  * Interface TagRepositoryInterface.

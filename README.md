@@ -31,12 +31,12 @@ après avoir cloné le projet, vous devez installer les dépendances requises en
 
 pour éviter les problèmes de permission avec docker, assurez-vous que les deux variables d'environnement suivantes sont définies sur votre machine
 ```bash
-# dans .bashrc ou .zshrc 
+# dans .bashrc ou .zshrc
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 ```
 
-you can also add an alias to facilitate command execution in the container 
+you can also add an alias to facilitate command execution in the container
 
 ```bash
 # dans .bashrc ou .zshrc
@@ -72,7 +72,7 @@ Nous avons également besoin de personnes pour tester les pull-requests. Jetez d
 Si vous constatez que l'une de vos pull reviews ne passe pas la vérification du serveur CI en raison d'un conflit de style de code, vous pouvez facilement le corriger en exécutant :
 
 ```bash
-make lint 
+make lint
 make test
 ```
 
@@ -86,9 +86,9 @@ make test
 
 Nous sommes sur les médias sociaux:
 
-- [@DevscastTech](https://twitter.com/devscasttech) sur Twitter. Vous devriez le suivre.
-- [Devscast](https://www.linkedin.com/company/devscast/) sur LinkedIn 
-- [@devscast.tech](https://www.instagram.com/devscast.tech/) sur Instagram.
-- [devscast.tech](https://web.facebook.com/devscast.tech/) sur Facebook.
-- [Devscast](https://www.youtube.com/channel/UCsvWpowwYtjfgS1BOcrX0fw) sur Youtube.
-- [devscast.tech](https://www.tiktok.com/@devscast.tech) sur Tiktok.
+- [devscast_org](https://twitter.com/devscast_org) sur Twitter. Vous devriez le suivre.
+- [Devscast](https://www.linkedin.com/company/devscast-community/) sur LinkedIn
+- [devscast_org](https://www.instagram.com/devscast_org/) sur Instagram.
+- [devscast.org](https://web.facebook.com/devscast.org/) sur Facebook.
+- [devscast_org](https://www.youtube.com/@devscast_org) sur Youtube.
+- [devscast_org](https://www.tiktok.com/@devscast_org) sur Tiktok.

@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\CreateTechnologyCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Technology;
 use Domain\Content\Repository\TechnologyRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

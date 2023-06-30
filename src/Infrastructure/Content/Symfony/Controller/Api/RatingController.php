@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller\Api;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Content\Entity\Content;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class RatingController.
@@ -17,7 +18,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class RatingController extends AbstractController
 {
-    #[Route('/api/content/rating/{id}', name: 'api_content_rating', methods: ['POST'])]
+    #[Route('/api/content/rating/{id}', name: 'api_content_rating', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST'])]
     public function __invoke(Content $content): void
     {
     }

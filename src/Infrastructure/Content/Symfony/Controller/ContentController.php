@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
+use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Content;
 use Domain\Content\Event\ContentViewedEvent;
 use Domain\Content\ValueObject\ContentStatus;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 /**
  * class ContentController.
@@ -45,6 +47,7 @@ final class ContentController extends AbstractController
         methods: ['GET']
     )]
     public function show(
+        #[CurrentUser] User $user,
         EventDispatcherInterface $dispatcher,
         Request $request,
         Content $content,
@@ -73,13 +76,13 @@ final class ContentController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $dispatcher->dispatch(new ContentViewedEvent($content, (string) $request->getClientIp(), $this->getUser()));
+        $dispatcher->dispatch(new ContentViewedEvent($content, (string) $request->getClientIp(), $user));
 
         return $this->render(
             view: match ((string) $content->getContentType()) {
-                'podcast' => '@app/domain/content/podcast_episode/show.html.twig',
-                'video' => '@app/domain/content/video/show.html.twig',
-                'training' => '@app/domain/content/training/show.html.twig',
+                'podcasts' => '@app/domain/content/podcast_episode/show.html.twig',
+                'videos' => '@app/domain/content/video/show.html.twig',
+                'trainings' => '@app/domain/content/training/show.html.twig',
                 default => '@app/domain/content/post/show.html.twig',
             },
             parameters: [

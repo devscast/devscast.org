@@ -9,8 +9,9 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\PodcastSeasonRepository"
             table="content_podcast_season"
     >
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
+        <id name="id" type="uuid" column="id" unqiue="true">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="doctrine.uuid_generator"/>
         </id>
 
         <!-- fields -->

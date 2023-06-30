@@ -6,8 +6,8 @@ namespace Infrastructure\Authentication\Symfony\Controller\Setting;
 
 use Application\Authentication\Command\ExportBackupCodeCommand;
 use Application\Authentication\Command\GenerateBackupCodeCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Authentication\Entity\User;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,8 +42,9 @@ final class BackupCodeController extends AbstractController
         $user = $this->getUser();
 
         try {
+            /** @var string $content */
             $content = $this->getHandledResultSync(new ExportBackupCodeCommand($user));
-            $response = new Response(strval($content));
+            $response = new Response($content);
             $response->headers->set('Content-Disposition', HeaderUtils::makeDisposition(
                 disposition: HeaderUtils::DISPOSITION_ATTACHMENT,
                 filename: 'devscast_backup_code.txt'

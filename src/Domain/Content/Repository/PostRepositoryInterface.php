@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 use Domain\Content\Entity\Category;
 use Domain\Content\Entity\PostSeries;
-use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface PostRepositoryInterface.

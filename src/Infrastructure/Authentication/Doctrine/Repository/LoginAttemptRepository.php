@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Doctrine\Repository;
 
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\LoginAttempt;
 use Domain\Authentication\Entity\User;
 use Domain\Authentication\Repository\LoginAttemptRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * Class LoginAttemptRepositoryInterface.
@@ -26,19 +24,11 @@ final class LoginAttemptRepository extends AbstractRepository implements LoginAt
         parent::__construct($registry, LoginAttempt::class);
     }
 
-    /**
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
     public function countRecentFor(User $user): int
     {
-        return intval($this->createQueryBuilder('l')
-            ->select('COUNT(l.id) as count')
-            ->where('l.owner = :user')
-            ->setParameter('user', $user)
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getSingleScalarResult());
+        return $this->count([
+            'owner' => $user,
+        ]);
     }
 
     public function deleteAttemptsFor(User $user): void

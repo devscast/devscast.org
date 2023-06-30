@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
+use Devscast\Bundle\DddBundle\Domain\Entity\ThumbnailTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\AbstractEntity;
-use Domain\Shared\Entity\ThumbnailTrait;
-use Domain\Shared\Entity\UuidTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
-use Symfony\Component\Uid\Uuid;
 
 /**
  * class Technology.
@@ -20,14 +18,10 @@ use Symfony\Component\Uid\Uuid;
 class Technology extends AbstractEntity
 {
     use ThumbnailTrait;
-    use UuidTrait;
 
     private ?string $name = null;
-
     private ?string $slug = null;
-
     private ?string $description = null;
-
     private int $content_count = 0;
 
     /**
@@ -37,7 +31,6 @@ class Technology extends AbstractEntity
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->thumbnail = EmbeddedFile::default();
         $this->contents = new ArrayCollection();
     }

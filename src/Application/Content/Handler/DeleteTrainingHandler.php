@@ -23,6 +23,6 @@ final class DeleteTrainingHandler
 
     public function __invoke(DeleteTrainingCommand $command): void
     {
-        $this->repository->delete($command->training);
+        $this->repository->delete($command->_entity);
     }
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\SubjectProposal;
 use Domain\Content\Entity\SubjectProposalVote;
-use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface SubjectProposalVoteRepositoryInterface.

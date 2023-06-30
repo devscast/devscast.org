@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\CreatePostCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Post;
 use Domain\Content\Repository\PostRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

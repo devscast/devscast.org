@@ -23,6 +23,6 @@ final class DeleteTechnologyHandler
 
     public function __invoke(DeleteTechnologyCommand $command): void
     {
-        $this->repository->delete($command->technology);
+        $this->repository->delete($command->_entity);
     }
 }

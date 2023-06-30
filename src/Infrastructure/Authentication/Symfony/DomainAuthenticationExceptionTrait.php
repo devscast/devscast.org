@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony;
 
-use Domain\Shared\Exception\SafeMessageException;
+use Devscast\Bundle\DddBundle\Domain\Exception\SafeMessageException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**

@@ -23,6 +23,6 @@ final class DeletePostListHandler
 
     public function __invoke(DeletePostListCommand $command): void
     {
-        $this->repository->delete($command->list);
+        $this->repository->delete($command->_entity);
     }
 }

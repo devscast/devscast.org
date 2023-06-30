@@ -23,6 +23,6 @@ final class DeleteVideoHandler
 
     public function __invoke(DeleteVideoCommand $command): void
     {
-        $this->repository->delete($command->video);
+        $this->repository->delete($command->_entity);
     }
 }

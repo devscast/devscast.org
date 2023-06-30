@@ -32,14 +32,16 @@ final class GoogleAuthenticator extends AbstractOAuthAuthenticator
             $this->throwDomainException(new OAuthVerifiedEmailNotFoundException());
         }
 
+        /** @var string $id */
+        $id = $resourceOwner->getId();
         $user = $repository->findForOauth(
             service: 'google',
-            serviceId: strval($resourceOwner->getId()),
+            serviceId: $id,
             email: $resourceOwner->getEmail()
         );
 
         if ($user && null === $user->getGoogleId()) {
-            $user->setGoogleId(strval($resourceOwner->getId()));
+            $user->setGoogleId($id);
             $this->em->flush();
         }
 

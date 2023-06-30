@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Normalizer;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Normalizer\AbstractNormalizer;
 use Domain\Content\Entity\Attachment;
 use Infrastructure\Shared\Image\ImageResizerUrlGenerator;
-use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**

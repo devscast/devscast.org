@@ -13,8 +13,9 @@
             <unique-constraint columns="owner_id,proposal_id"/>
         </unique-constraints>
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
+        <id name="id" type="uuid" column="id" unqiue="true">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="doctrine.uuid_generator"/>
         </id>
 
         <!-- relations -->

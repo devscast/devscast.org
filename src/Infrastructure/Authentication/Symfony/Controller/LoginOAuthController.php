@@ -6,8 +6,8 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ConnectOAuthServiceCommand;
 use Application\Authentication\Command\DisconnectOAuthServiceCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Authentication\Entity\User;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -60,7 +60,7 @@ final class LoginOAuthController extends AbstractController
             );
 
             // TODO redirect to profile
-            return $this->redirectToRoute('authentication_settings_index');
+            return $this->redirectToRoute('app_index');
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 

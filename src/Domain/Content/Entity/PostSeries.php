@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
+use Devscast\Bundle\DddBundle\Domain\Entity\ThumbnailTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Content\ValueObject\ContentStatus;
-use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\ThumbnailTrait;
-use Domain\Shared\Entity\UuidTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
-use Symfony\Component\Uid\Uuid;
 
 /**
  * class PostSeries.
@@ -23,7 +21,6 @@ class PostSeries extends AbstractEntity
 {
     use ThumbnailTrait;
     use OwnerTrait;
-    use UuidTrait;
 
     private ?string $name = null;
 
@@ -44,7 +41,6 @@ class PostSeries extends AbstractEntity
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->status = ContentStatus::draft();
         $this->thumbnail = EmbeddedFile::default();
         $this->posts = new ArrayCollection();

@@ -89,10 +89,12 @@ final class ContentService
     public function assertValidSlug(object $command): void
     {
         if (property_exists($command, 'name') && property_exists($command, 'slug')) {
-            try {
-                Assert::nullOrRegex($command->slug, '/^[a-z0-9]+(?:-[a-z0-9]+)*$/');
-            } catch (\Throwable $e) {
-                throw new InvalidSlugException(previous: $e);
+            if (null !== $command->slug) {
+                try {
+                    Assert::nullOrRegex($command->slug, '/^[a-z0-9]+(?:-[a-z0-9]+)*$/');
+                } catch (\Throwable $e) {
+                    throw new InvalidSlugException(previous: $e);
+                }
             }
 
             $command->slug = (new AsciiSlugger())

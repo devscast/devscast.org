@@ -20,8 +20,8 @@ final class DeleteSubjectProposalHandler
 
     public function __invoke(DeleteSubjectProposalCommand $command): void
     {
-        if (! $command->proposal->status->equals(SubjectProposalStatus::accepted())) {
-            $this->repository->delete($command->proposal);
+        if (! $command->_entity->status->equals(SubjectProposalStatus::accepted())) {
+            $this->repository->delete($command->_entity);
         } else {
             throw new CannotMutateAcceptedSubjectProposalException();
         }

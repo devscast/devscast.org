@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Command;
 
 use Domain\Authentication\Entity\ResetPasswordToken;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ConfirmResetPasswordCommand.
@@ -15,7 +16,7 @@ final class ConfirmResetPasswordCommand
 {
     public function __construct(
         public readonly ResetPasswordToken $token,
-        public ?string $password = null
+        #[Assert\NotBlank] #[Assert\Length(min: 6, max: 4096)] public ?string $password = null
     ) {
     }
 }

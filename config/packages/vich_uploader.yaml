@@ -5,11 +5,11 @@ vich_uploader:
         cache: file
         directories:
             - {
-                path: '%kernel.project_dir%/src/Infrastructure/Authentication/Uploader/Mapping',
+                path: '%kernel.project_dir%/src/Infrastructure/Authentication/Filesystem/Mapping',
                 namespace_prefix: 'Domain\Authentication'
             }
             - {
-                  path: '%kernel.project_dir%/src/Infrastructure/Content/Uploader/Mapping',
+                  path: '%kernel.project_dir%/src/Infrastructure/Content/Filesystem/Mapping',
                   namespace_prefix: 'Domain\Content'
             }
 

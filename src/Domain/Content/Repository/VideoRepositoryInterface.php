@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
-use Domain\Content\Entity\Training;
-use Domain\Shared\Repository\DataRepositoryInterface;
+// use Domain\Content\Entity\Training;
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 
 /**
  * Interface VideoRepositoryInterface.

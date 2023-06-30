@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\EventSubscriber;
 
+use Devscast\Bundle\DddBundle\Infrastructure\MailerHelper;
 use Domain\Authentication\Event\TwoFactorDisabledEvent;
 use Domain\Authentication\Event\TwoFactorEnabledEvent;
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -17,7 +17,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class TwoFactorEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly Mailer $mailer,
+        private readonly MailerHelper $mailer,
     ) {
     }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\CreateTrainingCommand;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Training;
 use Domain\Content\Repository\TrainingRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

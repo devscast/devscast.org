@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Rating;
 
 /**
@@ -15,8 +15,8 @@ use Domain\Content\Entity\Rating;
 final class UpVoteRatingCommand
 {
     public function __construct(
-        public readonly Rating $state,
+        public readonly Rating $_entity,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

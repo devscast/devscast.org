@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Application\{{ domain }}\Command;
+
+{% if is_update_command and entityClassName %}
+use Devscast\Bundle\DddBundle\Application\Mapper;
+{% endif %}
+{% if entityClassName %}
+use Domain\{{ domain }}\Entity\{{ entityClassName }};
+{% endif %}
+
+/**
+ * class {{ commandClassName }}.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+final class {{ commandClassName }}
+{
+{% if is_delete_command and entityClassName %}
+    public function __construct(
+        public readonly {{ entityClassName }} $_entity,
+    ) {
+    }
+{% elseif is_update_command and entityClassName %}
+    public function __construct(
+        public readonly {{ entityClassName }} $_entity,
+{% for p in entityClassProperties %}
+{% if p.native %}
+        public ?{{ p.type }} ${{ p.name }} = null,
+{% else %}
+        public ?\{{ p.type }} ${{ p.name }} = null,
+{% endif %}
+{% endfor %}
+    ) {
+        Mapper::hydrate($_entity, $this);
+    }
+{% elseif is_create_command and entityClassName %}
+    public function __construct(
+{% for p in entityClassProperties %}
+{% if p.native %}
+        public ?{{ p.type }} ${{ p.name }} = null,
+{% else %}
+        public ?\{{ p.type }} ${{ p.name }} = null,
+{% endif %}
+{% endfor %}
+    ) {
+    }
+{% endif %}
+}

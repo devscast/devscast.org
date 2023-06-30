@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PostList;
 
 /**
@@ -15,11 +15,11 @@ use Domain\Content\Entity\PostList;
 final class UpdatePostListCommand
 {
     public function __construct(
-        public readonly PostList $state,
+        public readonly PostList $_entity,
         public ?string $name = null,
         public ?string $description = null,
         public bool $is_public = false
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

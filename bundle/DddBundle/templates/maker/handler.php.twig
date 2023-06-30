@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Application\{{ domain }}\Handler;
+
+use Application\{{ domain }}\Command\{{ commandClassName }};
+{% if repositoryInterfaceName and entityClassName %}
+use Domain\{{ domain }}\Entity\{{ entityClassName }};
+use Domain\{{ domain }}\Repository\{{ repositoryInterfaceName }};
+{% endif %}
+use Devscast\Bundle\DddBundle\Application\Mapper;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+/**
+ * class {{ handlerClassName }}
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+#[AsMessageHandler]
+final class {{ handlerClassName }}
+{
+{% if repositoryInterfaceName %}
+    public function __construct(
+        private readonly {{ repositoryInterfaceName }} $repository
+    ) {
+    }
+{% endif %}
+
+    public function __invoke({{ commandClassName }} $command): void
+    {
+{% if repositoryInterfaceName %}
+    {% if is_create_command %}
+    $this->repository->save(Mapper::getHydratedObject($command, new {{ entityClassName }}()));
+    {% elseif is_update_command %}
+    $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
+    {% elseif is_delete_command %}
+    $this->repository->delete($command->_entity);
+    {% endif %}
+{% endif %}
+}
+}

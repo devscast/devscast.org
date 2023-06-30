@@ -23,6 +23,6 @@ final class DeletePodcastSeasonHandler
 
     public function __invoke(DeletePodcastSeasonCommand $command): void
     {
-        $this->repository->delete($command->season);
+        $this->repository->delete($command->_entity);
     }
 }

@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\CreatePodcastSeasonCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PodcastSeason;
 use Domain\Content\Repository\PodcastSeasonRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

@@ -14,7 +14,7 @@ use Domain\Content\Entity\Comment;
 final class DeleteCommentCommand
 {
     public function __construct(
-        public readonly Comment $comment
+        public readonly Comment $_entity
     ) {
     }
 }

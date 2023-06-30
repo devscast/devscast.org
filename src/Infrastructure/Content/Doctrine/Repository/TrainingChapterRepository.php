@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Content\Entity\TrainingChapter;
 use Domain\Content\Repository\TrainingChapterRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * class TrainingChapterRepository.

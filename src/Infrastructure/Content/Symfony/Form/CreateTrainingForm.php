@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreateTrainingCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\AutoGrowTextareaType;
 use Infrastructure\Content\Symfony\Form\Type\AbstractContentType;
-use Infrastructure\Shared\Symfony\Form\Type\AutoGrowTextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\SubjectProposal;
 use Domain\Content\Repository\SubjectProposalRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * class SubjectProposalRepository.

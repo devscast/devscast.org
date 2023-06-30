@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdatePostSeriesCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Repository\PostSeriesRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -27,6 +27,6 @@ final class UpdatePostSeriesHandler
     public function __invoke(UpdatePostSeriesCommand $command): void
     {
         $this->contentService->assertValidSlug($command);
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
     }
 }

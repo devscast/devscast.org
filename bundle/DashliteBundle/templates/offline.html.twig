@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}" class="js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{{ asset('images/logo_icon.png') }}">
+    <title>Hors Ligne | UNH Rapports</title>
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_script_tags('app')}}
+</head>
+
+<body class="nk-body bg-white npc-default pg-error">
+<div class="nk-app-root">
+    <div class="nk-main ">
+        <div class="nk-wrap nk-wrap-nosidebar">
+            <div class="nk-content ">
+                <div class="nk-block nk-block-middle wide-xs mx-auto">
+                    <div class="nk-block-content nk-error-ld text-center">
+                        <h1 class="nk-error-head">Oups</h1>
+                        <h3 class="nk-error-title">Vous êtes hors ligne</h3>
+                        <p class="nk-error-text">Désolé nous n'arrivons pas à charger cette page...</p>
+                        <a href="{{ path('app_index') }}" class="btn btn-lg btn-primary mt-2">Rentrer sur terre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

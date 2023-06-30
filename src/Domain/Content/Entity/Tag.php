@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\AbstractEntity;
 
 /**
  * Class Tag.

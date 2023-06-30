@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreateCommentCommand;
-use Infrastructure\Shared\Symfony\Form\Type\AutoGrowTextareaType;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\AutoGrowTextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

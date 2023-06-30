@@ -11,6 +11,7 @@ use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
 use Domain\Content\ValueObject\PodcastEpisodeType;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreatePodcastEpisodeCommand.
@@ -25,7 +26,7 @@ final class CreatePodcastEpisodeCommand extends AbstractContentCommand
         public ?User $owner = null,
         public ?PodcastSeason $season = null,
         public ?File $audio_file = null,
-        public ?int $episode_number = null
+        #[Assert\GreaterThanOrEqual(1)] public ?int $episode_number = null
     ) {
         $this->content_type = ContentType::podcast();
         $this->education_level = EducationLevel::beginner();

@@ -23,6 +23,6 @@ final class DeleteCommentHandler
 
     public function __invoke(DeleteCommentCommand $command): void
     {
-        $this->repository->delete($command->comment);
+        $this->repository->delete($command->_entity);
     }
 }

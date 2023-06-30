@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Content\Entity\Tag;
 use Domain\Content\Exception\DuplicateTagException;
 use Domain\Content\Repository\TagRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * class TagRepository.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller;
 
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,7 +32,7 @@ final class SubjectProposalController extends AbstractController
     {
     }
 
-    #[Route('/new', name: 'index', methods: ['GET'])]
+    #[Route('/new', name: 'new', methods: ['GET'])]
     public function new(): void
     {
     }

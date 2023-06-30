@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -16,12 +16,12 @@ use Symfony\Component\HttpFoundation\File\File;
 final class UpdateTechnologyCommand
 {
     public function __construct(
-        public readonly Technology $state,
+        public readonly Technology $_entity,
         public ?string $name = null,
         public ?string $slug = null,
         public ?string $description = null,
         public ?File $thumbnail_file = null,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

@@ -1,0 +1,84 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Infrastructure\{{ domain }}\Symfony\Controller\Admin;
+
+use Application\{{ domain }}\Command\Create{{ entityClassName }}Command;
+use Application\{{ domain }}\Command\Delete{{ entityClassName }}Command;
+use Application\{{ domain }}\Command\Update{{ entityClassName }}Command;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
+use Domain\{{ domain }}\Entity\{{ entityClassName }};
+use Infrastructure\{{ domain }}\Doctrine\Repository\{{ entityClassName }}Repository;
+use Infrastructure\{{ domain }}\Symfony\Form\Create{{ entityClassName }}Form;
+use Infrastructure\{{ domain }}\Symfony\Form\Update{{ entityClassName }}Form;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
+
+/**
+ * class {{ entityClassName }}Controller.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+*/
+#[AsController]
+#[Route('/admin/{{ domain | lower }}/{{ entityClassName | lower }}', 'admin_{{ domain | lower }}_{{ entityClassName | lower }}_')]
+final class {{ entityClassName }}Controller extends AbstractCrudController
+{
+    protected const DOMAIN = '{{ domain | lower }}';
+    protected const ENTITY = '{{ entityClassName | lower }}';
+
+    #[Route('', name: 'index', methods: ['GET'])]
+    public function index({{ entityClassName }}Repository $repository): Response
+    {
+        return $this->queryIndex($repository);
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        return $this->handleCommand(new Create{{ entityClassName }}Command(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: Create{{ entityClassName }}Form::class
+        ));
+    }
+
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show({{ entityClassName }} $item): Response
+    {
+        return $this->render(
+            view: $this->getViewPath('show'),
+            parameters: [
+                'data' => $item,
+            ]
+        );
+    }
+
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit({{ entityClassName }} $item): Response
+    {
+        return $this->handleCommand(new Update{{ entityClassName }}Command($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: Update{{ entityClassName }}Form::class
+        ));
+    }
+
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete({{ entityClassName }} $item): Response
+    {
+        return $this->handleCommand(new Delete{{ entityClassName }}Command($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
+    }
+}

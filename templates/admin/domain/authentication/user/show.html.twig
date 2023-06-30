@@ -15,13 +15,13 @@
         {% endblock %}
         {% block header_action_list %}
             <li>
-                <a href="{{ path('administration_authentication_user_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                <a href="{{ path('admin_authentication_user_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
                     {{ 'arrow-long-left' | icon }}
                     <span>Tous les utilisateurs</span>
                 </a>
             </li>
             <li>
-                <a href="{{ path('administration_authentication_user_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
+                <a href="{{ path('admin_authentication_user_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
                     {{ 'edit-alt-fill' | icon }}
                     <span>{{ 'global.edit' | trans([], 'messages') }}</span>
                 </a>
@@ -134,8 +134,8 @@
                                                         <button
                                                                 class="text-soft btn btn-icon btn-trigger"
                                                                 is="app-action-button"
-                                                                endpoint="{{ path('administration_authentication_user_ban', {id: data.id}) }}"
-                                                                redirect="{{ path('administration_authentication_user_show', {id: data.id}) }}"
+                                                                endpoint="{{ path('admin_authentication_user_ban', {id: data.id}) }}"
+                                                                redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
                                                                 title="{{ 'global.ban' | trans([], 'messages') }}"
                                                         >
                                                             {{ 'shield' | icon }}
@@ -144,16 +144,16 @@
                                                         <button
                                                                 class="text-soft btn btn-icon btn-trigger"
                                                                 is="app-action-button"
-                                                                endpoint="{{ path('administration_authentication_user_unban', {id: data.id}) }}"
-                                                                redirect="{{ path('administration_authentication_user_show', {id: data.id}) }}"
+                                                                endpoint="{{ path('admin_authentication_user_unban', {id: data.id}) }}"
+                                                                redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
                                                                 title="{{ 'global.unban' | trans([], 'messages') }}"
                                                         >
                                                             {{ 'shield-off' | icon }}
                                                         </button>
                                                     {% endif %}
                                                 </li>
-                                                <li><a href="{{ path('administration_authentication_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon">{{ 'mail' | icon }}</a></li>
-                                                <li>{{ _.delete_icon_button('administration_authentication_user_delete', data, 'administration_authentication_user_index') }}</li>
+                                                <li><a href="{{ path('admin_authentication_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon">{{ 'mail' | icon }}</a></li>
+                                                <li>{{ _.delete_icon_button('admin_authentication_user_delete', data, 'admin_authentication_user_index') }}</li>
                                             </ul>
                                         </div>
                                         <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>

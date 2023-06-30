@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller\Api;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
+use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Attachment;
 use Domain\Content\Repository\AttachmentRepositoryInterface;
 use Infrastructure\Content\Doctrine\Repository\AttachmentRepository;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -44,14 +47,19 @@ final class AttachmentController extends AbstractController
         } elseif (null === $path) {
             $attachments = $repository->findLatest();
         } else {
-            $attachments = $repository->findForPath(strval($request->get('path')));
+            /** @var string $p */
+            $p = $request->get('path');
+            $attachments = $repository->findForPath($p);
         }
 
         return $this->json($attachments);
     }
 
-    #[Route('/files/{attachment<\d+>?}', name: 'show', methods: ['POST'])]
+    #[Route('/files/{attachment?}', name: 'show', requirements: [
+        'attachment' => Requirement::UUID,
+    ], methods: ['POST'])]
     public function update(
+        #[CurrentUser] User $user,
         ?Attachment $attachment,
         Request $request,
         AttachmentRepositoryInterface $repository,
@@ -69,7 +77,7 @@ final class AttachmentController extends AbstractController
         /** @var File|null $file */
         $file = $request->files->get('file');
         $attachment
-            ->setOwner($this->getUser())
+            ->setOwner($user)
             ->setThumbnailFile($file)
             ->setCreatedAt(new \DateTimeImmutable());
         $repository->save($attachment);
@@ -77,7 +85,9 @@ final class AttachmentController extends AbstractController
         return $this->json($attachment);
     }
 
-    #[Route('/files/{attachment<\d+>?}', name: 'delete', methods: ['DELETE'])]
+    #[Route('/files/{attachment?}', name: 'delete', requirements: [
+        'attachment' => Requirement::UUID,
+    ], methods: ['DELETE'])]
     public function delete(Attachment $attachment, AttachmentRepositoryInterface $repository): JsonResponse
     {
         $repository->delete($attachment);

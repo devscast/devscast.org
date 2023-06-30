@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\UpdateSubjectProposalCommand;
-use Infrastructure\Content\Symfony\Form\Type\SubjectProposalStatusType;
+use Infrastructure\Content\Symfony\Form\ValueObject\SubjectProposalStatusType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +28,7 @@ final class UpdateSubjectProposalForm extends AbstractType
                 'label' => 'content.forms.labels.title',
                 'disabled' => true,
                 'attr' => [
-                    'value' => $data->state->subject,
+                    'value' => $data->_entity->subject,
                 ],
             ])
             ->add('status', SubjectProposalStatusType::class, [

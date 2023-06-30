@@ -52,7 +52,9 @@ final class UsernameType extends AbstractType implements DataMapperInterface
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = Username::fromString(strval($forms['username']->getData()));
+            /** @var string $username */
+            $username = $forms['username']->getData();
+            $viewData = Username::fromString($username);
         } catch (\InvalidArgumentException $e) {
             $forms['username']->addError(new FormError($e->getMessage()));
         }

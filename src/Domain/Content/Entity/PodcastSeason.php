@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
+use Devscast\Bundle\DddBundle\Domain\Entity\ThumbnailTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\AbstractEntity;
-use Domain\Shared\Entity\ThumbnailTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 
 /**

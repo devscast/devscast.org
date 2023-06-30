@@ -14,7 +14,7 @@ use Domain\Content\Entity\TrainingChapter;
 final class DeleteTrainingChapterCommand
 {
     public function __construct(
-        public readonly TrainingChapter $chapter
+        public readonly TrainingChapter $_entity
     ) {
     }
 }

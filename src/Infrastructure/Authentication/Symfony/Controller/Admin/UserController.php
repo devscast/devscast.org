@@ -10,16 +10,19 @@ use Application\Authentication\Command\DeleteUserCommand;
 use Application\Authentication\Command\EmailUserCommand;
 use Application\Authentication\Command\UnbanUserCommand;
 use Application\Authentication\Command\UpdateUserCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Authentication\Entity\User;
 use Infrastructure\Authentication\Doctrine\Repository\UserRepository;
 use Infrastructure\Authentication\Symfony\Form\CreateUserForm;
 use Infrastructure\Authentication\Symfony\Form\EmailUserForm;
 use Infrastructure\Authentication\Symfony\Form\UpdateUserForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class UserController.
@@ -27,7 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/authentication/user', name: 'administration_authentication_user_')]
+#[Route('/admin/authentication/user', name: 'admin_authentication_user_')]
 final class UserController extends AbstractCrudController
 {
     protected const DOMAIN = 'authentication';
@@ -40,12 +43,12 @@ final class UserController extends AbstractCrudController
     }
 
     #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
-    public function show(User $row): Response
+    public function show(User $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
+                'data' => $item,
             ]
         );
     }
@@ -53,50 +56,60 @@ final class UserController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(
-            command: new CreateUserCommand(),
+        return $this->handleCommand(new CreateUserCommand(), new CrudParams(
+            action: CrudAction::CREATE,
             formClass: CreateUserForm::class,
-        );
+        ));
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(User $row, Request $request): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(User $item, Request $request): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdateUserCommand($row),
-            formClass: UpdateUserForm::class,
-            row: $row,
-            view: 'edit',
-            overrideFormViews: true
-        );
+        return $this->handleCommand(new UpdateUserCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdateUserForm::class
+        ));
     }
 
-    #[Route('/ban/{id<\d+>}', name: 'ban', methods: ['POST'])]
-    public function ban(User $row): Response
+    #[Route('/ban/{id}', name: 'ban', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST'])]
+    public function ban(User $item): Response
     {
-        return $this->executeCommand(new BanUserCommand($row), $row);
+        return $this->handleCommand(new BanUserCommand($item), new CrudParams(item: $item));
     }
 
-    #[Route('/unban/{id<\d+>}', name: 'unban', methods: ['POST'])]
-    public function unban(User $row): Response
+    #[Route('/unban/{id}', name: 'unban', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST'])]
+    public function unban(User $item): Response
     {
-        return $this->executeCommand(new UnbanUserCommand($row), $row);
+        return $this->handleCommand(new UnbanUserCommand($item), new CrudParams(item: $item));
     }
 
-    #[Route('/email/{id<\d+>}', name: 'email', methods: ['GET', 'POST'])]
-    public function email(User $row, Request $request): Response
+    #[Route('/email/{id}', name: 'email', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function email(User $item, Request $request): Response
     {
-        return $this->executeFormCommand(
-            command: new EmailUserCommand($row),
+        return $this->handleCommand(new EmailUserCommand($item), new CrudParams(
+            item: $item,
             formClass: EmailUserForm::class,
-            row: $row,
             view: 'email'
-        );
+        ));
     }
 
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(User $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(User $item): Response
     {
-        return $this->executeDeleteCommand(new DeleteUserCommand($row), $row);
+        return $this->handleCommand(new DeleteUserCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

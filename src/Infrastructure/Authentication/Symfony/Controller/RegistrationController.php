@@ -6,11 +6,11 @@ namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ConfirmRegistrationCommand;
 use Application\Authentication\Command\RegisterUserCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Authentication\Entity\User;
 use Infrastructure\Authentication\OAuthRegistrationService;
 use Infrastructure\Authentication\Symfony\Authenticator\LoginFormAuthenticator;
 use Infrastructure\Authentication\Symfony\Form\RegisterUserForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;

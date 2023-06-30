@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
 
 /**

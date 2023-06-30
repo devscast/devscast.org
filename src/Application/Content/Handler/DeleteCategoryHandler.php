@@ -23,6 +23,6 @@ final class DeleteCategoryHandler
 
     public function __invoke(DeleteCategoryCommand $command): void
     {
-        $this->repository->delete($command->category);
+        $this->repository->delete($command->_entity);
     }
 }

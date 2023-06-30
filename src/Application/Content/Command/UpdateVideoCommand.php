@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Training;
 use Domain\Content\Entity\Video;
 
@@ -16,11 +16,11 @@ use Domain\Content\Entity\Video;
 final class UpdateVideoCommand extends AbstractContentCommand
 {
     public function __construct(
-        public readonly Video $state,
+        public readonly Video $_entity,
         public ?string $source_url = null,
         public ?string $timecodes = null,
         public ?Training $training = null,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

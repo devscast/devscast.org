@@ -7,6 +7,7 @@ namespace Application\Content\Command;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Content\Entity\Training;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreateTrainingChapterCommand.
@@ -17,11 +18,11 @@ final class CreateTrainingChapterCommand
 {
     public function __construct(
         public ?Training $training = null,
-        public ?string $name = null,
+        #[Assert\NotBlank] public ?string $name = null,
         public ?string $slug = null,
         public ?string $description = null,
         public array $videos = [],
-        public int $order = 1
+        #[Assert\GreaterThanOrEqual(1)] public int $order = 1
     ) {
     }
 

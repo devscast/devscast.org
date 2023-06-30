@@ -1,8 +1,8 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title "Séries d'articles" %}
 
 {% block header %}
-    {% embed '@admin/shared/component/_header.html.twig' %}
+    {% embed '@DevscastDashlite/component/_header.html.twig' %}
         {% block header_title "Séries d'articles" %}
         {% block header_action_list %}
             <li class="btn-group">
@@ -10,7 +10,7 @@
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </button>
-                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'bar-chart' | icon }}
                     <span>Statistiques</span>
                 </a>
@@ -20,15 +20,15 @@
 {% endblock %}
 
 {% block content %}
-    {% include '@admin/shared/component/_modal.html.twig' with {_action: 'créer une nouvelle série', _path: path('administration_content_post_series_new')} %}
+    {% include '@DevscastDashlite/component/_modal.html.twig' with {_action: 'créer une nouvelle série', _path: path('admin_content_post_series_new')} %}
 
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@admin/shared/component/card/_list.html.twig" with {
+            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
                 _action: 'créer une nouvelle série',
-                _path: path('administration_content_post_series_new')
+                _path: path('admin_content_post_series_new')
             } %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
                     <th>Name</th>
                     <th>Articles</th>
@@ -45,10 +45,10 @@
                             <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_content_post_series_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_post_series_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
                                         {{ 'eye' | icon }}
                                     </a>
-                                    <a href="{{ path('administration_content_post_series_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_post_series_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
                                         {{ 'edit' | icon }}
                                     </a>
                                 </div>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\CreateVideoCommand;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Video;
 use Domain\Content\Repository\VideoRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Comment;
 
 /**
@@ -15,9 +15,9 @@ use Domain\Content\Entity\Comment;
 final class UpdateCommentCommand
 {
     public function __construct(
-        public readonly Comment $state,
+        public readonly Comment $_entity,
         public ?string $content = null,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

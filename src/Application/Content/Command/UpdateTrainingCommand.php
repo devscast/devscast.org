@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Training;
 
 /**
@@ -15,10 +15,10 @@ use Domain\Content\Entity\Training;
 final class UpdateTrainingCommand extends AbstractContentCommand
 {
     public function __construct(
-        public readonly Training $state,
+        public readonly Training $_entity,
         public ?string $youtube_playlist = null,
         public ?string $links = null,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

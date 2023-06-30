@@ -1,16 +1,16 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title 'Users' %}
 
 {% block header %}
-    {% embed '@admin/shared/component/_header.html.twig' %}
+    {% embed '@DevscastDashlite/component/_header.html.twig' %}
         {% block header_title 'Utilisateurs' %}
         {% block header_action_list %}
             <li class="btn-group">
-                <a href="{{ path('administration_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
+                <a href="{{ path('admin_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </a>
-                <a href="{{ path('administration_authentication_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_authentication_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'bar-chart' | icon }}
                     <span>Statistiques</span>
                 </a>
@@ -20,11 +20,11 @@
 {% endblock %}
 
 {% block content %}
-    {% embed "@admin/shared/component/card/_list.html.twig" with {
+    {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
         _action: 'Ajouter un utilisateur',
-        _path: path('administration_authentication_user_new')
+        _path: path('admin_authentication_user_new')
     } %}
-        {% import '@admin/shared/component/_macros.html.twig' as _ %}
+        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
         {% block list_card_table_head %}
             <th>#</th>
             <th>Utilisateur</th>
@@ -50,7 +50,7 @@
                     <td>{{ row.country | flag }}</td>
                     <td class="tb-odr-action">
                         <div class="tb-odr-btns d-none d-md-inline">
-                            <a href="{{ path('administration_authentication_user_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                            <a href="{{ path('admin_authentication_user_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
                                 {{ 'eye' | icon }}
                             </a>
                         </div>
@@ -60,8 +60,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                 <ul class="link-list-plain">
-                                    <li><a href="{{ path('administration_authentication_user_edit', {id: row.id}) }}" class="text-primary">éditer</a></li>
-                                    <li><a href="{{ path('administration_authentication_user_email', {id: row.id}) }}" class="text-primary">email</a></li>
+                                    <li><a href="{{ path('admin_authentication_user_edit', {id: row.id}) }}" class="text-primary">éditer</a></li>
+                                    <li><a href="{{ path('admin_authentication_user_email', {id: row.id}) }}" class="text-primary">email</a></li>
                                 </ul>
                             </div>
                         </div>

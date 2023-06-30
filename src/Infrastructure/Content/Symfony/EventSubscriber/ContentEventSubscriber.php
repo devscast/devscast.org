@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\EventSubscriber;
 
 use Application\Content\Command\IncreaseContentViewCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\MailerHelper;
 use Domain\Content\Event\ContentViewedEvent;
 use Domain\Content\Event\ContentViewMilestoneReachedEvent;
-use Infrastructure\Shared\Symfony\Mailer\Mailer;
-use Infrastructure\Shared\Symfony\Messenger\DispatchTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -20,12 +19,10 @@ use Symfony\Component\Messenger\MessageBusInterface;
  */
 final class ContentEventSubscriber implements EventSubscriberInterface
 {
-    use DispatchTrait;
-
     public function __construct(
-        protected readonly MessageBusInterface $bus,
+        protected readonly MessageBusInterface $commandBus,
         protected readonly LoggerInterface $logger,
-        protected readonly Mailer $mailer
+        protected readonly MailerHelper $mailer
     ) {
     }
 
@@ -53,7 +50,7 @@ final class ContentEventSubscriber implements EventSubscriberInterface
     public function onContentViewed(ContentViewedEvent $event): void
     {
         try {
-            $this->dispatchSync(new IncreaseContentViewCommand(
+            $this->commandBus->dispatch(new IncreaseContentViewCommand(
                 target: $event->target,
                 ip: $event->ip,
                 owner: $event->owner

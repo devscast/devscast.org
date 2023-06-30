@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Exception;
 
+use Devscast\Bundle\DddBundle\Domain\Exception\SafeMessageException;
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Exception\SafeMessageException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 /**

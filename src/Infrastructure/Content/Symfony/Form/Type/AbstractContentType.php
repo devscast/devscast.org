@@ -6,9 +6,9 @@ namespace Infrastructure\Content\Symfony\Form\Type;
 
 use Application\Content\Command\AbstractContentCommand;
 use Application\Content\Command\CreatePodcastEpisodeCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\DatePickerType;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\EditorType;
 use Infrastructure\Content\Symfony\Form\ValueObject\ContentStatusType;
-use Infrastructure\Shared\Symfony\Form\Type\DatePickerType;
-use Infrastructure\Shared\Symfony\Form\Type\EditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

@@ -9,12 +9,12 @@
             repository-class="Infrastructure\Content\Doctrine\Repository\PostListRepository"
             table="content_post_list"
     >
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
+        <id name="id" type="uuid" column="id" unqiue="true">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="doctrine.uuid_generator"/>
         </id>
 
         <!-- fields -->
-        <field name="uuid" type="uuid" nullable="false" />
         <field name="name" type="string" length="255" nullable="false" />
         <field name="description" type="text" nullable="false" />
         <field name="is_public" type="boolean">

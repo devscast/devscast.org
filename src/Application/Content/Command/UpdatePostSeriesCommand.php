@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PostSeries;
 use Domain\Content\Entity\Technology;
 use Symfony\Component\HttpFoundation\File\File;
@@ -18,13 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class UpdatePostSeriesCommand
 {
     public function __construct(
-        public readonly PostSeries $state,
+        public readonly PostSeries $_entity,
         #[Assert\NotBlank] public ?string $name = null,
         public ?string $slug = null,
         #[Assert\Length(min: 10)] public ?string $description = null,
         public ?Technology $technology = null,
         public ?File $thumbnail_file = null,
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

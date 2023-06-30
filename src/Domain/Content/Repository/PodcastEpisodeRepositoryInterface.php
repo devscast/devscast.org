@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Content\Repository;
 
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 use Domain\Content\Entity\PodcastSeason;
-use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface PodcastEpisodeRepositoryInterface.

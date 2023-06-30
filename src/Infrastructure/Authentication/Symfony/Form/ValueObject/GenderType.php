@@ -57,7 +57,9 @@ final class GenderType extends AbstractType implements DataMapperInterface
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = Gender::fromString(strval($forms['gender']->getData()));
+            /** @var string $gender */
+            $gender = $forms['gender']->getData();
+            $viewData = Gender::fromString($gender);
         } catch (\InvalidArgumentException $e) {
             $forms['gender']->addError(new FormError($e->getMessage()));
         }

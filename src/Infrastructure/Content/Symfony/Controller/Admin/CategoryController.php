@@ -7,14 +7,17 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 use Application\Content\Command\CreateCategoryCommand;
 use Application\Content\Command\DeleteCategoryCommand;
 use Application\Content\Command\UpdateCategoryCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Content\Entity\Category;
 use Infrastructure\Content\Doctrine\Repository\CategoryRepository;
 use Infrastructure\Content\Symfony\Form\CreateCategoryForm;
 use Infrastructure\Content\Symfony\Form\UpdateCategoryForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class CategoryController.
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/categories', 'administration_content_category_')]
+#[Route('/admin/content/category', 'admin_content_category_')]
 final class CategoryController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -37,34 +40,45 @@ final class CategoryController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        return $this->executeFormCommand(new CreateCategoryCommand(), CreateCategoryForm::class);
+        return $this->handleCommand(new CreateCategoryCommand(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: CreateCategoryForm::class
+        ));
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Category $row): Response
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show(Category $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
+                'data' => $item,
             ]
         );
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Category $row): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(Category $item): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdateCategoryCommand($row),
-            formClass: UpdateCategoryForm::class,
-            row: $row,
-            view: 'edit'
-        );
+        return $this->handleCommand(new UpdateCategoryCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdateCategoryForm::class
+        ));
     }
 
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(Category $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(Category $item): Response
     {
-        return $this->executeDeleteCommand(new DeleteCategoryCommand($row), $row);
+        return $this->handleCommand(new DeleteCategoryCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

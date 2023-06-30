@@ -19,6 +19,9 @@ class EmbeddedFile
 
     private ?int $size = null;
 
+    /**
+     * @var array<string>|null
+     */
     private ?array $dimensions = null;
 
     public function getName(): ?string

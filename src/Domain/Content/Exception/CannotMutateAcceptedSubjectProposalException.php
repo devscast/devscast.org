@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Content\Exception;
 
-use Domain\Shared\Exception\SafeMessageException;
+use Devscast\Bundle\DddBundle\Domain\Exception\SafeMessageException;
 
 /**
  * class CannotMutateAcceptedSubjectProposalException.

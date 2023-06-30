@@ -14,7 +14,7 @@ use Domain\Content\Entity\PostSeries;
 final class DeletePostSeriesCommand
 {
     public function __construct(
-        public readonly PostSeries $series
+        public readonly PostSeries $_entity
     ) {
     }
 }

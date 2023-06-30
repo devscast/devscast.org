@@ -57,7 +57,9 @@ final class PodcastEpisodeTypeType extends AbstractType implements DataMapperInt
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = PodcastEpisodeType::fromString(strval($forms['episode_type']->getData()));
+            /** @var string $type */
+            $type = $forms['episode_type']->getData();
+            $viewData = PodcastEpisodeType::fromString($type);
         } catch (\InvalidArgumentException $e) {
             $forms['episode_type']->addError(new FormError($e->getMessage()));
         }

@@ -7,6 +7,7 @@ namespace Application\Content\Command;
 use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Comment;
 use Domain\Content\Entity\Content;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class CreateCommentCommand.
@@ -19,7 +20,7 @@ final class CreateCommentCommand
         public readonly User $owner,
         public readonly Content $target,
         public ?Comment $parent = null,
-        public ?string $content = null,
+        #[Assert\NotBlank] public ?string $content = null,
     ) {
     }
 }

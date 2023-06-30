@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- other -->
+        <service id="ddd.infrastructure.mailer_helper" class="Devscast\Bundle\DddBundle\Infrastructure\MailerHelper" public="true">
+            <argument id="twig" type="service" />
+            <argument id="mailer.mailer" type="service" />
+            <argument id="translator" type="service" />
+            <argument id="logger" type="service" />
+        </service>
+        <service id="Devscast\Bundle\DddBundle\Infrastructure\MailerHelper" alias="ddd.infrastructure.mailer_helper"  public="true" />
+
+        <!-- doctrine -->
+        <service id="ddd.infrastructure.doctrine.timestamp_subscriber" class="Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Subscriber\TimestampSubscriber" public="true">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>

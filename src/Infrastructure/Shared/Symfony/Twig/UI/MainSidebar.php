@@ -19,29 +19,29 @@ final class MainSidebar extends AbstractSidebar
     public function build(SidebarBuilderInterface $builder): SidebarCollection
     {
         $builder
-            ->addLink('administration_index', 'Dashboard', 'home')
+            ->addLink('admin_index', 'Dashboard', 'home')
             ->addHeader('Gestions des utilisateurs')
-            ->addLink('administration_authentication_user_index', 'Utilisateurs', 'users')
+            ->addLink('admin_authentication_user_index', 'Utilisateurs', 'users')
             ->addHeader('Gestions du Contenus')
             ->addGroup('Blog', 'folder', [
-                new SidebarLink('administration_content_post_index', 'Articles', 'folder'),
-                new SidebarLink('administration_content_post_series_index', 'Séries', 'folder'),
-                new SidebarLink('administration_content_post_list_index', 'Listes', 'folder'),
-                new SidebarLink('administration_content_category_index', 'Catégories', 'folder'),
+                new SidebarLink('admin_content_post_index', 'Articles', 'folder'),
+                new SidebarLink('admin_content_post_series_index', 'Séries', 'folder'),
+                new SidebarLink('admin_content_post_list_index', 'Listes', 'folder'),
+                new SidebarLink('admin_content_category_index', 'Catégories', 'folder'),
             ])
             ->addGroup('Podcast', 'folder', [
-                new SidebarLink('administration_content_podcast_episode_index', 'Épisodes', 'folder'),
-                new SidebarLink('administration_content_podcast_season_index', 'Saisons', 'folder'),
+                new SidebarLink('admin_content_podcast_episode_index', 'Épisodes', 'folder'),
+                new SidebarLink('admin_content_podcast_season_index', 'Saisons', 'folder'),
             ])
             ->addGroup('Formation', 'folder', [
-                new SidebarLink('administration_content_video_index', 'Videos', 'folder'),
-                new SidebarLink('administration_content_training_index', 'Formations', 'folder'),
+                new SidebarLink('admin_content_video_index', 'Videos', 'folder'),
+                new SidebarLink('admin_content_training_index', 'Formations', 'folder'),
             ])
             ->addGroup('Autres', 'folder', [
-                new SidebarLink('administration_content_technology_index', 'Technologies', 'folder'),
-                new SidebarLink('administration_content_comment_index', 'Commentaires', 'folder'),
-                new SidebarLink('administration_content_subject_proposal_index', 'Propositions Sujets', 'folder'),
-                new SidebarLink('administration_content_tag_index', 'Tags', 'folder'),
+                new SidebarLink('admin_content_technology_index', 'Technologies', 'folder'),
+                new SidebarLink('admin_content_comment_index', 'Commentaires', 'folder'),
+                new SidebarLink('admin_content_subject_proposal_index', 'Propositions Sujets', 'folder'),
+                new SidebarLink('admin_content_tag_index', 'Tags', 'folder'),
             ])
             ->addHeader('Gestions des events')
         ;

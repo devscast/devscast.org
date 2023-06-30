@@ -1,0 +1,49 @@
+{{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
+{{ "{% block title '#{entity}' %}" | raw }}
+
+{{ "{% block header %}" }}
+    {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
+        {{ "{% block header_title 'Listing' %}" }}
+        {{ "{% block header_action_list %}" }}
+            <li class="btn-group">
+                <a href="{{ "{{ path('admin_#{domain}_#{entity}_new') }}" | raw }}" class="btn btn-white btn-dim btn-outline-light">
+                    {{ "{{ 'plus' | icon }}" | raw }}
+                    <span>Ajouter</span>
+                </a>
+            </li>
+        {{ "{% endblock %}" }}
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}
+
+
+{{ "{% block content %}" }}
+    {{ "{% embed '@DevscastDashlite/component/card/_list.html.twig' with {_action: 'Ajouter', _path: path('admin_#{domain}_#{entity}_new')} %}" | raw }}
+        {{ "{% block list_card_table %}" }}
+            {{ "{% embed '@DevscastDashlite/component/_responsive_table.html.twig' %}" | raw }}
+                {{ "{% block responsive_table_head %}" }}
+                    <div class="nk-tb-col"><span class="sub-text">Nom</span></div>
+                    <div class="nk-tb-col nk-tb-col-tools"></div>
+                {{ "{% endblock %}" }}
+                {{ "{% block responsive_table_body %}" }}
+                    {{ "{% for item in data %}" }}
+                        <div class="nk-tb-item">
+                            <div class="nk-tb-col tb-col-lg"><span>{{ "{{ item.name | u.truncate(110, '...') }}" | raw }}</span></div>
+                            <div class="nk-tb-col nk-tb-col-tools">
+                                <ul class="nk-tb-actions gx-1">
+                                    <li class="nk-tb-action-hidden">
+                                        <a href="{{ "{{ path('admin_#{domain}_#{entity}_show', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                            {{ "{{ 'eye' | icon }}" | raw }}
+                                        </a>
+                                        <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                            {{ "{{ 'edit' | icon }}" | raw }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    {{ "{% endfor %}" }}
+                {{ "{% endblock %}" }}
+            {{ "{% endembed %}" }}
+        {{ "{% endblock %}" }}
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}

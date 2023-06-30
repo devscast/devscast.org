@@ -14,7 +14,7 @@ use Domain\Content\Entity\Post;
 final class DeletePostCommand
 {
     public function __construct(
-        public readonly Post $post
+        public readonly Post $_entity
     ) {
     }
 }

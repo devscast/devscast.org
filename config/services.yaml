@@ -11,7 +11,7 @@ parameters:
     devscast.administration.default_sidebar: Infrastructure\Shared\Symfony\Twig\UI\MainSidebar
 
     # sitemap generator
-    router.request_context.host: devscast.tech
+    router.request_context.host: devscast.org
     router.request_context.scheme: https
 
 services:
@@ -47,3 +47,11 @@ services:
     Devscast\Tinify\Client:
         arguments:
             $token: '%env(TINIFY_KEY)%'
+
+    importer.pdo:
+        class: \PDO
+        autowire: false
+        arguments:
+            - '%env(APP_DATABASE_DSN)%'
+            - '%env(APP_DATABASE_USER)%'
+            - '%env(APP_DATABASE_PASS)%'

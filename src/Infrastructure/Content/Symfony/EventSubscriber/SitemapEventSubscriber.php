@@ -63,7 +63,7 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
                         name: 'content_show',
                         parameters: [
                             'type' => $section,
-                            'id' => $content->getId(),
+                            'id' => $content->getId()?->toHex(),
                             'slug' => $content->getSlug(),
                         ],
                         referenceType: UrlGeneratorInterface::ABSOLUTE_URL

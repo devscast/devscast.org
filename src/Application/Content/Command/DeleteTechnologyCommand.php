@@ -14,7 +14,7 @@ use Domain\Content\Entity\Technology;
 final class DeleteTechnologyCommand
 {
     public function __construct(
-        public readonly Technology $technology
+        public readonly Technology $_entity
     ) {
     }
 }

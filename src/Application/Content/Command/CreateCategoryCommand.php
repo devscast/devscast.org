@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * class CreateCategoryCommand.
  *
@@ -12,7 +14,7 @@ namespace Application\Content\Command;
 final class CreateCategoryCommand
 {
     public function __construct(
-        public ?string $name = null,
+        #[Assert\NotBlank] public ?string $name = null,
         public ?string $description = null,
     ) {
     }

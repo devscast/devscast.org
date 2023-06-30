@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Doctrine\Repository;
 
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -11,7 +12,6 @@ use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Content;
 use Domain\Content\Entity\ContentView;
 use Domain\Content\Repository\ContentViewRepositoryInterface;
-use Infrastructure\Shared\Doctrine\Repository\AbstractRepository;
 
 /**
  * class ContentViewRepository.

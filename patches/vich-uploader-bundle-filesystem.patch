@@ -1,0 +1,14 @@
+--- a/vendor/vich/uploader-bundle/src/Storage/FileSystemStorage.php	2023-03-18 07:46:44.000000000 +0200
++++ b/vendor/vich/uploader-bundle/src/Storage/FileSystemStorage.php	2023-03-20 00:04:22.367989824 +0200
+@@ -22,6 +22,11 @@
+             return $file->move($uploadDir, $name);
+         } else {
+             $targetPathname = $uploadDir.\DIRECTORY_SEPARATOR.$name;
++
++            if (!is_dir($uploadDir)) {
++                mkdir($uploadDir, recursive: true);
++            }
++
+             if (!\copy($file->getPathname(), $targetPathname)) {
+                 throw new \Exception('Could not copy file');
+             }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\LoginCommand;
-use Infrastructure\Shared\Symfony\Form\AbstractForm;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,7 +18,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class LoginForm extends AbstractForm
+final class LoginForm extends AbstractType
 {
     public function __construct(
         private readonly CsrfTokenManagerInterface $csrfTokenManager

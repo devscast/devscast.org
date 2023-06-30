@@ -7,14 +7,17 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 use Application\Content\Command\CreatePodcastEpisodeCommand;
 use Application\Content\Command\DeletePodcastEpisodeCommand;
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Content\Entity\PodcastEpisode;
 use Infrastructure\Content\Doctrine\Repository\PodcastEpisodeRepository;
 use Infrastructure\Content\Symfony\Form\CreatePodcastEpisodeForm;
 use Infrastructure\Content\Symfony\Form\UpdatePodcastEpisodeForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class PodcastEpisodeController.
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/podcast/episodes', 'administration_content_podcast_episode_')]
+#[Route('/admin/content/podcasts/episodes', 'admin_content_podcast_episode_')]
 final class PodcastEpisodeController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -34,39 +37,48 @@ final class PodcastEpisodeController extends AbstractCrudController
         return $this->queryIndex($repository);
     }
 
-    #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
-    public function show(PodcastEpisode $row): Response
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(): Response
+    {
+        return $this->handleCommand(new CreatePodcastEpisodeCommand(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: CreatePodcastEpisodeForm::class
+        ));
+    }
+
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show(PodcastEpisode $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
+                'data' => $item,
             ]
         );
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(PodcastEpisode $item): Response
     {
-        $owner = $this->getUser();
-
-        return $this->executeFormCommand(new CreatePodcastEpisodeCommand($owner), CreatePodcastEpisodeForm::class);
+        return $this->handleCommand(new UpdatePodcastEpisodeCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdatePodcastEpisodeForm::class
+        ));
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(PodcastEpisode $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(PodcastEpisode $item): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdatePodcastEpisodeCommand($row),
-            formClass: UpdatePodcastEpisodeForm::class,
-            row: $row,
-            view: 'edit'
-        );
-    }
-
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(PodcastEpisode $row): Response
-    {
-        return $this->executeDeleteCommand(new DeletePodcastEpisodeCommand($row), $row);
+        return $this->handleCommand(new DeletePodcastEpisodeCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

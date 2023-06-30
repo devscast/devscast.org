@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity;
 
+use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Shared\Entity\AbstractEntity;
 use Domain\Shared\Entity\OwnerTrait;
-use Domain\Shared\Entity\UuidTrait;
-use Symfony\Component\Uid\Uuid;
 
 /**
  * class PostList.
@@ -19,7 +17,6 @@ use Symfony\Component\Uid\Uuid;
 class PostList extends AbstractEntity
 {
     use OwnerTrait;
-    use UuidTrait;
 
     private ?string $name = null;
 
@@ -36,7 +33,6 @@ class PostList extends AbstractEntity
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->posts = new ArrayCollection();
     }
 

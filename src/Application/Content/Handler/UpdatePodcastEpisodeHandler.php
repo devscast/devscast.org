@@ -6,7 +6,7 @@ namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdatePodcastEpisodeCommand;
 use Application\Content\Service\ContentService;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Repository\PodcastEpisodeRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -27,6 +27,6 @@ final class UpdatePodcastEpisodeHandler
     public function __invoke(UpdatePodcastEpisodeCommand $command): void
     {
         $this->contentService->assertPublishableContent($command);
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
     }
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Repository;
 
+use Devscast\Bundle\DddBundle\Domain\Repository\CleanableRepositoryInterface;
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 use Domain\Authentication\Entity\ResetPasswordToken;
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Repository\CleanableRepositoryInterface;
-use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface ResetPasswordRepository.

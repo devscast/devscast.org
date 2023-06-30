@@ -14,7 +14,7 @@ use Domain\Content\Entity\Progression;
 final class DeleteProgressionCommand
 {
     public function __construct(
-        public readonly Progression $progression
+        public readonly Progression $_entity
     ) {
     }
 }

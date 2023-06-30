@@ -57,7 +57,9 @@ final class EducationLevelType extends AbstractType implements DataMapperInterfa
     {
         $forms = iterator_to_array($forms);
         try {
-            $viewData = EducationLevel::fromString(strval($forms['education_level']->getData()));
+            /** @var string $level */
+            $level = $forms['education_level']->getData();
+            $viewData = EducationLevel::fromString($level);
         } catch (\InvalidArgumentException $e) {
             $forms['education_level']->addError(new FormError($e->getMessage()));
         }

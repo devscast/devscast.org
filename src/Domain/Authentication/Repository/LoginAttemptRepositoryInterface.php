@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Authentication\Repository;
 
+use Devscast\Bundle\DddBundle\Domain\Repository\DataRepositoryInterface;
 use Domain\Authentication\Entity\User;
-use Domain\Shared\Repository\DataRepositoryInterface;
 
 /**
  * Interface LoginAttemptRepositoryInterface.

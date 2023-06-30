@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\Category;
 
 /**
@@ -15,10 +15,10 @@ use Domain\Content\Entity\Category;
 final class UpdateCategoryCommand
 {
     public function __construct(
-        public readonly Category $state,
+        public readonly Category $_entity,
         public ?string $name = null,
         public ?string $description = null
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreateTrainingChapterCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\EditorType;
 use Domain\Content\Entity\Video;
 use Infrastructure\Content\Symfony\Form\Type\AbstractContentType;
-use Infrastructure\Shared\Symfony\Form\Type\EditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

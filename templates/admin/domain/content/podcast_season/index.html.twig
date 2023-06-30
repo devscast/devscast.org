@@ -1,16 +1,16 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title 'Saisons de podcast' %}
 
 {% block header %}
-    {% embed '@admin/shared/component/_header.html.twig' %}
+    {% embed '@DevscastDashlite/component/_header.html.twig' %}
         {% block header_title 'Saisons de podcast' %}
         {% block header_action_list %}
             <li class="btn-group">
-                <a href="{{ path('administration_content_podcast_season_new') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_content_podcast_season_new') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'plus' | icon }}
                     <span>Ajouter</span>
                 </a>
-                <a href="{{ path('administration_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
                     {{ 'bar-chart' | icon }}
                     <span>Statistiques</span>
                 </a>
@@ -22,11 +22,11 @@
 {% block content %}
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@admin/shared/component/card/_list.html.twig" with {
+            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
                 _action: 'Ajouter une saison',
-                _path: path('administration_content_podcast_season_new')
+                _path: path('admin_content_podcast_season_new')
             } %}
-                {% import '@admin/shared/component/_macros.html.twig' as _ %}
+                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
                 {% block list_card_table_head %}
                     <th>Name</th>
                     <th>Short code</th>
@@ -41,10 +41,10 @@
                             <td>{{ row.episodeCount }}</td>
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('administration_content_podcast_season_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_podcast_season_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
                                         {{ 'eye' | icon }}
                                     </a>
-                                    <a href="{{ path('administration_content_podcast_season_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                    <a href="{{ path('admin_content_podcast_season_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
                                         {{ 'edit' | icon }}
                                     </a>
                                 </div>

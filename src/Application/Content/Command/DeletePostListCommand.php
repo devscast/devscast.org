@@ -14,7 +14,7 @@ use Domain\Content\Entity\PostList;
 final class DeletePostListCommand
 {
     public function __construct(
-        public readonly PostList $list
+        public readonly PostList $_entity
     ) {
     }
 }

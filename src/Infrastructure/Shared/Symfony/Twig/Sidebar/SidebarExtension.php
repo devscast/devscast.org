@@ -36,8 +36,11 @@ class SidebarExtension extends AbstractExtension
         private readonly ContainerInterface $container
     ) {
         $this->path = strval($stack->getCurrentRequest()?->getPathInfo());
-        $this->route = strval($stack->getCurrentRequest()?->attributes?->get('_route'));
-        $this->defaultSidebarClass = strval($this->container->getParameter('devscast.administration.default_sidebar'));
+        $this->route = strval($stack->getCurrentRequest()?->attributes?->getString('_route'));
+
+        /** @var string $sidebarClass */
+        $sidebarClass = $this->container->getParameter('devscast.administration.default_sidebar');
+        $this->defaultSidebarClass = strval($sidebarClass);
     }
 
     public function getFunctions(): array
@@ -109,8 +112,8 @@ class SidebarExtension extends AbstractExtension
                 if ($item instanceof SidebarHeader) {
                     $s .= <<< HTML
                         <li class="nk-menu-heading">
-                            <h6 
-                                class="overline-title text-primary-alt" 
+                            <h6
+                                class="overline-title text-primary-alt"
                                 aria-label="{$this->translator->trans($item->getLabel(), domain: $translation_domain)}"
                             >
                                 {$this->translator->trans($item->getLabel(), domain: $translation_domain)}
@@ -124,9 +127,9 @@ class SidebarExtension extends AbstractExtension
                     $groupActiveClass = $item->isIsActive() ? 'active' : '';
                     $s .= <<< HTML
                         <li class="nk-menu-item has-sub {$groupActiveClass}">
-                            <a 
-                                href="#" 
-                                class="nk-menu-link nk-menu-toggle" 
+                            <a
+                                href="#"
+                                class="nk-menu-link nk-menu-toggle"
                                 aria-label="{$this->translator->trans($item->getLabel(), domain: $translation_domain)}"
                             >
                                 <span class="nk-menu-icon"><em class="icon ni ni-{$item->getIcon()}"></em></span>

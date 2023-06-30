@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Entity\PodcastEpisode;
 use Domain\Content\Entity\PodcastSeason;
 use Domain\Content\ValueObject\ContentStatus;
@@ -23,7 +23,7 @@ final class UpdatePodcastEpisodeCommand extends AbstractContentCommand
     public PodcastEpisodeType $episode_type;
 
     public function __construct(
-        public PodcastEpisode $state,
+        public PodcastEpisode $_entity,
         public ?PodcastSeason $season = null,
         public ?File $audio_file = null,
         public ?int $episode_number = null
@@ -31,6 +31,6 @@ final class UpdatePodcastEpisodeCommand extends AbstractContentCommand
         $this->content_type = ContentType::podcast();
         $this->status = ContentStatus::draft();
         $this->education_level = EducationLevel::beginner();
-        Mapper::hydrate($this->state, $this, ['content_type']);
+        Mapper::hydrate($this->_entity, $this, ['content_type']);
     }
 }

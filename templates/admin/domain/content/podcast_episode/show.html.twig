@@ -1,9 +1,9 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title "Podcast #{data.id}" %}
 {% block wideContentClass 'wide-xxl' %}
 
 {% block header %}
-    {% embed "@admin/shared/component/_header.html.twig" %}
+    {% embed "@DevscastDashlite/component/_header.html.twig" %}
         {% block header_title %}
             Podcasts / <strong class="text-primary small">{{ data.name }}</strong>
         {% endblock %}
@@ -16,13 +16,13 @@
         {% endblock %}
         {% block header_action_list %}
             <li>
-                <a href="{{ path('administration_content_podcast_episode_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                <a href="{{ path('admin_content_podcast_episode_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
                     {{ 'arrow-long-left' | icon }}
                     <span>Tous les podcasts</span>
                 </a>
             </li>
             <li>
-                <a href="{{ path('administration_content_podcast_episode_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
+                <a href="{{ path('admin_content_podcast_episode_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
                     {{ 'edit-alt-fill' | icon }}
                     <span>{{ 'global.edit' | trans([], 'messages') }}</span>
                 </a>
@@ -32,8 +32,8 @@
 {% endblock %}
 
 {% block content %}
-    {% embed "@admin/shared/component/card/_detail.html.twig" %}
-        {% import '@admin/shared/component/_macros.html.twig' as _ %}
+    {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
+        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
         {% block detail_card_tabs %}
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="card-inner card-inner-sm">
                                             <ul class="btn-toolbar justify-center gx-1">
-                                                <li>{{ _.delete_icon_button('administration_content_podcast_episode_delete', data, 'administration_content_podcast_episode_index') }}</li>
+                                                <li>{{ _.delete_icon_button('admin_content_podcast_episode_delete', data, 'admin_content_podcast_episode_index') }}</li>
                                             </ul>
                                         </div>
                                         <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
@@ -121,7 +121,7 @@
                                             <div class="card-inner">
                                                 <h6 class="overline-title-alt mb-3">Saison</h6>
                                                 <span>
-                                                    <a href="{{ path('administration_content_podcast_season_show', {id: data.season.id}) }}">
+                                                    <a href="{{ path('admin_content_podcast_season_show', {id: data.season.id}) }}">
                                                         {{ data.season.name }}
                                                     </a>
                                                 </span>

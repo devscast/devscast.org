@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\CreateUserCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\AutoGrowTextareaType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\GenderType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\RolesType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\RssUrlType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\UsernameType;
-use Infrastructure\Shared\Symfony\Form\Type\AutoGrowTextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;

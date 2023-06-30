@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form;
 
 use Application\Content\Command\CreatePodcastSeasonCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\EditorType;
 use Infrastructure\Content\Symfony\Form\Type\AbstractContentType;
-use Infrastructure\Shared\Symfony\Form\Type\EditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

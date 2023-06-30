@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * class CreateTagCommand.
  *
@@ -12,7 +14,7 @@ namespace Application\Content\Command;
 final class CreateTagCommand
 {
     public function __construct(
-        public ?string $name = null
+        #[Assert\NotBlank] public ?string $name = null
     ) {
     }
 }

@@ -7,14 +7,17 @@ namespace Infrastructure\Content\Symfony\Controller\Admin;
 use Application\Content\Command\CreateVideoCommand;
 use Application\Content\Command\DeleteVideoCommand;
 use Application\Content\Command\UpdateVideoCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractCrudController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudAction;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\CrudParams;
 use Domain\Content\Entity\Video;
 use Infrastructure\Content\Doctrine\Repository\VideoRepository;
 use Infrastructure\Content\Symfony\Form\CreateVideoForm;
 use Infrastructure\Content\Symfony\Form\UpdateVideoForm;
-use Infrastructure\Shared\Symfony\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
  * class VideoController.
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/content/videos', 'administration_content_video_')]
+#[Route('/admin/content/videos', 'admin_content_video_')]
 final class VideoController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
@@ -37,36 +40,45 @@ final class VideoController extends AbstractCrudController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(): Response
     {
-        $owner = $this->getUser();
-
-        return $this->executeFormCommand(new CreateVideoCommand($owner), CreateVideoForm::class);
+        return $this->handleCommand(new CreateVideoCommand(), new CrudParams(
+            action: CrudAction::CREATE,
+            formClass: CreateVideoForm::class
+        ));
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Video $row): Response
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
+    public function show(Video $item): Response
     {
         return $this->render(
             view: $this->getViewPath('show'),
             parameters: [
-                'data' => $row,
+                'data' => $item,
             ]
         );
     }
 
-    #[Route('/edit/{id<\d+>}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Video $row): Response
+    #[Route('/edit/{id}', name: 'edit', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET', 'POST'])]
+    public function edit(Video $item): Response
     {
-        return $this->executeFormCommand(
-            command: new UpdateVideoCommand($row),
-            formClass: UpdateVideoForm::class,
-            row: $row,
-            view: 'edit'
-        );
+        return $this->handleCommand(new UpdateVideoCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
+            item: $item,
+            formClass: UpdateVideoForm::class
+        ));
     }
 
-    #[Route('/{id<\d+>}', name: 'delete', methods: ['POST', 'DELETE'])]
-    public function delete(Video $row): Response
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['POST', 'DELETE'])]
+    public function delete(Video $item): Response
     {
-        return $this->executeDeleteCommand(new DeleteVideoCommand($row), $row);
+        return $this->handleCommand(new DeleteVideoCommand($item), new CrudParams(
+            action: CrudAction::DELETE,
+            item: $item
+        ));
     }
 }

@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Infrastructure\{{ domain }}\Doctrine\Repository;
+
+use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Domain\{{ domain }}\Entity\{{ entityClassName }};
+use Domain\{{ domain }}\Repository\{{ repositoryInterfaceName }};
+
+/**
+ * class {{ repositoryClassName }}.
+ *
+ * @extends AbstractRepository<{{ entityClassName }}>
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
+final class {{ repositoryClassName }} extends AbstractRepository implements {{ repositoryInterfaceName }}
+{
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, {{ entityClassName }}::class);
+    }
+}

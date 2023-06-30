@@ -14,7 +14,7 @@ use Domain\Content\Entity\Training;
 final class DeleteTrainingCommand
 {
     public function __construct(
-        public readonly Training $training
+        public readonly Training $_entity
     ) {
     }
 }

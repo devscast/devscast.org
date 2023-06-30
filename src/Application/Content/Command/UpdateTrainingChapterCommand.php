@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Content\Command;
 
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Content\Entity\TrainingChapter;
@@ -17,13 +17,13 @@ use Domain\Content\Entity\TrainingChapter;
 final class UpdateTrainingChapterCommand
 {
     public function __construct(
-        public readonly TrainingChapter $state,
+        public readonly TrainingChapter $_entity,
         public ?string $name = null,
         public ?string $slug = null,
         public ?string $description = null,
         public Collection $videos = new ArrayCollection(),
         public int $order = 1
     ) {
-        Mapper::hydrate($this->state, $this);
+        Mapper::hydrate($this->_entity, $this);
     }
 }

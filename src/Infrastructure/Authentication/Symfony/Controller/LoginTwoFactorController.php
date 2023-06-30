@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Controller;
 
 use Application\Authentication\Command\ResendTwoFactorCodeCommand;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Authentication\Entity\User;
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\RateLimiter\Exception\RateLimitExceededException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 /**
  * Class Login2FaController.

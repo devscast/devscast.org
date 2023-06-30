@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Authentication\Command;
 
 use Domain\Authentication\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * class EmailUserCommand.
@@ -15,8 +16,8 @@ final class EmailUserCommand
 {
     public function __construct(
         public readonly User $user,
-        public ?string $subject = null,
-        public ?string $message = null
+        #[Assert\NotBlank] public ?string $subject = null,
+        #[Assert\NotBlank] public ?string $message = null
     ) {
     }
 }

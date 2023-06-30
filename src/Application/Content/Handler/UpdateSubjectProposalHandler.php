@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Content\Handler;
 
 use Application\Content\Command\UpdateSubjectProposalCommand;
-use Application\Shared\Mapper;
+use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Content\Exception\CannotMutateAcceptedSubjectProposalException;
 use Domain\Content\Repository\SubjectProposalRepositoryInterface;
 use Domain\Content\ValueObject\SubjectProposalStatus;
@@ -25,9 +25,9 @@ final class UpdateSubjectProposalHandler
 
     public function __invoke(UpdateSubjectProposalCommand $command): void
     {
-        if ($command->state->status->equals(SubjectProposalStatus::accepted())) {
+        if ($command->_entity->status->equals(SubjectProposalStatus::accepted())) {
             throw new CannotMutateAcceptedSubjectProposalException();
         }
-        $this->repository->save(Mapper::getHydratedObject($command, $command->state));
+        $this->repository->save(Mapper::getHydratedObject($command, $command->_entity));
     }
 }

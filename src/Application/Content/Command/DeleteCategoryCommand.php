@@ -14,7 +14,7 @@ use Domain\Content\Entity\Category;
 final class DeleteCategoryCommand
 {
     public function __construct(
-        public readonly Category $category
+        public readonly Category $_entity
     ) {
     }
 }

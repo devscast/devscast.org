@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\{{ domain }}\Entity\{{ entityClassName }}"
+            repository-class="Infrastructure\{{ domain }}\Doctrine\Repository\{{ repositoryClassName }}"
+            table="user"
+    >
+        {#<unique-constraints>
+            <unique-constraint columns="email"/>
+        </unique-constraints>#}
+        <id name="id" type="uuid" column="id" unqiue="true">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="doctrine.uuid_generator"/>
+        </id>
+
+{% for property in entityProperties %}
+        <field name="{{ property.name }}" type="{{ property.type }}" />
+{% endfor %}
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

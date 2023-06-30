@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Authentication\Symfony\Normalizer;
 
-use Infrastructure\Shared\Symfony\Normalizer\AbstractNormalizer;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Normalizer\AbstractNormalizer;
 use League\OAuth2\Client\Provider\GoogleUser;
 
 /**
@@ -21,9 +21,12 @@ final class GoogleNormalizer extends AbstractNormalizer
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
+        /** @var string $id */
+        $id = $object->getId();
+
         return [
             'email' => $object->getEmail(),
-            'google_id' => strval($object->getId()),
+            'google_id' => $id,
             'type' => 'Google',
             'username' => $object->getName(),
         ];

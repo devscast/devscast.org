@@ -24,12 +24,12 @@ final class ResetPasswordService
 
     public function findToken(string $token): ResetPasswordToken
     {
-        /** @var ResetPasswordToken|null $token */
-        $token = $this->tokenRepository->findOneByToken($token);
-        if (null === $token || $token->isExpired(interval: self::EXPIRE_IN)) {
+        /** @var ResetPasswordToken|null $resetToken */
+        $resetToken = $this->tokenRepository->findOneByToken($token);
+        if (null === $resetToken || $resetToken->isExpired(interval: self::EXPIRE_IN)) {
             throw new ResetPasswordTokenExpiredException();
         }
 
-        return $token;
+        return $resetToken;
     }
 }

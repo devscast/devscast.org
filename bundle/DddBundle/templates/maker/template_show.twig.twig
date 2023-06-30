@@ -1,0 +1,52 @@
+{{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
+{{ "{% block title 'Détails de data.name' %}" }}
+{{ "{% block bodyClass 'wide-xxl' %}" }}
+
+{{ "{% block header %}" }}
+    {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
+        {{ "{% block header_title %}" }}
+            {{ entity | title }} / <strong class="text-primary small">{{ "{{ data.name }}" }}</strong>
+        {{ "{% endblock %}" }}
+        {{ "{% block header_description %}" }}
+            <ul class="list-inline">
+                <li>création : <span class="text-base">{{ "{{ data.createdAt | date }}" }}</span></li>
+            </ul>
+        {{ "{% endblock %}" }}
+        {{ "{% block header_action_list %}" }}
+            <li class="btn-group">
+                <a href="{{ "{{ path('admin_#{domain}_#{entity}_index') }}" | raw }}"
+                   class="btn btn-white btn-dim btn-outline-light" aria-label="{{ "{{ 'global.back' | trans }}" }}"
+                   title="{{ "{{ 'global.back' | trans }}" }}">
+                    {{ "{{ 'arrow-long-left' | icon }}" }}
+                    <span>Toutes les entrées</span>
+                </a>
+                <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: data.id}) }}" | raw }}"
+                   class="btn btn-white btn-dim btn-outline-light"
+                   aria-label="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}"
+                   title="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}">
+                    {{ "{{ 'edit-alt-fill' | icon }}" }}
+                    <span>{{ "{{ 'global.edit' | trans([], 'messages') }}" }}</span>
+                </a>
+            </li>
+        {{ "{% endblock %}" }}
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block content %}" }}
+    {{ "{% embed '@DevscastDashlite/component/card/_detail.html.twig' %}" }}
+        {{ "{% import '@DevscastDashlite/component/_macros.html.twig' as _ %}" }}
+        {{ "{% block detail_card_body %}" }}
+            {{ "{% import '@admin/shared/component/_macros.html.twig' as _ %}" }}
+                <div class="nk-block">
+                    <div class="nk-block">
+                        <div class="nk-block-head">
+                            <h5 class="title">Détails</h5>
+                        </div>
+                        <div class="profile-ud-list">
+                            {{ "{{ _.user_data_item('Nom', data.name) }}" | raw }}
+                        </div>
+                    </div>
+                </div>
+        {{ "{% endblock %}" }}
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}

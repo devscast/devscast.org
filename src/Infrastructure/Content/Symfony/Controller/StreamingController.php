@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Controller;
 
-use Infrastructure\Shared\Symfony\Controller\AbstractController;
+use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,9 +31,15 @@ final class StreamingController extends AbstractController
         Request $request
     ): BinaryFileResponse {
         try {
+            /** @var string $podcastPath */
+            $podcastPath = $this->getParameter('content.podcast_episode.upload_path');
+
+            /** @var string $videosPath */
+            $videosPath = $this->getParameter('content.video.upload_path');
+
             $path = match ($content_type) {
-                'podcasts' => strval($this->getParameter('content.podcast_episode.upload_path')),
-                'videos' => strval($this->getParameter('content.video.upload_path')),
+                'podcasts' => $podcastPath,
+                'videos' => $videosPath,
                 default => throw new NotFoundHttpException(),
             };
 
