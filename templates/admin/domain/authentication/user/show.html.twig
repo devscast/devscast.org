@@ -1,9 +1,10 @@
-{% extends '@admin/shared/layout/base.html.twig' %}
+{% extends '@DevscastDashlite/layout/base.html.twig' %}
+{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
 {% block title "Utilisateur #{data.username}" %}
 {% block wideContentClass 'wide-xxl' %}
 
 {% block header %}
-    {% embed "@admin/shared/component/_header.html.twig" %}
+    {% embed "@DevscastDashlite/component/_header.html.twig" %}
         {% block header_title %}
             Utilisateur / <strong class="text-primary small">{{ data.username }}</strong>
         {% endblock %}
@@ -31,8 +32,8 @@
 {% endblock %}
 
 {% block content %}
-    {% embed "@admin/shared/component/card/_detail.html.twig" %}
-        {% import '@admin/shared/component/_macros.html.twig' as _ %}
+    {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
+        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
         {% block detail_card_tabs %}
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">

@@ -1,6 +1,8 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% block title 'Administration' %}
 
+{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
+
 {% block body %}
     <div class="alert alert-pro alert-primary">
         <div class="alert-text"><h6>Hello {{ app.user.name }},</h6>

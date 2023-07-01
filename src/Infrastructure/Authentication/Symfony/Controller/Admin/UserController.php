@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/authentication/user', name: 'admin_authentication_user_')]
+#[Route('/admin/authentication/users', name: 'admin_authentication_user_')]
 final class UserController extends AbstractCrudController
 {
     protected const DOMAIN = 'authentication';
@@ -42,7 +42,9 @@ final class UserController extends AbstractCrudController
         return $this->queryIndex($repository);
     }
 
-    #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', requirements: [
+        'id' => Requirement::UUID,
+    ], methods: ['GET'])]
     public function show(User $item): Response
     {
         return $this->render(

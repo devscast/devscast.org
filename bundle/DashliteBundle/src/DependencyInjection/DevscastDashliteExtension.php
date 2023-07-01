@@ -22,7 +22,8 @@ final class DevscastDashliteExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-        $loader->load('services.xml');
+        $loader->load('components.xml');
+        $loader->load('extensions.xml');
     }
 
     public function getAlias(): string

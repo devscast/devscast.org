@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="dashlite.twig.component.sidebar_component" class="Devscast\Bundle\DashliteBundle\Component\Sidebar\SidebarComponent" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/sidebar.html.twig"
+                key="dashlite_sidebar"
+            />
+            <argument type="service" id="request_stack"/>
+        </service>
+    </services>
+</container>

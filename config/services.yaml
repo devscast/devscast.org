@@ -41,9 +41,6 @@ services:
     Symfony\Component\DependencyInjection\ContainerInterface:
         alias: 'service_container'
 
-    Infrastructure\Shared\Symfony\Twig\UI\MainSidebar:
-        public: true
-
     Devscast\Tinify\Client:
         arguments:
             $token: '%env(TINIFY_KEY)%'
