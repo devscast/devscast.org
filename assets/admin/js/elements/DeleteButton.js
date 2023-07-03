@@ -9,6 +9,7 @@ export default class DeleteButton extends HTMLButtonElement {
         const _token = this.getAttribute('token')
         const endpoint = this.getAttribute('endpoint')
         const redirectUrl = this.getAttribute('redirect')
+        const removeEl = this.getAttribute("remove")
         const content = this.innerHTML
 
         this.addEventListener('click', async e => {
@@ -21,7 +22,7 @@ export default class DeleteButton extends HTMLButtonElement {
                         if (redirect.length > 0) {
                             await redirect(redirectUrl);
                         } else {
-                            removeFadeOut(closest(this, 'tr'));
+                            removeFadeOut(closest(this, removeEl));
                         }
 
                         await toast("success", "Suppression effectuée avec succès");

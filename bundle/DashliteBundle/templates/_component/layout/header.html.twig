@@ -1,0 +1,31 @@
+<div class="nk-block-head nk-block-head-lg">
+    <div class="nk-block-between">
+        <div class="nk-block-head-content">
+            <div class="block-head-sub">
+                {% block back %}{% endblock %}
+            </div>
+            <h3 class="nk-block-title fw-bolder">{{ this.title }}</h3>
+            <div class="nk-block-des fw-normal">
+                {% block description %}
+                    {% if this.data is defined and this.data.getTotalItemCount is defined and this.data.getTotalItemCount > 0 %}
+                        <span class="fw-bolder">{{ this.data.getTotalItemCount }}</span> éléments, page <span class="fw-bolder">{{ this.data.getCurrentPageNumber }}</span> sur {{ this.data.getPageCount }}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="nk-block-head-content">
+            <div class="toggle-wrap nk-block-tools-toggle">
+                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
+                    {{ 'menu-alt-r' | icon }}
+                </a>
+                <div class="toggle-expand-content" data-content="pageMenu">
+                    <ul class="nk-block-tools g-3">
+                        <li class="btn-group">
+                            {% block actions %}{% endblock %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

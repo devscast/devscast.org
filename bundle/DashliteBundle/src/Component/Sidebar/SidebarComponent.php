@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PreMount;
 
+/**
+ * Class SidebarComponent.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 #[AsTwigComponent]
 final class SidebarComponent
 {
