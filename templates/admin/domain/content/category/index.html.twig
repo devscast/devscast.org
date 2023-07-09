@@ -4,7 +4,7 @@
 <twig:block name="title">Catégories d'articles</twig:block>
 
 <twig:block name="header">
-    <twig:HeaderComponent title="Catégories d'articles" :data="data">
+    <twig:Header title="Catégories d'articles" :data="data">
         <twig:block name="actions">
             <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
                 {{ 'plus' | icon }}
@@ -15,45 +15,41 @@
                 <span>Statistiques</span>
             </a>
         </twig:block>
-    </twig:HeaderComponent>
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    <twig:ModalComponent action="Ajouter une catégorie" :path="path('admin_content_category_new')" />
+    <twig:Modal action="Ajouter une catégorie" :path="path('admin_content_category_new')" />
 
     <div class="row g-gs mb-4">
         <div class="col-12">
             {% if data is defined and data | length > 0 %}
-                <twig:TableResponsiveComponent :data="data">
+                <twig:ResponsiveTable :data="data">
                     <twig:block name="header">
                         <div class="nk-tb-col"><span class="sub-text">Name</span></div>
                         <div class="nk-tb-col tb-col-lg"><span class="sub-text">Articles</span></div>
                         <div class="nk-tb-col nk-tb-col-tools"></div>
                     </twig:block>
-                    <twig:block name="body">
-                        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                        {% for item in data %}
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col">{{ item.name }}</div>
-                                <div class="nk-tb-col tb-col-lg">{{ item.postCount }}</div>
-                                <div class="nk-tb-col nk-tb-col-tools">
-                                    <ul class="nk-tb-actions gx-1">
-                                        <li class="nk-tb-action-hidden">
-                                            <a href="{{ path('admin_content_category_edit', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                                {{ 'edit' | icon }}
-                                            </a>
-                                        </li>
-                                        <li class="nk-tb-action-hidden">
-                                            {{ _.delete_icon_button('admin_content_category_delete', item) }}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </twig:block>
-                </twig:TableResponsiveComponent>
+
+                    <div class="nk-tb-item">
+                        <div class="nk-tb-col">{{ item.name }}</div>
+                        <div class="nk-tb-col tb-col-lg">{{ item.postCount }}</div>
+                        <div class="nk-tb-col nk-tb-col-tools">
+                            <ul class="nk-tb-actions gx-1">
+                                <li class="nk-tb-action-hidden">
+                                    <a href="{{ path('admin_content_category_edit', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
+                                        {{ 'edit' | icon }}
+                                    </a>
+                                </li>
+                                <li class="nk-tb-action-hidden">
+                                    <twig:DeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </twig:ResponsiveTable>
             {% else %}
-                <twig:EmptyStateCardComponent :path="path('admin_content_category_new')" action="Ajouter une catégorie" />
+                <twig:EmptyStateCard :path="path('admin_content_category_new')" action="Ajouter une catégorie" />
             {% endif %}
         </div>
     </div>

@@ -1,206 +1,179 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title "Utilisateur #{data.username}" %}
-{% block wideContentClass 'wide-xxl' %}
 
-{% block header %}
-    {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        {% block header_title %}
-            Utilisateur / <strong class="text-primary small">{{ data.username }}</strong>
-        {% endblock %}
-        {% block header_description %}
+<twig:block name="title">Utilisateur {{ data.username }}</twig:block>
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="wideContentClass">wide-xxl</twig:block>
+
+<twig:block name="header">
+    <twig:Header title='Utilisateur / <strong class="text-primary small">{{ data.username }}</strong>'>
+        <twig:block name="description">
             <ul class="list-inline">
                 <li>ID : <span class="text-base">{{ data.id }}</span></li>
                 <li>Inscription : <span class="text-base">{{ data.createdAt | date }}</span></li>
             </ul>
-        {% endblock %}
-        {% block header_action_list %}
-            <li>
-                <a href="{{ path('admin_authentication_user_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    {{ 'arrow-long-left' | icon }}
-                    <span>Tous les utilisateurs</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('admin_authentication_user_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    {{ 'edit-alt-fill' | icon }}
-                    <span>{{ 'global.edit' | trans([], 'messages') }}</span>
-                </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+        </twig:block>
+        <twig:block name="actions">
+            <a href="{{ path('admin_authentication_user_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                <twig:Icon name="arrow-long-left" />
+                <span>Tous les utilisateurs</span>
+            </a>
+            <a href="{{ path('admin_authentication_user_edit', {id: data.id}) }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
+                <twig:Icon name="edit-alt-fill" />
+                <span>{{ 'global.edit' | trans([], 'messages') }}</span>
+            </a>
+            <twig:DeleteButton path="{{ path('admin_authentication_user_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_authentication_user_index') }}" type="button" />
+        </twig:block>
+    </twig:Header>
+</twig:block>
 
-{% block content %}
-    {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
-        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-        {% block detail_card_tabs %}
+<twig:block name="content">
+    <twig:AsideCard>
+        <twig:block name="tabs">
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
-                        {{ 'user-circle' | icon }}
+                        <twig:Icon name="user-circle" />
                         <span>Personal</span>
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">
-                        {{ 'repeat' | icon }}
+                        <twig:Icon name="repeat" />
                         <span>Contenus</span>
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">
-                        {{ 'repeat' | icon }}
+                        <twig:Icon name="repeat" />
                         <span>Transactions</span>
                     </a>
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
                     <a href="#" class="toggle btn btn-icon btn-trigger" data-target="userAside">
-                        {{ 'user-list-fill' | icon }}
+                        <twig:Icon name="user-list-fill" />
                     </a>
                 </li>
             </ul>
-        {% endblock %}
-        {% block detail_card_body %}
-        <div class="nk-block">
+        </twig:block>
+
+        <twig:block name="content">
             <div class="nk-block">
-                <div class="nk-block-head">
-                    <h5 class="title">Informations personnelles</h5>
-                    <div>{{ data.biography }}</div>
-                </div>
-                <div class="profile-ud-list">
-                    {{ _.user_data_item('Nom complet', data.name) }}
-                    {{ _.user_data_item("Nom d'utilisateur", data.username) }}
-                    {{ _.user_data_item('Email', data.email) }}
-                    {{ _.user_data_item('Pronoms', data.pronouns) }}
-                    {{ _.user_data_item('Poste', data.jobTitle) }}
-                    {{ _.user_data_item('Genre', data.gender.translationKey | trans([], 'authentication')) }}
-                    {{ _.user_data_item('Pays', data.country | flag) }}
-                    {{ _.user_data_item('Rôle', data.roles | last | badge) }}
-                    {{ _.user_data_link('Linkedin', data.linkedinUrl, data.linkedinUrl) }}
-                    {{ _.user_data_link('Twitter', data.twitterUrl, data.twitterUrl) }}
-                    {{ _.user_data_link('Github', data.githubUrl, data.githubUrl) }}
-                    {{ _.user_data_link('Site Internet', data.websiteUrl, data.websiteUrl) }}
-                    {{ _.user_data_link('Flux Rss', data.rssUrl, data.rssUrl) }}
-                </div>
+                <twig:DataList title="Informations personnelles" :description="data.biography">
+                    <twig:block name="content">
+                        <twig:DataItem label="Nom complet" :value="data.name" />
+                        <twig:DataItem label="Nom d'utilisateur" :value="data.username" />
+                        <twig:DataItem label="Email" :value="data.email" />
+                        <twig:DataItem label="Pronoms" :value="data.pronouns" />
+                        <twig:DataItem label="Poste" :value="data.jobTitle" />
+                        <twig:DataItem label="Genre" :value="data.gender.translationKey | trans([], 'authentication')" />
+                        <twig:DataItem label="Pays" :value="data.country | flag" />
+                        <twig:DataItem label="Rôle" :value="data.roles | last | badge " />
+                        <twig:DataItem label="Linkedin" :value="data.linkedinUrl" link="true" />
+                        <twig:DataItem label="Twitter" :value="data.twitterUrl" link="true" />
+                        <twig:DataItem label="Github" :value="data.githubUrl" link="true" />
+                        <twig:DataItem label="Site Internet" :value="data.githubUrl" link="true"/>
+                        <twig:DataItem label="Flux Rss" :value="data.rssUrl" link="true" />
+                    </twig:block>
+                </twig:DataList>
+                <div class="nk-divider divider md"></div>
+                <twig:DataList title="Informations supplémentaires">
+                    <twig:block name="content">
+                        <twig:DataItem label="Bannis" :value="data.banned | boolean" />
+                        <twig:DataItem label="Email verifié" :value="data.isEmailVerified | boolean" />
+                        <twig:DataItem label="Thème sombre" :value="data.isDarkTheme | boolean" />
+                        <twig:DataItem label="Téléphone verifié" :value="data.isPhoneNumberVerified | boolean" />
+                        <twig:DataItem label="Newsletter" :value="data.isSubscribedNewsletter | boolean" />
+                        <twig:DataItem label="Marketing" :value="data.isSubscribedMarketing | boolean" />
+                        <twig:DataItem label="2FA activé" :value="data.twoFactorEnabled | boolean" />
+                        <twig:DataItem label="Date de bannissement" :value="data.bannedAt ? data.bannedAt | date : '-'" />
+                    </twig:block>
+                </twig:DataList>
             </div>
-            <div class="nk-divider divider md"></div>
-            <div class="nk-block">
-                <div class="nk-block-head">
-                    <h5 class="title">Informations supplémentaires</h5>
-                </div>
-                <div class="profile-ud-list">
-                    {{ _.user_data_item("Bannis", data.banned | boolean) }}
-                    {{ _.user_data_item("Email verifié", data.isEmailVerified | boolean) }}
-                    {{ _.user_data_item("Thème sombre", data.isDarkTheme | boolean) }}
-                    {{ _.user_data_item("Téléphone verifié", data.isPhoneNumberVerified | boolean) }}
-                    {{ _.user_data_item("Newsletter", data.isSubscribedNewsletter | boolean) }}
-                    {{ _.user_data_item("Marketing", data.isSubscribedMarketing | boolean) }}
-                    {{ _.user_data_item("2FA activé", data.twoFactorEnabled | boolean) }}
-                    {{ _.user_data_item("Date de bannissement", data.bannedAt ? data.bannedAt | date : '-') }}
-                </div>
-            </div>
-        </div>
-        {% endblock %}
-        {% block detail_card_aside %}
-            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
-                 data-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
+        </twig:block>
+
+        <twig:block name="aside">
+            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl" data-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
                 <div class="card-inner-group">
-                    <div class="simplebar-wrapper" style="margin: 0px;">
-                        <div class="simplebar-height-auto-observer-wrapper">
-                            <div class="simplebar-height-auto-observer"></div>
-                        </div>
-                        <div class="simplebar-mask">
-                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
-                                    <div class="simplebar-content" style="padding: 0px;">
-                                        <div class="card-inner">
-                                            <div class="user-card user-card-s2">
-                                                <div class="user-avatar lg bg-primary">
-                                                    {% if data.avatar.name %}
-                                                        <img src="{{ vich_uploader_asset(data, 'avatar_file') }}" alt="avatar {{ data.username }}">
-                                                    {% else %}
-                                                        <span>{{ data.initials }}</span>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="user-info">
-                                                    <div class="badge bg-outline-light rounded-pill ucap">{{ data.roles | last | trans([], 'messages') }}</div>
-                                                    <h5>{{ data.username }}</h5>
-                                                    <span class="sub-text">{{ data.email }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-inner card-inner-sm">
-                                            <ul class="btn-toolbar justify-center gx-1">
-                                                <li>
-                                                    {% if not data.banned %}
-                                                        <button
-                                                                class="text-soft btn btn-icon btn-trigger"
-                                                                is="app-action-button"
-                                                                endpoint="{{ path('admin_authentication_user_ban', {id: data.id}) }}"
-                                                                redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
-                                                                title="{{ 'global.ban' | trans([], 'messages') }}"
-                                                        >
-                                                            {{ 'shield' | icon }}
-                                                        </button>
-                                                    {% else %}
-                                                        <button
-                                                                class="text-soft btn btn-icon btn-trigger"
-                                                                is="app-action-button"
-                                                                endpoint="{{ path('admin_authentication_user_unban', {id: data.id}) }}"
-                                                                redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
-                                                                title="{{ 'global.unban' | trans([], 'messages') }}"
-                                                        >
-                                                            {{ 'shield-off' | icon }}
-                                                        </button>
-                                                    {% endif %}
-                                                </li>
-                                                <li><a href="{{ path('admin_authentication_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon">{{ 'mail' | icon }}</a></li>
-                                                <li>{{ _.delete_icon_button('admin_authentication_user_delete', data, 'admin_authentication_user_index') }}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
-                                            <div class="row g-3">
-                                                <div class="col-6">
-                                                    <span class="sub-text">Last Ip:</span>
-                                                    <span>{{ data.lastLoginIp }}</span>
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="sub-text">Last Login:</span>
-                                                    <span>{{ data.lastLoginAt ? data.lastLoginAt | date : '-' }}</span>
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="sub-text">Account Status:</span>
-                                                    {% if data.confirmed %}
-                                                        <span class="lead-text text-success">confirmed</span>
-                                                    {% else %}
-                                                        <span class="lead-text text-danger">unconfirmed</span>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="sub-text">Register At:</span>
-                                                    <span>{{ data.createdAt | date }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-3">Rôles</h6>
-                                            <ul class="g-1">
-                                                {% for role in data.roles %}
-                                                    <li class="btn-group">
-                                                        <a class="btn btn-xs btn-info btn-dim" href="#">{{ role | trans([], 'messages') }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-3">Technologies</h6>
-                                            <ul class="g-1">
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="card-inner">
+                        <div class="user-card user-card-s2">
+                            <div class="user-avatar lg bg-primary">
+                                {% if data.avatar.name %}
+                                    <img src="{{ vich_uploader_asset(data, 'avatar_file') }}" alt="avatar {{ data.username }}">
+                                {% else %}
+                                    <span>{{ data.initials }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="user-info">
+                                <div class="badge bg-outline-light rounded-pill ucap">{{ data.roles | last | trans([], 'messages') }}</div>
+                                <h5>{{ data.username }}</h5>
+                                <span class="sub-text">{{ data.email }}</span>
                             </div>
                         </div>
                     </div>
+                    <div class="card-inner card-inner-sm">
+                        <ul class="btn-toolbar justify-center gx-1">
+                            <li>
+                                {% if not data.banned %}
+                                    <button
+                                        class="text-soft btn btn-icon btn-trigger"
+                                        is="app-action-button"
+                                        endpoint="{{ path('admin_authentication_user_ban', {id: data.id}) }}"
+                                        redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
+                                        title="{{ 'global.ban' | trans([], 'messages') }}"
+                                    >
+                                        <twig:Icon name="shield" />
+                                    </button>
+                                {% else %}
+                                    <button
+                                        class="text-soft btn btn-icon btn-trigger"
+                                        is="app-action-button"
+                                        endpoint="{{ path('admin_authentication_user_unban', {id: data.id}) }}"
+                                        redirect="{{ path('admin_authentication_user_show', {id: data.id}) }}"
+                                        title="{{ 'global.unban' | trans([], 'messages') }}"
+                                    >
+                                        <twig:Icon name="shield-off" />
+                                    </button>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{ path('admin_authentication_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon">{{ 'mail' | icon }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <span class="sub-text">Last Ip:</span>
+                                <span>{{ data.lastLoginIp }}</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="sub-text">Last Login:</span>
+                                <span>{{ data.lastLoginAt ? data.lastLoginAt | date : '-' }}</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="sub-text">Account Status:</span>
+                                {% if data.confirmed %}
+                                    <span class="lead-text text-success">confirmed</span>
+                                {% else %}
+                                    <span class="lead-text text-danger">unconfirmed</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-6">
+                                <span class="sub-text">Register At:</span>
+                                <span>{{ data.createdAt | date }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-inner"><h6 class="overline-title-alt mb-3">Rôles</h6>
+                        <ul class="g-1">
+                            {% for role in data.roles %}
+                                <li class="btn-group">
+                                    <a class="btn btn-xs btn-info btn-dim" href="#">{{ role | trans([], 'messages') }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-inner"><h6 class="overline-title-alt mb-3">Technologies</h6>
+                        <ul class="g-1"></ul>
+                    </div>
                 </div>
             </div>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+        </twig:block>
+    </twig:AsideCard>
+</twig:block>

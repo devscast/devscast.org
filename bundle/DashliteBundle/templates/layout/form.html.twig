@@ -2,30 +2,27 @@
 {% set _title = (data is defined and data) ? "Édition #{ _entity | trans([], _domain) }" : "Création #{_entity | trans([], _domain)}" %}
 {% block title _title %}
 
-{% block header %}
-    {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        {% block header_title _title %}
-        {% block header_action_list %}
-            <li class="btn-group">
-                <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    {{ 'arrow-long-left' | icon }}
-                    <span>Toutes les entrées</span>
+<twig:block name="header">
+    <twig:Header :title="_title">
+        <twig:block name="actions">
+            <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                {{ 'arrow-long-left' | icon }}
+                <span>Toutes les entrées</span>
+            </a>
+            {% if _show_url %}
+                <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
+                    {{ 'eye' | icon }}
+                    <span>revenir aux détails</span>
                 </a>
-                {% if _show_url %}
-                    <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
-                        {{ 'eye' | icon }}
-                        <span>revenir aux détails</span>
-                    </a>
-                {% endif %}
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+            {% endif %}
+        </twig:block>
+    </twig:Header>
+</twig:block>
 
-{% block content %}
-    {% embed "@DevscastDashlite/component/card/_simple.html.twig" %}
-        {% block simple_card_body %}
-            {% include '@DevscastDashlite/component/_form.html.twig' %}
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+<twig:block name="content">
+    <twig:Card>
+        <twig:block name="content">
+            <twig:Form :form="form" />
+        </twig:block>
+    </twig:Card>
+</twig:block>

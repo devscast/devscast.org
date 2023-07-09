@@ -1,32 +1,34 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block title 'Édition Utilisateur' %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">Édition Utilisateur</twig:block>
 
-{% block header %}
-    {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        {% block header_title "Édition Utilisateur" | title %}
-        {% block header_action_list %}
-            <li>
-                <a href="{{ path('admin_authentication_user_show', {id: data.id}) }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    {{ 'arrow-long-left' | icon }}
-                    <span>Voir l'utilisateur</span>
+<twig:block name="header">
+    <twig:Header title="Édition Utilisateur">
+        <twig:block name="actions">
+            <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
+                {{ 'arrow-long-left' | icon }}
+                <span>Toutes les entrées</span>
+            </a>
+            {% if _show_url %}
+                <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
+                    {{ 'eye' | icon }}
+                    <span>revenir aux détails</span>
                 </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+            {% endif %}
+        </twig:block>
+    </twig:Header>
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     {% if app.user == data %}
-        <div class="alert alert-danger alert-icon">
-            {{ 'alert-circle' | icon }} Modifier les informations de votre propre compte entraîne une déconnexion
+        <twig:Alert state="warning" type="pro" message="Modifier les informations de votre propre compte entraîne une déconnexion
             et ceci peut également entraîner à une perte d'accès au système.
-            Modifier vos informations depuis vos paramètres de profil.
-        </div>
+            Modifier vos informations depuis vos paramètres de profil." dismissible />
     {% endif %}
 
-    {% embed "@DevscastDashlite/component/card/_simple.html.twig" %}
-        {% block simple_card_body %}
-            {% include '@DevscastDashlite/component/_form.html.twig' %}
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+    <twig:Card>
+        <twig:block name="content">
+            <twig:Form :form="form" />
+        </twig:block>
+    </twig:Card>
+</twig:block>

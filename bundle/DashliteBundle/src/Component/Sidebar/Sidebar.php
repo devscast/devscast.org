@@ -7,18 +7,18 @@ namespace Devscast\Bundle\DashliteBundle\Component\Sidebar;
 use Devscast\Bundle\DashliteBundle\Component\Sidebar\ValueObject\Group;
 use Devscast\Bundle\DashliteBundle\Component\Sidebar\ValueObject\Header;
 use Devscast\Bundle\DashliteBundle\Component\Sidebar\ValueObject\Link;
-use Devscast\Bundle\DashliteBundle\Component\Sidebar\ValueObject\Sidebar;
+use Devscast\Bundle\DashliteBundle\Component\Sidebar\ValueObject\Sidebar as SidebarValueObject;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PreMount;
 
 /**
- * Class SidebarComponent.
+ * Class Sidebar.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsTwigComponent]
-final class SidebarComponent
+final class Sidebar
 {
     public array $data = [];
     public ?string $html = null;
@@ -35,7 +35,7 @@ final class SidebarComponent
     #[PreMount]
     public function preMount(array $data): void
     {
-        $collection = new Sidebar($data);
+        $collection = new SidebarValueObject($data);
         $html = '';
         foreach ($collection as $item) {
             if ($item instanceof Link) {

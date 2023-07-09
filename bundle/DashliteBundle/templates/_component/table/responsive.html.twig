@@ -3,9 +3,12 @@
         <div class="card-inner p-0">
             <div class="nk-tb-list nk-tb-list">
                 <div class="nk-tb-item nk-tb-head">
-                    {% block header %}{% endblock %}
+                    <twig:block name="header"></twig:block>
                 </div>
-                {% block body %}{% endblock %}
+
+                {% for item in this.data %}
+                    <twig:block name="content"></twig:block>
+                {% endfor %}
             </div>
         </div>
         {% if data is defined %}

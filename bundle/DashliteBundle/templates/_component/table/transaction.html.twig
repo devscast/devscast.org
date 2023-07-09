@@ -1,0 +1,14 @@
+<table class="table table-tranx is-compact">
+        <thead>
+        <tr class="tb-tnx-head">
+            <twig:block name="head"></twig:block>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in this.data %}
+            <tr class="tb-tnx-item">
+                <twig:block name="item"></twig:block>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

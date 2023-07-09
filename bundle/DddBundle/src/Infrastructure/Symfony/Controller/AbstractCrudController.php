@@ -127,7 +127,7 @@ abstract class AbstractCrudController extends AbstractController
         }
 
         return $this->render(
-            view: $this->getFormViewPath($params->view),
+            view: $this->getFormViewPath($params->view, $params->overrideView),
             parameters: [
                 'form' => $form,
                 'data' => $params->item,

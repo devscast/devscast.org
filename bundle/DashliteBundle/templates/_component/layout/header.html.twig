@@ -4,7 +4,7 @@
             <div class="block-head-sub">
                 {% block back %}{% endblock %}
             </div>
-            <h3 class="nk-block-title fw-bolder">{{ this.title }}</h3>
+            <h3 class="nk-block-title fw-bolder">{{ this.title | raw }}</h3>
             <div class="nk-block-des fw-normal">
                 {% block description %}
                     {% if this.data is defined and this.data.getTotalItemCount is defined and this.data.getTotalItemCount > 0 %}

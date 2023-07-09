@@ -6,9 +6,13 @@ namespace Devscast\Bundle\DashliteBundle\Component\Layout;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
+/**
+ * Class Footer.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 #[AsTwigComponent]
-final class HeaderComponent
+final class Footer
 {
-    public string $title;
-    public mixed $data;
+    public string $copyRight;
 }

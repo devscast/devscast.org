@@ -1,68 +1,69 @@
 {% apply spaceless %}
-    <!DOCTYPE html>
-    <html lang="{{ app.request.locale() | default('fr') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="author" content="devscast">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="{{ asset('/images/logo.png') }}">
-        <title>{% block title %}{% endblock %} | Administration | devscast.org</title>
+<!DOCTYPE html>
+<html lang="{{ app.request.locale() | default('fr') }}">
+        <head>
+            <meta charset="utf-8">
+            <meta name="author" content="devscast">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="shortcut icon" href="{{ asset('/images/logo.png') }}">
+            <title>{% block title %}{% endblock %} | Administration | devscast.org</title>
 
-        {# PWA support #}
-        <meta name="theme-color" content="#05FFBA">
-        <link rel="manifest" href="{{ asset('manifest.json') }}">
+            {# PWA support #}
+            <meta name="theme-color" content="#05FFBA">
+            <link rel="manifest" href="{{ asset('manifest.json') }}">
 
-        {# PWA Support IOS #}
-        <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('images/icons/logo/maskable_icon_x192.png') }}">
-        <link rel="apple-touch-icon" sizes="512x512" href="{{ asset('images/icons/logo/maskable_icon_x512.png') }}">
-        <link rel="apple-touch-startup-image" href="{{ asset('images/icons/logo/maskable_icon.png') }}">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            {# PWA Support IOS #}
+            <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('images/icons/logo/maskable_icon_x192.png') }}">
+            <link rel="apple-touch-icon" sizes="512x512" href="{{ asset('images/icons/logo/maskable_icon_x512.png') }}">
+            <link rel="apple-touch-startup-image" href="{{ asset('images/icons/logo/maskable_icon.png') }}">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-        {% block meta %}{% endblock %}
-        {{ encore_entry_link_tags('admin') }}
-        {% block stylesheets %}{% endblock %}
+            <twig:block name="meta"></twig:block>
 
-        <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
-        <script defer data-turbo-track="reload" src="{{ asset('admin/assets/scripts.js') }}"></script>
+            <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
+            <script defer data-turbo-track="reload" src="{{ asset('admin/assets/scripts.js') }}"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
 
-        {{ encore_entry_script_tags('admin') }}
-    </head>
-    <body class="nk-body bg-theme has-sidebar ui-shady" {{ stimulus_controller('modal-form') }}>
-    {% include '@DevscastDashlite/component/_flash.html.twig' %}
-    <div class="nk-app-root">
-        <div class="nk-main">
-            {% block sidebar %}{% endblock %}
-            <div class="nk-wrap">
-                {% block navbar %}
-                    {% include '@DevscastDashlite/component/_navbar.html.twig' %}
-                {% endblock %}
-                <div class="nk-content">
-                    <div class="container-fluid">
-                        <div class="nk-content-inner">
-                            {% block body %}
-                                <div class="nk-content-body">
-                                    <div class="mx-auto {% block wideContentClass %}wide-lg{% endblock %}">
-                                        {% block header %}{% endblock %}
-                                        <div class="nk-block">
-                                            {% block content %}{% endblock %}
-                                        </div>
-                                    </div>
+            {{ encore_entry_link_tags('admin') }}
+            {{ encore_entry_script_tags('admin') }}
+            <twig:block name="stylesheets"></twig:block>
+        </head>
+        <body class="nk-body bg-theme has-sidebar ui-shady" {{ stimulus_controller('modal-form') }}>
+            <twig:FlashMessage />
+
+            <div class="nk-app-root">
+                <div class="nk-main">
+                    {% block sidebar %}{% endblock %}
+                    <div class="nk-wrap">
+                       <twig:block name="navbar">
+                            <twig:Navbar />
+                        </twig:block>
+                        <div class="nk-content">
+                            <div class="container-fluid">
+                                <div class="nk-content-inner">
+                                   <twig:block name="body">
+                                       <div class="nk-content-body">
+                                           <div class="mx-auto {% block wideContentClass %}wide-lg{% endblock %}">
+                                               <twig:block name="header"></twig:block>
+                                               <div class="nk-block">
+                                                   <twig:block name="content"></twig:block>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </twig:block>
                                 </div>
-                            {% endblock %}
+                            </div>
                         </div>
+                        <twig:block name="footer">
+                            <twig:Footer copyRight="Devscast Community Plateforme"></twig:Footer>
+                        </twig:block>
                     </div>
                 </div>
-                {% block footer %}
-                    {% embed "@DevscastDashlite/component/_footer.html.twig" %}{% endembed %}
-                {% endblock %}
             </div>
-        </div>
-    </div>
-    {% block javascripts %}{% endblock %}
-    </body>
+            <twig:block name="javascripts"></twig:block>
+        </body>
     </html>
 {% endapply %}

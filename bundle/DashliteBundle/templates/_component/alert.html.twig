@@ -1,0 +1,18 @@
+{% if this.type == 'pro' %}
+    <div class="alert alert-pro alert-{{ this.state }} {{ this.dismissible ? 'alert-dismissible' : '' }}">
+        <div class="alert-text">
+            {{ this.message | raw }}
+        </div>
+        {% if this.dismissible %}
+            <button class="close" data-bs-dismiss="alert"></button>
+        {% endif %}
+    </div>
+{% else %}
+    <div class="alert alert-icon alert-{{ this.state }} {{ this.dismissible ? 'alert-dismissible' : '' }} {{ this.fill ? 'alert-fill' : '' }}">
+        <twig:Icon :name="this.icon" />
+        {{ this.message | raw }}
+        {% if this.dismissible %}
+            <button class="close" data-bs-dismiss="alert"></button>
+        {% endif %}
+    </div>
+{% endif %}

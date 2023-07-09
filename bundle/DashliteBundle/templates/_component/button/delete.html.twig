@@ -1,0 +1,22 @@
+{% if this.type == 'button' %}
+    <form class="d-inline-block" method="post" action="{{ this.path }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value='{{ csrf_token("delete_#{this.item.id}") }}'>
+        <button is="app-confirm-button" title="{{ 'global.delete' | trans([], 'messages') }}" aria-label="{{ 'global.delete' | trans([], 'messages') }}" class="btn btn-white btn-dim btn-outline-light">
+            <twig:Icon name="trash" />
+            <span>{{ 'global.delete' | trans([], 'messages') }}</span>
+        </button>
+    </form>
+{% else %}
+    <button
+        class="text-soft btn btn-icon btn-trigger"
+        is="app-delete-button"
+        token="{{ csrf_token("delete_#{this.item.id}") }}"
+        endpoint="{{ this.path }}"
+        redirect="{{ this.redirect ?? '' }}"
+        title="{{ 'global.delete' | trans([], 'messages') }}"
+        remove="{{ this.remove }}"
+    >
+        <twig:Icon name="cross" />
+    </button>
+{% endif %}

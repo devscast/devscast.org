@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-inner">
+        {% if this.title != '' %}
+            <div class="card-head">
+                <h5 class="card-title">{{ this.title }}</h5>
+            </div>
+        {% endif %}
+        <twig:block name="content"></twig:block>
+    </div>
+    <twig:block name="footer"></twig:block>
+</div>

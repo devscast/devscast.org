@@ -24,86 +24,8 @@ use Symfony\UX\Dropzone\Form\DropzoneType;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UpdateUserForm extends AbstractType
+final class UpdateUserForm extends CreateUserForm
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('email', EmailType::class, [
-                'label' => 'authentication.forms.labels.email',
-            ])
-            ->add('name', TextType::class, [
-                'label' => 'authentication.forms.labels.name',
-                'required' => false,
-            ])
-            ->add('gender', GenderType::class, [
-                'label' => false,
-                'required' => false,
-            ])
-            ->add('avatar_file', DropzoneType::class, [
-                'label' => 'authentication.forms.labels.avatar',
-                'required' => false,
-            ])
-            ->add('job_title', TextType::class, [
-                'label' => 'authentication.forms.labels.job_title',
-                'required' => false,
-            ])
-            ->add('biography', AutoGrowTextareaType::class, [
-                'label' => 'authentication.forms.labels.biography',
-                'required' => false,
-            ])
-            ->add('pronouns', TextType::class, [
-                'label' => 'authentication.forms.labels.pronouns',
-                'required' => false,
-            ])
-            ->add('phone_number', TextType::class, [
-                'label' => 'authentication.forms.labels.phone_number',
-                'required' => false,
-            ])
-            ->add('country', CountryType::class, [
-                'label' => 'authentication.forms.labels.country',
-                'required' => false,
-                'autocomplete' => true,
-            ])
-            ->add('linkedin_url', UrlType::class, [
-                'label' => 'authentication.forms.labels.linkedin_url',
-                'required' => false,
-            ])
-            ->add('github_url', UrlType::class, [
-                'label' => 'authentication.forms.labels.github_url',
-                'required' => false,
-            ])
-            ->add('twitter_url', UrlType::class, [
-                'label' => 'authentication.forms.labels.twitter_url',
-                'required' => false,
-            ])
-            ->add('website_url', UrlType::class, [
-                'label' => 'authentication.forms.labels.website_url',
-                'required' => false,
-            ])
-            ->add('rss_url', RssUrlType::class, [
-                'label' => false,
-                'required' => false,
-            ])
-            ->add('is_subscribed_newsletter', CheckboxType::class, [
-                'label' => 'authentication.forms.labels.is_subscribed_newsletter',
-                'required' => false,
-            ])
-            ->add('is_subscribed_marketing', CheckboxType::class, [
-                'label' => 'authentication.forms.labels.is_subscribed_marketing',
-                'required' => false,
-            ])
-            ->add('is_dark_theme', CheckboxType::class, [
-                'label' => 'authentication.forms.labels.is_dark_theme',
-                'required' => false,
-            ])
-            ->add('roles', RolesType::class, [
-                'label' => false,
-                'required' => false,
-            ])
-        ;
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

@@ -61,6 +61,7 @@ final class UserController extends AbstractCrudController
         return $this->handleCommand(new CreateUserCommand(), new CrudParams(
             action: CrudAction::CREATE,
             formClass: CreateUserForm::class,
+            hasIndex: true,
         ));
     }
 
@@ -72,7 +73,11 @@ final class UserController extends AbstractCrudController
         return $this->handleCommand(new UpdateUserCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateUserForm::class
+            formClass: UpdateUserForm::class,
+            view: 'edit',
+            hasIndex: true,
+            hasShow: true,
+            overrideView: true
         ));
     }
 
@@ -98,9 +103,13 @@ final class UserController extends AbstractCrudController
     public function email(User $item, Request $request): Response
     {
         return $this->handleCommand(new EmailUserCommand($item), new CrudParams(
+            action: CrudAction::UPDATE,
             item: $item,
             formClass: EmailUserForm::class,
-            view: 'email'
+            view: 'email',
+            hasIndex: true,
+            hasShow: true,
+            overrideView: true
         ));
     }
 
@@ -111,7 +120,7 @@ final class UserController extends AbstractCrudController
     {
         return $this->handleCommand(new DeleteUserCommand($item), new CrudParams(
             action: CrudAction::DELETE,
-            item: $item
+            item: $item,
         ));
     }
 }

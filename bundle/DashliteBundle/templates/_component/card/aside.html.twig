@@ -2,12 +2,12 @@
     <div class="card-aside-wrap">
         <div class="card-content">
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
-                {% block detail_card_tabs %}{% endblock %}
+               <twig:block name="tabs"></twig:block>
             </ul>
             <div class="card-inner">
-                {% block detail_card_body %}{% endblock %}
+                <twig:block name="content"></twig:block>
             </div>
         </div>
-        {% block detail_card_aside %}{% endblock %}
+        <twig:block name="aside"></twig:block>
     </div>
 </div>

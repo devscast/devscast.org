@@ -95,6 +95,28 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         //$this->avatar_file = new ReplacingFile(sprintf('%s/public/images/default.png', dirname(__DIR__, 4)));
     }
 
+    public function __serialize(): array
+    {
+        return [
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        if (4 === count($data)) {
+            [
+                $this->id,
+                $this->username,
+                $this->email,
+                $this->password,
+            ] = $data;
+        }
+    }
+
     public static function createBasicWithRequiredFields(
         string $username,
         string $email,

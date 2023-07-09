@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\CreateUserCommand;
+use Application\Authentication\Command\UpdateUserCommand;
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\AutoGrowTextareaType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\GenderType;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\RolesType;
@@ -25,24 +26,38 @@ use Symfony\UX\Dropzone\Form\DropzoneType;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class CreateUserForm extends AbstractType
+class CreateUserForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('username', UsernameType::class, [
-                'label' => false,
-            ])
-            ->add('email', EmailType::class, [
+        $isEditMode = $builder->getData() instanceof UpdateUserCommand;
+
+        if (!$isEditMode) {
+            $builder
+                ->add('username', UsernameType::class, [
+                    'label' => false,
+                ]);
+        }
+
+        $builder->add('email', EmailType::class, [
                 'label' => 'authentication.forms.labels.email',
+                'row_attr' => [
+                    'class' => 'col-12 col-md-4'
+                ]
             ])
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-4'
+                ]
             ])
             ->add('gender', GenderType::class, [
                 'label' => false,
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-4'
+                ]
             ])
             ->add('avatar_file', DropzoneType::class, [
                 'label' => 'authentication.forms.labels.avatar',
@@ -74,18 +89,30 @@ final class CreateUserForm extends AbstractType
             ->add('linkedin_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.linkedin_url',
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-6'
+                ]
             ])
             ->add('github_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.github_url',
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-6'
+                ]
             ])
             ->add('twitter_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.twitter_url',
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-6'
+                ]
             ])
             ->add('website_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.website_url',
                 'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12 col-md-6'
+                ]
             ])
             ->add('rss_url', RssUrlType::class, [
                 'label' => false,

@@ -6,10 +6,13 @@ namespace Devscast\Bundle\DashliteBundle\Component\Card;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
+/**
+ * Class Card.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 #[AsTwigComponent]
-final class EmptyStateCardComponent
+final class StretchCard
 {
-    public string $action;
-    public string $path;
-    public string $label;
 }
+

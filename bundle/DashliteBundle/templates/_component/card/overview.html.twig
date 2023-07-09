@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="nk-ecwg nk-ecwg6">
+        <div class="card-inner">
+            <div class="card-title-group">
+                <div class="card-title">
+                    <h6 class="title">{{ this.label }}</h6>
+                </div>
+            </div>
+            <div class="data">
+                <div class="data-group">
+                    <div class="amount">{{ this.value | number_format }}</div>
+                    <div class="nk-ecwg6-ck">
+                        <twig:block name="chart"></twig:block>
+                    </div>
+                </div>
+                <div class="info">
+                    {% if this.value != 0.0 %}
+                        <span class="change {{ this.value > 0 ? 'up text-success' : 'down text-danger' }}">
+                            {{  (this.vlaue > 0 ? 'arrow-long-up' : 'arrow-long-down') | icon }} {{  this.value }} %
+                        </span>
+                        <span> vs. le mois passé</span>
+                    {% else %}
+                        <span class="change down">
+                            {{ 'alert-fill-c' | icon }}
+                        </span>
+                        <span class="text-danger"> Aucun {{ label }} ce mois</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
