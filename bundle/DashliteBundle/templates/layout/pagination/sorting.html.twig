@@ -2,12 +2,12 @@
 <span class="float-right">
     {% if sorted %}
         {% if direction == 'desc' %}
-            {{ 'arrow-up' | icon }}
+            <twig:icon name="arrow-up"/>
         {% else %}
-            {{ 'arrow-down' | icon }}
+            <twig:icon name="arrow-down"/>
         {% endif %}
     {% else %}
-        {{ 'opt-alt' | icon }}
+        <twig:icon name="opt-alt"/>
     {% endif %}
 </span>
 {{ title }}

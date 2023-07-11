@@ -3,7 +3,7 @@
         <div class="nk-header-wrap">
             <div class="nk-menu-trigger d-xl-none ml-n1">
                 <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
-                    {{ 'menu' | icon }}
+                    <twig:icon name="menu"/>
                 </a>
             </div>
             <div class="nk-header-brand d-xl-none">
@@ -24,7 +24,7 @@
                                         {% if app.user.avatar.name %}
                                             <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
                                         {% else %}
-                                            {{ 'user' | icon }}
+                                            <twig:icon name="user"/>
                                         {% endif %}
                                     </div>
                                     <div class="user-info d-none d-xl-block">
@@ -40,7 +40,7 @@
                                             {% if app.user.avatar.name %}
                                                 <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.username }}">
                                             {% else %}
-                                                {{ 'user' | icon }}
+                                                <twig:icon name="user"/>
                                             {% endif %}
                                         </div>
                                         <div class="user-info">
@@ -53,19 +53,19 @@
                                     <ul class="link-list">
                                         <li>
                                             <a href="#" title="Paramètres">
-                                                {{ 'setting' | icon }}
+                                                <twig:icon name="setting"/>
                                                 <span>Paramètres</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dark-switch" href="#">
-                                                {{ 'moon' | icon }}
+                                                <twig:icon name="moon"/>
                                                 <span>Mode Sombre</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{ logout_url('main') }}" title="Déconnexion" aria-label="Déconnexion">
-                                                {{ 'signout' | icon }}
+                                                <twig:icon name="signout"/>
                                                 <span>Déconnexion</span>
                                             </a>
                                         </li>

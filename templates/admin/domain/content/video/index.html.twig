@@ -8,11 +8,11 @@
         {% block header_action_list %}
             <li class="btn-group">
                 <a href="{{ path('admin_content_video_new') }}" class="btn btn-white btn-dim btn-outline-light">
-                    {{ 'plus' | icon }}
+                    <twig:icon name="plus"/>
                     <span>Ajouter</span>
                 </a>
                 <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    {{ 'bar-chart' | icon }}
+                    <twig:icon name="bar-chart"/>
                     <span>Statistiques</span>
                 </a>
             </li>
@@ -43,10 +43,10 @@
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
                                     <a href="{{ path('admin_content_video_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        {{ 'eye' | icon }}
+                                        <twig:icon name="eye"/>
                                     </a>
                                     <a href="{{ path('admin_content_video_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        {{ 'edit' | icon }}
+                                        <twig:icon name="edit"/>
                                     </a>
                                 </div>
                             </td>

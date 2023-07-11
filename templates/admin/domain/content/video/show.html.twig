@@ -18,13 +18,13 @@
         {% block header_action_list %}
             <li>
                 <a href="{{ path('admin_content_video_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    {{ 'arrow-long-left' | icon }}
+                    <twig:icon name="arrow-long-left"/>
                     <span>Toutes les vidéos</span>
                 </a>
             </li>
             <li>
                 <a href="{{ path('admin_content_video_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    {{ 'edit-alt-fill' | icon }}
+                    <twig:icon name="edit-alt-fill"/>
                     <span>{{ 'global.edit' | trans([], 'messages') }}</span>
                 </a>
             </li>
@@ -44,7 +44,7 @@
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
                     <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
-                        {{ 'user-list-fill' | icon }}
+                        <twig:icon name="user-list-fill"/>
                     </a>
                 </li>
             </ul>

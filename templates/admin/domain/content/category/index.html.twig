@@ -7,11 +7,11 @@
     <twig:Header title="Catégories d'articles" :data="data">
         <twig:block name="actions">
             <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                {{ 'plus' | icon }}
+                <twig:icon name="plus"/>
                 <span>Ajouter</span>
             </button>
             <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                {{ 'bar-chart' | icon }}
+                <twig:icon name="bar-chart"/>
                 <span>Statistiques</span>
             </a>
         </twig:block>
@@ -38,7 +38,7 @@
                             <ul class="nk-tb-actions gx-1">
                                 <li class="nk-tb-action-hidden">
                                     <a href="{{ path('admin_content_category_edit', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        {{ 'edit' | icon }}
+                                        <twig:icon name="edit"/>
                                     </a>
                                 </li>
                                 <li class="nk-tb-action-hidden">

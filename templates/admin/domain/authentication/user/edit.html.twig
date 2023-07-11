@@ -6,12 +6,12 @@
     <twig:Header title="Édition Utilisateur">
         <twig:block name="actions">
             <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                {{ 'arrow-long-left' | icon }}
+                <twig:icon name="arrow-long-left"/>
                 <span>Toutes les entrées</span>
             </a>
             {% if _show_url %}
                 <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
-                    {{ 'eye' | icon }}
+                    <twig:icon name="eye"/>
                     <span>revenir aux détails</span>
                 </a>
             {% endif %}

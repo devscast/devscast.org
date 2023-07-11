@@ -7,11 +7,11 @@
     <twig:Header title="Utilisateurs" :data="data">
         <twig:block name="actions">
             <a href="{{ path('admin_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
-                {{ 'plus' | icon }}
+                <twig:icon name="plus"/>
                 <span>Ajouter</span>
             </a>
             <a href="{{ path('admin_authentication_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                {{ 'bar-chart' | icon }}
+                <twig:icon name="bar-chart"/>
                 <span>Statistiques</span>
             </a>
         </twig:block>
@@ -40,7 +40,7 @@
                             <ul class="nk-tb-actions gx-1">
                                 <li class="nk-tb-action-hidden">
                                     <a href="{{ path('admin_authentication_user_show', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        {{ 'eye' | icon }}
+                                        <twig:icon name="eye"/>
                                     </a>
                                 </li>
                                 <li class="nk-tb-action-hidden">

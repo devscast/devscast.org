@@ -8,7 +8,7 @@
         {{ "{% block header_action_list %}" }}
             <li class="btn-group">
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_new') }}" | raw }}" class="btn btn-white btn-dim btn-outline-light">
-                    {{ "{{ 'plus' | icon }}" | raw }}
+                    {{ "<twig:icon name="plus"/>" | raw }}
                     <span>Ajouter</span>
                 </a>
             </li>
@@ -33,10 +33,10 @@
                                 <ul class="nk-tb-actions gx-1">
                                     <li class="nk-tb-action-hidden">
                                         <a href="{{ "{{ path('admin_#{domain}_#{entity}_show', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                            {{ "{{ 'eye' | icon }}" | raw }}
+                                            {{ "<twig:icon name="eye"/>" | raw }}
                                         </a>
                                         <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                            {{ "{{ 'edit' | icon }}" | raw }}
+                                            {{ "<twig:icon name="edit"/>" | raw }}
                                         </a>
                                     </li>
                                 </ul>
