@@ -1,0 +1,9 @@
+<div class="nk-tb-col {{ this.responsive }} {{ this.tools ? 'nk-tb-col-tools' : '' }}">
+    <twig:block name="content">
+        {% if not this.col %}
+            {{ this.value }}
+        {% else %}
+            <span class="sub-text">{{ this.value }}</span>
+        {% endif %}
+    </twig:block>
+</div>

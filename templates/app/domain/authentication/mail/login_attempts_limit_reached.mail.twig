@@ -1,7 +1,7 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ user.username }},
 
@@ -16,4 +16,4 @@
 
         {{ e.button('Réinitialiser mon mot de passe', url('authentication_reset_password_request'), 'primary', _format) }}
     {% endapply %}
-{% endblock %}
+</twig:block>

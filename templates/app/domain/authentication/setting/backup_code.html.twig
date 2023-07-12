@@ -1,6 +1,6 @@
 {% extends '@app/domain/authentication/layout/base.html.twig' %}
 
-{% block body %}
+<twig:block name="body">
     <h1>Backup code</h1>
 
     <code>
@@ -13,5 +13,5 @@
         <button type="submit">regenerate</button>
     </form>
     <a href="{{ path('authentication_setting_backup_codes_export') }}">download backup code (csv)</a>
-{% endblock %}
+</twig:block>
 

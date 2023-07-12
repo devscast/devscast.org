@@ -1,28 +1,17 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">Envoyer un email à {{ data.username }} | title</twig:block>
 
 <twig:block name="header">
     <twig:Header title="Envoyer un mail">
-        <twig:block name="actions">
-            <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                <twig:icon name="arrow-long-left"/>
-                <span>Toutes les entrées</span>
-            </a>
-            {% if _show_url %}
-                <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
-                    <twig:icon name="eye"/>
-                    <span>revenir aux détails</span>
-                </a>
-            {% endif %}
-        </twig:block>
+        <twig:HeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
+        {% if _show_url %}
+            <twig:HeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
+        {% endif %}
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <twig:Card>
-        <twig:block name="content">
-            <twig:Form :form="form" />
-        </twig:block>
+        <twig:Form :form="form"></twig:Form>
     </twig:Card>
 </twig:block>

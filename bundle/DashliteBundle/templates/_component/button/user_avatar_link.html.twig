@@ -1,0 +1,17 @@
+<a href="{{ this.path }}">
+    <div class="user-card">
+        <div class="user-avatar bg-primary">
+            {% if this.avatarUrl | length > 0 %}
+                <img src="{{ this.avatarUrl }}" alt="{{ this.username }}">
+            {% else %}
+                <span>{{ this.username | first | upper }}</span>
+            {% endif %}
+        </div>
+        <div class="user-info">
+            <span class="tb-lead">
+                {{ this.username }}
+            </span>
+            <span>{{ this.surname }}</span>
+        </div>
+    </div>
+</a>

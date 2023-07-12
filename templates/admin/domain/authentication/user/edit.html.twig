@@ -1,21 +1,12 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">Édition Utilisateur</twig:block>
 
 <twig:block name="header">
     <twig:Header title="Édition Utilisateur">
-        <twig:block name="actions">
-            <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                <twig:icon name="arrow-long-left"/>
-                <span>Toutes les entrées</span>
-            </a>
-            {% if _show_url %}
-                <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
-                    <twig:icon name="eye"/>
-                    <span>revenir aux détails</span>
-                </a>
-            {% endif %}
-        </twig:block>
+        <twig:HeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
+        {% if _show_url %}
+            <twig:HeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
+        {% endif %}
     </twig:Header>
 </twig:block>
 

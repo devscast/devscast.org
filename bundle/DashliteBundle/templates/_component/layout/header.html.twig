@@ -2,26 +2,26 @@
     <div class="nk-block-between">
         <div class="nk-block-head-content">
             <div class="block-head-sub">
-                {% block back %}{% endblock %}
+                <twig:block name="back"></twig:block>
             </div>
             <h3 class="nk-block-title fw-bolder">{{ this.title | raw }}</h3>
             <div class="nk-block-des fw-normal">
-                {% block description %}
-                    {% if this.data is defined and this.data.getTotalItemCount is defined and this.data.getTotalItemCount > 0 %}
-                        <span class="fw-bolder">{{ this.data.getTotalItemCount }}</span> éléments, page <span class="fw-bolder">{{ this.data.getCurrentPageNumber }}</span> sur {{ this.data.getPageCount }}
+                <twig:block name="description">
+                    {% if data is defined and data.getTotalItemCount is defined %}
+                        <span class="fw-bolder">{{ data.getTotalItemCount }}</span> éléments, page <span class="fw-bolder">{{ data.getCurrentPageNumber }}</span> sur {{ data.getPageCount }}
                     {% endif %}
-                {% endblock %}
+                </twig:block>
             </div>
         </div>
         <div class="nk-block-head-content">
             <div class="toggle-wrap nk-block-tools-toggle">
                 <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
-                    <twig:icon name="menu-alt-r"/>
+                    <twig:Icon name="menu-alt-r"/>
                 </a>
                 <div class="toggle-expand-content" data-content="pageMenu">
                     <ul class="nk-block-tools g-3">
                         <li class="btn-group">
-                            {% block actions %}{% endblock %}
+                            <twig:block name="content"></twig:block>
                         </li>
                     </ul>
                 </div>

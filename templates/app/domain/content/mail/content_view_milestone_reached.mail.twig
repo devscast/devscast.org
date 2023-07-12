@@ -1,11 +1,11 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ event.target.owner.username }},
 
         Toutes nos félicitations, votre contenu **{{ event.target.name }}**, vient d'obtenir **{{ event.target.uniqueViewCount }}** vues !!!
     {% endapply %}
-{% endblock %}
+</twig:block>
 

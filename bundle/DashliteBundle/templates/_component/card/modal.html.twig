@@ -1,9 +1,8 @@
-<div {{ stimulus_target('modal-form', 'modal') }} class="modal fade" id="form-modal" style="display: none;" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+<div {{ stimulus_target('modal-form', 'modal') }} class="modal zoom" id="form-modal" style="display: none;" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-{{ this.position }}" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ this.action }}</h5>
-                <a {{ stimulus_action('modal-form', 'close')}} href="#" class="close" aria-label="Close"><twig:icon name="cross"/></a>
             </div>
             <turbo-frame class="modal-body" id="{{ this.id ?? 'form-modal-frame' }}" src="{{ this.path }}?modal=true" loading="lazy">
                 <div class="text-center">

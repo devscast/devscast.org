@@ -1,42 +1,42 @@
 {{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
-{{  "{% block sidebar include('@admin/shared/_sidebar.html.twig') %}" }}
-{{ "{% block title 'Détails de data.name' %}" }}
-{{ "{% block bodyClass 'wide-xxl' %}" }}
+{{  "<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>" }}
+{{ "<twig:block name="title">{{ 'Détails de data.name' }}</twig:block>" }}
+{{ "<twig:block name="bodyClass">{{ 'wide-xxl' }}</twig:block>" }}
 
-{{ "{% block header %}" }}
+{{ "<twig:block name="header">" }}
     {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
-        {{ "{% block header_title %}" }}
+        {{ "<twig:block name="header_title">" }}
             {{ entity | title }} / <strong class="text-primary small">{{ "{{ data.name }}" }}</strong>
-        {{ "{% endblock %}" }}
-        {{ "{% block header_description %}" }}
+        {{ "</twig:block>" }}
+        {{ "<twig:block name="header_description">" }}
             <ul class="list-inline">
                 <li>création : <span class="text-base">{{ "{{ data.createdAt | date }}" }}</span></li>
             </ul>
-        {{ "{% endblock %}" }}
-        {{ "{% block header_action_list %}" }}
+        {{ "</twig:block>" }}
+        {{ "<twig:block name="header_action_list">" }}
             <li class="btn-group">
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_index') }}" | raw }}"
                    class="btn btn-white btn-dim btn-outline-light" aria-label="{{ "{{ 'global.back' | trans }}" }}"
                    title="{{ "{{ 'global.back' | trans }}" }}">
-                    {{ "<twig:icon name="arrow-long-left"/>" }}
+                    {{ "<twig:Icon name="arrow-long-left"/>" }}
                     <span>Toutes les entrées</span>
                 </a>
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: data.id}) }}" | raw }}"
                    class="btn btn-white btn-dim btn-outline-light"
                    aria-label="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}"
                    title="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}">
-                    {{ "<twig:icon name="edit-alt-fill"/>" }}
+                    {{ "<twig:Icon name="edit-alt-fill"/>" }}
                     <span>{{ "{{ 'global.edit' | trans([], 'messages') }}" }}</span>
                 </a>
             </li>
-        {{ "{% endblock %}" }}
+        {{ "</twig:block>" }}
     {{ "{% endembed %}" }}
-{{ "{% endblock %}" }}
+{{ "</twig:block>" }}
 
-{{ "{% block content %}" }}
+{{ "<twig:block name="content">" }}
     {{ "{% embed '@DevscastDashlite/component/card/_detail.html.twig' %}" }}
         {{ "{% import '@DevscastDashlite/component/_macros.html.twig' as _ %}" }}
-        {{ "{% block detail_card_body %}" }}
+        {{ "<twig:block name="detail_card_body">" }}
             {{ "{% import '@DevscastDashlite/component/_macros.html.twig' as _ %}" }}
                 <div class="nk-block">
                     <div class="nk-block">
@@ -48,6 +48,6 @@
                         </div>
                     </div>
                 </div>
-        {{ "{% endblock %}" }}
+        {{ "</twig:block>" }}
     {{ "{% endembed %}" }}
-{{ "{% endblock %}" }}
+{{ "</twig:block>" }}

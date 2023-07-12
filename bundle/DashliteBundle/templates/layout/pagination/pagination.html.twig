@@ -4,12 +4,12 @@
             {% if previous is defined %}
                 <li class="page-item">
                     <a class="page-link" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
-                        <twig:icon name="arrow-left"/>
+                        <twig:Icon name="arrow-left"/>
                     </a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <span class="page-link"><twig:icon name="arrow-left"/></span>
+                    <span class="page-link"><twig:Icon name="arrow-left"/></span>
                 </li>
             {% endif %}
 
@@ -23,7 +23,7 @@
                     </li>
                 {% elseif startPage != 2 %}
                     <li class="page-item disabled">
-                        <span class="page-link"><twig:icon name="more-h"/></span>
+                        <span class="page-link"><twig:Icon name="more-h"/></span>
                     </li>
                 {% endif %}
             {% endif %}
@@ -44,7 +44,7 @@
                 {% if pageCount > (endPage + 1) %}
                     {% if pageCount > (endPage + 2) %}
                         <li class="page-item disabled">
-                            <span class="page-link"><twig:icon name="more-h"/></span>
+                            <span class="page-link"><twig:Icon name="more-h"/></span>
                         </li>
                     {% else %}
                         <li class="page-item">
@@ -64,13 +64,13 @@
             {% if next is defined %}
                 <li class="page-item">
                     <a class="page-link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
-                        <twig:icon name="arrow-right"/>
+                        <twig:Icon name="arrow-right"/>
                     </a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
                     <span class="page-link">
-                         <twig:icon name="arrow-right"/>
+                         <twig:Icon name="arrow-right"/>
                     </span>
                 </li>
             {% endif %}

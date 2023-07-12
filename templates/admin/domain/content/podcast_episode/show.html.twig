@@ -1,41 +1,41 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title "Podcast #{data.id}" %}
-{% block wideContentClass 'wide-xxl' %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ "Podcast #{data.id}" }}</twig:block>
+<twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
-{% block header %}
+<twig:block name="header">
     {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        {% block header_title %}
+        <twig:block name="header_title">
             Podcasts / <strong class="text-primary small">{{ data.name }}</strong>
-        {% endblock %}
-        {% block header_description %}
+        </twig:block>
+        <twig:block name="header_description">
             <ul class="list-inline">
                 <li>ID : <span class="text-base">{{ data.id }}</span></li>
                 <li>Création : <span class="text-base">{{ data.createdAt | date }}</span></li>
                 <li>Publication : <span class="text-base">{{ data.scheduledAt | date }}</span> </li>
             </ul>
-        {% endblock %}
-        {% block header_action_list %}
+        </twig:block>
+        <twig:block name="header_action_list">
             <li>
                 <a href="{{ path('admin_content_podcast_episode_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    <twig:icon name="arrow-long-left"/>
+                    <twig:Icon name="arrow-long-left"/>
                     <span>Tous les podcasts</span>
                 </a>
             </li>
             <li>
                 <a href="{{ path('admin_content_podcast_episode_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    <twig:icon name="edit-alt-fill"/>
+                    <twig:Icon name="edit-alt-fill"/>
                     <span>{{ 'global.edit' | trans([], 'messages') }}</span>
                 </a>
             </li>
-        {% endblock %}
+        </twig:block>
     {% endembed %}
-{% endblock %}
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
         {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-        {% block detail_card_tabs %}
+        <twig:block name="detail_card_tabs">
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
@@ -44,12 +44,12 @@
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
                     <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
-                        <twig:icon name="user-list-fill"/>
+                        <twig:Icon name="user-list-fill"/>
                     </a>
                 </li>
             </ul>
-        {% endblock %}
-        {% block detail_card_body %}
+        </twig:block>
+        <twig:block name="detail_card_body">
             <div class="nk-block">
                 <div class="nk-block">
                     <div class="nk-block-head">{{ data.content }}</div>
@@ -71,8 +71,8 @@
                     </div>
                 </div>
             </div>
-        {% endblock %}
-        {% block detail_card_aside %}
+        </twig:block>
+        <twig:block name="detail_card_aside">
             <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
                  data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
                 <div class="card-inner-group">
@@ -159,6 +159,6 @@
                     </div>
                 </div>
             </div>
-        {% endblock %}
+        </twig:block>
     {% endembed %}
-{% endblock %}
+</twig:block>

@@ -1,9 +1,9 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Dashboard Utilisateurs' %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ 'Dashboard Utilisateurs' }}</twig:block>
 
-{% block header %}
+<twig:block name="header">
     {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Dashboard utilisateurs' %}
+        <twig:block name="header_title">{{ 'Dashboard utilisateurs' }}</twig:block>
     {% endembed %}
-{% endblock %}
+</twig:block>

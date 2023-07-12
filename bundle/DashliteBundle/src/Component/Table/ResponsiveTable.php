@@ -15,4 +15,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 final class ResponsiveTable
 {
     public mixed $data;
+    public ?string $emptyStatePath = null;
+    public ?string $emptyStateAction = null;
+    public bool $separated = true;
 }

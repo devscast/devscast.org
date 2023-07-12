@@ -6,7 +6,7 @@
         <span class="bq-note-added">Ajouter le <span class="date">{{ this.date | date('d M, Y') }}</span> à <span class="time">{{ this.date | date('m') }}</span></span>
         <span class="bq-note-sep sep">|</span>
         <span class="bq-note-by">par <span>{{ this.author }}</span></span>
-        <twig:block name="actions">
+        <twig:block name="content">
             <a href="#" class="link link-sm link-danger">Supprimer</a>
         </twig:block>
     </div>

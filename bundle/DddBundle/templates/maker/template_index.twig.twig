@@ -1,31 +1,31 @@
 {{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
-{{  "{% block sidebar include('@admin/shared/_sidebar.html.twig') %}" }}
-{{ "{% block title '#{entity}' %}" | raw }}
+{{  "<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>" }}
+{{ "<twig:block name="title">{{ '#{entity}' }}</twig:block>" | raw }}
 
-{{ "{% block header %}" }}
+{{ "<twig:block name="header">" }}
     {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
-        {{ "{% block header_title 'Listing' %}" }}
-        {{ "{% block header_action_list %}" }}
+        {{ "<twig:block name="header_title">{{ 'Listing' }}</twig:block>" }}
+        {{ "<twig:block name="header_action_list">" }}
             <li class="btn-group">
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_new') }}" | raw }}" class="btn btn-white btn-dim btn-outline-light">
-                    {{ "<twig:icon name="plus"/>" | raw }}
+                    {{ "<twig:Icon name="plus"/>" | raw }}
                     <span>Ajouter</span>
                 </a>
             </li>
-        {{ "{% endblock %}" }}
+        {{ "</twig:block>" }}
     {{ "{% endembed %}" }}
-{{ "{% endblock %}" }}
+{{ "</twig:block>" }}
 
 
-{{ "{% block content %}" }}
+{{ "<twig:block name="content">" }}
     {{ "{% embed '@DevscastDashlite/component/card/_list.html.twig' with {_action: 'Ajouter', _path: path('admin_#{domain}_#{entity}_new')} %}" | raw }}
-        {{ "{% block list_card_table %}" }}
+        {{ "<twig:block name="list_card_table">" }}
             {{ "{% embed '@DevscastDashlite/component/_responsive_table.html.twig' %}" | raw }}
-                {{ "{% block responsive_table_head %}" }}
+                {{ "<twig:block name="responsive_table_head">" }}
                     <div class="nk-tb-col"><span class="sub-text">Nom</span></div>
                     <div class="nk-tb-col nk-tb-col-tools"></div>
-                {{ "{% endblock %}" }}
-                {{ "{% block responsive_table_body %}" }}
+                {{ "</twig:block>" }}
+                {{ "<twig:block name="responsive_table_body">" }}
                     {{ "{% for item in data %}" }}
                         <div class="nk-tb-item">
                             <div class="nk-tb-col tb-col-lg"><span>{{ "{{ item.name | u.truncate(110, '...') }}" | raw }}</span></div>
@@ -33,18 +33,18 @@
                                 <ul class="nk-tb-actions gx-1">
                                     <li class="nk-tb-action-hidden">
                                         <a href="{{ "{{ path('admin_#{domain}_#{entity}_show', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                            {{ "<twig:icon name="eye"/>" | raw }}
+                                            {{ "<twig:Icon name="eye"/>" | raw }}
                                         </a>
                                         <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                            {{ "<twig:icon name="edit"/>" | raw }}
+                                            {{ "<twig:Icon name="edit"/>" | raw }}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     {{ "{% endfor %}" }}
-                {{ "{% endblock %}" }}
+                {{ "</twig:block>" }}
             {{ "{% endembed %}" }}
-        {{ "{% endblock %}" }}
+        {{ "</twig:block>" }}
     {{ "{% endembed %}" }}
-{{ "{% endblock %}" }}
+{{ "</twig:block>" }}

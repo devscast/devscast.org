@@ -1,7 +1,7 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ user.username }},
 
@@ -12,4 +12,4 @@
             si vous ne définissez pas un mot de passe.
         {% endif %}
     {% endapply %}
-{% endblock %}
+</twig:block>

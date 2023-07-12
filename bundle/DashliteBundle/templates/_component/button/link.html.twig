@@ -1,0 +1,23 @@
+<a
+    href="{{ this.path }}"
+    class="
+        btn btn-{{ this.size }}
+        btn-{{ this.color }}
+        {{ this.trigger ? 'text-soft btn-trigger' : '' }}
+        {{ this.iconOnly ? 'btn-icon' : '' }}
+        {{ this.dimmed ? 'btn-dim' : '' }}
+        {{ this.outlined ? 'btn-outline-' ~ this.variant : '' }}
+        {{ this.rounded ? 'btn-round' }}"
+>
+    {% if not this.iconOnly %}
+        {% if this.icon and this.iconPosition == 'left' %}
+            <twig:Icon name="{{ this.icon }}"/>
+        {% endif %}
+        <span>{{ this.name }}</span>
+        {% if this.icon and this.iconPosition == 'right' %}
+            <twig:Icon name="{{ this.icon }}"/>
+        {% endif %}
+    {% else %}
+        <twig:Icon name="{{ this.icon }}"/>
+    {% endif %}
+</a>

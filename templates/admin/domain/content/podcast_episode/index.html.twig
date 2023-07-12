@@ -1,59 +1,34 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Podcasts' %}
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ 'Podcasts' }}</twig:block>
 
-{% block header %}
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Podcasts' %}
-        {% block header_action_list %}
-            <li class="btn-group">
-                <a href="{{ path('admin_content_podcast_episode_new') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="plus"/>
-                    <span>Ajouter</span>
-                </a>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+<twig:block name="header">
+    <twig:Header title="Podcasts">
+        <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_podcast_episode_new') }}" />
+        <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
+    </twig:Header>
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
-                _action: 'Ajouter un épisode',
-                _path: path('admin_content_podcast_episode_new')
-            } %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
-                    <th>Name</th>
-                    <th>Audio</th>
-                    <th>En ligne</th>
-                    <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.name | u.truncate(50, '...') }}</td>
-                            <td><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(row, 'audio_file') }}"></audio></td>
-                            <td>{{ row.isOnline | boolean }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_podcast_episode_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        <twig:icon name="eye"/>
-                                    </a>
-                                    <a href="{{ path('admin_content_podcast_episode_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:icon name="edit"/>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endblock %}
-            {% endembed %}
+            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_podcast_episode_new') }}"  emptyStateAction="Ajouter un podcast" >
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Nom" col />
+                    <twig:ResponsiveTableColumn value="Audio" col />
+                    <twig:ResponsiveTableColumn value="En ligne ?" col />
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
+
+                <twig:ResponsiveTableColumn value="{{ item.name | u.truncate(50, '...') }}" />
+                <twig:ResponsiveTableColumn><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(item, 'audio_file') }}"></audio></twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.isOnline | boolean }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_show', {id: item.id}) }}" icon="eye" />
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_edit', {id: item.id}) }}" icon="edit" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
-{% endblock %}
+</twig:block>

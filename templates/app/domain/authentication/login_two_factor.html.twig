@@ -1,7 +1,7 @@
 {% extends '@app/domain/authentication/layout/base.html.twig' %}
-{% block title 'authentication.titles.login_two_factor' | trans([], 'authentication') %}
+<twig:block name="title">{{ 'authentication.titles.login_two_factor' | trans([], 'authentication') }}</twig:block>
 
-{% block content %}
+<twig:block name="content">
 <div class="mt-8 bg-white border border-neutral-light rounded-3xl shadow-2xl shadow-neutral-300/20 dark:shadow-none dark:border-neutral-700 dark:bg-neutral-800 -mx-6 sm:-mx-10 p-8 sm:p-10 xl:p-12 2xl:p-16">
     <h1 class="text-2xl text-neutral-800 dark:text-white">{{ 'authentication.titles.login_two_factor' | trans([], 'authentication') }}</h1>
     {% if authenticationError %}
@@ -59,4 +59,4 @@
         <button>{{ 'global.resend'|trans({}, 'messages') }}</button>
     </form>
 </div>
-{% endblock %}
+</twig:block>

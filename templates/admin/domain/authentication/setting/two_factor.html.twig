@@ -1,9 +1,9 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'authentication.titles.settings.two_factor' | trans([], 'authentication') %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ 'authentication.titles.settings.two_factor' | trans([], 'authentication') }}</twig:block>
 {% form_theme form '@DevscastDashlite/layout/form_theme.html.twig' %}
 
-{% block content %}
+<twig:block name="content">
     <div class="card">
         <div class="card-aside-wrap">
             <div class="card-inner card-inner-lg">
@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-primary mt-4">
-                                        <twig:icon name="save-fill"/>
+                                        <twig:Icon name="save-fill"/>
                                         <span>{{ 'global.submit' | trans([], 'messages') }}</span>
                                     </button>
                                 </div>
@@ -52,4 +52,4 @@
             {% include '@admin/domain/authentication/component/_setting_sidebar.html.twig' %}
         </div>
     </div>
-{% endblock %}
+</twig:block>

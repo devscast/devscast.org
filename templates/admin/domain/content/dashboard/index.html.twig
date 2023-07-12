@@ -1,9 +1,6 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Dashboard Contenus' %}
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ 'Dashboard Contenus' }}</twig:block>
 
-{% block header %}
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Dashboard Contenus' %}
-    {% endembed %}
-{% endblock %}
+<twig:block name="header">
+    <twig:Header title="Dashboard contenus" />
+</twig:block>

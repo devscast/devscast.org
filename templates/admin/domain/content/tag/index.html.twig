@@ -1,56 +1,31 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Tags' %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ 'Tags' }}</twig:block>
 
+<twig:block name="header">
+    <twig:Header title="Tags">
+        <twig:block name="content">
+            <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
+                <twig:Icon name="plus"/>
+                <span>Ajouter</span>
+            </button>
+            <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
+                <twig:Icon name="bar-chart"/>
+                <span>Statistiques</span>
+            </a>
+        </twig:block>
+    </twig:Header>
+</twig:block>
 
-
-{% block header %}
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Tags' %}
-        {% block header_action_list %}
-            <li class="btn-group">
-                <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="plus"/>
-                    <span>Ajouter</span>
-                </button>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
-
-{% block content %}
-    {% include '@DevscastDashlite/component/_modal.html.twig' with {_action: 'Ajouter un tag', _path: path('admin_content_tag_new')} %}
+<twig:block name="content">
+    <twig:Modal path="{{ path('admin_content_tag_new') }}" action="Ajouter un tag" />
 
     <div class="row g-gs mb-4">
         <div class="col-12">
             {% embed "@DevscastDashlite/component/card/_list.html.twig" %}
                 {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
-                    <th>Nom</th>
-                    <th>Contenus</th>
-                    <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.name }}</td>
-                            <td>{{ row.contentCount }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_tag_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:icon name="edit"/>
-                                    </a>
-                                </div>
-                                {{ _.delete_icon_button('admin_content_tag_delete', row) }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endblock %}
+
             {% endembed %}
         </div>
     </div>
-{% endblock %}
+</twig:block>

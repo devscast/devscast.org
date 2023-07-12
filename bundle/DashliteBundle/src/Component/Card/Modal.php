@@ -16,4 +16,5 @@ final class Modal
 {
     public string $action;
     public string $path;
+    public string $position = 'top';
 }

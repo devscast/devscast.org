@@ -1,7 +1,7 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ user.username }},
 
@@ -9,16 +9,16 @@
 
         {%- if _format == 'html' -%}
             {% embed '@app/shared/layout/mail/section.html.twig' %}
-                {% block content %}
+                <twig:block name="content">
                     <div style="text-align: center">
                         <code>
                             <strong>{{ user.emailAuthCode }}</strong>
                         </code>
                     </div>
-                {% endblock %}
+                </twig:block>
             {% endembed %}
         {%- else -%}
             {{ user.emailAuthCode }}
         {%- endif -%}
     {% endapply %}
-{% endblock %}
+</twig:block>

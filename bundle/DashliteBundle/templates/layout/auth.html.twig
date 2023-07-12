@@ -6,7 +6,7 @@
         <meta name="author" content="devscast">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" href="{{ asset('/images/icon.jpg') }}">
-        <title>{% block title %}Connexion{% endblock %} | Okademy Backend </title>
+        <title><twig:block name="title">Connexion</twig:block> | Okademy Backend </title>
         {{ encore_entry_link_tags('admin') }}
 
         <script type="application/javascript" src="{{ asset('/static/bundle.js') }}"></script>
@@ -24,13 +24,13 @@
                         <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
                             <div class="nk-block nk-block-middle nk-auth-body">
                                 <div class="brand-logo pb-5">
-                                    {% block logo %}
+                                    <twig:block name="logo">
                                         <a href="{{ path('app_index') }}" class="logo-link">
                                             <img class="logo-img logo-img-lg" width="50%" src="{{ asset('/logo.png') }}" alt="logo">
                                         </a>
-                                    {% endblock %}
+                                    </twig:block>
                                 </div>
-                                {% block body %}{% endblock %}
+                                <twig:block name="body"></twig:block>
                             </div>
                             <div class="nk-block nk-auth-footer">
                                 <div class="mt-3"><p>© {{ 'now' | date('Y') }} Developed by <a href="https://devscast.tech">Devscast</a> .</p></div>

@@ -1,8 +1,8 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'authentication.titles.settings.security' | trans([], 'authentication') %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ 'authentication.titles.settings.security' | trans([], 'authentication') }}</twig:block>
 
-{% block content %}
+<twig:block name="content">
     <div class="card">
         <div class="card-aside-wrap">
             <div class="card-inner card-inner-lg">
@@ -91,7 +91,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="{{ path('authentication_setting_backup_codes_export') }}" class="btn btn-primary">
-                                                        <twig:icon name="download"/>
+                                                        <twig:Icon name="download"/>
                                                         <span>Télécharger (csv)</span>
                                                     </a>
                                                 </li>
@@ -107,4 +107,4 @@
             {% include '@admin/domain/authentication/component/_setting_sidebar.html.twig' %}
         </div>
     </div>
-{% endblock %}
+</twig:block>

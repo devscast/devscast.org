@@ -1,58 +1,49 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">Utilisateurs</twig:block>
 
 <twig:block name="header">
     <twig:Header title="Utilisateurs" :data="data">
-        <twig:block name="actions">
-            <a href="{{ path('admin_authentication_user_new') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="Ajouter un utilisateur" title="Ajouter un utilisateur">
-                <twig:icon name="plus"/>
-                <span>Ajouter</span>
-            </a>
-            <a href="{{ path('admin_authentication_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                <twig:icon name="bar-chart"/>
-                <span>Statistiques</span>
-            </a>
-        </twig:block>
+        <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_authentication_user_new') }}" icon="plus" />
+        <twig:HeaderLinkButton name="Statistiques" path="{{ path('admin_authentication_dashboard_index') }}" icon="bar-chart" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% if data is defined and data | length > 0 %}
-                <twig:TableResponsive :data="data">
-                    <twig:block name="header">
-                        <div class="nk-tb-col"><span class="sub-text">Name</span></div>
-                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Email</span></div>
-                        <div class="nk-tb-col"><span class="sub-text">Confirmé</span></div>
-                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Pays</span></div>
-                        <div class="nk-tb-col nk-tb-col-tools"></div>
-                    </twig:block>
+            <twig:ResponsiveTable :data="data" separated>
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="utilisateur" col/>
+                    <twig:ResponsiveTableColumn value="Github" col />
+                    <twig:ResponsiveTableColumn value="Rôles" col />
+                    <twig:ResponsiveTableColumn value="Confirmé" col />
+                    <twig:ResponsiveTableColumn value="Pays" col />
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
 
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col">{{ item.name }}</div>
-                        <div class="nk-tb-col tb-col-lg">{{ item.email }}</div>
-                        <div class="nk-tb-col">{{ item.confirmed | boolean }}</div>
-                        <div class="nk-tb-col">{{ item.country | flag }}</div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="{{ path('admin_authentication_user_show', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        <twig:icon name="eye"/>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <twig:DeleteButton path="{{ path('admin_authentication_user_delete', {id: item.id}) }}" :item="item" />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </twig:TableResponsive>
-            {% else %}
-                <twig:EmptyStateCard path="{{ path('admin_authentication_user_index') }}" action="Ajouter un utilisateur" />
-            {% endif %}
+                <twig:ResponsiveTableColumn>
+                    <twig:UserAvatarLink
+                        path="{{ path('admin_authentication_user_show', {id: item.id}) }}"
+                        username="{{ item.username }}"
+                        surname="{{ item.email }}"
+                        avatarUrl="{{ vich_uploader_asset(item, 'avatar_file') }}"
+                    />
+                </twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>
+                    <a href="{{ item.githubUrl }}" title="github of {{ item.username }}" target="_blank">{{ item.githubUrl }}</a>
+                </twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.roles | join(' ') | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.confirmed | boolean }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.country | flag }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_authentication_user_show', {id: item.id}) }}" icon="eye" />
+                        <twig:ResponsiveTableAction>
+                            <twig:DeleteButton path="{{ path('admin_authentication_user_delete', {id: item.id}) }}" :item="item" />
+                        </twig:ResponsiveTableAction>
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

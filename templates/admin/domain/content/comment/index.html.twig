@@ -1,50 +1,42 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title "Commentaires" %}
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ "Commentaires" }}</twig:block>
 
-{% block header %}
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Commentaires' %}
-        {% block header_action_list %}
-            <li class="btn-group">
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+<twig:block name="header">
+    <twig:Header title="Commentaires">
+        <twig:HeaderLinkButton name="Statistiques" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
+    </twig:Header>
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
-                    <th>Auteur</th>
-                    <th>Contenu</th>
-                    <th>Commentaire</th>
-                    <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.owner.username }}</td>
-                            <td>{{ (row.target.contentType.translationKey | trans([], 'content') ~ ' ' ~ row.target.id) | badge }}</td>
-                            <td>{{ row.content }}</td>
-                            <td>
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_comment_reply', {id: row.id}) }}" class="btn btn-sm btn-primary" title="répondre">
-                                        Répondre
-                                    </a>
-                                </div>
-                                {{ _.delete_icon_button('admin_content_comment_delete', row) }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endblock %}
-            {% endembed %}
+            <twig:ResponsiveTable :data="data" separated>
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Auteur" col />
+                    <twig:ResponsiveTableColumn value="Content" col />
+                    <twig:ResponsiveTableColumn value="Commentaire" col />
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
+
+                <twig:ResponsiveTableColumn>
+                    <twig:UserAvatarLink
+                        path="{{ path('admin_authentication_user_show', {id: item.owner.id}) }}"
+                        username="{{ item.owner.username }}"
+                        surname="{{ item.owner.email }}"
+                        avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
+                    />
+                </twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.target.contentType.translationKey | trans({}, 'content') | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn value="{{ item.content }}" />
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_comment_reply', {id: item.id}) }}" icon="chat"  />
+                        <twig:ResponsiveTableAction>
+                            <twig:DeleteButton path="{{ path('admin_content_comment_delete', {id: item.id}) }}" :item="item" />
+                        </twig:ResponsiveTableAction>
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
-{% endblock %}
+</twig:block>

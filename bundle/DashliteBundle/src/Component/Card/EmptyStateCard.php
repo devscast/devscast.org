@@ -14,7 +14,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 #[AsTwigComponent]
 final class EmptyStateCard
 {
-    public string $action;
-    public string $path;
-    public string $label;
+    public ?string $action = null;
+    public ?string $path = null;
+    public ?string $label = null;
 }

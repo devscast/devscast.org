@@ -1,61 +1,42 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Articles' %}
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ 'Articles' }}</twig:block>
 
-{% block header %}
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Articles' %}
-        {% block header_action_list %}
-            <li class="btn-group">
-                <a href="{{ path('admin_content_post_new') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="plus"/>
-                    <span>Ajouter</span>
-                </a>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+<twig:block name="header">
+    <twig:Header title="Articles">
+        <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_content_post_new') }}" icon="plus" />
+    </twig:Header>
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
-                _action: 'Ajouter un article',
-                _path: path('admin_content_post_new')
-            } %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
-                    <th>Name</th>
-                    <th>Lecture</th>
-                    <th>Auteur</th>
-                    <th>Statut</th>
-                    <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.name }}</td>
-                            <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
-                            <td><a href="{{ path('admin_authentication_user_show', {id: row.owner.id}) }}">{{ row.owner.name }}</a></td>
-                            <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_post_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        <twig:icon name="eye"/>
-                                    </a>
-                                    <a href="{{ path('admin_content_post_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:icon name="edit"/>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endblock %}
-            {% endembed %}
+            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_post_new') }}" emptyStateAction="Ajouter un article">
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Auteur" col />
+                    <twig:ResponsiveTableColumn value="Titre" col />
+                    <twig:ResponsiveTableColumn value="Lectures" col />
+                    <twig:ResponsiveTableColumn value="Statut" col />
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
+
+                <twig:ResponsiveTableColumn>
+                    <twig:UserAvatarLink
+                        path="{{ path('admin_authentication_user_show', {id: item.owner.id}) }}"
+                        username="{{ item.owner.username }}"
+                        surname="{{ item.owner.email }}"
+                        avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
+                    />
+                </twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn value="{{ item.name }}" />
+                <twig:ResponsiveTableColumn>{{ item.viewCount }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_post_show', {id: item.id}) }}" icon="eye" />
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_post_edit', {id: item.id}) }}" icon="edit" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
-{% endblock %}
+</twig:block>

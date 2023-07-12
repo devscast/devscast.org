@@ -18,6 +18,24 @@
                 template="@DevscastDashlite/_component/table/responsive.html.twig"
             />
         </service>
+        <service id="dashlite.twig.component.table.responsive.column" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\ResponsiveTableColumn" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/table/responsive/column.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.table.responsive.tools" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\ResponsiveTableTools" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/table/responsive/tools.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.table.responsive.action" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\ResponsiveTableAction" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/table/responsive/action.html.twig"
+            />
+        </service>
         <service id="dashlite.twig.component.table.bordered" class="Devscast\Bundle\DashliteBundle\Component\Table\BorderedTable" public="true">
             <tag
                 name="twig.component"
@@ -88,6 +106,30 @@
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/_component/button/delete.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.button.modal" class="Devscast\Bundle\DashliteBundle\Component\Button\ModalButton" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/button/modal.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.button.link" class="Devscast\Bundle\DashliteBundle\Component\Button\LinkButton" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/button/link.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.button.header_link" class="Devscast\Bundle\DashliteBundle\Component\Button\HeaderLinkButton" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/button/link.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.button.user_avatar_link" class="Devscast\Bundle\DashliteBundle\Component\Button\UserAvatarLink" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/button/user_avatar_link.html.twig"
             />
         </service>
 

@@ -1,26 +1,26 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
-{% block sidebar include('@admin/shared/_sidebar.html.twig') %}
-{% block title 'Formations' %}
+<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+<twig:block name="title">{{ 'Formations' }}</twig:block>
 
-{% block header %}
+<twig:block name="header">
     {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        {% block header_title 'Formations' %}
-        {% block header_action_list %}
+        <twig:block name="header_title">{{ 'Formations' }}</twig:block>
+        <twig:block name="header_action_list">
             <li class="btn-group">
                 <a href="{{ path('admin_content_training_new') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="plus"/>
+                    <twig:Icon name="plus"/>
                     <span>Ajouter</span>
                 </a>
                 <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:icon name="bar-chart"/>
+                    <twig:Icon name="bar-chart"/>
                     <span>Statistiques</span>
                 </a>
             </li>
-        {% endblock %}
+        </twig:block>
     {% endembed %}
-{% endblock %}
+</twig:block>
 
-{% block content %}
+<twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
             {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
@@ -28,13 +28,13 @@
                 _path: path('admin_content_training_new')
             } %}
                 {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                {% block list_card_table_head %}
+                <twig:block name="list_card_table_head">
                     <th>Name</th>
                     <th>Lecture</th>
                     <th>Statut</th>
                     <th>&nbsp;</th>
-                {% endblock %}
-                {% block list_card_table_body %}
+                </twig:block>
+                <twig:block name="list_card_table_body">
                     {% for row in data %}
                         <tr>
                             <td>{{ row.name }}</td>
@@ -43,17 +43,17 @@
                             <td class="tb-odr-action">
                                 <div class="tb-odr-btns d-none d-md-inline">
                                     <a href="{{ path('admin_content_training_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        <twig:icon name="eye"/>
+                                        <twig:Icon name="eye"/>
                                     </a>
                                     <a href="{{ path('admin_content_training_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:icon name="edit"/>
+                                        <twig:Icon name="edit"/>
                                     </a>
                                 </div>
                             </td>
                         </tr>
                     {% endfor %}
-                {% endblock %}
+                </twig:block>
             {% endembed %}
         </div>
     </div>
-{% endblock %}
+</twig:block>

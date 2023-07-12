@@ -1,56 +1,36 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">Catégories d'articles</twig:block>
 
 <twig:block name="header">
     <twig:Header title="Catégories d'articles" :data="data">
-        <twig:block name="actions">
-            <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                <twig:icon name="plus"/>
-                <span>Ajouter</span>
-            </button>
-            <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                <twig:icon name="bar-chart"/>
-                <span>Statistiques</span>
-            </a>
-        </twig:block>
+        <twig:ModalButton name="Ajouter" icon="plus" />
+        <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Modal action="Ajouter une catégorie" :path="path('admin_content_category_new')" />
+    <twig:Modal action="Ajouter une catégorie" path="{{ path('admin_content_category_new') }}" />
 
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% if data is defined and data | length > 0 %}
-                <twig:ResponsiveTable :data="data">
-                    <twig:block name="header">
-                        <div class="nk-tb-col"><span class="sub-text">Name</span></div>
-                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Articles</span></div>
-                        <div class="nk-tb-col nk-tb-col-tools"></div>
-                    </twig:block>
+            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_category_new') }}" emptyStateAction="Ajouter un catégorie">
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Nom" col />
+                    <twig:ResponsiveTableColumn value="Articles" responsive="tb-col-lg" col />
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
 
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col">{{ item.name }}</div>
-                        <div class="nk-tb-col tb-col-lg">{{ item.postCount }}</div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="{{ path('admin_content_category_edit', {id: item.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:icon name="edit"/>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <twig:DeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </twig:ResponsiveTable>
-            {% else %}
-                <twig:EmptyStateCard :path="path('admin_content_category_new')" action="Ajouter une catégorie" />
-            {% endif %}
+                <twig:ResponsiveTableColumn :value="item.name" />
+                <twig:ResponsiveTableColumn :value="item.postCount" responsive="tb-col-lg" />
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:ResponsiveTableAction>
+                            <twig:DeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
+                        </twig:ResponsiveTableAction>
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

@@ -1,17 +1,17 @@
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
 {% set _title = (data is defined and data) ? "Édition #{ _entity | trans([], _domain) }" : "Création #{_entity | trans([], _domain)}" %}
-{% block title _title %}
+<twig:block name="title">{{ _title }}</twig:block>
 
 <twig:block name="header">
     <twig:Header :title="_title">
-        <twig:block name="actions">
+        <twig:block name="content">
             <a href="{{ _index_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                <twig:icon name="arrow-long-left"/>
+                <twig:Icon name="arrow-long-left"/>
                 <span>Toutes les entrées</span>
             </a>
             {% if _show_url %}
                 <a href="{{ _show_url }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.show' | trans }}" title="{{ 'global.show' | trans }}">
-                    <twig:icon name="eye"/>
+                    <twig:Icon name="eye"/>
                     <span>revenir aux détails</span>
                 </a>
             {% endif %}

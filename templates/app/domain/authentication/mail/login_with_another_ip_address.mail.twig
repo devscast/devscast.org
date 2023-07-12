@@ -1,7 +1,7 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ user.username }},
 
@@ -9,4 +9,4 @@
         si vous n'êtes pas l'auteur de cette connexion, sécurisez votre compte en changeant le mot de passe
         maintenant, dans le cas contraire veuillez tout simplement ignorez cette notification de sécurité.
     {% endapply %}
-{% endblock %}
+</twig:block>

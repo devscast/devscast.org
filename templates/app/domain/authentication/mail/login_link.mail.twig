@@ -1,7 +1,7 @@
 {% extends _layout %}
 {% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
-{% block body %}
+<twig:block name="body">
     {% apply markdown_email %}
         # Hey {{ user.username }},
 
@@ -10,12 +10,12 @@
 
         {%- if _format == 'html' -%}
             {% embed '@app/shared/layout/mail/section.html.twig' %}
-                {% block content %}
+                <twig:block name="content">
                     <div style="text-align: center">
                         Scanner le QRCode pour vous connecter ou utiliser le lien direct
                         <img src="{{ qr_code_data_uri(event.link.url) }}" title="scanner le qrcode pour vous connecter" alt="qrcode de connexion" />
                     </div>
-                {% endblock %}
+                </twig:block>
             {% endembed %}
         {%- endif -%}
 
@@ -30,4 +30,4 @@
 
         Vous pouvez également <a rel="noopener" href="{{ url('authentication_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
     {% endapply %}
-{% endblock %}
+</twig:block>
