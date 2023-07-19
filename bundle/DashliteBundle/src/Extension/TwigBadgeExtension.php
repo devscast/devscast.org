@@ -32,16 +32,19 @@ class TwigBadgeExtension extends AbstractExtension
         ];
     }
 
-    public function boolean(int $value): string
+    public function boolean(int $value, ?string $true = null, ?string $false = null): string
     {
+        $true ??= 'OUI';
+        $false ??= 'NON';
+
         if (1 === $value) {
             return <<< HTML
-                <span class="text-success fw-bold">OUI</span>
+                <span class="text-success fw-bold">{$true}</span>
             HTML;
         }
 
         return <<< HTML
-            <span class="text-danger fw-bold">NON</span>
+            <span class="text-danger fw-bold">{$false}</span>
             HTML;
     }
 

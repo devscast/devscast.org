@@ -1,56 +1,35 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">{{ "Technologies" }}</twig:block>
 
 <twig:block name="header">
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        <twig:block name="header_title">{{ 'Technologies' }}</twig:block>
-        <twig:block name="header_action_list">
-            <li class="btn-group">
-                <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="plus"/>
-                    <span>Ajouter</span>
-                </button>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        </twig:block>
-    {% endembed %}
+    <twig:Header>
+        <twig:FormModalButton name="Ajouter une technologie" icon="plus" path="{{ path('admin_content_technology_new') }}" />
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    {% include '@DevscastDashlite/component/_modal.html.twig' with {_action: 'Ajouter un technologie', _path: path('admin_content_technology_new')} %}
-
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                <twig:block name="list_card_table_head">
-                    <th>&nbsp;</th>
-                    <th>Nom</th>
-                    <th>Contenus</th>
-                    <th>&nbsp;</th>
-                </twig:block>
-                <twig:block name="list_card_table_body">
-                    {% for row in data %}
-                        <tr>
-                            <td><img src="{{ vich_uploader_asset(row, 'thumbnail_file') }}" width="150" alt="{{ row.name }}"></td>
-                            <td>{{ row.name }}</td>
-                            <td>{{ row.contentCount }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_technology_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:Icon name="edit"/>
-                                    </a>
-                                </div>
-                                {{ _.delete_icon_button('admin_content_technology_delete', row) }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </twig:block>
-            {% endembed %}
+            <twig:ResponsiveTable :data="data" emptyStateAction="Ajouter une technologie" emptyStatePath="{{ path('admin_content_technology_new') }}">
+               <twig:block name="header">
+                   <twig:ResponsiveTableColumn col />
+                   <twig:ResponsiveTableColumn value="Nom" col />
+                   <twig:ResponsiveTableColumn value="contenus" col />
+                   <twig:ResponsiveTableColumn tools />
+               </twig:block>
+
+                <twig:ResponsiveTableColumn>
+                    <img src="{{ vich_uploader_asset(item, 'thumbnail_file') }}" width="150" alt="{{ item.name }}">
+                </twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn value="{{ item.name }}" />
+                <twig:ResponsiveTableColumn value="{{ item.contentCount }}" />
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_technology_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DeleteButton :item="item" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

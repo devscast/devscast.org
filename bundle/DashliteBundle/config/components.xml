@@ -100,6 +100,24 @@
                 template="@DevscastDashlite/_component/data/item.html.twig"
             />
         </service>
+        <service id="dashlite.twig.component.data.meta_item" class="Devscast\Bundle\DashliteBundle\Component\Data\MetaDataItem" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/data/meta_item.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.data.meta_section" class="Devscast\Bundle\DashliteBundle\Component\Data\MetaDataSection" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/data/meta_section.html.twig"
+            />
+        </service>
+        <service id="dashlite.twig.component.data.meta_list" class="Devscast\Bundle\DashliteBundle\Component\Data\MetaDataList" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/_component/data/meta_list.html.twig"
+            />
+        </service>
 
         <!-- button -->
         <service id="dashlite.twig.component.button.delete" class="Devscast\Bundle\DashliteBundle\Component\Button\DeleteButton" public="true">
@@ -108,10 +126,10 @@
                 template="@DevscastDashlite/_component/button/delete.html.twig"
             />
         </service>
-        <service id="dashlite.twig.component.button.modal" class="Devscast\Bundle\DashliteBundle\Component\Button\ModalButton" public="true">
+        <service id="dashlite.twig.component.button.modal" class="Devscast\Bundle\DashliteBundle\Component\Button\FormModalButton" public="true">
             <tag
                 name="twig.component"
-                template="@DevscastDashlite/_component/button/modal.html.twig"
+                template="@DevscastDashlite/_component/button/form_modal.html.twig"
             />
         </service>
         <service id="dashlite.twig.component.button.link" class="Devscast\Bundle\DashliteBundle\Component\Button\LinkButton" public="true">

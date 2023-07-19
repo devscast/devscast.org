@@ -1,0 +1,13 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ "Formation #{data.name}" }}</twig:block>
+<twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
+
+<twig:block name="header">
+    <twig:Header title="Détails de la formation">
+        <twig:HeaderLinkButton name="Toutes les formations" path="{{ path('admin_content_podcast_season_index') }}" icon="arrow-long-left" />
+        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+        <twig:DeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
+    </twig:Header>
+</twig:block>
+
+<twig:block name="content"></twig:block>

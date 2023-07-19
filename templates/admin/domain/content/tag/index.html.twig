@@ -1,31 +1,31 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
 <twig:block name="title">{{ 'Tags' }}</twig:block>
 
 <twig:block name="header">
     <twig:Header title="Tags">
-        <twig:block name="content">
-            <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                <twig:Icon name="plus"/>
-                <span>Ajouter</span>
-            </button>
-            <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                <twig:Icon name="bar-chart"/>
-                <span>Statistiques</span>
-            </a>
-        </twig:block>
+        <twig:FormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_tag_new') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Modal path="{{ path('admin_content_tag_new') }}" action="Ajouter un tag" />
-
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
+            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_tag_new') }}" emptyStateAction="Ajouter un tag">
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Nom" col/>
+                    <twig:ResponsiveTableColumn tools />
+                </twig:block>
 
-            {% endembed %}
+                <twig:ResponsiveTableColumn value="{{ item.name }}" />
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_tag_show', {id: item.id}) }}" icon="eye" />
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_tag_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DeleteButton path="{{ path('admin_content_tag_delete', {id: item.id}) }}" :item="item" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

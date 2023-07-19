@@ -6,7 +6,7 @@
             <meta name="author" content="devscast">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link rel="shortcut icon" href="{{ asset('/images/logo.png') }}">
-            <title><twig:block name="title"></twig:block> | Administration | devscast.org</title>
+            <title>{% block title %}{% endblock %} | Administration | devscast.org</title>
 
             {# PWA support #}
             <meta name="theme-color" content="#05FFBA">
@@ -46,7 +46,7 @@
                                 <div class="nk-content-inner">
                                    <twig:block name="body">
                                        <div class="nk-content-body">
-                                           <div class="mx-auto <twig:block name="wideContentClass">wide-lg</twig:block>">
+                                           <div class="mx-auto {% block wideContentClass %}wide-lg{% endblock %}">
                                                <twig:block name="header"></twig:block>
                                                <div class="nk-block">
                                                    <twig:block name="content"></twig:block>

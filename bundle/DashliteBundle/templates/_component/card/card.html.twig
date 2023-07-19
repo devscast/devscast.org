@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-inner">
+    <div class="card-inner  {{ this.removePadding ? 'p-0' : '' }}">
         {% if this.title != '' %}
             <div class="card-head">
                 <h5 class="card-title">{{ this.title }}</h5>

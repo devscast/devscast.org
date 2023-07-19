@@ -3,12 +3,11 @@
 
 <twig:block name="header">
     <twig:Header title="Séries d'articles">
-        <twig:ModalButton name="Ajouter" icon="plus" />
+        <twig:FormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_post_series_new') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Modal path="{{ path('admin_content_post_series_new') }}" action="Créer une nouvelle série"  />
 
     <div class="row g-gs mb-4">
         <div class="col-12">

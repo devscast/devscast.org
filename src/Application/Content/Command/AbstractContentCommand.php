@@ -11,6 +11,7 @@ use Domain\Content\ValueObject\ContentStatus;
 use Domain\Content\ValueObject\ContentType;
 use Domain\Content\ValueObject\EducationLevel;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,7 +25,7 @@ abstract class AbstractContentCommand
     public EducationLevel $education_level;
     public ContentType $content_type;
 
-    public ?int $id = null;
+    public ?Uuid $id = null;
     public ?User $owner = null;
     #[Assert\NotBlank] public ?string $name = null;
     public ?string $slug = null;
@@ -60,7 +61,7 @@ abstract class AbstractContentCommand
         return $this;
     }
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

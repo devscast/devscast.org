@@ -1,0 +1,12 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ "Chapitre #{data.name}" }}</twig:block>
+<twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
+
+<twig:block name="header">
+    <twig:Header title="Détails du chapitre">
+        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_training_chapter_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+        <twig:DeleteButton path="{{ path('admin_content_training_chapter_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_training_chapter_index') }}" type="button" />
+    </twig:Header>
+</twig:block>
+
+<twig:block name="content"></twig:block>

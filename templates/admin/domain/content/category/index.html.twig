@@ -3,14 +3,12 @@
 
 <twig:block name="header">
     <twig:Header title="Catégories d'articles" :data="data">
-        <twig:ModalButton name="Ajouter" icon="plus" />
+        <twig:FormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_category_new') }}" />
         <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Modal action="Ajouter une catégorie" path="{{ path('admin_content_category_new') }}" />
-
     <div class="row g-gs mb-4">
         <div class="col-12">
             <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_category_new') }}" emptyStateAction="Ajouter un catégorie">

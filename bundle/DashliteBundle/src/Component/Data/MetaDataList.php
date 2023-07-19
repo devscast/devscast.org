@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Devscast\Bundle\DashliteBundle\Component\Card;
+namespace Devscast\Bundle\DashliteBundle\Component\Data;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /**
- * Class Card.
+ * Class MetaDataList.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsTwigComponent]
-final class Card
+final class MetaDataList
 {
-    public string $title = '';
-    public bool $removePadding = false;
 }

@@ -4,51 +4,16 @@
 <twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        <twig:block name="header_title">
-            Saisons / <strong class="text-primary small">{{ data.name }}</strong>
-        </twig:block>
-        <twig:block name="header_description">
-            <ul class="list-inline">
-                <li>ID : <span class="text-base">{{ data.id }}</span></li>
-                <li>Création : <span class="text-base">{{ data.createdAt | date }}</span></li>
-            </ul>
-        </twig:block>
-        <twig:block name="header_action_list">
-            <li>
-                <a href="{{ path('admin_content_podcast_season_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    <twig:Icon name="arrow-long-left"/>
-                    <span>Toutes les saisons</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    <twig:Icon name="edit-alt-fill"/>
-                    <span>{{ 'global.edit' | trans([], 'messages') }}</span>
-                </a>
-            </li>
-        </twig:block>
-    {% endembed %}
+    <twig:Header title="Détails de la saison">
+        <twig:HeaderLinkButton name="Tous les posts" path="{{ path('admin_content_podcast_season_index') }}" icon="arrow-long-left" />
+        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+        <twig:DeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
-        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-        <twig:block name="detail_card_tabs">
-            <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <span>Détails</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-item-trigger d-xxl-none">
-                    <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
-                        <twig:Icon name="user-list-fill"/>
-                    </a>
-                </li>
-            </ul>
-        </twig:block>
-        <twig:block name="detail_card_body">
+    <twig:Card>
+        <twig:block name="content">
             <div class="nk-block">
                 <div class="nk-block">
                     <div class="nk-block-head">
@@ -92,7 +57,9 @@
             </div>
 
         </twig:block>
-        <twig:block name="detail_card_aside">
+    </twig:Card>
+    <twig:Card>
+        <twig:block name="content">
             <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
                  data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
                 <div class="card-inner-group">
@@ -134,5 +101,5 @@
                 </div>
             </div>
         </twig:block>
-    {% endembed %}
+    </twig:Card>
 </twig:block>

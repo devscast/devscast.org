@@ -12,8 +12,9 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsTwigComponent]
-final class ModalButton
+final class FormModalButton
 {
     public string $name;
     public string $icon;
+    public ?string $path;
 }

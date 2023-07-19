@@ -1,54 +1,57 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
-<twig:block name="title">{{ "Série #{data.name}" }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ "Séries #{data.id}" }}</twig:block>
 <twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    {% embed "@DevscastDashlite/component/_header.html.twig" %}
-        <twig:block name="header_title">
-            Série / <strong class="text-primary small">{{ data.name }}</strong>
-        </twig:block>
-        <twig:block name="header_description">
-            <ul class="list-inline">
-                <li>ID : <span class="text-base">{{ data.id }}</span></li>
-                <li>Création : <span class="text-base">{{ data.createdAt | date }}</span></li>
-            </ul>
-        </twig:block>
-        <twig:block name="header_action_list">
-            <li>
-                <a href="{{ path('admin_content_post_series_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    <twig:Icon name="arrow-long-left"/>
-                    <span>Toutes les séries</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('admin_content_post_series_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    <twig:Icon name="edit-alt-fill"/>
-                    <span>{{ 'global.edit' | trans([], 'messages') }}</span>
-                </a>
-            </li>
-        </twig:block>
-    {% endembed %}
+    <twig:Header title="Détails de la série">
+        <twig:HeaderLinkButton name="Toutes les séries" path="{{ path('admin_content_post_series_index') }}" icon="arrow-long-left" />
+        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_post_series_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+        <twig:DeleteButton path="{{ path('admin_content_post_series_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_post_series_index') }}" type="button" />
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    {% embed "@DevscastDashlite/component/card/_detail.html.twig" %}
-        {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-        <twig:block name="detail_card_tabs">
-            <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <span>Détails</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-item-trigger d-xxl-none">
-                    <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
-                        <twig:Icon name="user-list-fill"/>
-                    </a>
-                </li>
-            </ul>
+    <twig:card>
+        <twig:block name="content">
+            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
+                 data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
+                <div class="card-inner-group">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <div class="card-inner">
+                                            <div class="user-card user-card-s2">
+                                                <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
+                                            </div>
+                                        </div>
+                                        <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <span class="sub-text">lecture (unique)</span>
+                                                    <span>4599</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="sub-text">lecture (total)</span>
+                                                    <span>9000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </twig:block>
-        <twig:block name="detail_card_body">
+    </twig:card>
+    <twig:Card>
+        <twig:block name="content">
             <div class="nk-block">
                 <div class="nk-block">
                     <div class="nk-block-head">
@@ -91,47 +94,5 @@
             </div>
 
         </twig:block>
-        <twig:block name="detail_card_aside">
-            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
-                 data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
-                <div class="card-inner-group">
-                    <div class="simplebar-wrapper" style="margin: 0px;">
-                        <div class="simplebar-height-auto-observer-wrapper">
-                            <div class="simplebar-height-auto-observer"></div>
-                        </div>
-                        <div class="simplebar-mask">
-                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
-                                    <div class="simplebar-content" style="padding: 0px;">
-                                        <div class="card-inner">
-                                            <div class="user-card user-card-s2">
-                                                <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
-                                            </div>
-                                        </div>
-                                        <div class="card-inner card-inner-sm">
-                                            <ul class="btn-toolbar justify-center gx-1">
-                                                <li>{{ _.delete_icon_button('admin_content_podcast_season_delete', data, 'admin_content_podcast_season_index') }}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
-                                            <div class="row g-3">
-                                                <div class="col-6">
-                                                    <span class="sub-text">lecture (unique)</span>
-                                                    <span>4599</span>
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="sub-text">lecture (total)</span>
-                                                    <span>9000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </twig:block>
-    {% endembed %}
+    </twig:Card>
 </twig:block>

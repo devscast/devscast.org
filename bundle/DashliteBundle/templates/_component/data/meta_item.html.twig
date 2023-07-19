@@ -1,0 +1,8 @@
+<div class="col-12">
+    {% if this.label %}
+        <span class="sub-text">{{ this.label }}</span>
+    {% endif %}
+    <span>
+        <twig:block name="content">{{ this.value | raw }}</twig:block>
+    </span>
+</div>

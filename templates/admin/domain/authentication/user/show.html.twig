@@ -3,10 +3,9 @@
 <twig:block name="wideContentClass">wide-xxl</twig:block>
 
 <twig:block name="header">
-    <twig:Header title='Utilisateur / <strong class="text-primary small">{{ data.username }}</strong>'>
+    <twig:Header :title='data.username'>
         <twig:block name="description">
             <ul class="list-inline">
-                <li>ID : <span class="text-base">{{ data.id }}</span></li>
                 <li>Inscription : <span class="text-base">{{ data.createdAt | date }}</span></li>
             </ul>
         </twig:block>

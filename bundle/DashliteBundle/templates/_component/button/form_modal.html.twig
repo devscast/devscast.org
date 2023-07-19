@@ -2,3 +2,6 @@
     <twig:Icon name="{{ this.icon }}"/>
     <span>{{ this.name }}</span>
 </button>
+{% if this.action and this.name %}
+    <twig:Modal action="{{ this.name }}" path="{{ this.action }}" />
+{% endif %}

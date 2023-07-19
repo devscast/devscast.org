@@ -1,59 +1,33 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">{{ 'Formations' }}</twig:block>
 
 <twig:block name="header">
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        <twig:block name="header_title">{{ 'Formations' }}</twig:block>
-        <twig:block name="header_action_list">
-            <li class="btn-group">
-                <a href="{{ path('admin_content_training_new') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="plus"/>
-                    <span>Ajouter</span>
-                </a>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        </twig:block>
-    {% endembed %}
+    <twig:Header>
+        <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_training_new') }}" />
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" with {
-                _action: 'Ajouter une Formation',
-                _path: path('admin_content_training_new')
-            } %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                <twig:block name="list_card_table_head">
-                    <th>Name</th>
-                    <th>Lecture</th>
-                    <th>Statut</th>
-                    <th>&nbsp;</th>
+            <twig:ResponsiveTable :data="data" emptyStateAction="Ajouter une formation" emptyStatePath="{{ path('admin_content_training_new') }}">
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Nom" col />
+                    <twig:ResponsiveTableColumn value="Lecture" col />
+                    <twig:ResponsiveTableColumn value="Statut" col />
+                    <twig:ResponsiveTableColumn tools />
                 </twig:block>
-                <twig:block name="list_card_table_body">
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.name }}</td>
-                            <td>{{ (row.duration / 60) | round(1, 'floor') }} min</td>
-                            <td>{{ row.status.translationKey | trans([], 'content') | badge }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_training_show', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                        <twig:Icon name="eye"/>
-                                    </a>
-                                    <a href="{{ path('admin_content_training_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:Icon name="edit"/>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </twig:block>
-            {% endembed %}
+
+                <twig:ResponsiveTableColumn value="{{ item.name }}" />
+                <twig:ResponsiveTableColumn value="{{ (item.duration / 60) | round(1, 'floor') }} min"/>
+                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction icon="eye" path="{{ path('admin_content_training_show', {id: item.id}) }}" />
+                        <twig:ResponsiveTableAction icon="edit" path="{{ path('admin_content_training_edit', {id: item.id}) }}" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

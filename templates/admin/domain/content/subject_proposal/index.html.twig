@@ -1,56 +1,33 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">{{ 'Propositions des sujets' }}</twig:block>
 
 <twig:block name="header">
-    {% embed '@DevscastDashlite/component/_header.html.twig' %}
-        <twig:block name="header_title">{{ 'Propositions des sujets' }}</twig:block>
-        <twig:block name="header_action_list">
-            <li class="btn-group">
-                <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="plus"/>
-                    <span>proposer un sujet</span>
-                </button>
-                <a href="{{ path('admin_content_dashboard_index') }}" class="btn btn-white btn-dim btn-outline-light">
-                    <twig:Icon name="bar-chart"/>
-                    <span>Statistiques</span>
-                </a>
-            </li>
-        </twig:block>
-    {% endembed %}
+    <twig:Header title="Propositions des sujets">
+        <twig:FormModalButton name="proposer un sujet" icon="plus" path="{{ path('admin_content_subject_proposal_new') }}" />
+    </twig:Header>
 </twig:block>
 
 <twig:block name="content">
-    {% include '@DevscastDashlite/component/_modal.html.twig' with {_action: 'proposer un sujet', _path: path('admin_content_subject_proposal_new')} %}
-
     <div class="row g-gs mb-4">
         <div class="col-12">
-            {% embed "@DevscastDashlite/component/card/_list.html.twig" %}
-                {% import '@DevscastDashlite/component/_macros.html.twig' as _ %}
-                <twig:block name="list_card_table_head">
-                    <th>Sujet</th>
-                    <th>Votes</th>
-                    <th>Status</th>
-                    <th>&nbsp;</th>
+            <twig:ResponsiveTable :data="data" emptyStateAction="Proposer un sujet" emptyStatePath="{{ path('admin_content_subject_proposal_new') }}">
+                <twig:block name="header">
+                    <twig:ResponsiveTableColumn value="Sujet" col />
+                    <twig:ResponsiveTableColumn value="Votes" col />
+                    <twig:ResponsiveTableColumn value="Status" col />
+                    <twig:ResponsiveTableColumn tools />
                 </twig:block>
-                <twig:block name="list_card_table_body">
-                    {% for row in data %}
-                        <tr>
-                            <td>{{ row.subject }}</td>
-                            <td>{{ row.votesCount }}</td>
-                            <td>{{ row.status | badge }}</td>
-                            <td class="tb-odr-action">
-                                <div class="tb-odr-btns d-none d-md-inline">
-                                    <a href="{{ path('admin_content_subject_proposal_edit', {id: row.id}) }}" class="text-soft btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                        <twig:Icon name="edit"/>
-                                    </a>
-                                </div>
-                                {{ _.delete_icon_button('admin_content_subject_proposal_delete', row) }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </twig:block>
-            {% endembed %}
+
+                <twig:ResponsiveTableColumn value="{{ item.subject }}" />
+                <twig:ResponsiveTableColumn value="{{ item.votesCount }}" />
+                <twig:ResponsiveTableColumn>{{ item.status | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn tools>
+                    <twig:ResponsiveTableTools>
+                        <twig:ResponsiveTableAction path="{{ path('admin_content_subject_proposal_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DeleteButton path="{{ path('admin_content_subject_proposal_delete', {id: item.id}) }}" :item="item" />
+                    </twig:ResponsiveTableTools>
+                </twig:ResponsiveTableColumn>
+            </twig:ResponsiveTable>
         </div>
     </div>
 </twig:block>

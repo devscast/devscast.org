@@ -1,0 +1,9 @@
+<div class="card-inner">
+    {% if this.title %}
+        <h6 class="overline-title mb-2">{{ this.title }}</h6>
+    {% endif %}
+
+    <div class="{{ this.row ? 'row g-3' : '' }}">
+        <twig:block name="content"></twig:block>
+    </div>
+</div>

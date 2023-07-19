@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Devscast\Bundle\DashliteBundle\Component\Layout;
+namespace Devscast\Bundle\DashliteBundle\Component\Data;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /**
- * Class Header.
+ * Class MetaDataSection.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsTwigComponent]
-final class Header
+final class MetaDataSection
 {
     public ?string $title = null;
-    public mixed $data;
+    public bool $row = false;
 }

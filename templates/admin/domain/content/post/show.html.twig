@@ -3,15 +3,7 @@
 <twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header :title="data.name">
-        <twig:block name="description">
-            <ul class="list-inline">
-                <li>ID : <span class="text-base">{{ data.id }}</span></li>
-                <li>Création : <span class="text-base">{{ data.createdAt | date }}</span></li>
-                <li>Publication : <span class="text-base">{{ data.scheduledAt | date }}</span> </li>
-            </ul>
-        </twig:block>
-
+    <twig:Header title="Détails de l'article">
         <twig:HeaderLinkButton name="Tous les posts" path="{{ path('admin_content_post_index') }}" icon="arrow-long-left" />
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_post_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DeleteButton path="{{ path('admin_content_post_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_post_index') }}" type="button" />
@@ -19,113 +11,89 @@
 </twig:block>
 
 <twig:block name="content">
-    <twig:AsideCard>
-        <twig:block name="tabs">
-            <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <twig:Icon name="edit" />
-                        <span>Détails</span>
-                    </a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">
-                        <twig:Icon name="chat" />
-                        <span>Commentaires</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-item-trigger d-xxl-none">
-                    <a href="#" class="toggle btn btn-icon btn-trigger" data-target="userAside">
-                        <twig:Icon name="user-list-fill" />
-                    </a>
-                </li>
-            </ul>
-        </twig:block>
+    <div class="nk-block">
+        <div class="row g-gs">
+            <div class="col-lg-4 col-xl-4 col-xxl-3">
+                <twig:Card removePadding>
+                    <twig:MetaDataList>
+                        <twig:MetaDataSection title="Couverture">
+                            <div class="user-card user-card-s2">
+                                <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
+                            </div>
+                        </twig:MetaDataSection>
+                        <twig:MetaDataSection title="Statistiques">
+                            <div class="row text-center">
+                                <div class="col-6"><div class="profile-stats"><span class="amount">{{ data.viewCount }}</span><span class="sub-text">lectures</span></div></div>
+                                <div class="col-6"><div class="profile-stats"><span class="amount">{{ data.uniqueViewCount }}</span><span class="sub-text">lectures uniques</span></div></div>
+                            </div>
+                        </twig:MetaDataSection>
+                        <twig:MetaDataSection title="Détails" row>
+                            <twig:MetaDataItem label="publié par" value="{{ data.owner.name }}" />
+                            <twig:MetaDataItem>
+                                <twig:UserAvatarLink
+                                    path="{{ path('admin_authentication_user_show', {id: data.owner.id}) }}"
+                                    username="{{ data.owner.username }}"
+                                    surname="{{ data.owner.email }}"
+                                    avatarUrl="{{ vich_uploader_asset(data.owner, 'avatar_file') }}"
+                                />
+                            </twig:MetaDataItem>
+                            <twig:MetaDataItem label="Identifiant" value="{{ data.id }}" />
+                            <twig:MetaDataItem label="Slug" value="{{ data.slug }}" />
+                            <twig:MetaDataItem label="Status">{{ data.isOnline | boolean("En ligne", "Hors ligne") }}</twig:MetaDataItem>
+                            <twig:MetaDataItem label="Publication" value="{{ data.scheduledAt | date }}" />
+                            <twig:MetaDataItem label="Création" value="{{ data.createdAt | date }}" />
+                            <twig:MetaDataItem label="Édition" value="{{ data.updatedAt ? data.updatedAt | date : '-' }}" />
+                        </twig:MetaDataSection>
+                        <twig:MetaDataSection title="Supplémentaires" row>
+                            <twig:MetaDataItem label="Commentaires" value="{{ data.isCommentable | boolean }}" />
+                            <twig:MetaDataItem label="Featured" value="{{ data.isFeatured | boolean }}" />
+                            <twig:MetaDataItem label="Top Promoted" value="{{ data.isTopPromoted | boolean }}" />
+                            <twig:MetaDataItem label="Premium" value="{{ data.isPremium | boolean }}" />
+                        </twig:MetaDataSection>
 
-        <twig:block name="content">
-            <div class="nk-block">
-                <div class="nk-block-head">
-                    {{ data.content | markdown_to_html }}
-                    <twig:DataItem label="Nom" :value="data.name" />
-                    <twig:DataItem label="Slug" :value="data.slug" />
-                </div>
-                <div class="nk-divider divider md"></div>
-                <twig:DataList title="Informations supplémentaires">
-                    <twig:DataItem label="Commentaires autorisés" :value="data.isCommentable | boolean" />
-                    <twig:DataItem label="Featured" :value="data.isFeatured | boolean" />
-                    <twig:DataItem label="Top promoted" :value="data.isTopPromoted | boolean" />
-                    <twig:DataItem label="Premium" :value="data.isPremium | boolean" />
-                </twig:DataList>
+                        {% if data.category %}
+                            <twig:MetaDataSection title="Catégorie">
+                                <a href="{{ path('admin_content_category_show', {id: data.category.id}) }}">{{ data.category.name }}</a>
+                            </twig:MetaDataSection>
+                        {% endif %}
+                        {% if data.series %}
+                            <twig:MetaDataSection title="Séries">
+                                <a href="{{ path('admin_content_post_series_show', {id: data.series.id}) }}">{{ data.series.name }}</a>
+                            </twig:MetaDataSection>
+                        {% endif %}
+                        {% if data.tags | length > 0 %}
+                            <twig:MetaDataSection title="Tags">
+                                <ul class="g-1">
+                                    {% for tag in data.tags %}
+                                        <li class="btn-group">
+                                            <a class="btn btn-xs btn-info btn-dim" href="{{ path('admin_content_tag_show', {id: tag.id}) }}">{{ tag.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </twig:MetaDataSection>
+                        {% endif %}
+                        {% if data.technologies | length > 0 %}
+                            <twig:MetaDataSection title="Technologies">
+                                <ul class="g-1">
+                                    {% for technology in data.technologies %}
+                                        <li class="btn-group">
+                                            <a class="btn btn-xs btn-info btn-dim" href="{{ path('admin_content_technology_show', {id: technology.id}) }}">{{ technology.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </twig:MetaDataSection>
+                        {% endif %}
+                    </twig:MetaDataList>
+                </twig:Card>
             </div>
-        </twig:block>
-
-        <twig:block name="aside">
-            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl" data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
-                <div class="card-inner-group">
-                    <div class="card-inner">
-                        <div class="user-card user-card-s2">
-                            <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
-                        </div>
+            <div class="col-lg-8 col-xl-8 col-xxl-9">
+                <twig:Card>
+                    <div class="nk-block">
+                        <h3>{{ data.name }}</h3>
+                        {{ data.content | markdown_to_html }}
                     </div>
-                    <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <span class="sub-text">Lectures (unique)</span>
-                                <span>{{ data.uniqueViewCount }}</span>
-                            </div>
-                            <div class="col-6">
-                                <span class="sub-text">Lectures (total)</span>
-                                <span>{{ data.viewCount }}</span>
-                            </div>
-                            <div class="col-6">
-                                <span class="sub-text">Status</span>
-                                {% if data.isOnline %}
-                                    <span class="lead-text text-success">En ligne</span>
-                                {% else %}
-                                    <span class="lead-text text-danger">Hors ligne</span>
-                                {% endif %}
-                            </div>
-                            <div class="col-6">
-                                <span class="sub-text">Publication:</span>
-                                <span>{{ data.scheduledAt | date }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% if data.series %}
-                        <div class="card-inner">
-                            <h6 class="overline-title-alt mb-3">Séries</h6>
-                            <span>
-                                <a href="{{ path('admin_content_post_series_show', {id: data.series.id}) }}">
-                                    {{ data.series.name }}
-                                </a>
-                            </span>
-                        </div>
-                    {% endif %}
-                    {% if data.tags | length > 0 %}
-                        <div class="card-inner">
-                            <h6 class="overline-title-alt mb-3">Tags</h6>
-                            <ul class="g-1">
-                                {% for tag in data.tags %}
-                                    <li class="btn-group">
-                                        <a class="btn btn-xs btn-info btn-dim" href="#">{{ tag.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    {% if data.technologies | length > 0 %}
-                        <div class="card-inner">
-                            <h6 class="overline-title-alt mb-3">Technologies</h6>
-                            <ul class="g-1">
-                                {% for technology in data.technologies %}
-                                    <li class="btn-group">
-                                        <a class="btn btn-xs btn-info btn-dim" href="#">{{ technology.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                </div>
+                </twig:Card>
             </div>
-        </twig:block>
-    </twig:AsideCard>
+        </div>
+    </div>
 </twig:block>
