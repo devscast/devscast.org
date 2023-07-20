@@ -42,7 +42,9 @@ final class PostListController extends AbstractCrudController
     {
         return $this->handleCommand(new CreatePostListCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreatePostListForm::class
+            formClass: CreatePostListForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 
@@ -67,7 +69,9 @@ final class PostListController extends AbstractCrudController
         return $this->handleCommand(new UpdatePostListCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdatePostListForm::class
+            formClass: UpdatePostListForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 

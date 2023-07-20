@@ -24,7 +24,9 @@
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_subject_proposal_edit', {id: item.id}) }}" icon="edit" />
-                        <twig:DeleteButton path="{{ path('admin_content_subject_proposal_delete', {id: item.id}) }}" :item="item" />
+                        <twig:ResponsiveTableAction>
+                            <twig:DeleteButton path="{{ path('admin_content_subject_proposal_delete', {id: item.id}) }}" :item="item" />
+                        </twig:ResponsiveTableAction>
                     </twig:ResponsiveTableTools>
                 </twig:ResponsiveTableColumn>
             </twig:ResponsiveTable>

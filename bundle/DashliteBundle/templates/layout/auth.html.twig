@@ -5,17 +5,19 @@
         <meta charset="utf-8">
         <meta name="author" content="devscast">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="{{ asset('/images/icon.jpg') }}">
-        <title><twig:block name="title">Connexion</twig:block> | Okademy Backend </title>
-        {{ encore_entry_link_tags('admin') }}
+        <link rel="shortcut icon" href="{{ asset(devscast_dashlite.application.icon_path) }}">
+        <title>{% block title %}Connexion{% endblock %} | {{ devscast_dashlite.application.name}} </title>
 
-        <script type="application/javascript" src="{{ asset('/static/bundle.js') }}"></script>
-        <script type="application/javascript" src="{{ asset('/static/scripts.js') }}"></script>
-        {{ encore_entry_script_tags('admin') }}
+        <twig:block name="assets">
+            <script type="application/javascript" src="{{ asset('/static/bundle.js') }}"></script>
+            <script type="application/javascript" src="{{ asset('/static/scripts.js') }}"></script>
+            {{ encore_entry_link_tags('admin') }}
+            {{ encore_entry_script_tags('admin') }}
+        </twig:block>
     </head>
 
     <body class="nk-body bg-white npc-default pg-auth">
-    {% include '@DevscastDashlite/component/_flash.html.twig' %}
+    <twig:FlashMessage />
     <div class="nk-app-root">
         <div class="nk-main ">
             <div class="nk-wrap nk-wrap-nosidebar">
@@ -25,8 +27,8 @@
                             <div class="nk-block nk-block-middle nk-auth-body">
                                 <div class="brand-logo pb-5">
                                     <twig:block name="logo">
-                                        <a href="{{ path('app_index') }}" class="logo-link">
-                                            <img class="logo-img logo-img-lg" width="50%" src="{{ asset('/logo.png') }}" alt="logo">
+                                        <a href="/" class="logo-link">
+                                            <img class="logo-img logo-img-lg" width="50%" src="{{ asset(devscast_dashlite.application.logo_path) }}" alt="logo">
                                         </a>
                                     </twig:block>
                                 </div>

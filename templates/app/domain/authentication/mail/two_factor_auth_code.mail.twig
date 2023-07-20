@@ -1,5 +1,4 @@
 {% extends _layout %}
-{% import '@app/shared/layout/mail/macro.html.twig' as e %}
 
 <twig:block name="body">
     {% apply markdown_email %}
@@ -8,15 +7,13 @@
         Essayez-vous de vous connecter à Devscast ? Voici votre code d'authentification :
 
         {%- if _format == 'html' -%}
-            {% embed '@app/shared/layout/mail/section.html.twig' %}
-                <twig:block name="content">
-                    <div style="text-align: center">
-                        <code>
-                            <strong>{{ user.emailAuthCode }}</strong>
-                        </code>
-                    </div>
-                </twig:block>
-            {% endembed %}
+            <twig:EmailSection>
+                <div style="text-align: center">
+                    <code>
+                        <strong>{{ user.emailAuthCode }}</strong>
+                    </code>
+                </div>
+            </twig:EmailSection>
         {%- else -%}
             {{ user.emailAuthCode }}
         {%- endif -%}

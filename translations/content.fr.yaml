@@ -82,4 +82,4 @@ content.exceptions.duplicate_tag: Désolé, ce tag a déjà été créé !
 content.exceptions.content_schedule_date_must_be_in_future: La date de publication doit être dans le future !
 
 # Emails subjects messages
-content.mails.subjects.content_view_milestone_reached: "[Devscast] Félicitations, votre contenu vient d'obtenir %views% vues"
+content.mails.subjects.content_view_milestone_reached: "[Devscast Community] Félicitations, votre contenu vient d'obtenir %views% vues"

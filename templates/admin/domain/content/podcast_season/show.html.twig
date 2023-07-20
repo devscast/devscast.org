@@ -1,11 +1,8 @@
-{% extends '@DevscastDashlite/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
+{% extends '@admin/shared/layout/base.html.twig' %}
 <twig:block name="title">{{ "Saisons #{data.name}" }}</twig:block>
-<twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Détails de la saison">
-        <twig:HeaderLinkButton name="Tous les posts" path="{{ path('admin_content_podcast_season_index') }}" icon="arrow-long-left" />
+    <twig:Header title="{{ data.name }}" backTitle="Toutes les saisons" backPath="{{ path('admin_content_podcast_season_index') }}" >
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
     </twig:Header>
@@ -19,11 +16,11 @@
                     <div class="nk-block-head">
                         {{ data.description }}
                     </div>
-                    <div class="profile-ud-list">
-                        {{ _.user_data_item('Nom', data.name) }}
-                        {{ _.user_data_item("Slug", data.slug) }}
-                        {{ _.user_data_item('Short Code', data.shortCode) }}
-                    </div>
+                    <twig:DataList>
+                        <twig:DataItem style="plain" label="Nom" value="{{ data.name }}" />
+                        <twig:DataItem style="plain" label="Slug" value="{{ data.slug }}" />
+                        <twig:DataItem style="plain" label="Short Code" value="{{ data.shortcode }}" />
+                    </twig:DataList>
                 </div>
             </div>
 
@@ -54,51 +51,6 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-
-        </twig:block>
-    </twig:Card>
-    <twig:Card>
-        <twig:block name="content">
-            <div class="card-aside card-aside-right user-aside toggle-slide toggle-slide-right toggle-break-xxl toggle-screen-xxl"
-                 data-bs-content="userAside" data-toggle-screen="xxl" data-toggle-overlay="false" data-toggle-body="false">
-                <div class="card-inner-group">
-                    <div class="simplebar-wrapper" style="margin: 0px;">
-                        <div class="simplebar-height-auto-observer-wrapper">
-                            <div class="simplebar-height-auto-observer"></div>
-                        </div>
-                        <div class="simplebar-mask">
-                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
-                                    <div class="simplebar-content" style="padding: 0px;">
-                                        <div class="card-inner">
-                                            <div class="user-card user-card-s2">
-                                                <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
-                                            </div>
-                                        </div>
-                                        <div class="card-inner card-inner-sm">
-                                            <ul class="btn-toolbar justify-center gx-1">
-                                                <li>{{ _.delete_icon_button('admin_content_podcast_season_delete', data, 'admin_content_podcast_season_index') }}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>
-                                            <div class="row g-3">
-                                                <div class="col-6">
-                                                    <span class="sub-text">lecture (unique)</span>
-                                                    <span>4599</span>
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="sub-text">lecture (total)</span>
-                                                    <span>9000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </twig:block>
     </twig:Card>

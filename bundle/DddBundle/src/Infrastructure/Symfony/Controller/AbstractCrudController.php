@@ -103,7 +103,7 @@ abstract class AbstractCrudController extends AbstractController
                 $this->dispatchSync($command);
                 $this->addSuccessfullActionFlash();
 
-                if ($params->item) {
+                if ($params->item && $params->hasShow) {
                     return $this->redirectSeeOther(
                         route: $this->getRouteName('show'),
                         params: [

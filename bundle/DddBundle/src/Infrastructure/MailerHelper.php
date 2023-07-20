@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Devscast\Bundle\DddBundle\Infrastructure;
 
+use Devscast\Bundle\DddBundle\WhiteLabel;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\{Address, Email};
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
+use Twig\Error\{LoaderError, RuntimeError, SyntaxError};
 
 /**
  * Class Mailer.
@@ -24,6 +22,7 @@ use Twig\Error\SyntaxError;
 final class MailerHelper
 {
     public function __construct(
+        private readonly WhiteLabel $whiteLabel,
         private readonly Environment $twig,
         private readonly MailerInterface $mailer,
         private readonly TranslatorInterface $translator,
@@ -43,7 +42,7 @@ final class MailerHelper
             context: [
                 ...$data,
                 '_format' => 'html',
-                '_layout' => '@app/shared/layout/mail/base.html.twig',
+                '_layout' => '@DevscastDashlite/mailing/base.html.twig',
             ]
         );
 
@@ -52,12 +51,15 @@ final class MailerHelper
             context: [
                 ...$data,
                 '_format' => 'text',
-                '_layout' => '@app/shared/layout/mail/base.text.twig',
+                '_layout' => '@DevscastDashlite/mailing/base.text.twig',
             ]
         );
 
         return (new Email())
-            ->from(new Address('noreply@devscast.org', 'Devscast Community'))
+            ->from(new Address(
+                $this->whiteLabel->application['sender_email'],
+                $this->whiteLabel->application['sender_name']
+            ))
             ->html($html)
             ->text($text);
     }

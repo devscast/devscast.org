@@ -42,7 +42,9 @@ final class TechnologyController extends AbstractCrudController
     {
         return $this->handleCommand(new CreateTechnologyCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreateTechnologyForm::class
+            formClass: CreateTechnologyForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
     }
 
@@ -67,7 +69,9 @@ final class TechnologyController extends AbstractCrudController
         return $this->handleCommand(new UpdateTechnologyCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateTechnologyForm::class
+            formClass: UpdateTechnologyForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
     }
 

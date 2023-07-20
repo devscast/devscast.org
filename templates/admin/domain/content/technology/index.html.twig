@@ -3,7 +3,7 @@
 
 <twig:block name="header">
     <twig:Header>
-        <twig:FormModalButton name="Ajouter une technologie" icon="plus" path="{{ path('admin_content_technology_new') }}" />
+        <twig:HeaderLinkButton name="Ajouter une technologie" icon="plus" path="{{ path('admin_content_technology_new') }}" />
     </twig:Header>
 </twig:block>
 
@@ -26,7 +26,9 @@
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_technology_edit', {id: item.id}) }}" icon="edit" />
-                        <twig:DeleteButton :item="item" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
+                        <twig:ResponsiveTableAction>
+                            <twig:DeleteButton :item="item" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
+                        </twig:ResponsiveTableAction>
                     </twig:ResponsiveTableTools>
                 </twig:ResponsiveTableColumn>
             </twig:ResponsiveTable>

@@ -42,21 +42,10 @@ final class CategoryController extends AbstractCrudController
     {
         return $this->handleCommand(new CreateCategoryCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreateCategoryForm::class
+            formClass: CreateCategoryForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
-    }
-
-    #[Route('/{id}', name: 'show', requirements: [
-        'id' => Requirement::UUID,
-    ], methods: ['GET'])]
-    public function show(Category $item): Response
-    {
-        return $this->render(
-            view: $this->getViewPath('show'),
-            parameters: [
-                'data' => $item,
-            ]
-        );
     }
 
     #[Route('/edit/{id}', name: 'edit', requirements: [
@@ -67,7 +56,9 @@ final class CategoryController extends AbstractCrudController
         return $this->handleCommand(new UpdateCategoryCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateCategoryForm::class
+            formClass: UpdateCategoryForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
     }
 

@@ -1,3 +1,16 @@
+{% extends '@admin/shared/layout/base.html.twig' %}
+<twig:block name="title">{{ "Vidéo #{data.name}" }}</twig:block>
+<twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
+
+<twig:block name="header">
+    <twig:Header title="{{ data.name }}" backPath="{{ path('admin_content_video_index') }}" backTitle="Toutes les vidéos">
+        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_video_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+        <twig:DeleteButton path="{{ path('admin_content_video_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_video_index') }}" type="button" />
+    </twig:Header>
+</twig:block>
+
+<twig:block name="content"></twig:block>
+
 {#
 {% extends '@DevscastDashlite/layout/base.html.twig' %}
 <twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>

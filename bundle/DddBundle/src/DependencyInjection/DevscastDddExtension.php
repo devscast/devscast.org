@@ -25,6 +25,9 @@ final class DevscastDddExtension extends Extension
         $loader->load('services.xml');
         $loader->load('maker.xml');
         $loader->load('twig.xml');
+
+        $config = $this->processConfiguration(new Configuration(), $configs);
+        $container->setParameter('devscast_ddd.configuration', $config);
     }
 
     public function getAlias(): string

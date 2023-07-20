@@ -1,9 +1,14 @@
 <div class="nk-block-head nk-block-head-lg">
     <div class="nk-block-between">
         <div class="nk-block-head-content">
-            <div class="block-head-sub">
-                <twig:block name="back"></twig:block>
-            </div>
+            {% if this.backPath and this.backTitle %}
+                <div class="nk-block-head-sub">
+                    <a class="back-to" href="{{ this.backPath }}">
+                        <em class="icon ni ni-arrow-left"></em>
+                        <span>{{ this.backTitle }}</span>
+                    </a>
+                </div>
+            {% endif %}
             <h3 class="nk-block-title fw-bolder">{{ this.title | raw }}</h3>
             <div class="nk-block-des fw-normal">
                 <twig:block name="description">

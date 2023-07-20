@@ -4,52 +4,52 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <!-- maker -->
-        <service id="ddd.infrastructure.maker.make_command_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeCommandCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_command_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeCommandCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_handler_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeHandlerCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_handler_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeHandlerCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_repository_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeRepositoryCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_repository_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeRepositoryCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_value_object_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeValueObjectCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_value_object_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeValueObjectCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_form_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeFormCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_form_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeFormCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_domain_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeDomainCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_domain_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeDomainCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_controller_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeControllerCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_controller_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeControllerCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_exception_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeExceptionCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_exception_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeExceptionCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_template_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeTemplateCli" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_template_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeTemplateCli" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>
         </service>
-        <service id="ddd.infrastructure.maker.make_entity_xml_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeEntityXml" public="true">
+        <service id="devscast_ddd.infrastructure.maker.make_entity_xml_cli" class="Devscast\Bundle\DddBundle\Infrastructure\Maker\MakeEntityXml" public="true">
             <tag name="console.command" />
             <argument type="service" id="twig"/>
             <argument>%kernel.project_dir%</argument>

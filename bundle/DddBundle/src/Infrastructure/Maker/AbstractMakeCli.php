@@ -89,7 +89,7 @@ abstract class AbstractMakeCli extends Command
     protected function askClass(InputInterface $input, string $name, string $pattern): void
     {
         if (null === $input->getArgument($name)) {
-            // On construit la liste utilisé pour l'autocomplétion
+            // On construit la liste utilisée pour l'autocomplétion
             $classes = [];
             $paths = explode('/', $pattern);
             if (1 === count($paths)) {
@@ -119,7 +119,7 @@ abstract class AbstractMakeCli extends Command
     protected function askDomain(InputInterface $input): void
     {
         if (null === $input->getArgument('domain')) {
-            // On construit la liste utilisé pour l'autocomplétion
+            // On construit la liste utilisée pour l'autocomplétion
             $domains = [];
             $files = (new Finder())->in("{$this->projectDir}/src/Domain")->depth(0)->directories();
             /** @var SplFileInfo $file */

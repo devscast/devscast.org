@@ -32,7 +32,7 @@ class CreateUserForm extends AbstractType
     {
         $isEditMode = $builder->getData() instanceof UpdateUserCommand;
 
-        if (!$isEditMode) {
+        if (! $isEditMode) {
             $builder
                 ->add('username', UsernameType::class, [
                     'label' => false,
@@ -40,24 +40,24 @@ class CreateUserForm extends AbstractType
         }
 
         $builder->add('email', EmailType::class, [
-                'label' => 'authentication.forms.labels.email',
-                'row_attr' => [
-                    'class' => 'col-12 col-md-4'
-                ]
-            ])
+            'label' => 'authentication.forms.labels.email',
+            'row_attr' => [
+                'class' => 'col-12 col-md-4',
+            ],
+        ])
             ->add('name', TextType::class, [
                 'label' => 'authentication.forms.labels.name',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-4'
-                ]
+                    'class' => 'col-12 col-md-4',
+                ],
             ])
             ->add('gender', GenderType::class, [
                 'label' => false,
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-4'
-                ]
+                    'class' => 'col-12 col-md-4',
+                ],
             ])
             ->add('avatar_file', DropzoneType::class, [
                 'label' => 'authentication.forms.labels.avatar',
@@ -90,29 +90,29 @@ class CreateUserForm extends AbstractType
                 'label' => 'authentication.forms.labels.linkedin_url',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-6'
-                ]
+                    'class' => 'col-12 col-md-6',
+                ],
             ])
             ->add('github_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.github_url',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-6'
-                ]
+                    'class' => 'col-12 col-md-6',
+                ],
             ])
             ->add('twitter_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.twitter_url',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-6'
-                ]
+                    'class' => 'col-12 col-md-6',
+                ],
             ])
             ->add('website_url', UrlType::class, [
                 'label' => 'authentication.forms.labels.website_url',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'col-12 col-md-6'
-                ]
+                    'class' => 'col-12 col-md-6',
+                ],
             ])
             ->add('rss_url', RssUrlType::class, [
                 'label' => false,

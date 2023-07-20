@@ -42,7 +42,9 @@ final class TrainingController extends AbstractCrudController
     {
         return $this->handleCommand(new CreateTrainingCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreateTrainingForm::class
+            formClass: CreateTrainingForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 
@@ -67,7 +69,9 @@ final class TrainingController extends AbstractCrudController
         return $this->handleCommand(new UpdateTrainingCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateTrainingForm::class
+            formClass: UpdateTrainingForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 

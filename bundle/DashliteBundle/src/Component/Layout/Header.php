@@ -16,4 +16,6 @@ final class Header
 {
     public ?string $title = null;
     public mixed $data;
+    public ?string $backPath = null;
+    public ?string $backTitle = null;
 }

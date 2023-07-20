@@ -42,7 +42,9 @@ final class PodcastEpisodeController extends AbstractCrudController
     {
         return $this->handleCommand(new CreatePodcastEpisodeCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreatePodcastEpisodeForm::class
+            formClass: CreatePodcastEpisodeForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 
@@ -67,7 +69,9 @@ final class PodcastEpisodeController extends AbstractCrudController
         return $this->handleCommand(new UpdatePodcastEpisodeCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdatePodcastEpisodeForm::class
+            formClass: UpdatePodcastEpisodeForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 

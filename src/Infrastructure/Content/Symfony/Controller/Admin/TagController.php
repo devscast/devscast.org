@@ -42,21 +42,9 @@ final class TagController extends AbstractCrudController
     {
         return $this->handleCommand(new CreateTagCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreateTagForm::class
+            formClass: CreateTagForm::class,
+            hasIndex: true
         ));
-    }
-
-    #[Route('/{id}', name: 'show', requirements: [
-        'id' => Requirement::UUID,
-    ], methods: ['GET'])]
-    public function show(Tag $item): Response
-    {
-        return $this->render(
-            view: $this->getViewPath('show'),
-            parameters: [
-                'data' => $item,
-            ]
-        );
     }
 
     #[Route('/edit/{id}', name: 'edit', requirements: [
@@ -67,7 +55,9 @@ final class TagController extends AbstractCrudController
         return $this->handleCommand(new UpdateTagCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateTagForm::class
+            formClass: UpdateTagForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
     }
 

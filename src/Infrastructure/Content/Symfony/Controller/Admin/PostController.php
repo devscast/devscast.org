@@ -42,7 +42,8 @@ final class PostController extends AbstractCrudController
     {
         return $this->handleCommand(new CreatePostCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreatePostForm::class
+            formClass: CreatePostForm::class,
+            hasIndex: true,
         ));
     }
 

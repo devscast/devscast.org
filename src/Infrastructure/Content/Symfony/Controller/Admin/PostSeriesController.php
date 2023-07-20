@@ -42,7 +42,9 @@ final class PostSeriesController extends AbstractCrudController
     {
         return $this->handleCommand(new CreatePostSeriesCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreatePostSeriesForm::class
+            formClass: CreatePostSeriesForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 
@@ -67,7 +69,9 @@ final class PostSeriesController extends AbstractCrudController
         return $this->handleCommand(new UpdatePostSeriesCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdatePostSeriesForm::class
+            formClass: UpdatePostSeriesForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 

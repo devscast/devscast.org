@@ -115,13 +115,13 @@ authentication.exceptions.password_not_set: Vous devez rajouter un mot de passe 
 authentication.exceptions.user_email_not_found: L'utilisateur n'as pas défini une adresse email.
 
 # Emails subjects messages
-authentication.mails.subjects.login_link_requested: "[Devscast] %name%, voici le lien d'accès à votre compte"
-authentication.mails.subjects.reset_password_requested: "[Devscast] Instruction de réinitialisation de mot de passe"
-authentication.mails.subjects.reset_password_confirmed: "[Devscast] %name%, votre mot de passe a été mise à jour"
-authentication.mails.subjects.two_factor_auth_code: "[Devscast] Code d'authentification"
-authentication.mails.subjects.password_updated: "[Devscast] Votre mot de passe a été mise à jour"
-authentication.mails.subjects.default_password_created: "[Devscast] Connectez-vous à votre compte avec ce mot de passe par défaut"
-authentication.mails.subjects.login_with_another_ip_address: "[Devscast] Nouvelle connexion à votre compte"
-authentication.mails.subjects.login_attempts_limit_reached: "[Devscast] Plusieurs tentatives de connexion sur votre compte"
-authentication.mails.subjects.registration_confirmation: "[Devscast] Veuillez confirmer votre inscription"
-authentication.mails.subjects.registration_confirmed: "[Devscast] Bienvenue dans la communauté"
+authentication.mails.subjects.login_link_requested: "[Devscast Community] %name%, voici le lien d'accès à votre compte"
+authentication.mails.subjects.reset_password_requested: "[Devscast Community] Instruction de réinitialisation de mot de passe"
+authentication.mails.subjects.reset_password_confirmed: "[Devscast Community] %name%, votre mot de passe a été mise à jour"
+authentication.mails.subjects.two_factor_auth_code: "[Devscast Community] Code d'authentification"
+authentication.mails.subjects.password_updated: "[Devscast Community] Votre mot de passe a été mise à jour"
+authentication.mails.subjects.default_password_created: "[Devscast Community] Connectez-vous à votre compte avec ce mot de passe par défaut"
+authentication.mails.subjects.login_with_another_ip_address: "[Devscast Community] Nouvelle connexion à votre compte"
+authentication.mails.subjects.login_attempts_limit_reached: "[Devscast Community] Plusieurs tentatives de connexion sur votre compte"
+authentication.mails.subjects.registration_confirmation: "[Devscast Community] Veuillez confirmer votre inscription"
+authentication.mails.subjects.registration_confirmed: "[Devscast Community] Bienvenue dans la communauté"

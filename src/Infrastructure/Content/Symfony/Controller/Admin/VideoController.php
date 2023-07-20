@@ -42,7 +42,9 @@ final class VideoController extends AbstractCrudController
     {
         return $this->handleCommand(new CreateVideoCommand(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: CreateVideoForm::class
+            formClass: CreateVideoForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 
@@ -67,7 +69,9 @@ final class VideoController extends AbstractCrudController
         return $this->handleCommand(new UpdateVideoCommand($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateVideoForm::class
+            formClass: UpdateVideoForm::class,
+            hasIndex: true,
+            hasShow: true
         ));
     }
 

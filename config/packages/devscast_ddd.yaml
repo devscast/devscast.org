@@ -1,0 +1,8 @@
+devscast_ddd:
+    application:
+        domain: devscast.org
+        sender_email: noreply@devscast.org
+        sender_name: Devscast Community
+        copyrights: Devscast Community Plateforme
+        version: 1.0.0
+

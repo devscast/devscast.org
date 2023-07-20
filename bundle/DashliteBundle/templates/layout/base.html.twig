@@ -6,7 +6,7 @@
             <meta name="author" content="devscast">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link rel="shortcut icon" href="{{ asset('/images/logo.png') }}">
-            <title>{% block title %}{% endblock %} | Administration | devscast.org</title>
+            <title>{% block title %}{% endblock %} | administration | {{ devscast_dashlite.application.name }}</title>
 
             {# PWA support #}
             <meta name="theme-color" content="#05FFBA">
@@ -27,9 +27,10 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
 
-            {{ encore_entry_link_tags('admin') }}
-            {{ encore_entry_script_tags('admin') }}
-            <twig:block name="stylesheets"></twig:block>
+            <twig:block name="assets">
+                {{ encore_entry_link_tags('admin') }}
+                {{ encore_entry_script_tags('admin') }}
+            </twig:block>
         </head>
         <body class="nk-body bg-theme has-sidebar ui-shady" {{ stimulus_controller('modal-form') }}>
             <twig:FlashMessage />
@@ -46,7 +47,7 @@
                                 <div class="nk-content-inner">
                                    <twig:block name="body">
                                        <div class="nk-content-body">
-                                           <div class="mx-auto {% block wideContentClass %}wide-lg{% endblock %}">
+                                           <div class="mx-auto wide-lg">
                                                <twig:block name="header"></twig:block>
                                                <div class="nk-block">
                                                    <twig:block name="content"></twig:block>
@@ -58,12 +59,11 @@
                             </div>
                         </div>
                         <twig:block name="footer">
-                            <twig:Footer copyRight="Devscast Community Plateforme"></twig:Footer>
+                            <twig:Footer copyRight="{{ devscast_dashlite.application.copyrights }}"></twig:Footer>
                         </twig:block>
                     </div>
                 </div>
             </div>
-            <twig:block name="javascripts"></twig:block>
         </body>
     </html>
 {% endapply %}

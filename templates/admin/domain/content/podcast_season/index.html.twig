@@ -23,10 +23,10 @@
                 <twig:ResponsiveTableColumn value="{{ item.shortCode }}" col />
                 <twig:ResponsiveTableColumn value="{{ item.episodeCount }}" col />
                 <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableAction>
+                    <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_show', {id: item.id}) }}" icon="eye" />
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_edit', {id: item.id}) }}" icon="edit" />
-                    </twig:ResponsiveTableAction>
+                    </twig:ResponsiveTableTools>
                 </twig:ResponsiveTableColumn>
             </twig:ResponsiveTable>
         </div>

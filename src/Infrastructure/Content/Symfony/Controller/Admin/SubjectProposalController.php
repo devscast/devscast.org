@@ -69,7 +69,9 @@ final class SubjectProposalController extends AbstractCrudController
         return $this->handleCommand(new UpdateSubjectProposalCommand($owner, $item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
-            formClass: UpdateSubjectProposalForm::class
+            formClass: UpdateSubjectProposalForm::class,
+            hasIndex: true,
+            hasShow: false
         ));
     }
 
