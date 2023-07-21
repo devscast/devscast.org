@@ -50,7 +50,7 @@ final class StreamingController extends AbstractController
                 $this->dispatchAsync(new RegisterPodcastStream($request->getClientIp(), $filename));
             }*/
 
-            return new BinaryFileResponse("${path}/${filename}");
+            return new BinaryFileResponse("{$path}/{$filename}");
         } catch (FileNotFoundException | \Throwable) {
             throw new NotFoundHttpException();
         }

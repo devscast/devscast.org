@@ -1,0 +1,13 @@
+@layer components{
+    .post-content-detail{
+        @apply mt-10 mb-12 sm:px-6 lg:px-8
+    }
+    .content-detail{
+        @apply text-fg prose prose-gray dark:prose-invert !min-w-full
+    }
+
+
+    .content-detail pre{
+        @apply bg-gray-900 p-4 rounded-xl
+    }
+}

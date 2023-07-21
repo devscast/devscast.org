@@ -1,0 +1,76 @@
+.tabIndicator
+{
+    position: absolute;
+    height: 2px;
+    width: 100px;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-color: var(--fg-heading1);
+    border-bottom-right-outer-radius: 0.5rem;
+    border-bottom-left-outer-radius: 0.5rem;
+    transform-origin: 0 0;
+}
+
+[data-tab-control][aria-selected]{
+    color: var(--fg-heading1);
+}
+
+.tabContentItem {
+    width: 100%;
+    min-width: 100%;
+    padding-top:16px;
+    display:flex;
+    flex-direction : column;
+    gap: 1.5rem;
+    overflow: hidden;
+    transform-origin: top;
+    animation: fade 500ms linear forwards;
+    -webkit-animation: fade 500ms linear forwards;
+}
+
+.tabContentItem.active {
+    animation: slide 500ms 125ms cubic-bezier(.48,1.55,.28,1) both;
+    -webkit-animation: slide 500ms 125ms cubic-bezier(.48,1.55,.28,1) both;
+}
+
+.hideTabItem
+{
+    display: none;
+    opacity: 0;
+    transition: all .4s linear;
+}
+
+@keyframes slide {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes slide {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

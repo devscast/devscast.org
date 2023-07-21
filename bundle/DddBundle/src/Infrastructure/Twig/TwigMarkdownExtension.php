@@ -83,7 +83,7 @@ class TwigMarkdownExtension extends AbstractExtension
             $title = $matches[3];
             $timecode = (int) ($times[2] ?? 0) * 60 * 60 + (int) $times[1] * 60 + (int) $times[0];
 
-            return "<a href=\"#t{$timecode}\">{$matches[1]}</a> ${title}";
+            return "<a href=\"#t{$timecode}\">{$matches[1]}</a> {$title}";
         }, $content) ?: $content;
     }
 

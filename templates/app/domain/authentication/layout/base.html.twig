@@ -2,48 +2,46 @@
 <html lang="{{ app.request.locale | default('fr') }}" class="dark">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('/images/favicon.webp') }}" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset(devscast_dashlite.application.icon_path) }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><twig:block name="title"></twig:block> | Devscast Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>{% block title %}Connexion{% endblock %} | {{ devscast_dashlite.application.name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
-    <twig:block name="stylesheets">
+    <twig:block name="assets">
+        {{ encore_entry_script_tags('app') }}
         {{ encore_entry_link_tags('app') }}
     </twig:block>
-
-    <twig:block name="javascripts">
-        {{ encore_entry_script_tags('app') }}
-    </twig:block>
 </head>
-{% include '@app/shared/component/_flash.html.twig' %}
-<body class="<twig:block name="bodyClass">{{ 'min-h-screen flex items-center bg-neutral-lighter dark:bg-neutral-dark' }}</twig:block>">
-<twig:block name="body">
-    <div class="m-auto container px-12 sm:px-0 mx-auto">
-        <div class="mx-auto h-full md:w-10/12 lg:w-5/12">
-            <div class="m-auto  py-12  sm:p-12 xl:w-10/12 2xl:w-9/12">
-                <twig:block name="header">
-                    <div class="space-y-4 xl:p-2 2xl:p-6">
-                        <a href="{{ path('app_index') }}" title="Devscast Community" aria-label="Devscast Community">
-                            <img src="{{ asset('/images/logo-dark.png') }}" class="w-10 dark:hidden" alt="devscast logo"/>
-                            <img src="{{ asset('/images/logo.png') }}" class="w-10 hidden dark:inline-block" alt="devscast logo"/>
-                        </a>
-                    </div>
-                </twig:block>
+<body class="min-h-screen flex items-center">
+    <twig:FlashMessage />
+    <div aria-hidden="true" class="fixed right-0 scale-y-[2.5] rotate-45 top-0 w-28 h-96 blur-[5rem] rounded-full bg-[#D6ADFF]/30 dark:bg-[#31ABF0]/20"></div>
 
-                <twig:block name="content"></twig:block>
+    <twig:block name="body">
+        <div class="relative ml-auto container px-12 sm:px-0 mx-auto">
+            <div class="mx-auto h-full md:w-10/12 lg:w-5/12">
+                <div class="m-auto  py-12  sm:p-12 xl:w-10/12 2xl:w-9/12">
+                   <twig:block name="header">
+                       <div class="space-y-4 xl:p-2 2xl:p-6">
+                           <a href="{{ path('app_index') }}">
+                               <img src="{{ asset(devscast_dashlite.application.logo_path) }}" class="w-10 " alt="devscast logo" />
+                           </a>
+                       </div>
+                   </twig:block>
 
-                <twig:block name="footer">
-                    <div class="border-t mt-12 border-neutral-lighter pt-12 text-neutral-500 dark:border-neutral-800">
-                        <div class="space-x-4 text-center text-sm">
-                            <span class="text-neutral-300 font-light hover:text-neutral-400 dark:text-neutral-500 dark:hover:text-neutral-300">&copy; Devscast</span>
-                            <a href="#" class="text-neutral-400 font-light hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-300">Contact</a>
-                            <a href="#" class="text-neutral-400 font-light hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-300">Privacy & Terms</a>
+                    <twig:block name="content"></twig:block>
+
+                    <twig:block name="footer">
+                        <div class="border-t mt-12 border-t-bdr pt-12 text-fg">
+                            <div class="space-x-4 text-center text-sm">
+                                <span class="font-light hover:text-fg-heading2">
+                                    &copy; {{ devscast_dashlite.application.copyrights }} 2019 - {{ 'now' | date('Y') }}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </twig:block>
+                    </twig:block>
+                </div>
             </div>
         </div>
-    </div>
-</twig:block>
+    </twig:block>
 </body>
 </html>

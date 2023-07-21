@@ -17,7 +17,7 @@ final class UsernameType extends AbstractType implements DataMapperInterface
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('username', TextType::class, [
-            'label' => 'authentication.forms.labels.username',
+            'label' => false,  //'authentication.forms.labels.username',
             'attr' => [
                 'placeholder' => 'authentication.forms.labels.placeholders.username',
             ],

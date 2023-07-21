@@ -82,7 +82,7 @@ final class AttachmentRepository extends AbstractRepository implements Attachmen
             ->where('a.thumbnail.name LIKE :search')
             ->orderBy('a.created_at', 'DESC')
             ->setMaxResults(25)
-            ->setParameter('search', "%${query}%")
+            ->setParameter('search', "%{$query}%")
             ->getQuery()
             ->getResult();
 

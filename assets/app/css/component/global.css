@@ -1,0 +1,231 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--background);
+    width: 100%;
+}
+
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-padding-left: 10px;
+    scroll-padding-right: 10px;
+    scrollbar-width: none;
+}
+
+[data-simple-scroll-container], [data-box-scrollable], [data-tab-header-profile], .scrollbar-invisible{
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar, .scrollbar-invisible::-webkit-scrollbar,[data-simple-scroll-container]::-webkit-scrollbar,[data-box-scrollable]::-webkit-scrollbar,[data-tab-header-profile]::-webkit-scrollbar{
+    display: none;
+}
+
+.kf{
+    @apply visible scale-90
+}
+
+@keyframes reveal-modal-content {
+    from{
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(.95);
+    }
+
+    to{
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@layer components {
+    .costum-scrollbar{
+        @apply absolute block top-0 bottom-0 w-1 rounded-full bg-gray-300 dark:bg-gray-700 right-0.5 invisible group-hover:visible group-focus-within:visible
+    }
+
+    .active-cat{
+        @apply !bg-background-card-inside
+    }
+
+
+    .box-container {
+        @apply w-full px-4 sm:px-8 md:px-6 lg:px-3 mx-auto lg:max-w-7xl xl:max-w-[83rem];
+    }
+
+    .main-box-container {
+        @apply w-full md:px-0 lg:px-3 mx-auto lg:max-w-7xl xl:max-w-[83rem];
+    }
+
+    .content-background {
+        @apply pb-8 w-full mt-4 md:mt-8;
+    }
+
+    .right-box {
+        @apply w-full flex flex-col px-4 sm:px-8 md:px-6 lg:px-0
+        lg:sticky lg:top-16 lg:w-64
+        lg:min-w-[17.5rem] xl:min-w-[18rem]
+        lg:h-[calc(100dvh-4rem)] lg:min-h-max
+        lg:border-l lg:border-bdr pt-4 mt-20 lg:mt-0 pb-24 lg:pb-0;
+    }
+
+    .right-box2 {
+        @apply w-full flex flex-col lg:sticky lg:top-16 lg:w-64 lg:min-w-[16rem] xl:min-w-[17rem] lg:h-[calc(100dvh-4rem)] lg:border-l lg:border-bdr pt-4 pl-4;
+    }
+
+    .right-box3 {
+        @apply w-full hidden md:flex flex-col md:sticky md:top-16 md:w-64 md:min-w-[16rem] xl:min-w-[17rem] md:h-[calc(100dvh-4rem)] md:border-l md:border-bdr pt-4 pl-4;
+    }
+
+    .right-box-profile{
+        @apply w-full flex flex-col
+        md:sticky md:top-16 md:w-64 md:min-w-[17rem] xl:min-w-[17rem] md:h-[calc(100dvh-4rem)] md:border-l md:border-bdr pt-4 pl-4;
+    }
+
+    .bg-dark-gradient {
+        @apply bg-background-card border border-bdr dark:border-none dark:bg-gradient-to-br from-[#026A97] to-[#6C389F];
+    }
+
+    .btn{
+        @apply rounded-outer-radius outline-none flex items-center relative before:absolute before:inset-0 before:rounded-outer-radius before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:scale-100
+    }
+
+    .btn-sm{
+        @apply h-9 px-3.5
+    }
+
+    .btn-md{
+        @apply h-11 px-5
+    }
+
+
+
+    .app-input {
+        @apply appearance-none px-3 py-1.5 rounded-3xl outline-none w-full bg-background-card text-fg;
+    }
+
+    .card-post{
+        @apply xs:bg-background-card xs:!border-y xs:border border-bdr xs:rounded-outer-radius overflow-hidden;
+    }
+
+    .card-post .card-p-image{
+        @apply aspect-video
+    }
+
+    .card-post .card-p-image img{
+        @apply w-full h-full object-cover
+    }
+
+    .card-post .card-p-content{
+        @apply xs:p-6 sm:p-8 lg:p-7
+    }
+
+    .app-card-discuss{
+        @apply xs:bg-background-card xs:!border-y xs:border border-bdr xs:rounded-outer-radius py-10 xs:p-6;
+    }
+
+    .app-card-podcast {
+        @apply bg-background-card p-2.5 xs:p-3 sm:p-6 relative h-auto  rounded-outer-radius flex flex-col border border-bdr;
+    }
+
+    .app-card-job, .app-card-member, .app-card-tag {
+        @apply bg-background-card border border-bdr rounded-outer-radius p-5 sm:p-6;
+    }
+
+    .app-card-discuss, .app-card-post{
+        @apply xs:bg-background-card xs:!border-y xs:border border-bdr xs:rounded-outer-radius py-6 xs:p-6;
+    }
+
+    .d {
+        @apply w-full sm:bg-background-card sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius sm:p-6;
+    }
+    .app-card-post-content {
+        @apply w-full sm:bg-background-card sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius sm:p-6 lg:p-8;
+    }
+
+
+    [data-comment-bloc-zone][data-show-comment-box-area] [data-trigger-comment-bloc]{
+        @apply flex
+    }
+
+    [data-comment-bloc-zone][data-show-comment-box-area] [data-comment-bloc]{
+        @apply hidden
+    }
+
+    [data-comment-bloc-zone][data-show-comment-box-area="true"] [data-trigger-comment-bloc]{
+        @apply hidden
+    }
+
+    [data-comment-bloc-zone][data-show-comment-box-area="true"] [data-comment-bloc]{
+        @apply flex
+    }
+
+    .app-dropdown-container{
+        @apply absolute top-full w-48 rounded-outer-radius
+    }
+
+    .app-dropdown-content{
+        @apply rounded-inner-radius-gradient bg-background-card p-2
+    }
+
+    [data-dropdown-box][data-dropdown-open="true"] .app-dropdown-container{
+        @apply scale-100 duration-75 ease-linear
+    }
+
+    [data-dropdown-box][data-dropdown-open="false"] .app-dropdown-container{
+        @apply invisible scale-90
+    }
+
+    [data-modal]{
+        @apply fixed inset-0 items-center justify-center
+    }
+
+    [data-modal][aria-hidden="true"]{
+        @apply  hidden
+    }
+
+    [data-modal][aria-hidden="false"]{
+        @apply flex h-[100dvh] w-full items-center justify-center z-80
+    }
+
+    .costum-switch{
+        @apply w-10 h-5 transition-all duration-300 before:transition-all before:duration-300 rounded-3xl
+        relative bg-gray-400 dark:bg-gray-500 peer-checked:bg-gray-900 dark:peer-checked:bg-primary
+        before:absolute before:w-4 before:h-4
+        before:rounded-full before:bg-background before:left-0.5 before:top-1/2
+        before:-translate-y-1/2 peer-checked:before:left-[22px] cursor-pointer
+    }
+
+    .share-on-social-icon{
+        @apply relative py-1
+    }
+
+    .share-on-social-icon > .plateforme{
+        @apply absolute z-10 bg-background-card rounded-lg text-sm text-fg-heading2 transition duration-300 ease-linear
+        invisible scale-75 opacity-20 top-full left-1/2 -translate-x-1/2 w-max after:absolute translate-y-1
+        after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:bg-background-card
+    }
+
+    .share-on-social-icon:hover > .plateforme{
+        @apply !visible scale-100 !opacity-100
+    }
+
+    .share-on-social-icon > .plateforme span{
+        @apply p-2 rounded-lg bg-fg-heading2 text-background-card w-max max-w-[8rem] text-sm
+    }
+
+    .simplebar-track.simplebar-vertical{
+        @apply !bg-red-500
+    }
+
+    .simplebar-scrollbar::before {
+        background-color: red !important;
+    }
+}

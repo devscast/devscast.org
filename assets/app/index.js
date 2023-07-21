@@ -1,5 +1,5 @@
 // devscast community theme
-import './scss/app.scss'
+import './css/app.css'
 
 // start stimulus app
 import './js/bootstrap'

@@ -1,0 +1,9 @@
+@layer components{
+    .boxplayer{
+        @apply fixed bottom-0 left-0 lg:sticky w-full lg:pb-2
+    }
+
+    .boxplayer .player-container{
+        @apply bg-background-card border-t lg:border border-bdr p-4 lg:rounded-xl h-16 md:h-20 flex items-center
+    }
+}

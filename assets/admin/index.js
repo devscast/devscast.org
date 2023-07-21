@@ -34,22 +34,3 @@ customElements.define('modal-dialog', ModalDialog)
 customElements.define('spinning-dots', SpinningDots)
 customElements.define('app-syntax-code', SyntaxCode)
 FileManager.register();
-
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", async() => {
-        const wb = new Workbox('/sw.js', {scope: '/'})
-        const showSkipWaitingPrompt = async() => {
-            await installServiceWorker(() => {
-                wb.addEventListener('controlling', (event) => {
-                    window.location.reload()
-                })
-                wb.messageSkipWaiting()
-            })
-        };
-
-        // Add an event listener to detect when the registered
-        // service worker has installed but is waiting to activate.
-        wb.addEventListener('waiting', showSkipWaitingPrompt);
-        await wb.register();
-    })
-}

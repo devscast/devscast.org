@@ -27,14 +27,14 @@ final class RegisterUserForm extends AbstractType
 
         if (null !== $command && false === $command->is_oauth) {
             $builder->add('email', EmailType::class, [
-                'label' => 'authentication.forms.labels.email',
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'authentication.forms.labels.placeholders.email',
                 ],
             ])->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'authentication.forms.labels.password',
+                    'label' => false,
                     'attr' => [
                         'placeholder' => 'authentication.forms.labels.placeholders.password',
                         'minlength' => 6,
@@ -42,22 +42,15 @@ final class RegisterUserForm extends AbstractType
                     ],
                 ],
                 'second_options' => [
-                    'label' => 'authentication.forms.labels.password_confirm',
+                    'label' => false,
                     'attr' => [
+                        'placeholder' => 'authentication.forms.labels.password_confirm',
                         'minlength' => 6,
                     ],
                 ],
                 'invalid_message' => 'authentication.validations.password_must_match',
             ]);
         }
-
-        $builder->add('is_subscribed_newsletter', CheckboxType::class, [
-            'label' => 'authentication.forms.labels.is_subscribed_newsletter',
-            'required' => false,
-        ])->add('is_subscribed_marketing', CheckboxType::class, [
-            'label' => 'authentication.forms.labels.is_subscribed_marketing',
-            'required' => false,
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

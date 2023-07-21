@@ -29,13 +29,13 @@ final class LoginForm extends AbstractType
     {
         $builder
             ->add('identifier', TextType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'authentication.forms.labels.identifier',
                 ],
             ])
             ->add('password', PasswordType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'authentication.forms.labels.password',
                     'autocomplete' => 'current-password',

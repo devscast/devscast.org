@@ -1,0 +1,40 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./component/global.css";
+@import "./component/content.css";
+@import "./component/content.css";
+@import "./component/tab.css";
+@import "./component/player.css";
+
+:root{
+    --color-primary : #05ffbc;
+    --color-secondary : #543474;
+    --fg-heading1: theme(colors.gray.900);
+    --fg-heading2: theme(colors.gray.800);
+    --fg-heading3: theme(colors.gray.700);
+    --fg-heading4: theme(colors.gray.700);
+
+    --background:theme(colors.gray.50);
+    --foreground: theme(colors.gray.600);
+
+    --bg-card: theme(colors.white);
+    --bg-card-inside : theme(colors.gray.100);
+    --border:theme(colors.gray.200);
+}
+
+.dark{
+    --color-secondary : #22152F;
+    --fg-heading1 : theme(colors.white);
+    --fg-heading2 : theme(colors.gray.100);
+    --fg-heading3 : theme(colors.gray.200);
+    --fg-heading4: theme(colors.gray.200);
+
+    --background:theme(colors.gray.950);
+    --foreground : theme(colors.gray.300);
+
+    --bg-card: theme(colors.gray.900);
+    --bg-card-inside : theme(colors.gray.800);
+    --border:theme(colors.gray.800);
+}

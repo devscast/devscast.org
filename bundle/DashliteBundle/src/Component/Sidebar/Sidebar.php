@@ -87,7 +87,7 @@ final class Sidebar
         }
 
         return <<< HTML
-            <li class="nk-menu-item ${activeClass}">
+            <li class="nk-menu-item {$activeClass}">
                 <a {$currentClass} aria-label="{$item->label}" title="{$item->label}" href="{$item->url}" class="nk-menu-link">
                     {$icon}
                     <span class="nk-menu-text">{$item->label}</span>
