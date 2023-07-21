@@ -48,7 +48,8 @@ final class LoginFormControllerTest extends WebTestCase
         $this->client->submitForm('Se connecter', [
             'identifier' => (string) $user->getUsername(),
             'password' => '000001',
-        ]);
+        ]);    // TODO: fix fixtures to generate reset password with old datetime
+
         $this->client->followRedirects();
         $this->assertResponseRedirects('/login');
     }

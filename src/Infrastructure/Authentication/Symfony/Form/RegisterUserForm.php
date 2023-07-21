@@ -7,7 +7,6 @@ namespace Infrastructure\Authentication\Symfony\Form;
 use Application\Authentication\Command\RegisterUserCommand;
 use Infrastructure\Authentication\Symfony\Form\ValueObject\UsernameType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;

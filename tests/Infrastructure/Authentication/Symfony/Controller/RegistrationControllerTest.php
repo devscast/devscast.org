@@ -29,14 +29,14 @@ final class RegistrationControllerTest extends WebTestCase
     public function testLoginIsReachableFromRegistrationForm(): void
     {
         $crawler = $this->client->request('GET', '/register');
-        $this->client->click($crawler->selectLink("J'ai déjà un compte")->link());
+        $this->client->click($crawler->selectLink('Je suis déjà membre')->link());
         $this->expectTitle('Connexion');
     }
 
     public function testRegistrationWithoutOauth(): void
     {
         $this->client->request('GET', '/register');
-        $this->client->submitForm('Soumettre', [
+        $this->client->submitForm('Rejoindre', [
             'register_user_form[username][username]' => 'johndoe',
             'register_user_form[email]' => 'johndoe@johndoe.com',
             'register_user_form[password][first]' => 'pazjejoazuaziuaazenonazbfiumqksdmù',
@@ -63,7 +63,7 @@ final class RegistrationControllerTest extends WebTestCase
         $this->client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
 
         $this->client->request('GET', '/register?oauth=1');
-        $this->client->submitForm('Soumettre', [
+        $this->client->submitForm('Rejoindre', [
             'register_user_form[username][username]' => 'johndoe2',
         ]);
 
@@ -77,7 +77,7 @@ final class RegistrationControllerTest extends WebTestCase
         /** @var array<string,User> $users */
         $users = $this->loadFixtures(['users']);
         $this->client->request('GET', '/register');
-        $this->client->submitForm('Soumettre', [
+        $this->client->submitForm('Rejoindre', [
             'register_user_form[username][username]' => $users['user1']->getUsername(),
             'register_user_form[email]' => $users['user1']->getEmail(),
             'register_user_form[password][first]' => 'pazjejoazuaziuaazenonazbfiumqksdmù',

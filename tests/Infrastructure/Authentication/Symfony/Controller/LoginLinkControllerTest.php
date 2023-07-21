@@ -26,7 +26,7 @@ final class LoginLinkControllerTest extends WebTestCase
     public function testLoginLinkIsReachableFromLoginForm(): void
     {
         $crawler = $this->client->request('GET', '/login');
-        $this->client->click($crawler->selectLink('mot de passe oublié')->link());
+        $this->client->click($crawler->selectLink('Mot de passe oublie ?')->link());
         $this->expectTitle('Un Problème de connexion ?');
     }
 
@@ -34,7 +34,7 @@ final class LoginLinkControllerTest extends WebTestCase
     {
         $crawler = $this->client->request('GET', '/login/link/request');
         $this->expectFormErrors(0);
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_login_link_form[email]' => 'invalid',
         ]);
@@ -45,7 +45,7 @@ final class LoginLinkControllerTest extends WebTestCase
     public function testLoginLinkBlockNotAssignedEmails(): void
     {
         $crawler = $this->client->request('GET', '/login/link/request');
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_login_link_form[email]' => 'none@none.com',
         ]);
@@ -59,7 +59,7 @@ final class LoginLinkControllerTest extends WebTestCase
         $users = $this->loadFixtures(['users']);
 
         $crawler = $this->client->request('GET', '/login/link/request');
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_login_link_form[email]' => $users['user1']->getEmail(),
         ]);

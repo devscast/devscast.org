@@ -23,7 +23,7 @@ final class ResetPasswordControllerTest extends WebTestCase
     {
         $crawler = $this->client->request('GET', '/password/request');
         $this->expectFormErrors(0);
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_reset_password_form[email]' => 'invalid',
         ]);
@@ -35,7 +35,7 @@ final class ResetPasswordControllerTest extends WebTestCase
     {
         $crawler = $this->client->request('GET', '/password/request');
         $this->expectFormErrors(0);
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_reset_password_form[email]' => 'unknown@email.com',
         ]);
@@ -50,12 +50,12 @@ final class ResetPasswordControllerTest extends WebTestCase
         $users = $this->loadFixtures(['users']);
 
         $crawler = $this->client->request('GET', '/password/request');
-        $form = $crawler->selectButton('Soumettre')->form();
+        $form = $crawler->selectButton('Suivant')->form();
         $form->setValues([
             'request_reset_password_form[email]' => $users['user1']->getEmail(),
         ]);
         $this->client->submit($form);
-        //$this->assertEmailCount(1); TODO: fix email sending in testing event
+        $this->assertEmailCount(1);
         $this->client->followRedirect();
         $this->expectFormErrors(0);
     }
@@ -67,7 +67,7 @@ final class ResetPasswordControllerTest extends WebTestCase
 
         for ($i = 0; $i <= 2; ++$i) {
             $crawler = $this->client->request('GET', '/password/request');
-            $form = $crawler->selectButton('Soumettre')->form();
+            $form = $crawler->selectButton('Suivant')->form();
             $form->setValues([
                 'request_reset_password_form[email]' => $users['user1']->getEmail(),
             ]);
@@ -86,7 +86,7 @@ final class ResetPasswordControllerTest extends WebTestCase
         /** @var ResetPasswordToken $token */
         $token = $tokens['recent_password_token'];
         $this->client->request('GET', "/password/confirm/{$token->getToken()}");
-        $this->client->submitForm('Soumettre', [
+        $this->client->submitForm('Réinitialiser', [
             'confirm_reset_password_form[password][first]' => 'pazjejoazuaziuaazenonazbfiumqksdmù',
             'confirm_reset_password_form[password][second]' => 'pazjejoazuaziuaazenonazbfiumqksdmù',
         ]);
@@ -96,16 +96,15 @@ final class ResetPasswordControllerTest extends WebTestCase
         $this->expectSuccessAlert();
     }
 
-    // TODO: fix fixtures to generate reset password with old datetime
-//    public function testResetPasswordConfirmExpired(): void
-//    {
-//        /** @var array<string, ResetPasswordToken> $tokens */
-//        $tokens = $this->loadFixtures(['reset_password_token']);
-//        /** @var ResetPasswordToken $token */
-//        $token = $tokens['old_password_token'];
-//
-//        $this->client->request('GET', "/password/confirm/{$token->getToken()}");
-//        $this->client->followRedirect();
-//        $this->expectErrorAlert();
-//    }
+    public function testResetPasswordConfirmExpired(): void
+    {
+        /** @var array<string, ResetPasswordToken> $tokens */
+        $tokens = $this->loadFixtures(['reset_password_token']);
+        /** @var ResetPasswordToken $token */
+        $token = $tokens['old_password_token'];
+
+        $this->client->request('GET', "/password/confirm/{$token->getToken()}");
+        $this->client->followRedirect();
+        $this->expectErrorAlert();
+    }
 }
