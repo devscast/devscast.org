@@ -1,0 +1,9 @@
+<a href="{{ path('app_content_category_show', {slug: this.category.slug}) }}" class="flex items-center space-x-4 rounded-outer-radius bg-background-card border border-bdr p-3.5 w-1/2 max-w-max sm:w-1/3 min-w-max  ">
+    <div class="min-w-max">
+        <img src="{{ vich_uploader_asset(this.category, 'thumbnail_file') }}" alt="icon category" width="34" height="34" class="md:w-12 w-8">
+    </div>
+    <div>
+        <h2 class="font-medium text-base md:text-lg text-fg-heading2">{{ this.category.name }}</h2>
+        <span class="-mt-1 block text-sm text-fg-heading3">{{ this.category.postsCount }} articles</span>
+    </div>
+</a>

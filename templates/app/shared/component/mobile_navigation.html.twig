@@ -1,0 +1,68 @@
+<div class="fixed inset-x-0 bottom-0  lg:hidden z-40 sm:py-2">
+    <nav class="h-16 flex items-center box-container bg-background border-t border-bdr sm:max-w-lg sm:rounded-full sm:border">
+        <ul class="grid grid-cols-5 w-full gap-3 xs:gap-4 font-light text-xs xs:text-sm text-fg h-full">
+            <li class="w-full flex flex-1 h-full items-center justify-center active-page">
+                <a href="./" class="flex flex-col items-center gap-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-5 h-5"
+                         viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+                    </svg>
+                    <span class="hidden sm:block">
+              Accueil
+            </span>
+                </a>
+            </li>
+            <li class="w-full flex flex-1 h-full items-center justify-center">
+                <a href="./posts/" class="flex flex-col items-center gap-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-5 h-5"
+                         viewBox="0 0 16 16">
+                        <path
+                            d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
+                    </svg>
+                    <span class="hidden sm:block">
+              Articles
+            </span>
+                </a>
+            </li>
+            <li class="w-full flex items-center justify-center flex-1">
+                <button class="btn-new rounded-full p-px flex" data-modal-trigger data-target-modal="newsubmit">
+            <span class="bg-background-card-inside rounded-full p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="xs:w-6 xs:h-6"
+                   viewBox="0 0 16 16">
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+              </svg>
+            </span>
+                </button>
+            </li>
+            <li class="w-full flex flex-1 h-full items-center justify-center">
+                <a href="./podcast/" class="flex flex-col items-center gap-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-5 h-5"
+                         viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+                        <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z" />
+                    </svg>
+                    <span class="hidden sm:block">
+              Podcast
+            </span>
+                </a>
+            </li>
+            <li class="w-full flex flex-1 h-full items-center justify-center">
+                <a href="./discussions/" class="flex flex-col items-center gap-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-5 h-5"
+                         viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+                    </svg>
+                    <span class="hidden sm:block">
+              Discussions
+            </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

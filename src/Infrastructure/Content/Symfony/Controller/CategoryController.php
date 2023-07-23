@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Controller;
 
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
-use Domain\Content\Entity\Technology;
+use Domain\Content\Entity\Category;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class TechnologyController.
+ * class PostController.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/technologies', name: 'app_content_technology_')]
-final class TechnologyController extends AbstractController
+#[Route('/content/category', name: 'app_content_category_')]
+final class CategoryController extends AbstractController
 {
     #[Route('/{slug<[a-zA-Z0-9-]+>}', name: 'show', methods: ['GET'])]
-    public function show(Technology $row): void
+    public function __invoke(Category $item): void
     {
     }
 }

@@ -1,19 +1,37 @@
+{% apply spaceless %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale ?? 'fr' }}" class="dark">
     <head>
-        <meta charset="UTF-8">
-        <title><twig:block name="title"></twig:block> | Devscast Community</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <twig:block name="stylesheets">
-            {{ encore_entry_link_tags('app') }}
-        </twig:block>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <twig:block name="javascripts">
+        <link rel="icon" type="image/webp" href="{{ asset(devscast_dashlite.application.icon_path) }}" />
+        <link rel="shortcut icon" href="{{ asset(devscast_dashlite.application.icon_path) }}" type="image/webp">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <title>{% block title %}{% endblock %} | {{ devscast_dashlite.application.name }}</title>
+        <twig:block name="meta"></twig:block>
+        <twig:block name="assets">
+            {{ encore_entry_link_tags('app') }}
             {{ encore_entry_script_tags('app') }}
         </twig:block>
     </head>
+
     <body>
-        <twig:block name="body"></twig:block>
+        <twig:AppHeader />
+        <twig:AppMobileNavigation />
+
+        <main class="w-full relative">
+            <div class="main-box-container lg:flex">
+                <twig:AppSidebar />
+
+                <twig:block name="content"></twig:block>
+                <twig:block name="right"></twig:block>
+            </div>
+        </main>
+
+        <div data-nav-overlay class="hidden lg:hidden fixed inset-0 z-30"></div>
+        <div aria-hidden="true" class="fixed right-0 scale-y-[2.5] rotate-45 top-0 w-28 h-96 blur-[5rem] rounded-full bg-[#D6ADFF]/30 dark:bg-[#31ABF0]/20"></div>
     </body>
 </html>
+{% endapply %}

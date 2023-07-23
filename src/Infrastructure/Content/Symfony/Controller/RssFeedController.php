@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class RssFeedController extends AbstractController
 {
-    #[Route('/{content_type<podcasts|posts>}/feed.rss', name: 'content_feed', methods: ['GET'], priority: 20)]
+    #[Route('/{content_type<podcasts|posts>}/feed.rss', name: 'app_content_feed', methods: ['GET'], priority: 20)]
     public function __invoke(ContentRepositoryInterface $repository, string $content_type): Response
     {
         /** @var PodcastEpisode[]|Post[] $data */

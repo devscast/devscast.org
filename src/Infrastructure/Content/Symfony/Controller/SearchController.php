@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/search', name: 'content_search')]
+#[Route('/search', name: 'app_content_search')]
 final class SearchController extends AbstractController
 {
     #[Route(

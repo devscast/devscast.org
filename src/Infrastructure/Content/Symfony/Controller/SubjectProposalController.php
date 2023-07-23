@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/subjects', name: 'content_subject_proposal_')]
+#[Route('/subjects', name: 'app_content_subject_proposal_')]
 final class SubjectProposalController extends AbstractController
 {
     #[Route(

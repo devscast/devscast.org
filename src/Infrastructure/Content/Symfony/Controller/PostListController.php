@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/posts/lists', name: 'content_post_')]
+#[Route('/posts/lists', name: 'app_content_post_')]
 final class PostListController extends AbstractController
 {
     #[Route(

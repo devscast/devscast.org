@@ -1,0 +1,19 @@
+<div class="p-5 sm:p-6 md:p-10 rounded-xl bg-background-card overflow-hidden relative">
+    <span class="absolute top-0 left-0 w-2/5 h-1/5 rounded-full bg-gradient-to-br from-[#026A97] to-[#6C389F] blur-3xl opacity-40"></span>
+
+    {% if this.category %}
+        <div class="absolute bottom-0 right-0 flex inset-x-0 justify-end opacity-30 dark:opacity-40">
+            <img src="{{ vich_uploader_asset(this.category, 'thumbnail_file') }}" alt="icon category" width="48" height="48" class="w-20 sm:w-28 h-auto">
+        </div>
+    {% endif %}
+
+    <span class="absolute bottom-0 right-0 w-2/5 h-1/5 rounded-full bg-gradient-to-br from-[#026A97] to-[#6C389F] blur-3xl opacity-40"></span>
+    <div class="max-w-xl space-y-4 relative z-[5] sm:pr-16">
+        <h1 class="text-fg-heading1 font-semibold leading-snug text-xl xs:text-2xl sm:text-3xl">
+            {{ this.category.name ?? this.title }}
+        </h1>
+        <p class="text-sm md:text-base text-fg">
+            {{ this.category.description ?? this.description }}
+        </p>
+    </div>
+</div>

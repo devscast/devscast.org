@@ -22,7 +22,7 @@ final class StreamingController extends AbstractController
 {
     #[Route(
         '/streaming/{content_type<podcasts|videos>}/{filename<[a-zA-Z0-9-\.]+>}',
-        name: 'content_streaming',
+        name: 'app_content_streaming',
         methods: ['GET']
     )]
     public function __invoke(

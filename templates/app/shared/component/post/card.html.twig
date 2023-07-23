@@ -1,0 +1,123 @@
+<div class="card-post">
+    {% if this.post.thumbnail.name %}
+        <div class="card-p-image">
+            <img src="{{ vich_uploader_asset(this.post, 'thumbnail_file') }}" alt="{{ this.post.name }}">
+        </div>
+    {% endif %}
+
+    <div class="card-p-content space-y-4">
+        <div class="flex justify-between gap-x-6">
+            <div class="flex gap-x-2 items-center flex-1">
+                <div class="rounded-full min-w-max bg-background-card-inside border border-bdr overflow-hidden">
+                    {% if this.post.owner.avatar.name %}
+                        <img class="w-10 h-10 object-cover rounded-outer-radius" src="{{ vich_uploader_asset(this.post.owner, 'avatar_file') }}" alt="user avatar">
+                    {% else %}
+                        <svg class="w-10 h-10 text-fg-heading2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    {% endif %}
+                </div>
+                <div class="flex flex-col text-fg">
+                    <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">
+                        {{ this.post.owner.username }}
+                    </a>
+                    <div class="flex items-center gap-x-1.5 text-sm ">
+                        <span>#article</span>
+                        <span class="w-1 h-1 rounded-full bg-fg"></span>
+                        <span>{{ this.post.createdAt | date }}</span>
+                    </div>
+                </div>
+            </div>
+            <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max text-fg">
+                <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                    <span class="sr-only">toggle dropdown</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                    </svg>
+                </button>
+                <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                    <div class="app-dropdown-content text-fg-heading2 ">
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                        <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                    </svg>
+                                    Signaler
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"></path>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"></path>
+                                    </svg>
+                                    Enregistrer
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="mt-4">
+            <a href="{{ path('app_content_show', {id: this.post.id, content_type: 'posts'}) }}" class="text-fg-heading1 tracking-tight duration-300 hover:text-gray-950 dark:hover:text-primary font-semibold text-xl sm:text-2xl">
+                {{ this.post.name }}
+            </a>
+        </h1>
+        <p class="text-fg line-clamp-4">{{ this.post.content | u.truncate(150, '...') }}</p>
+        <div class=" sm:px-0 mt-5 sm:border-t sm:border-bdr sm:pt-2 select-none">
+            <div class="flex justify-between">
+                <div class="flex items-center gap-4 text-sm ">
+                    <a href="./post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                        </svg>
+                        <span class="flex gap-x-1">{{ this.post.commentCount }}</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-x-2 text-fg">
+                    <span class="text-sm ">{{ this.post.duration }} min de lecture</span>
+                    <div data-dropdown-box="" data-dropdown-open="false" class="relative flex h-max items-center">
+                        <button data-drop-trigger="" class="outline-none flex  p-2 hover:bg-background-card-inside rounded-md">
+                            <span class="sr-only">Toggle share</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path>
+                            </svg>
+                        </button>
+                        <div data-drop-down-container="" class="app-dropdown-container right-0 -top-2 -translate-y-full origin-bottom-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                            <div class="app-dropdown-content text-fg-heading2 ">
+                                <ul class="space-y-1">
+                                    <li>
+                                        <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                            Twitter
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                            Twitter
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                            Twitter
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                            Autre
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

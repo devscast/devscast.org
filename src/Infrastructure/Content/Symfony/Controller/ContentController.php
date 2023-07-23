@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 /**
@@ -28,7 +29,7 @@ final class ContentController extends AbstractController
 {
     #[Route(
         '/{content_type<posts|podcasts|videos|trainings>}',
-        name: 'content_index',
+        name: 'app_content_index',
         options: [
             'sitemap' => [
                 'priority' => 0.6,
@@ -42,8 +43,11 @@ final class ContentController extends AbstractController
     }
 
     #[Route(
-        '/{content_type<posts|podcasts|videos|trainings>}/{slug<[a-zA-Z0-9-]+>}-{id<\d+>}',
-        name: 'content_show',
+        '/{content_type<posts|podcasts|videos|trainings>}/{id}',
+        name: 'app_content_show',
+        requirements: [
+            'id' => Requirement::UUID,
+        ],
         methods: ['GET']
     )]
     public function show(
@@ -54,19 +58,6 @@ final class ContentController extends AbstractController
         string $content_type,
         string $slug
     ): Response {
-        // redirect to updated slug for better SEO
-        if ($content->getSlug() !== $slug) {
-            return $this->redirectToRoute(
-                route: 'content_show',
-                parameters: [
-                    'type' => sprintf('%ss', $content->getContentType()),
-                    'slug' => $content->getSlug(),
-                    'id' => $content->getId(),
-                ],
-                status: Response::HTTP_MOVED_PERMANENTLY
-            );
-        }
-
         if (false === $content->getStatus()->equals(ContentStatus::published()) || false === $content->isIsOnline()) {
             throw new AccessDeniedHttpException();
         }

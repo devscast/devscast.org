@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/podcasts/seasons', name: 'content_podcast_season_')]
+#[Route('/podcasts/seasons', name: 'app_content_podcast_season_')]
 final class PodcastSeasonController extends AbstractController
 {
     #[Route(

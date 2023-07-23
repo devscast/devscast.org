@@ -1,0 +1,72 @@
+<nav role="navigation" aria-label="pagination">
+    <ul class="flex items-center gap-x-2 w-full overflow-x-auto text-fg-heading2">
+        {% if previous is defined %}
+            <li class="text-fg-heading1">
+                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="flex items-center p-2 rounded-lg" aria-label="page précédente" title="page précédente" rel="prev">
+                    <span class="sr-only">precedent</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </li>
+        {% else %}
+        {% endif %}
+
+
+        {% if startPage > 1 %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}" title="aller à la première page" class="flex items-center px-3 py-1.5 rounded-lg">1</a>
+            </li>
+            {% if startPage == 3 %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}" title="aller à la deuxième page" class="flex items-center px-3 py-1.5 rounded-lg">2</a>
+                </li>
+            {% elseif startPage != 2 %}
+                <li>
+                    <span class="flex items-center px-3 py-1.5 rounded-lg">...</span>
+                </li>
+            {% endif %}
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" title="aller à la {{ page }} page" class="flex items-center px-3 py-1.5 rounded-lg">{{ page }}</a>
+                </li>
+            {% else %}
+                <li aria-current="page">
+                    <span class="flex items-center px-3 py-1.5 rounded-lg border border-bdr bg-background-card ease-linear duration-300 hover:bg-primary hover:!text-gray-700" aria-current="true">{{ page }}</span>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pageCount > endPage %}
+            {% if pageCount > (endPage + 1) %}
+                {% if pageCount > (endPage + 2) %}
+                    <li>
+                        <span class="flex items-center px-3 py-1.5 rounded-lg">...</span>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}" title="aller à la {{ pageCount - 1 }} page" class="flex items-center px-3 py-1.5 rounded-lg">{{ pageCount - 1}}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}" title="aller à la {{ pageCount }} page" class="flex items-center px-3 py-1.5 rounded-lg">{{ pageCount }}</a>
+            </li>
+        {% endif %}
+
+        {% if next is defined %}
+            <li class="text-fg-heading1">
+                <a href="{{ path(route, query|merge({(pageParameterName): next})) }}" aria-label="page suivante" title="page suivante" rel="next" class="flex items-center p-2 rounded-lg">
+                    <span class="sr-only">suivant</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </li>
+        {% else %}
+        {% endif %}
+    </ul>
+</nav>

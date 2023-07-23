@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/posts', name: 'content_post_')]
+#[Route('/posts', name: 'app_content_post_')]
 final class PostController extends AbstractController
 {
     #[Route('/preview/{id}', name: 'preview', requirements: [

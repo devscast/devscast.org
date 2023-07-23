@@ -1,0 +1,98 @@
+<header class="navbar">
+    <div class="box-container flex items-center h-full justify-between relative">
+        <div class="min-w-max lg:pl-4 flex items-center gap-x-3 flex-1">
+            <div aria-hidden="true" data-toggle-visible-on-large="false" class="flex lg:hidden h-auto">
+                <button data-open-sidebar class="flex flex-col gap-y-2 pr-3 py-2 border-r border-bdr">
+                    <div aria-hidden="true" class="mx-auto h-0.5 w-6 rounded bg-fg-heading2 transition duration-300"></div>
+                    <div aria-hidden="true" class="mx-auto h-0.5 w-6 rounded bg-fg-heading2 transition duration-300"></div>
+                </button>
+            </div>
+            <a href="/" class="w-max flex">
+                <img src="{{ asset(devscast_dashlite.application.logo_path) }}" alt="Devscast Logo" width="120" height="120" class="w-8 h-8">
+            </a>
+        </div>
+
+        <div class="w-full lg:max-w-md hidden lg:flex">
+            <div class="w-full relative flex items-center text-fg">
+                <span class="absolute left-4 h-6 flex items-center pr-3 border-r border-bdr">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-fg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </span>
+                <input type="search" name="leadingIcon" id="leadingIcon" placeholder="Recherchez ici" class="outline-none w-full pl-14 pr-4 py-2.5 rounded-md placeholder-gray-400 text-sm text-fg-heading2 border border-bdr bg-background-card-inside focus:border-primary transition focus:bg-background-card">
+            </div>
+        </div>
+
+        <div class="flex items-center gap-x-2 flex-1 justify-end text-fg-heading2 h-full">
+            <div aria-hidden="true" class="flex items-center lg:hidden">
+                <a href="" class="duration-300 border rounded-outer-radius border-bdr p-2 flex active:rotate-45">
+                    <span class="sr-only">Search</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="h-5 w-5 stroke-fg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="flex items-center">
+                <a href="#" class="text-fg children:duration-300 border rounded-outer-radius border-bdr p-2 flex active:children:rotate-45">
+                    <span class="sr-only">Go to notification</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="flex items-center">
+                <twig:AppThemeSwitcher />
+            </div>
+            <div data-dropdown-box data-dropdown-open="false" id="dropdown-user" class="relative h-full flex items-center">
+                <button data-drop-trigger class="rounded-outer-radius min-w-max bg-background-card-inside border border-bdr">
+                    <img class="w-9 h-9  object-cover rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                </button>
+                <div data-drop-down-container class="app-dropdown-container right-0 !origin-top-right dark:p-px bg-dark-gradient">
+                    <div class="app-dropdown-content text-fg-heading2">
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#"
+                                   class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                    Mon compte
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+                                    </svg>
+                                    Paramètres
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hdd-network" viewBox="0 0 16 16">
+                                        <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8.5v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10V7H2a2 2 0 0 1-2-2V4zm1 0v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1zm6 7.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5z" />
+                                    </svg>
+                                    Mon réseau
+                                </a>
+                            </li>
+                            <li class="mt-2 border-t border-bdr pt-2">
+                                <form action="">
+                                    <button class="outline-none px-3 flex items-center gap-x-3 rounded-md py-1 text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                        </svg>
+                                        Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
