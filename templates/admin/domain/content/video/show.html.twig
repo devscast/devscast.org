@@ -5,7 +5,7 @@
 <twig:block name="header">
     <twig:Header title="{{ data.name }}" backPath="{{ path('admin_content_video_index') }}" backTitle="Toutes les vidéos">
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_video_edit', {id: data.id}) }}" icon="edit-alt-fill" />
-        <twig:DeleteButton path="{{ path('admin_content_video_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_video_index') }}" type="button" />
+        <twig:DashliteDeleteButton path="{{ path('admin_content_video_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_video_index') }}" type="button" />
     </twig:Header>
 </twig:block>
 

@@ -8,7 +8,7 @@
         Nous pouvons vous aider à vous reconnecter directement à votre compte.
 
         {% if _format == 'html' %}
-           <twig:EmailQrCode
+           <twig:DashliteEmailQrCode
                src="{{ qr_code_data_uri(event.link.url) }}"
                title="Scanner le QRCode pour vous connecter ou utiliser le lien direct"
            />
@@ -21,7 +21,7 @@
         Si vous n'avez pas demandé ce lien en essayant de vous connecter ou de réinitialiser votre mot de passe, ignorez simplement ce mail.
 
         Ce lien ne sera plus valide après **10 minutes**,
-        <twig:EmailButton url="{{ event.link.url }}" title="Me connecter" :format="_format" />
+        <twig:DashliteEmailButton url="{{ event.link.url }}" title="Me connecter" :format="_format" />
 
         Vous pouvez également <a rel="noopener" href="{{ url('authentication_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
     {% endapply %}

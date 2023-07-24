@@ -24,7 +24,7 @@
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
                         <twig:ResponsiveTableAction>
-                            <twig:DeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
+                            <twig:DashliteDeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
                         </twig:ResponsiveTableAction>
                     </twig:ResponsiveTableTools>
                 </twig:ResponsiveTableColumn>

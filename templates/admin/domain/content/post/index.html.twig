@@ -2,33 +2,33 @@
 <twig:block name="title">{{ 'Articles' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Articles">
-        <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_content_post_new') }}" icon="plus" />
+    <twig:DashliteHeader title="Articles">
+        <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_content_post_new') }}" icon="plus" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_post_new') }}" emptyStateAction="Ajouter un article">
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_post_new') }}" emptyStateAction="Ajouter un article">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Auteur" col />
-                    <twig:ResponsiveTableColumn value="Titre" col />
-                    <twig:ResponsiveTableColumn value="Lectures" col />
-                    <twig:ResponsiveTableColumn value="Statut" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Auteur" col />
+                    <twig:DashliteResponsiveTableColumn value="Titre" col />
+                    <twig:DashliteResponsiveTableColumn value="Lectures" col />
+                    <twig:DashliteResponsiveTableColumn value="Statut" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn>
-                    <twig:UserAvatarLink
+                <twig:DashliteResponsiveTableColumn>
+                    <twig:DashliteUserAvatarLink
                         path="{{ path('admin_authentication_user_show', {id: item.owner.id}) }}"
                         username="{{ item.owner.username }}"
                         surname="{{ item.owner.email }}"
                         avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
                     />
                 </twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn value="{{ item.name }}" />
-                <twig:ResponsiveTableColumn>{{ item.viewCount }}</twig:ResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
+                <twig:DashliteResponsiveTableColumn>{{ item.viewCount }}</twig:ResponsiveTableColumn>
                 <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>

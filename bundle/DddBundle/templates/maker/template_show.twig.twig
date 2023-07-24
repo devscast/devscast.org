@@ -18,14 +18,14 @@
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_index') }}" | raw }}"
                    class="btn btn-white btn-dim btn-outline-light" aria-label="{{ "{{ 'global.back' | trans }}" }}"
                    title="{{ "{{ 'global.back' | trans }}" }}">
-                    {{ "<twig:Icon name="arrow-long-left"/>" }}
+                    {{ "<twig:DashliteIcon name="arrow-long-left"/>" }}
                     <span>Toutes les entrées</span>
                 </a>
                 <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: data.id}) }}" | raw }}"
                    class="btn btn-white btn-dim btn-outline-light"
                    aria-label="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}"
                    title="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}">
-                    {{ "<twig:Icon name="edit-alt-fill"/>" }}
+                    {{ "<twig:DashliteIcon name="edit-alt-fill"/>" }}
                     <span>{{ "{{ 'global.edit' | trans([], 'messages') }}" }}</span>
                 </a>
             </li>

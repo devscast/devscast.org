@@ -11,7 +11,7 @@
         <twig:block name="content">
             <twig:HeaderLinkButton name="Tous les utilisateurs" path="{{ path('admin_authentication_user_index') }}" icon="arrow-long-left" />
             <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_authentication_user_edit', {id: data.id}) }}" icon="edit-alt-fill" />
-            <twig:DeleteButton path="{{ path('admin_authentication_user_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_authentication_user_index') }}" type="button" />
+            <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_authentication_user_index') }}" type="button" />
         </twig:block>
     </twig:Header>
 </twig:block>

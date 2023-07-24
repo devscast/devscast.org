@@ -3,26 +3,26 @@
 <twig:block name="title">{{ 'Tags' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Tags">
-        <twig:FormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_tag_new') }}" />
+    <twig:DashliteHeader title="Tags">
+        <twig:DashliteFormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_tag_new') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_tag_new') }}" emptyStateAction="Ajouter un tag">
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_tag_new') }}" emptyStateAction="Ajouter un tag">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Nom" col/>
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Nom" col/>
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn value="{{ item.name }}" />
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_tag_edit', {id: item.id}) }}" icon="edit" />
-                        <twig:ResponsiveTableAction>
-                            <twig:DeleteButton path="{{ path('admin_content_tag_delete', {id: item.id}) }}" :item="item" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_tag_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DashliteResponsiveTableAction>
+                            <twig:DashliteDashliteDeleteButton path="{{ path('admin_content_tag_delete', {id: item.id}) }}" :item="item" />
                         </twig:ResponsiveTableAction>
                     </twig:ResponsiveTableTools>
                 </twig:ResponsiveTableColumn>

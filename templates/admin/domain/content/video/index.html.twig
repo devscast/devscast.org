@@ -2,23 +2,23 @@
 <twig:block name="title">{{ 'Vidéos' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Vidéos">
-        <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_video_new') }}" />
+    <twig:DashliteHeader title="Vidéos">
+        <twig:DashliteHeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_video_new') }}" />
     </twig:Header>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStateAction="Ajouter une vidéo" emptyStatePath="{{ path('admin_content_video_new') }}">
+            <twig:DashliteResponsiveTable :data="data" emptyStateAction="Ajouter une vidéo" emptyStatePath="{{ path('admin_content_video_new') }}">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="nom" cols />
-                    <twig:ResponsiveTableColumn value="Lecture" cols />
-                    <twig:ResponsiveTableColumn value="Statut" cols />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="nom" cols />
+                    <twig:DashliteResponsiveTableColumn value="Lecture" cols />
+                    <twig:DashliteResponsiveTableColumn value="Statut" cols />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn value="{{ item.name }}" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
                 <twig:ResponsiveTableColumn>{{ (item.duration / 60) | round(1, 'floor') }} min</twig:ResponsiveTableColumn>
                 <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>

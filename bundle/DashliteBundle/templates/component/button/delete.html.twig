@@ -3,7 +3,7 @@
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value='{{ csrf_token("delete_#{this.item.id}") }}'>
         <button is="app-confirm-button" title="{{ 'global.delete' | trans([], 'messages') }}" aria-label="{{ 'global.delete' | trans([], 'messages') }}" class="btn btn-white btn-dim btn-outline-light">
-            <twig:Icon name="trash" />
+            <twig:DashliteIcon name="trash" />
             <span>{{ 'global.delete' | trans([], 'messages') }}</span>
         </button>
     </form>
@@ -17,6 +17,6 @@
         title="{{ 'global.delete' | trans([], 'messages') }}"
         remove="{{ this.remove }}"
     >
-        <twig:Icon name="trash" />
+        <twig:DashliteIcon name="trash" />
     </button>
 {% endif %}

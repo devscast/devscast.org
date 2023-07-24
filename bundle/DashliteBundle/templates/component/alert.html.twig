@@ -9,7 +9,7 @@
     </div>
 {% else %}
     <div class="alert alert-icon alert-{{ this.state }} {{ this.dismissible ? 'alert-dismissible' : '' }} {{ this.fill ? 'alert-fill' : '' }}">
-        <twig:Icon :name="this.icon" />
+        <twig:DashliteIcon :name="this.icon" />
         {{ this.message | raw }}
         {% if this.dismissible %}
             <button class="close" data-bs-dismiss="alert"></button>

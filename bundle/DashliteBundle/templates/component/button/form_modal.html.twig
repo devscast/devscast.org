@@ -1,7 +1,7 @@
 <button {{ stimulus_action('modal-form', 'open') }} class="btn btn-white btn-dim btn-outline-light">
-    <twig:Icon name="{{ this.icon }}"/>
+    <twig:DashliteIcon name="{{ this.icon }}"/>
     <span>{{ this.name }}</span>
 </button>
 {% if this.path and this.name %}
-    <twig:Modal action="{{ this.name }}" path="{{ this.path }}" />
+    <twig:DashliteModal action="{{ this.name }}" path="{{ this.path }}" />
 {% endif %}

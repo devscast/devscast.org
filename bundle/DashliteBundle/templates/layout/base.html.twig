@@ -33,14 +33,14 @@
             </twig:block>
         </head>
         <body class="nk-body bg-theme has-sidebar ui-shady" {{ stimulus_controller('modal-form') }}>
-            <twig:FlashMessage />
+            <twig:DashliteFlashMessage />
 
             <div class="nk-app-root">
                 <div class="nk-main">
                     <twig:block name="sidebar"></twig:block>
                     <div class="nk-wrap">
                        <twig:block name="navbar">
-                            <twig:Navbar />
+                            <twig:DashliteNavbar />
                         </twig:block>
                         <div class="nk-content">
                             <div class="container-fluid">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <twig:block name="footer">
-                            <twig:Footer copyRight="{{ devscast_dashlite.application.copyrights }}"></twig:Footer>
+                            <twig:DashliteFooter copyRight="{{ devscast_dashlite.application.copyrights }}"></twig:Footer>
                         </twig:block>
                     </div>
                 </div>
