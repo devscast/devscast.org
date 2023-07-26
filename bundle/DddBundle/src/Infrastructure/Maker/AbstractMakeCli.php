@@ -66,6 +66,20 @@ abstract class AbstractMakeCli extends Command
         $this->twig->addFunction(new TwigFunction($name, $fn));
     }
 
+    protected function findFiles(string $path, string $suffix = ''): array {
+        return array_map(
+            callback: fn($file) => str_replace(
+                search: $suffix,
+                replace: '',
+                subject: $file
+            ),
+            array: array_diff(
+                scandir(directory: $path),
+                ['..', '.']
+            )
+        );
+    }
+
     protected function createFile(string $template, array $params, string $output, bool $force = false): void
     {
         $content = $this->twig->render("@DevscastDdd/maker/{$template}.twig", $params);
@@ -151,18 +165,20 @@ abstract class AbstractMakeCli extends Command
     /**
      * @throws \ReflectionException
      */
-    protected function getClassProperties(string $fqcn): array
+    protected function getClassProperties(string $fqcn, array $ignore = []): array
     {
         $classFqcn = new \ReflectionClass($fqcn);
         $classProperties = $classFqcn->getProperties();
         $properties = [];
 
         foreach ($classProperties as $property) {
-            $properties[] = [
-                'name' => $property->getName(),
-                'type' => $property->getType()->getName(),
-                'native' => $property->getType()->isBuiltin(),
-            ];
+            if (!in_array($property->getName(), $ignore)) {
+                $properties[] = [
+                    'name' => $property->getName(),
+                    'type' => $property->getType()->getName(),
+                    'native' => $property->getType()->isBuiltin(),
+                ];
+            }
         }
 
         return $properties;

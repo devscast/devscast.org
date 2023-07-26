@@ -3,7 +3,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="devscast_dashlite.twig.component.sidebar" class="DashliteSidebar" public="true">
+        <service id="devscast_dashlite.twig.component.sidebar" class="Devscast\Bundle\DashliteBundle\Component\Sidebar\DashliteSidebar" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/sidebar.html.twig"
@@ -12,37 +12,37 @@
         </service>
 
         <!-- tables -->
-        <service id="devscast_dashlite.twig.component.table.responsive" class="DashliteResponsiveTable" public="true">
+        <service id="devscast_dashlite.twig.component.table.responsive" class="Devscast\Bundle\DashliteBundle\Component\Table\DashliteResponsiveTable" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.table.responsive.column" class="DashliteResponsiveTableColumn" public="true">
+        <service id="devscast_dashlite.twig.component.table.responsive.column" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\DashliteResponsiveTableColumn" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive/column.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.table.responsive.tools" class="DashliteResponsiveTableTools" public="true">
+        <service id="devscast_dashlite.twig.component.table.responsive.tools" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\DashliteResponsiveTableTools" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive/tools.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.table.responsive.action" class="DashliteResponsiveTableAction" public="true">
+        <service id="devscast_dashlite.twig.component.table.responsive.action" class="Devscast\Bundle\DashliteBundle\Component\Table\Responsive\DashliteResponsiveTableAction" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive/action.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.table.bordered" class="DashliteBorderedTable" public="true">
+        <service id="devscast_dashlite.twig.component.table.bordered" class="Devscast\Bundle\DashliteBundle\Component\Table\DashliteBorderedTable" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.table.transaction" class="DashliteTransactionTable" public="true">
+        <service id="devscast_dashlite.twig.component.table.transaction" class="Devscast\Bundle\DashliteBundle\Component\Table\DashliteTransactionTable" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/table/responsive.html.twig"
@@ -50,37 +50,37 @@
         </service>
 
         <!-- cards -->
-        <service id="devscast_dashlite.twig.component.card.modal" class="DashliteModal" public="true">
+        <service id="devscast_dashlite.twig.component.card.modal" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteModal" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/modal.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.card.empty_state" class="DashliteEmptyStateCard" public="true">
+        <service id="devscast_dashlite.twig.component.card.empty_state" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteEmptyStateCard" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/empty_state.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.card.card" class="DashliteCard" public="true">
+        <service id="devscast_dashlite.twig.component.card.card" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteCard" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/card.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.card.stretch" class="DashliteStretchCard" public="true">
+        <service id="devscast_dashlite.twig.component.card.stretch" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteStretchCard" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/stretch.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.card.overview" class="DashliteOverviewCard" public="true">
+        <service id="devscast_dashlite.twig.component.card.overview" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteOverviewCard" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/overview.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.card.aside" class="DashliteAsideCard" public="true">
+        <service id="devscast_dashlite.twig.component.card.aside" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteAsideCard" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/aside.html.twig"
@@ -88,31 +88,31 @@
         </service>
 
         <!-- data -->
-        <service id="devscast_dashlite.twig.component.data.list" class="DashliteDataList" public="true">
+        <service id="devscast_dashlite.twig.component.data.list" class="Devscast\Bundle\DashliteBundle\Component\Data\DashliteDataList" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/data/list.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.data.item" class="DashliteDataItem" public="true">
+        <service id="devscast_dashlite.twig.component.data.item" class="Devscast\Bundle\DashliteBundle\Component\Data\DashliteDataItem" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/data/item.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.data.meta_item" class="DashliteMetaDataItem" public="true">
+        <service id="devscast_dashlite.twig.component.data.meta_item" class="Devscast\Bundle\DashliteBundle\Component\Data\DashliteMetaDataItem" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/data/meta_item.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.data.meta_section" class="DashliteMetaDataSection" public="true">
+        <service id="devscast_dashlite.twig.component.data.meta_section" class="Devscast\Bundle\DashliteBundle\Component\Data\DashliteMetaDataSection" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/data/meta_section.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.data.meta_list" class="DashliteMetaDataList" public="true">
+        <service id="devscast_dashlite.twig.component.data.meta_list" class="Devscast\Bundle\DashliteBundle\Component\Data\DashliteMetaDataList" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/data/meta_list.html.twig"
@@ -120,31 +120,31 @@
         </service>
 
         <!-- button -->
-        <service id="devscast_dashlite.twig.component.button.delete" class="DashliteDeleteButton" public="true">
+        <service id="devscast_dashlite.twig.component.button.delete" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteDeleteButton" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/delete.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.button.modal" class="DashliteFormModalButton" public="true">
+        <service id="devscast_dashlite.twig.component.button.modal" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteFormModalButton" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/form_modal.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.button.link" class="DashliteLinkButton" public="true">
+        <service id="devscast_dashlite.twig.component.button.link" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteLinkButton" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/link.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.button.header_link" class="DashliteHeaderLinkButton" public="true">
+        <service id="devscast_dashlite.twig.component.button.header_link" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteHeaderLinkButton" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/link.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.button.user_avatar_link" class="DashliteUserAvatarLink" public="true">
+        <service id="devscast_dashlite.twig.component.button.user_avatar_link" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteUserAvatarLink" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/user_avatar_link.html.twig"
@@ -152,19 +152,19 @@
         </service>
 
         <!-- layout -->
-        <service id="devscast_dashlite.twig.component.layout.header" class="DashliteHeader" public="true">
+        <service id="devscast_dashlite.twig.component.layout.header" class="Devscast\Bundle\DashliteBundle\Component\Layout\DashliteHeader" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/layout/header.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.layout.footer" class="DashliteFooter" public="true">
+        <service id="devscast_dashlite.twig.component.layout.footer" class="Devscast\Bundle\DashliteBundle\Component\Layout\DashliteFooter" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/layout/footer.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.layout.navbar" class="DashliteNavbar" public="true">
+        <service id="devscast_dashlite.twig.component.layout.navbar" class="Devscast\Bundle\DashliteBundle\Component\Layout\DashliteNavbar" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/layout/navbar.html.twig"
@@ -172,31 +172,31 @@
         </service>
 
         <!-- generic -->
-        <service id="devscast_dashlite.twig.component.flash" class="DashliteFlashMessage" public="true">
+        <service id="devscast_dashlite.twig.component.flash" class="Devscast\Bundle\DashliteBundle\Component\DashliteFlashMessage" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/flash.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.form" class="DashliteForm" public="true">
+        <service id="devscast_dashlite.twig.component.form" class="Devscast\Bundle\DashliteBundle\Component\DashliteForm" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/form.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.note" class="DashliteNote" public="true">
+        <service id="devscast_dashlite.twig.component.note" class="Devscast\Bundle\DashliteBundle\Component\DashliteNote" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/form.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.icon" class="DashliteIcon" public="true">
+        <service id="devscast_dashlite.twig.component.icon" class="Devscast\Bundle\DashliteBundle\Component\DashliteIcon" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/icon.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.alert" class="DashliteAlert" public="true">
+        <service id="devscast_dashlite.twig.component.alert" class="Devscast\Bundle\DashliteBundle\Component\DashliteAlert" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/alert.html.twig"
@@ -204,25 +204,25 @@
         </service>
 
         <!-- mailing -->
-        <service id="devscast_dashlite.twig.component.mailing.button" class="DashliteEmailButton" public="true">
+        <service id="devscast_dashlite.twig.component.mailing.button" class="Devscast\Bundle\DashliteBundle\Component\Mailing\DashliteEmailButton" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/mailing/button.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.mailing.alert" class="DashliteEmailAlert" public="true">
+        <service id="devscast_dashlite.twig.component.mailing.alert" class="Devscast\Bundle\DashliteBundle\Component\Mailing\DashliteEmailAlert" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/mailing/alert.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.mailing.section" class="DashliteEmailSection" public="true">
+        <service id="devscast_dashlite.twig.component.mailing.section" class="Devscast\Bundle\DashliteBundle\Component\Mailing\DashliteEmailSection" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/mailing/section.html.twig"
             />
         </service>
-        <service id="devscast_dashlite.twig.component.mailing.qrcode" class="Devscast\Bundle\DashliteBundle\Component\Mailing\EmailQrCode" public="true">
+        <service id="devscast_dashlite.twig.component.mailing.qrcode" class="Devscast\Bundle\DashliteBundle\Component\Mailing\DashliteEmailQrCode" public="true">
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/mailing/qrcode.html.twig"

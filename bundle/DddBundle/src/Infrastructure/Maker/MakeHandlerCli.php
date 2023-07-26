@@ -22,7 +22,7 @@ class MakeHandlerCli extends AbstractMakeCli
     {
         parent::configure();
         $this
-            ->addArgument('name', InputArgument::REQUIRED, 'The name of the command class (e.g. <fg=yellow>SendNewsletterCommand</>)')
+            ->addArgument('name', InputArgument::OPTIONAL, 'The name of the command class (e.g. <fg=yellow>SendNewsletterCommand</>)')
             ->addArgument('domain', InputArgument::OPTIONAL, 'The domain of the command class (e.g. <fg=yellow>Mailing</>)')
             ->addArgument('entity', InputArgument::OPTIONAL, 'The entity class (e.g. <fg=yellow>Newsletter</>)');
     }
@@ -35,11 +35,46 @@ class MakeHandlerCli extends AbstractMakeCli
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $commandClassName = sprintf('%sCommand', $input->getArgument('name'));
-        $handlerClassName = sprintf('%sHandler', $input->getArgument('name'));
-        $repositoryInterfaceName = sprintf('%sRepositoryInterface', $input->getArgument('entity'));
-        $entityClassName = sprintf('%s', $input->getArgument('entity'));
-        $domain = $input->getArgument('domain');
+        if ($input->getArgument('name') === null) {
+            $commands = $this->findFiles(
+                path: sprintf("src/Application/%s/Command", $input->getArgument('domain')),
+                suffix: 'Command.php'
+            );
+
+            $this->io->text(sprintf('Found %d commands in domain %s', count($commands), $input->getArgument('domain')));
+            $confirm = $this->io->confirm('Do you want to create handlers for all commands?', false);
+
+            if ($confirm) {
+                foreach ($commands as $command) {
+                    $command = str_replace('Command.php', '', $command);
+                    $entity = str_replace(['Create', 'Update', 'Delete'], '', $command);
+
+                    $this->createHandler(
+                        name: $command,
+                        entity: $entity,
+                        domain: $input->getArgument('domain'),
+                        force: $input->getOption('force') !== false
+                    );
+                }
+            }
+        } else {
+            $this->createHandler(
+                name: $input->getArgument('name'),
+                entity: $input->getArgument('entity'),
+                domain: $input->getArgument('domain'),
+                force: $input->getOption('force') !== false
+            );
+        }
+
+        return Command::SUCCESS;
+    }
+
+    private function createHandler(string $name, string $entity, string $domain, bool $force): void
+    {
+        $commandClassName = sprintf('%sCommand', $name);
+        $handlerClassName = sprintf('%sHandler', $name);
+        $repositoryInterfaceName = sprintf('%sRepositoryInterface', $entity);
+        $entityClassName = sprintf('%s', $entity);
 
         $this->createFile(
             template: 'handler.php',
@@ -54,10 +89,8 @@ class MakeHandlerCli extends AbstractMakeCli
                 'is_delete_command' => str_starts_with($commandClassName, 'Delete'),
             ],
             output: "src/Application/{$domain}/Handler/{$handlerClassName}.php",
-            force: false !== $input->getOption('force')
+            force: false !== $force
         );
         $this->io->text(sprintf('Handler %s successfully created', $handlerClassName));
-
-        return Command::SUCCESS;
     }
 }

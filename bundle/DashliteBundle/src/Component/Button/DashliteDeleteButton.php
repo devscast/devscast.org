@@ -18,5 +18,5 @@ final class DashliteDeleteButton
     public ?string $redirect = null;
     public string $type = 'icon';
     public string $remove = '.nk-tb-item';
-    public object $item;
+    public string $id;
 }

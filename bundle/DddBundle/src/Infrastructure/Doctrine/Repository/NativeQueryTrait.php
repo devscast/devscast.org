@@ -11,7 +11,7 @@ namespace Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository;
  */
 trait NativeQueryTrait
 {
-    public function execute(string $sql, array $data = [], bool $fetchAll = true): object
+    public function execute(string $sql, array $data = []): object
     {
         $connection = $this->getEntityManager()->getConnection();
         $statement = $connection->prepare($sql);

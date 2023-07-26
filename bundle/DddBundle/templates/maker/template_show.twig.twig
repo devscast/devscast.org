@@ -1,53 +1,23 @@
-{{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
-{{  "<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>" }}
-{{ "<twig:block name="title">{{ 'Détails de data.name' }}</twig:block>" }}
-{{ "<twig:block name="bodyClass">{{ 'wide-xxl' }}</twig:block>" }}
+{{ "{% extends \"@admin/shared/layout/base.html.twig\" %}" }}
+{{ "<twig:block name=\"title\">#{entity} : {{ data.name }}</twig:block>" }}
 
-{{ "<twig:block name="header">" }}
-    {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
-        {{ "<twig:block name="header_title">" }}
-            {{ entity | title }} / <strong class="text-primary small">{{ "{{ data.name }}" }}</strong>
-        {{ "</twig:block>" }}
-        {{ "<twig:block name="header_description">" }}
-            <ul class="list-inline">
-                <li>création : <span class="text-base">{{ "{{ data.createdAt | date }}" }}</span></li>
-            </ul>
-        {{ "</twig:block>" }}
-        {{ "<twig:block name="header_action_list">" }}
-            <li class="btn-group">
-                <a href="{{ "{{ path('admin_#{domain}_#{entity}_index') }}" | raw }}"
-                   class="btn btn-white btn-dim btn-outline-light" aria-label="{{ "{{ 'global.back' | trans }}" }}"
-                   title="{{ "{{ 'global.back' | trans }}" }}">
-                    {{ "<twig:DashliteIcon name="arrow-long-left"/>" }}
-                    <span>Toutes les entrées</span>
-                </a>
-                <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: data.id}) }}" | raw }}"
-                   class="btn btn-white btn-dim btn-outline-light"
-                   aria-label="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}"
-                   title="{{ "{{ 'global.edit' | trans([], 'messages') }}" }}">
-                    {{ "<twig:DashliteIcon name="edit-alt-fill"/>" }}
-                    <span>{{ "{{ 'global.edit' | trans([], 'messages') }}" }}</span>
-                </a>
-            </li>
-        {{ "</twig:block>" }}
-    {{ "{% endembed %}" }}
+{{ "<twig:block name=\"header\">" }}
+    {{ "<twig:DashliteHeader title=\"{{ data.name }}\" backTitle=\"Tous les articles\" backPath=\"{{ path('admin_#{domain}_#{entity}_index') }}\">" |  raw }}
+        {{ "<twig:DashliteHeaderLinkButton name=\"Éditer\" path=\"{{ path('admin_#{domain}_#{entity}_edit', {id: data.id}) }}\" icon=\"edit-alt-fill\" />" | raw }}
+        {{ "<twig:DashliteDeleteButton path=\"{{ path('admin_#{domain}_#{entity}_delete', {id: data.id}) }}\" :id=\"data.id\" redirect=\"{{ path('admin_#{domain}_#{entity}_index') }}\" type=\"button\" />" | raw }}
+    {{ '</twig:DashliteHeader>' }}
 {{ "</twig:block>" }}
 
-{{ "<twig:block name="content">" }}
-    {{ "{% embed '@DevscastDashlite/component/card/_detail.html.twig' %}" }}
-        {{ "{% import '@DevscastDashlite/component/_macros.html.twig' as _ %}" }}
-        {{ "<twig:block name="detail_card_body">" }}
-            {{ "{% import '@DevscastDashlite/component/_macros.html.twig' as _ %}" }}
-                <div class="nk-block">
-                    <div class="nk-block">
-                        <div class="nk-block-head">
-                            <h5 class="title">Détails</h5>
-                        </div>
-                        <div class="profile-ud-list">
-                            {{ "{{ _.user_data_item('Nom', data.name) }}" | raw }}
-                        </div>
-                    </div>
-                </div>
-        {{ "</twig:block>" }}
-    {{ "{% endembed %}" }}
+{{ "<twig:block name=\"content\">" }}
+    {{ '<twig:DashliteCard>' }}
+        {{ "<twig:DashliteMetaDataList>" }}
+            {{ "<twig:DashliteMetaDataSection row>" }}
+{% for p in entityClassProperties %}
+{% if p.native %}
+                {{ "<twig:DashliteMetaDataItem label=\"#{p.name}\" value=\"{{ data.#{p.name} }}\" />" | raw }}
+{% endif %}
+{% endfor %}
+            {{ "</twig:DashliteMetaDataSection>" }}
+        {{ "</twig:DashliteMetaDataList>" }}
+    {{ '</twig:DashliteCard>' }}
 {{ "</twig:block>" }}

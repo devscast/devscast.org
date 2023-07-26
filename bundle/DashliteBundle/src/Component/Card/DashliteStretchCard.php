@@ -15,4 +15,3 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 final class DashliteStretchCard
 {
 }
-

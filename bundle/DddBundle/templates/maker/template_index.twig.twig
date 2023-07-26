@@ -1,50 +1,31 @@
-{{ "{% extends '@DevscastDashlite/layout/base.html.twig' %}" }}
-{{  "<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>" }}
-{{ "<twig:block name="title">{{ '#{entity}' }}</twig:block>" | raw }}
+{{ "{% extends '@admin/shared/layout/base.html.twig' %}" }}
+{{ "<twig:block name=\"title\">{{ 'Listing #{entity}' | title }}</twig:block>" | raw }}
 
-{{ "<twig:block name="header">" }}
-    {{ "{% embed '@DevscastDashlite/component/_header.html.twig' %}" }}
-        {{ "<twig:block name="header_title">{{ 'Listing' }}</twig:block>" }}
-        {{ "<twig:block name="header_action_list">" }}
-            <li class="btn-group">
-                <a href="{{ "{{ path('admin_#{domain}_#{entity}_new') }}" | raw }}" class="btn btn-white btn-dim btn-outline-light">
-                    {{ "<twig:DashliteIcon name="plus"/>" | raw }}
-                    <span>Ajouter</span>
-                </a>
-            </li>
-        {{ "</twig:block>" }}
-    {{ "{% endembed %}" }}
+{{ "<twig:block name=\"header\">" }}
+    {{ "<twig:DashliteHeader title=\"Listing #{entity}\">" | raw }}
+        {{ "<twig:DashliteHeaderLinkButton name=\"Ajouter\" path=\"{{ path('admin_#{domain}_#{entity}_new') }}\" icon=\"plus\" />" | raw }}
+    {{ "</twig:DashliteHeader>" }}
 {{ "</twig:block>" }}
 
+{{ "<twig:block name=\"content\">" }}
+    {{ "<div class=\"row g-gs mb-4\">" }}
+        {{ "<div class=\"col-12\">" }}
+            {{ "<twig:DashliteResponsiveTable :data=\"data\" emptyStatePath=\"{{ path('admin_#{domain}_#{entity}_new') }}\" emptyStateAction=\"Ajouter un.e #{entity}\">" | raw }}
+                {{ "<twig:block name=\"header\">" }}
+                   {{ "<twig:DashliteResponsiveTableColumn value=\"Id\" col />" }}
+                   {{ "<twig:DashliteResponsiveTableColumn tools />" }}
+                {{ "</twig:block>" }}
 
-{{ "<twig:block name="content">" }}
-    {{ "{% embed '@DevscastDashlite/component/card/_list.html.twig' with {_action: 'Ajouter', _path: path('admin_#{domain}_#{entity}_new')} %}" | raw }}
-        {{ "<twig:block name="list_card_table">" }}
-            {{ "{% embed '@DevscastDashlite/component/_responsive_table.html.twig' %}" | raw }}
-                {{ "<twig:block name="responsive_table_head">" }}
-                    <div class="nk-tb-col"><span class="sub-text">Nom</span></div>
-                    <div class="nk-tb-col nk-tb-col-tools"></div>
-                {{ "</twig:block>" }}
-                {{ "<twig:block name="responsive_table_body">" }}
-                    {{ "{% for item in data %}" }}
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col tb-col-lg"><span>{{ "{{ item.name | u.truncate(110, '...') }}" | raw }}</span></div>
-                            <div class="nk-tb-col nk-tb-col-tools">
-                                <ul class="nk-tb-actions gx-1">
-                                    <li class="nk-tb-action-hidden">
-                                        <a href="{{ "{{ path('admin_#{domain}_#{entity}_show', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.show' | trans([], 'messages') }}">
-                                            {{ "<twig:DashliteIcon name="eye"/>" | raw }}
-                                        </a>
-                                        <a href="{{ "{{ path('admin_#{domain}_#{entity}_edit', {id: item.id}) }}" | raw }}" class="btn btn-icon btn-trigger" title="{{ 'global.edit' | trans([], 'messages') }}">
-                                            {{ "<twig:DashliteIcon name="edit"/>" | raw }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    {{ "{% endfor %}" }}
-                {{ "</twig:block>" }}
-            {{ "{% endembed %}" }}
-        {{ "</twig:block>" }}
-    {{ "{% endembed %}" }}
+                {{ "<twig:DashliteResponsiveTableColumn :value=\"item.id\" />" }}
+                {{ "<twig:DashliteResponsiveTableColumn tools>" }}
+                    {{ "<twig:DashliteResponsiveTableTools>" }}
+                        {{ "<twig:DashliteResponsiveTableAction path=\"{{ path('admin_#{domain}_#{entity}_edit', {id: item.id}) }}\" icon=\"edit\" />" | raw }}
+                        {{ "<twig:DashliteResponsiveTableAction>" }}
+                            {{ "<twig:DashliteDeleteButton path=\"{{ path('admin_#{domain}_#{entity}_delete', {id: item.id}) }}\" :id=\"item.id\" />" | raw }}
+                        {{ "</twig:DashliteResponsiveTableAction>" }}
+                    {{ "</twig:DashliteResponsiveTableTools>" }}
+               {{ "</twig:DashliteResponsiveTableColumn>" }}
+            {{ "</twig:DashliteResponsiveTable>" }}
+        {{ "</div>" }}
+    {{ "</div>" }}
 {{ "</twig:block>" }}

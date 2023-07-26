@@ -23,7 +23,7 @@ class MakeTemplateCli extends AbstractMakeCli
     {
         parent::configure();
         $this
-            ->addArgument('name', InputArgument::REQUIRED, 'The name of the template')
+            ->addArgument('name', InputArgument::OPTIONAL, 'The name of the template')
             ->addArgument('domain', InputArgument::OPTIONAL, 'The domain of the crud')
             ->addArgument('entity', InputArgument::OPTIONAL, 'The entity of the crud');
     }
@@ -37,21 +37,58 @@ class MakeTemplateCli extends AbstractMakeCli
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $name = Str::asTwigVariable($input->getArgument('name'));
-        $domain = Str::asTwigVariable($input->getArgument('domain'));
-        $entity = Str::asTwigVariable($input->getArgument('entity'));
+        $domain = (string) $input->getArgument('domain');
+
+        if ($input->getArgument('entity') === null) {
+            $entities = $this->findFiles(
+                path: "{$this->projectDir}/src/Domain/{$domain}/Entity",
+                suffix: '.php'
+            );
+
+            $this->io->text(sprintf('Found %d entities in domain %s', count($entities), $domain));
+            $confirm = $this->io->confirm('Do you want to create templates for all entities ?', false);
+
+            if ($confirm && count($entities) > 0) {
+                foreach ($entities as $entity) {
+                    foreach (['index', 'show'] as $name) {
+                        $this->createTemplate(
+                            name: $name,
+                            domain: $domain,
+                            entity: $entity,
+                            force: $input->getOption('force') !== false
+                        );
+                    }
+                }
+            }
+        } else {
+            $this->createTemplate(
+                name: $input->getArgument('name'),
+                domain: $domain,
+                entity: (string) $input->getArgument('entity'),
+                force: $input->getOption('force') !== false
+            );
+        }
+
+        return Command::SUCCESS;
+    }
+
+    private function createTemplate(string $name, string $domain, string $entity, bool $force): void
+    {
+        $name = Str::asTwigVariable($name);
+        $domain = Str::asTwigVariable($domain);
+        $entity = Str::asTwigVariable($entity);
 
         $this->createFile(
             template: "template_{$name}.twig",
             params: [
                 'domain' => $domain,
-                'entity' => Str::asTwigVariable($entity)
+                'entity' => Str::asTwigVariable($entity),
+                'entityClassProperties' => $this->getClassProperties(sprintf("Domain\\%s\\Entity\\%s", Str::asCamelCase($domain), Str::asClassName($entity)))
             ],
             output: "templates/admin/domain/{$domain}/{$entity}/{$name}.html.twig",
-            force: false !== $input->getOption('force')
+            force: $force
         );
-        $this->io->text('templates : index.twig successfully created');
 
-        return Command::SUCCESS;
+        $this->io->text(sprintf('Created template %s', "templates/admin/domain/{$domain}/{$entity}/{$name}.html.twig"));
     }
 }

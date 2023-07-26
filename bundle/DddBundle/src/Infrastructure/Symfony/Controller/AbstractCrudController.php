@@ -40,7 +40,7 @@ abstract class AbstractCrudController extends AbstractController
     {
         return match (true) {
             $override => $this->getViewPath((string) $name),
-            default => '@DevscastDashlite/layout/form.html.twig'
+            default => '@admin/shared/layout/form.html.twig'
         };
     }
 

@@ -37,24 +37,56 @@ class MakeFormCli extends AbstractMakeCli
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $commandClassName = sprintf('%s', $input->getArgument('name'));
+        if ($input->getArgument('name') === null) {
+            $commands = $this->findFiles(
+                path: sprintf("src/Application/%s/Command", $input->getArgument('domain')),
+                suffix: '.php'
+            );
+
+            $this->io->text(sprintf('Found %d commands in domain %s', count($commands), $input->getArgument('domain')));
+            $confirm = $this->io->confirm('Do you want to create forms for all commands?', false);
+
+            if ($confirm) {
+                foreach ($commands as $command) {
+                    if (!str_starts_with('Delete', $command)) {
+                        $this->createForm(
+                            name: $command,
+                            domain: $input->getArgument('domain'),
+                            force: $input->getOption('force') !== false
+                        );
+                    }
+                }
+            }
+        } else {
+            $this->createForm(
+                name: $input->getArgument('name'),
+                domain: $input->getArgument('domain'),
+                force: $input->getOption('force') !== false
+            );
+        }
+
+        return Command::SUCCESS;
+    }
+
+    private function createForm(string $name, string $domain, bool $force): void
+    {
+        $commandClassName = sprintf('%s', $name);
         $commandFormClassName = sprintf('%sForm', str_replace('Command', '', $commandClassName));
-        $domain = $input->getArgument('domain');
 
         $this->createFile(
             template: 'command_form.php',
             params: [
-                'commandClassProperties' => $this->getClassProperties("Application\\{$domain}\\Command\\{$commandClassName}"),
+                'commandClassProperties' => $this->getClassProperties(
+                    fqcn: "Application\\{$domain}\\Command\\{$commandClassName}"
+                ),
                 'commandClassName' => $commandClassName,
                 'commandFormClassName' => $commandFormClassName,
                 'domain' => $domain,
             ],
             output: "src/Infrastructure/{$domain}/Symfony/Form/{$commandFormClassName}.php",
-            force: false !== $input->getOption('force')
+            force: false !== $force
         );
 
         $this->io->text(sprintf('Form %s successfully created', $commandFormClassName));
-
-        return Command::SUCCESS;
     }
 }

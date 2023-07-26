@@ -14,7 +14,7 @@ class CrudParams
         public readonly ?string $formClass = null,
         public readonly ?string $view = null,
         public readonly ?string $redirectUrl = null,
-        public readonly bool $hasIndex = false,
+        public readonly bool $hasIndex = true,
         public readonly bool $hasShow = false,
         public readonly bool $overrideView = false
     ) {

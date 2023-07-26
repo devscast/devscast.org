@@ -38,20 +38,21 @@ class MakeRepositoryCli extends AbstractMakeCli
     {
         $domain = is_string($input->getArgument('domain')) ? $input->getArgument('domain') : null;
         if ($input->getArgument('entity') == null) {
-            $entities = new \DirectoryIterator("{$this->projectDir}/src/Domain/{$domain}/Entity");
-            foreach ($entities as $entity) {
-                if ($entity->getFilename() !== '.' && $entity->getFilename() !== '..') {
-                    $entityClassName = trim(Str::removeSuffix($entity->getFilename(), ".php"), "\\");
+            $entities = $this->findFiles(
+                path: "{$this->projectDir}/src/Domain/{$domain}/Entity",
+                suffix: '.php'
+            );
 
-                    if ($entityClassName !== "") {
-                        $makeRepositoryCli = $this->getApplication()?->find('ddd:make:repository');
-                        $makeRepositoryCli?->run(new ArrayInput([
-                            'domain' => $domain,
-                            'entity' => $entityClassName,
-                            '--force' => $input->getOption('force')
-                        ]), $output);
-                    }
-                }
+            $this->io->text(sprintf('Found %d entities in domain %s', count($entities), $input->getArgument('domain')));
+            $confirm = $this->io->confirm('Do you want to create repositories for all entities?', false);
+
+            foreach ($entities as $entity) {
+                $makeRepositoryCli = $this->getApplication()?->find('ddd:make:repository');
+                $makeRepositoryCli?->run(new ArrayInput([
+                    'domain' => $domain,
+                    'entity' => $entity,
+                    '--force' => $input->getOption('force')
+                ]), $output);
             }
         }
 
@@ -83,7 +84,7 @@ class MakeRepositoryCli extends AbstractMakeCli
                 force: false !== $input->getOption('force')
             );
 
-            $this->io->text(sprintf('Repository %s successfully created', $repositoryInterfaceName));
+            $this->io->text(sprintf('RepositoryInterface %s successfully created', $repositoryInterfaceName));
             $this->io->text(sprintf('Repository %s successfully created', $repositoryClassName));
         }
 

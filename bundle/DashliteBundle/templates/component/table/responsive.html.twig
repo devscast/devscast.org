@@ -16,11 +16,11 @@
         <div class="card">
             <div class="card-inner p-3">
                 <div class="d-flex justify-content-center">
-                    {{ knp_pagination_render(this.data) }}
+                    {{ knp_pagination_render(this.data, '@DevscastDashlite/layout/pagination/pagination.html.twig') }}
                 </div>
             </div>
         </div>
     {% endif %}
 {% else %}
-    <twig:DashliteEmptyStateCard :path="this.emptyStatePath" action="this.emptyStateAction" />
+    <twig:DashliteEmptyStateCard :path="this.emptyStatePath" :action="this.emptyStateAction" />
 {% endif %}

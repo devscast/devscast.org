@@ -15,4 +15,5 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 final class DashliteIcon
 {
     public string $name;
+    public string $color = '';
 }

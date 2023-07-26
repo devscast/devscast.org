@@ -34,20 +34,47 @@ class MakeControllerCli extends AbstractMakeCli
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $entityClassName = (string) $input->getArgument('entity');
         $domain = (string) $input->getArgument('domain');
+        if ($input->getArgument('entity') === null) {
+            $entities = $this->findFiles(
+                path: "{$this->projectDir}/src/Domain/{$domain}/Entity",
+                suffix: '.php'
+            );
 
+            $this->io->text(sprintf('Found %d entities in domain %s', count($entities), $input->getArgument('domain')));
+            $confirm = $this->io->confirm('Do you want to create controllers for all entities?', false);
+
+            if ($confirm && count($entities) > 0) {
+                foreach ($entities as $entity) {
+                    $this->createController(
+                        entity: $entity,
+                        domain: $domain,
+                        force: $input->getOption('force') !== false
+                    );
+                }
+            }
+        } else {
+            $this->createController(
+                entity: (string) $input->getArgument('entity'),
+                domain: $domain,
+                force: $input->getOption('force') !== false
+            );
+        }
+
+        return Command::SUCCESS;
+    }
+
+    private function createController(string $entity, string $domain, bool $force): void
+    {
         $this->createFile(
             template: 'controller_crud.php',
             params: [
-                'entityClassName' => '' === $entityClassName ? false : $entityClassName,
+                'entityClassName' => '' === $entity ? false : $entity,
                 'domain' => $domain,
             ],
-            output: "src/Infrastructure/{$domain}/Symfony/Controller/Admin/{$entityClassName}Controller.php",
-            force: false !== $input->getOption('force')
+            output: "src/Infrastructure/{$domain}/Symfony/Controller/Admin/{$entity}Controller.php",
+            force: $force
         );
-        $this->io->text(sprintf('%sController successfully created', $entityClassName));
-
-        return Command::SUCCESS;
+        $this->io->text(sprintf('%sController successfully created', $entity));
     }
 }

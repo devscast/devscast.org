@@ -48,11 +48,13 @@ class TwigBadgeExtension extends AbstractExtension
             HTML;
     }
 
-    public function badge(string $label, string $style = 'dim', string $state = 'primary'): string
+    public function badge(string $label, array $states = [], string $default = 'primary', string $style = 'dot'): string
     {
-        $style = $this->badges[$label]['style'] ?? 'dim';
-        $state = $this->badges[$label]['state'] ?? 'primary';
         $label = $this->translator->trans($label);
+        $state = match(isset($states[$label])) {
+            true => $states[$label],
+            default => $default,
+        };
 
         return <<< HTML
             <span aria-label="{$label}" class="badge badge-{$style} bg-{$state}">
