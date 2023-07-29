@@ -2,32 +2,32 @@
 <twig:block name="title">{{ 'Formations' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header>
-        <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_training_new') }}" />
-    </twig:Header>
+    <twig:DashliteHeader>
+        <twig:DashliteHeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_training_new') }}" />
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStateAction="Ajouter une formation" emptyStatePath="{{ path('admin_content_training_new') }}">
+            <twig:DashliteResponsiveTable :data="data" emptyStateAction="Ajouter une formation" emptyStatePath="{{ path('admin_content_training_new') }}">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Nom" col />
-                    <twig:ResponsiveTableColumn value="Lecture" col />
-                    <twig:ResponsiveTableColumn value="Statut" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Nom" col />
+                    <twig:DashliteResponsiveTableColumn value="Lecture" col />
+                    <twig:DashliteResponsiveTableColumn value="Statut" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn value="{{ item.name }}" />
-                <twig:ResponsiveTableColumn value="{{ (item.duration / 60) | round(1, 'floor') }} min"/>
-                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
+                <twig:DashliteResponsiveTableColumn value="{{ (item.duration / 60) | round(1, 'floor') }} min"/>
+                <twig:DashliteResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction icon="eye" path="{{ path('admin_content_training_show', {id: item.id}) }}" />
                         <twig:ResponsiveTableAction icon="edit" path="{{ path('admin_content_training_edit', {id: item.id}) }}" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

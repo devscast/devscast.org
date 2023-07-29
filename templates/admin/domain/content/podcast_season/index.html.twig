@@ -5,7 +5,7 @@
     <twig:Header>
         <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_content_podcast_season_new') }}" icon="plus" />
         <twig:HeaderLinkButton name="Statistique" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -26,9 +26,9 @@
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_show', {id: item.id}) }}" icon="eye" />
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_edit', {id: item.id}) }}" icon="edit" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

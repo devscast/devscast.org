@@ -5,7 +5,7 @@
     <twig:Header title="Podcasts">
         <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_podcast_episode_new') }}" />
         <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -20,15 +20,15 @@
                 </twig:block>
 
                 <twig:ResponsiveTableColumn value="{{ item.name | u.truncate(50, '...') }}" />
-                <twig:ResponsiveTableColumn><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(item, 'audio_file') }}"></audio></twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.isOnline | boolean }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(item, 'audio_file') }}"></audio></twig:DashliteResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.isOnline | boolean }}</twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_show', {id: item.id}) }}" icon="eye" />
                         <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_edit', {id: item.id}) }}" icon="edit" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

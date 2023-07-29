@@ -2,33 +2,33 @@
 <twig:block name="title">Catégories d'articles</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Catégories d'articles" :data="data">
-        <twig:FormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_category_new') }}" />
-        <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
-    </twig:Header>
+    <twig:DashliteHeader title="Catégories d'articles" :data="data">
+        <twig:DashliteFormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_category_new') }}" />
+        <twig:DashliteHeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_category_new') }}" emptyStateAction="Ajouter un catégorie">
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_category_new') }}" emptyStateAction="Ajouter un catégorie">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Nom" col />
-                    <twig:ResponsiveTableColumn value="Articles" responsive="tb-col-lg" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Nom" col />
+                    <twig:DashliteResponsiveTableColumn value="Articles" responsive="tb-col-lg" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn :value="item.name" />
-                <twig:ResponsiveTableColumn :value="item.postCount" responsive="tb-col-lg" />
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
+                <twig:DashliteResponsiveTableColumn :value="item.name" />
+                <twig:DashliteResponsiveTableColumn :value="item.postCount" responsive="tb-col-lg" />
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
                         <twig:ResponsiveTableAction>
                             <twig:DashliteDeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

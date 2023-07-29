@@ -2,41 +2,41 @@
 <twig:block name="title">{{ "Commentaires" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Commentaires">
-        <twig:HeaderLinkButton name="Statistiques" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
-    </twig:Header>
+    <twig:DashliteHeader title="Commentaires">
+        <twig:DashliteHeaderLinkButton name="Statistiques" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data">
+            <twig:DashliteResponsiveTable :data="data">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Auteur" col />
-                    <twig:ResponsiveTableColumn value="Content" col />
-                    <twig:ResponsiveTableColumn value="Commentaire" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Auteur" col />
+                    <twig:DashliteResponsiveTableColumn value="Content" col />
+                    <twig:DashliteResponsiveTableColumn value="Commentaire" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn>
-                    <twig:UserAvatarLink
+                <twig:DashliteResponsiveTableColumn>
+                    <twig:DashliteUserAvatarLink
                         path="{{ path('admin_authentication_user_show', {id: item.owner.id}) }}"
                         username="{{ item.owner.username }}"
                         surname="{{ item.owner.email }}"
                         avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
                     />
-                </twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.target.contentType.translationKey | trans({}, 'content') | badge }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn value="{{ item.content }}" />
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_comment_reply', {id: item.id}) }}" icon="chat"  />
-                        <twig:ResponsiveTableAction>
+                </twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.target.contentType.translationKey | trans({}, 'content') | badge }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn value="{{ item.content }}" />
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_comment_reply', {id: item.id}) }}" icon="chat"  />
+                        <twig:DashliteResponsiveTableAction>
                             <twig:DashliteDeleteButton path="{{ path('admin_content_comment_delete', {id: item.id}) }}" :item="item" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

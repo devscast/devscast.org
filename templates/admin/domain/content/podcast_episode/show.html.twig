@@ -5,7 +5,7 @@
     <twig:Header title="{{ data.name }}" backPath="{{ path('admin_content_podcast_episode_index') }}" backTitle="Tous les podcasts">
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_episode_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_podcast_episode_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_episode_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -34,7 +34,7 @@
                     <twig:DataList>
                         <twig:DataItem label="Titre" value="{{ data.name }}" />
                         <twig:DataItem label="Slug" value="{{ data.slug }}" />
-                    </twig:DataList>
+                    </twig:DashliteDataList>
                 </div>
                 <div class="nk-divider divider md"></div>
                 <div class="nk-block">
@@ -43,7 +43,7 @@
                         <twig:DataItem label="Featured" :value="data.isFeatured | boolean" />
                         <twig:DataItem label="Top promoted" :value="data.isTopPromoted | boolean" />
                         <twig:DataItem label="Premium" :value="data.isPremium | boolean" />
-                    </twig:DataList>
+                    </twig:DashliteDataList>
                 </div>
             </div>
         </twig:block>
@@ -117,5 +117,5 @@
                 </div>
             </div>
         </twig:block>
-    </twig:AsideCard>
+    </twig:DashliteAsideCard>
 </twig:block>

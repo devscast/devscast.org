@@ -5,7 +5,7 @@
     <twig:Header title="{{ data.name }}" backTitle="Toutes les saisons" backPath="{{ path('admin_content_podcast_season_index') }}" >
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -20,7 +20,7 @@
                         <twig:DataItem style="plain" label="Nom" value="{{ data.name }}" />
                         <twig:DataItem style="plain" label="Slug" value="{{ data.slug }}" />
                         <twig:DataItem style="plain" label="Short Code" value="{{ data.shortcode }}" />
-                    </twig:DataList>
+                    </twig:DashliteDataList>
                 </div>
             </div>
 
@@ -53,5 +53,5 @@
                 {% endfor %}
             </div>
         </twig:block>
-    </twig:Card>
+    </twig:DashliteCard>
 </twig:block>

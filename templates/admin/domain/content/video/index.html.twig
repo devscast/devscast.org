@@ -4,7 +4,7 @@
 <twig:block name="header">
     <twig:DashliteHeader title="Vidéos">
         <twig:DashliteHeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_video_new') }}" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -19,15 +19,15 @@
                 </twig:block>
 
                 <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
-                <twig:ResponsiveTableColumn>{{ (item.duration / 60) | round(1, 'floor') }} min</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction icon="eye" path="{{ path('admin_content_video_show', {id: item.id}) }}" />
-                        <twig:ResponsiveTableAction icon="edit" path="{{ path('admin_content_video_edit', {id: item.id}) }}" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                <twig:DashliteResponsiveTableColumn>{{ (item.duration / 60) | round(1, 'floor') }} min</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction icon="eye" path="{{ path('admin_content_video_show', {id: item.id}) }}" />
+                        <twig:DashliteResponsiveTableAction icon="edit" path="{{ path('admin_content_video_edit', {id: item.id}) }}" />
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

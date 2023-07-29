@@ -4,7 +4,7 @@
 <twig:block name="header">
     <twig:Header title="Propositions des sujets">
         <twig:FormModalButton name="proposer un sujet" icon="plus" path="{{ path('admin_content_subject_proposal_new') }}" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -20,16 +20,16 @@
 
                 <twig:ResponsiveTableColumn value="{{ item.subject }}" />
                 <twig:ResponsiveTableColumn value="{{ item.votesCount }}" />
-                <twig:ResponsiveTableColumn>{{ item.status | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.status | badge }}</twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_subject_proposal_edit', {id: item.id}) }}" icon="edit" />
                         <twig:ResponsiveTableAction>
                             <twig:DashliteDeleteButton path="{{ path('admin_content_subject_proposal_delete', {id: item.id}) }}" :item="item" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

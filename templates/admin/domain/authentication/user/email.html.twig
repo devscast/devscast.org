@@ -2,16 +2,16 @@
 <twig:block name="title">Envoyer un email à {{ data.username }} | title</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Envoyer un mail">
-        <twig:HeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
+    <twig:DashliteHeader title="Envoyer un mail">
+        <twig:DashliteHeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
         {% if _show_url %}
-            <twig:HeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
+            <twig:DashliteHeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
         {% endif %}
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Card>
-        <twig:Form :form="form"></twig:Form>
-    </twig:Card>
+    <twig:DashliteCard>
+        <twig:Form :form="form"></twig:DashliteForm>
+    </twig:DashliteCard>
 </twig:block>

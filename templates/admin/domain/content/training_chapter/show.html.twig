@@ -6,7 +6,7 @@
     <twig:Header title="{{ data.name }}"  name="la formation" path="{{ path('admin_content_training_show', {id: data.training.id}) }}">
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_training_chapter_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_training_chapter_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_training_chapter_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content"></twig:block>

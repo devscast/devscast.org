@@ -2,12 +2,12 @@
 <twig:block name="title">Édition Utilisateur</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Édition Utilisateur">
+    <twig:DashliteHeader title="Édition Utilisateur">
         <twig:HeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
         {% if _show_url %}
             <twig:HeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
         {% endif %}
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -17,9 +17,9 @@
             Modifier vos informations depuis vos paramètres de profil." dismissible />
     {% endif %}
 
-    <twig:Card>
+    <twig:DashliteCard>
         <twig:block name="content">
             <twig:Form :form="form" />
         </twig:block>
-    </twig:Card>
+    </twig:DashliteCard>
 </twig:block>

@@ -1,11 +1,10 @@
 {% extends '@admin/shared/layout/base.html.twig' %}
-<twig:block name="sidebar">{{ include('@admin/shared/_sidebar.html.twig') }}</twig:block>
 <twig:block name="title">{{ 'Tags' }}</twig:block>
 
 <twig:block name="header">
     <twig:DashliteHeader title="Tags">
         <twig:DashliteFormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_tag_new') }}" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -23,10 +22,10 @@
                         <twig:DashliteResponsiveTableAction path="{{ path('admin_content_tag_edit', {id: item.id}) }}" icon="edit" />
                         <twig:DashliteResponsiveTableAction>
                             <twig:DashliteDashliteDeleteButton path="{{ path('admin_content_tag_delete', {id: item.id}) }}" :item="item" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

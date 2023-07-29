@@ -5,7 +5,7 @@
     <twig:Header title="Utilisateurs" :data="data">
         <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_authentication_user_new') }}" icon="plus" />
         <twig:HeaderLinkButton name="Statistiques" path="{{ path('admin_authentication_dashboard_index') }}" icon="bar-chart" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -28,22 +28,22 @@
                         surname="{{ item.email }}"
                         avatarUrl="{{ vich_uploader_asset(item, 'avatar_file') }}"
                     />
-                </twig:ResponsiveTableColumn>
+                </twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn>
                     <a href="{{ item.githubUrl }}" title="github of {{ item.username }}" target="_blank">{{ item.githubUrl }}</a>
-                </twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.roles | join(' ') | badge }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.confirmed | boolean }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.country | flag }}</twig:ResponsiveTableColumn>
+                </twig:DashliteResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.roles | join(' ') | badge }}</twig:DashliteResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.confirmed | boolean }}</twig:DashliteResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.country | flag }}</twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_authentication_user_show', {id: item.id}) }}" icon="eye" />
                         <twig:ResponsiveTableAction>
                             <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: item.id}) }}" :item="item" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

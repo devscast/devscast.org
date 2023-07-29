@@ -3,10 +3,10 @@
 <twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="{{ data.name }}"  backTitle="Toutes les formations" backPath="{{ path('admin_content_podcast_season_index') }}">
-        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+    <twig:DashliteHeader title="{{ data.name }}"  backTitle="Toutes les formations" backPath="{{ path('admin_content_podcast_season_index') }}">
+        <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content"></twig:block>

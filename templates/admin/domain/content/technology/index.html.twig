@@ -2,36 +2,36 @@
 <twig:block name="title">{{ "Technologies" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header>
-        <twig:HeaderLinkButton name="Ajouter une technologie" icon="plus" path="{{ path('admin_content_technology_new') }}" />
-    </twig:Header>
+    <twig:DashliteHeader>
+        <twig:DashliteHeaderLinkButton name="Ajouter une technologie" icon="plus" path="{{ path('admin_content_technology_new') }}" />
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStateAction="Ajouter une technologie" emptyStatePath="{{ path('admin_content_technology_new') }}">
+            <twig:DashliteResponsiveTable :data="data" emptyStateAction="Ajouter une technologie" emptyStatePath="{{ path('admin_content_technology_new') }}">
                <twig:block name="header">
-                   <twig:ResponsiveTableColumn col />
-                   <twig:ResponsiveTableColumn value="Nom" col />
-                   <twig:ResponsiveTableColumn value="contenus" col />
-                   <twig:ResponsiveTableColumn tools />
+                   <twig:DashliteResponsiveTableColumn col />
+                   <twig:DashliteResponsiveTableColumn value="Nom" col />
+                   <twig:DashliteResponsiveTableColumn value="contenus" col />
+                   <twig:DashliteResponsiveTableColumn tools />
                </twig:block>
 
-                <twig:ResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>
                     <img src="{{ vich_uploader_asset(item, 'thumbnail_file') }}" width="150" alt="{{ item.name }}">
-                </twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn value="{{ item.name }}" />
-                <twig:ResponsiveTableColumn value="{{ item.contentCount }}" />
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_technology_edit', {id: item.id}) }}" icon="edit" />
+                </twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.contentCount }}" />
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_technology_edit', {id: item.id}) }}" icon="edit" />
                         <twig:ResponsiveTableAction>
                             <twig:DashliteDeleteButton :item="item" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
-                        </twig:ResponsiveTableAction>
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                        </twig:DashliteResponsiveTableAction>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

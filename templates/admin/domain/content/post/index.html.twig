@@ -4,7 +4,7 @@
 <twig:block name="header">
     <twig:DashliteHeader title="Articles">
         <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_content_post_new') }}" icon="plus" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -26,17 +26,17 @@
                         surname="{{ item.owner.email }}"
                         avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
                     />
-                </twig:ResponsiveTableColumn>
+                </twig:DashliteResponsiveTableColumn>
                 <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
-                <twig:DashliteResponsiveTableColumn>{{ item.viewCount }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_post_show', {id: item.id}) }}" icon="eye" />
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_post_edit', {id: item.id}) }}" icon="edit" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                <twig:DashliteResponsiveTableColumn>{{ item.viewCount }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_post_show', {id: item.id}) }}" icon="eye" />
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_post_edit', {id: item.id}) }}" icon="edit" />
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>

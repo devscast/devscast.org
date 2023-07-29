@@ -3,10 +3,10 @@
 <twig:block name="wideContentClass">{{ 'wide-xxl' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="{{ data.name }}" backPath="{{ path('admin_content_video_index') }}" backTitle="Toutes les vidéos">
-        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_video_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+    <twig:DashliteHeader title="{{ data.name }}" backPath="{{ path('admin_content_video_index') }}" backTitle="Toutes les vidéos">
+        <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_content_video_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_video_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_video_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content"></twig:block>
@@ -32,13 +32,13 @@
         <twig:block name="header_action_list">
             <li>
                 <a href="{{ path('admin_content_video_index') }}" class="btn btn-white btn-dim btn-outline-light" aria-label="{{ 'global.back' | trans }}" title="{{ 'global.back' | trans }}">
-                    <twig:Icon name="arrow-long-left"/>
+                    <twig:DashliteIcon name="arrow-long-left"/>
                     <span>Toutes les vidéos</span>
                 </a>
             </li>
             <li>
                 <a href="{{ path('admin_content_video_edit', {id: data.id}) }}" class="btn btn-primary" aria-label="{{ 'global.edit' | trans([], 'messages') }}" title="{{ 'global.edit' | trans([], 'messages') }}">
-                    <twig:Icon name="edit-alt-fill"/>
+                    <twig:DashliteIcon name="edit-alt-fill"/>
                     <span>{{ 'global.edit' | trans([], 'messages') }}</span>
                 </a>
             </li>
@@ -58,7 +58,7 @@
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
                     <a href="#" class="toggle btn btn-icon btn-trigger" data-bs-target="userAside">
-                        <twig:Icon name="user-list-fill"/>
+                        <twig:DashliteIcon name="user-list-fill"/>
                     </a>
                 </li>
             </ul>

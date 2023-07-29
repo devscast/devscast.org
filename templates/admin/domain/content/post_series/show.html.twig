@@ -5,7 +5,7 @@
     <twig:Header title="{{ data.name }}" backTitle="Toutes les séries" backPath="{{ path('admin_content_post_series_index') }}">
         <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_post_series_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_post_series_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_post_series_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -18,12 +18,12 @@
                             <div class="user-card user-card-s2">
                                 <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
                             </div>
-                        </twig:MetaDataSection>
+                        </twig:DashliteMetaDataSection>
                         <twig:MetaDataSection title="Statistiques">
                             <div class="row text-center">
                                 <div class="col-12"><div class="profile-stats"><span class="amount">{{ data.postCount }}</span><span class="sub-text">articles</span></div></div>
                             </div>
-                        </twig:MetaDataSection>
+                        </twig:DashliteMetaDataSection>
                         <twig:MetaDataSection title="Détails" row>
                             <twig:MetaDataItem label="publié par" value="{{ data.owner.name }}" />
                             <twig:MetaDataItem>
@@ -33,14 +33,14 @@
                                     surname="{{ data.owner.email }}"
                                     avatarUrl="{{ vich_uploader_asset(data.owner, 'avatar_file') }}"
                                 />
-                            </twig:MetaDataItem>
+                            </twig:DashliteMetaDataItem>
                             <twig:MetaDataItem label="Identifiant" value="{{ data.id }}" />
                             <twig:MetaDataItem label="Slug" value="{{ data.slug }}" />
                             <twig:MetaDataItem label="Création" value="{{ data.createdAt | date }}" />
                             <twig:MetaDataItem label="Édition" value="{{ data.updatedAt ? data.updatedAt | date : '-' }}" />
-                        </twig:MetaDataSection>
-                    </twig:MetaDataList>
-                </twig:Card>
+                        </twig:DashliteMetaDataSection>
+                    </twig:DashliteMetaDataList>
+                </twig:DashliteCard>
             </div>
             <div class="col-lg-8 col-xl-8 col-xxl-9">
                 <twig:Card>
@@ -82,7 +82,7 @@
                             {% endfor %}
                         </div>
                     </twig:block>
-                </twig:Card>
+                </twig:DashliteCard>
             </div>
         </div>
     </div>

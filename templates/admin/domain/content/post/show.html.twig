@@ -2,62 +2,62 @@
 <twig:block name="title">{{ "Post #{data.name}" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="{{ data.name }}" backTitle="Tous les articles" backPath="{{ path('admin_content_post_index') }}">
-        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_post_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+    <twig:DashliteHeader title="{{ data.name }}" backTitle="Tous les articles" backPath="{{ path('admin_content_post_index') }}">
+        <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_content_post_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_post_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_post_index') }}" type="button" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="nk-block">
         <div class="row g-gs">
             <div class="col-lg-4 col-xl-4 col-xxl-3">
-                <twig:Card removePadding>
-                    <twig:MetaDataList>
-                        <twig:MetaDataSection title="Couverture">
+                <twig:DashliteCard removePadding>
+                    <twig:DashliteMetaDataList>
+                        <twig:DashliteMetaDataSection title="Couverture">
                             <div class="user-card user-card-s2">
                                 <img src="{{ vich_uploader_asset(data, 'thumbnail_file') }}" alt="couverture {{ data.name }}">
                             </div>
-                        </twig:MetaDataSection>
-                        <twig:MetaDataSection title="Statistiques">
+                        </twig:DashliteMetaDataSection>
+                        <twig:DashliteMetaDataSection title="Statistiques">
                             <div class="row text-center">
                                 <div class="col-6"><div class="profile-stats"><span class="amount">{{ data.viewCount }}</span><span class="sub-text">lectures</span></div></div>
                                 <div class="col-6"><div class="profile-stats"><span class="amount">{{ data.uniqueViewCount }}</span><span class="sub-text">lectures uniques</span></div></div>
                             </div>
-                        </twig:MetaDataSection>
-                        <twig:MetaDataSection title="Détails" row>
-                            <twig:MetaDataItem label="publié par" value="{{ data.owner.name }}" />
-                            <twig:MetaDataItem>
-                                <twig:UserAvatarLink
+                        </twig:DashliteMetaDataSection>
+                        <twig:DashliteMetaDataSection title="Détails" row>
+                            <twig:DashliteMetaDataItem label="publié par" value="{{ data.owner.name }}" />
+                            <twig:DashliteMetaDataItem>
+                                <twig:DashliteUserAvatarLink
                                     path="{{ path('admin_authentication_user_show', {id: data.owner.id}) }}"
                                     username="{{ data.owner.username }}"
                                     surname="{{ data.owner.email }}"
                                     avatarUrl="{{ vich_uploader_asset(data.owner, 'avatar_file') }}"
                                 />
-                            </twig:MetaDataItem>
+                            </twig:DashliteMetaDataItem>
                             <twig:MetaDataItem label="Identifiant" value="{{ data.id }}" />
                             <twig:MetaDataItem label="Slug" value="{{ data.slug }}" />
-                            <twig:MetaDataItem label="Status">{{ data.isOnline | boolean("En ligne", "Hors ligne") }}</twig:MetaDataItem>
+                            <twig:MetaDataItem label="Status">{{ data.isOnline | boolean("En ligne", "Hors ligne") }}</twig:DashliteMetaDataItem>
                             <twig:MetaDataItem label="Publication" value="{{ data.scheduledAt | date }}" />
                             <twig:MetaDataItem label="Création" value="{{ data.createdAt | date }}" />
                             <twig:MetaDataItem label="Édition" value="{{ data.updatedAt ? data.updatedAt | date : '-' }}" />
-                        </twig:MetaDataSection>
+                        </twig:DashliteMetaDataSection>
                         <twig:MetaDataSection title="Supplémentaires" row>
                             <twig:MetaDataItem label="Commentaires" value="{{ data.isCommentable | boolean }}" />
                             <twig:MetaDataItem label="Featured" value="{{ data.isFeatured | boolean }}" />
                             <twig:MetaDataItem label="Top Promoted" value="{{ data.isTopPromoted | boolean }}" />
                             <twig:MetaDataItem label="Premium" value="{{ data.isPremium | boolean }}" />
-                        </twig:MetaDataSection>
+                        </twig:DashliteMetaDataSection>
 
                         {% if data.category %}
                             <twig:MetaDataSection title="Catégorie">
                                 <a href="{{ path('admin_content_category_show', {id: data.category.id}) }}">{{ data.category.name }}</a>
-                            </twig:MetaDataSection>
+                            </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.series %}
                             <twig:MetaDataSection title="Séries">
                                 <a href="{{ path('admin_content_post_series_show', {id: data.series.id}) }}">{{ data.series.name }}</a>
-                            </twig:MetaDataSection>
+                            </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.tags | length > 0 %}
                             <twig:MetaDataSection title="Tags">
@@ -68,7 +68,7 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                            </twig:MetaDataSection>
+                            </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.technologies | length > 0 %}
                             <twig:MetaDataSection title="Technologies">
@@ -79,10 +79,10 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                            </twig:MetaDataSection>
+                            </twig:DashliteMetaDataSection>
                         {% endif %}
-                    </twig:MetaDataList>
-                </twig:Card>
+                    </twig:DashliteMetaDataList>
+                </twig:DashliteCard>
             </div>
             <div class="col-lg-8 col-xl-8 col-xxl-9">
                 <twig:Card>
@@ -90,7 +90,7 @@
                         <h3>{{ data.name }}</h3>
                         {{ data.content | markdown_to_html }}
                     </div>
-                </twig:Card>
+                </twig:DashliteCard>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@
             <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_authentication_user_edit', {id: data.id}) }}" icon="edit-alt-fill" />
             <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_authentication_user_index') }}" type="button" />
         </twig:block>
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -60,7 +60,7 @@
                     <twig:DataItem label="Github" :value="data.githubUrl" link="true" />
                     <twig:DataItem label="Site Internet" :value="data.githubUrl" link="true"/>
                     <twig:DataItem label="Flux Rss" :value="data.rssUrl" link="true" />
-                </twig:DataList>
+                </twig:DashliteDataList>
                 <div class="nk-divider divider md"></div>
                 <twig:DataList title="Informations supplémentaires">
                     <twig:DataItem label="Bannis" :value="data.banned | boolean" />
@@ -71,7 +71,7 @@
                     <twig:DataItem label="Marketing" :value="data.isSubscribedMarketing | boolean" />
                     <twig:DataItem label="2FA activé" :value="data.twoFactorEnabled | boolean" />
                     <twig:DataItem label="Date de bannissement" :value="data.bannedAt ? data.bannedAt | date : '-'" />
-                </twig:DataList>
+                </twig:DashliteDataList>
             </div>
         </twig:block>
 
@@ -161,5 +161,5 @@
                 </div>
             </div>
         </twig:block>
-    </twig:AsideCard>
+    </twig:DashliteAsideCard>
 </twig:block>

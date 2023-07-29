@@ -2,9 +2,9 @@
 <twig:block name="title">{{ "Séries d'articles" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Séries d'articles">
+    <twig:DashliteHeader title="Séries d'articles">
         <twig:FormModalButton name="Ajouter une série" icon="plus" path="{{ path('admin_content_post_series_new') }}" />
-    </twig:Header>
+    </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
@@ -23,14 +23,14 @@
                 <twig:ResponsiveTableColumn value="{{ item.name }}" />
                 <twig:ResponsiveTableColumn value="{{ item.postCount }}" />
                 <twig:ResponsiveTableColumn value="{{ item.technology.name }}" />
-                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:ResponsiveTableColumn>
+                <twig:ResponsiveTableColumn>{{ item.status.translationKey | trans([], 'content') | badge }}</twig:DashliteResponsiveTableColumn>
                 <twig:ResponsiveTableColumn tools>
                     <twig:ResponsiveTableTools>
                         <twig:ResponsiveTableAction path="{{ path('admin_content_post_series_show', {id: item.id}) }}" icon="eye" />
                         <twig:ResponsiveTableAction path="{{ path('admin_content_post_series_edit', {id: item.id}) }}" icon="edit" />
-                    </twig:ResponsiveTableTools>
-                </twig:ResponsiveTableColumn>
-            </twig:ResponsiveTable>
+                    </twig:DashliteResponsiveTableTools>
+                </twig:DashliteResponsiveTableColumn>
+            </twig:DashliteResponsiveTable>
         </div>
     </div>
 </twig:block>
