@@ -2,13 +2,15 @@
     <div class="profile-ud {{ this.style ?? 'wider' }}">
         <span class="profile-ud-label">{{ this.label }}</span>
         <span class="profile-ud-value">
-            {% if this.link %}
-                <a href="{{ this.value }}" title="{{ this.label }}" aria-label="{{ this.label }}" target="_blank">
+            <twig:block name="content">
+                {% if this.link %}
+                    <a href="{{ this.value }}" title="{{ this.label }}" aria-label="{{ this.label }}" target="_blank">
                     {{ this.value ?? '-' }}
                 </a>
-            {% else %}
-                {{ this.value ? this.value | raw : '-' }}
-            {% endif %}
+                {% else %}
+                    {{ this.value ? this.value | raw : '-' }}
+                {% endif %}
+            </twig:block>
         </span>
     </div>
 </div>

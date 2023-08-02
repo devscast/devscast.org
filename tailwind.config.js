@@ -19,6 +19,7 @@ export default {
                     "heading1":"var(--fg-heading1)",
                     "heading2":"var(--fg-heading2)",
                     "heading3":"var(--fg-heading3)",
+                    "heading4":"var(--fg-heading4)",
                 },
                 bdr:{
                     DEFAULT:"var(--border)",

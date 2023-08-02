@@ -86,43 +86,9 @@
     <aside class="right-box p-4">
         <div data-box-scrollable data-costum-scrollbar class="lg:pl-2 h-full min-h-max overflow-hidden overflow-y-auto">
             <div class="lg:pr-2">
-                <h2 class="text-fg-heading1 text-lg">Discussions</h2>
-                <div class="mt-2 space-y-3">
-                    <a href="./discussions/discussion.html"
-                       class="text-fg p-4 flex flex-col lg:-mx-2 hover:bg-gray-100/80 hover:rounded-outer-radius dark:hover:bg-gray-900/90">
-                        <h1 class="text-fg-heading1 font-semibold text-lg lg:line-clamp-1">
-                            Why you need lorem ipsum
-                        </h1>
-                        <div class="flex items-center gap-x-1.5 text-sm ">
-                            <span>#discussion</span>
-                            <span class="w-1 h-1 rounded-full bg-fg"></span>
-                            <span>Il y a 5 minutes</span>
-                        </div>
-                    </a>
-                    <a href="./discussions/discussion.html" class="text-fg p-4 flex flex-col lg:-mx-2 hover:bg-gray-100/80 hover:rounded-outer-radius dark:hover:bg-gray-900/90">
-                        <h1 class="text-fg-heading1 font-semibold text-lg lg:line-clamp-1">
-                            Experienced Copyrwiter
-                        </h1>
-                        <div class="flex items-center gap-x-1.5 text-sm ">
-                            <span>#discussion</span>
-                            <span class="w-1 h-1 rounded-full bg-fg"></span>
-                            <span>Il y a 5 minutes</span>
-                        </div>
-                    </a>
-                </div>
-                <h2 class="text-fg-heading1 text-lg  mt-7">Opportunités</h2>
-                <div class="mt-2 grid sm:grid-cols-2 gap-4 lg:gap-0 lg:flex lg:flex-col">
-                    {% for i in 1..5 %}
-                        <twig:AppRecentJobItem />
-                    {% endfor %}
-                </div>
-
-                <h2 class="text-fg-heading1 text-lg mt-7">Suggestions</h2>
-                <div class="mt-2 grid sm:grid-cols-2 gap-4 lg:gap-0 lg:flex lg:flex-col">
-                    {% for i in 1..5 %}
-                        <twig:AppSuggestedMemberItem />
-                    {% endfor %}
-                </div>
+                <twig:AppSponsors />
+                <twig:AppRecentJob />
+                <twig:AppSuggestedMember />
             </div>
         </div>
     </aside>

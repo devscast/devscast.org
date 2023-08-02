@@ -18,4 +18,5 @@ final class DashliteResponsiveTable
     public ?string $emptyStatePath = null;
     public ?string $emptyStateAction = null;
     public bool $separated = true;
+    public bool $disablePagination = false;
 }

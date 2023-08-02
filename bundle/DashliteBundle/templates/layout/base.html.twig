@@ -21,15 +21,15 @@
 
             <twig:block name="meta"></twig:block>
 
-            <script defer data-turbo-track="reload" src="{{ asset('admin/assets/bundle.js') }}"></script>
-            <script defer data-turbo-track="reload" src="{{ asset('admin/assets/scripts.js') }}"></script>
-
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
-
             <twig:block name="assets">
+                <script defer src="{{ asset('admin/assets/bundle.js') }}"></script>
+                <script defer src="{{ asset('admin/assets/scripts.js') }}"></script>
+
                 {{ encore_entry_link_tags('admin') }}
                 {{ encore_entry_script_tags('admin') }}
+
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/dracula.min.css">
             </twig:block>
         </head>
         <body class="nk-body bg-theme has-sidebar ui-shady" {{ stimulus_controller('modal-form') }}>
@@ -47,7 +47,7 @@
                                 <div class="nk-content-inner">
                                    <twig:block name="body">
                                        <div class="nk-content-body">
-                                           <div class="mx-auto wide-lg">
+                                           <div class="mx-auto wide-xxl">
                                                <twig:block name="header"></twig:block>
                                                <div class="nk-block">
                                                    <twig:block name="content"></twig:block>

@@ -12,14 +12,16 @@
             {% endfor %}
         </div>
     </div>
-    {% if this.data is defined and this.data.getPageCount > 1 %}
-        <div class="card">
-            <div class="card-inner p-3">
-                <div class="d-flex justify-content-center">
-                    {{ knp_pagination_render(this.data, '@DevscastDashlite/layout/pagination/pagination.html.twig') }}
+    {% if not this.disablePagination %}
+        {% if this.data is defined and this.data.getPageCount > 1 %}
+            <div class="card">
+                <div class="card-inner p-3">
+                    <div class="d-flex justify-content-center">
+                        <twig:DashlitePagination :data="this.data" />
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
 {% else %}
     <twig:DashliteEmptyStateCard :path="this.emptyStatePath" :action="this.emptyStateAction" />

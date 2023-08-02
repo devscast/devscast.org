@@ -1,0 +1,6 @@
+<a {{ stimulus_action('modal-content', 'open', 'click') }} href="#">
+    <span>{{ this.name }}</span>
+</a>
+{% if this.url and this.name %}
+    <twig:DashliteContentModal id="{{ this.id }}" url="{{ this.url }}" action="{{ this.action }}" />
+{% endif %}

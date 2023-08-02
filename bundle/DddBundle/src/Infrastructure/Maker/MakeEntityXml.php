@@ -40,12 +40,15 @@ class MakeEntityXml extends AbstractMakeCli
     {
         parent::configure();
         $this
-            ->addArgument('domain', InputArgument::OPTIONAL, 'The domain of the command class (e.g. <fg=yellow>Mailing</>)');
+            ->addArgument('domain', InputArgument::OPTIONAL, 'The domain of the command class (e.g. <fg=yellow>Mailing</>)')
+            ->addArgument('entity', InputArgument::OPTIONAL, 'The entity class name (e.g. <fg=yellow>WatchHistory</>)')
+        ;
     }
 
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $this->askDomain($input);
+        $this->askArgument($input, 'entity');
     }
 
     /**
@@ -73,8 +76,13 @@ class MakeEntityXml extends AbstractMakeCli
 
         foreach ($this->driver->getAllClassNames() as $className) {
 
+            $entity = $input->getArgument('entity');
+            $filter = $entity !== null ?
+                "Domain\\{$domain}\\Entity\\{$entity}" :
+                "Domain\\{$domain}\\Entity\\";
+
             /** @var class-string<T> $className */
-            if (str_contains($className, "Domain\\{$domain}\\Entity")) {
+            if (str_contains($className, $filter)) {
 
                 /** @var ClassMetadata<T> $info */
                 $info = new ClassMetadataInfo($className);

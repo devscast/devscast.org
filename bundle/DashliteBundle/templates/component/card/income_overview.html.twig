@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="nk-ecwg nk-ecwg3">
+        <div class="card-inner pb-0">
+            <div class="card-title-group">
+                <div class="card-title">
+                    <h6 class="title">{{ this.label }}</h6>
+                </div>
+            </div>
+            <div class="data">
+                <div class="data-group">
+                    <div class="amount fw-normal">${{ this.value | number_format }}</div>
+                    <div class="info text-end">
+                        {% if this.ratio is defined %}
+                            {% if this.value != 0.0 %}
+                                <span class="change {{ this.ratio >= 0.0 ? 'up text-success' : 'down text-danger' }}">
+                                    <twig:DashliteIcon name="{{ (this.ratio >= 0.0 ? 'arrow-long-up' : 'arrow-long-down') }}" /> {{  this.ratio }} %
+                                </span>
+                            {% else %}
+                                <span class="change down">
+                                    <twig:DashliteIcon name="alert-fill-c"/>
+                                </span>
+                            {% endif %}
+                        {% else %}
+                            <span>{{ this.info }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if this.chart %}
+            <div class="nk-ecwg3-ck">
+                <twig:block name="chart">{{ this.chart | raw }}</twig:block>
+            </div>
+        {% endif %}
+    </div>
+</div>

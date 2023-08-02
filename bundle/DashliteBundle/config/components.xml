@@ -56,6 +56,12 @@
                 template="@DevscastDashlite/component/card/modal.html.twig"
             />
         </service>
+        <service id="devscast_dashlite.twig.component.card.content_modal" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteContentModal" public="true">
+            <tag
+                    name="twig.component"
+                    template="@DevscastDashlite/component/card/content_modal.html.twig"
+            />
+        </service>
         <service id="devscast_dashlite.twig.component.card.empty_state" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteEmptyStateCard" public="true">
             <tag
                 name="twig.component"
@@ -78,6 +84,18 @@
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/card/overview.html.twig"
+            />
+        </service>
+        <service id="devscast_dashlite.twig.component.card.income_overview" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteIncomeOverviewCard" public="true">
+            <tag
+                    name="twig.component"
+                    template="@DevscastDashlite/component/card/income_overview.html.twig"
+            />
+        </service>
+        <service id="devscast_dashlite.twig.component.card.histogram_overview" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteHistogramOverviewCard" public="true">
+            <tag
+                    name="twig.component"
+                    template="@DevscastDashlite/component/card/histogram_overview.html.twig"
             />
         </service>
         <service id="devscast_dashlite.twig.component.card.aside" class="Devscast\Bundle\DashliteBundle\Component\Card\DashliteAsideCard" public="true">
@@ -130,6 +148,12 @@
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/button/form_modal.html.twig"
+            />
+        </service>
+        <service id="devscast_dashlite.twig.component.button.content_modal" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteContentModalButton" public="true">
+            <tag
+                name="twig.component"
+                template="@DevscastDashlite/component/button/content_modal.html.twig"
             />
         </service>
         <service id="devscast_dashlite.twig.component.button.link" class="Devscast\Bundle\DashliteBundle\Component\Button\DashliteLinkButton" public="true">
@@ -200,6 +224,12 @@
             <tag
                 name="twig.component"
                 template="@DevscastDashlite/component/alert.html.twig"
+            />
+        </service>
+        <service id="devscast_dashlite.twig.component.pagination" class="Devscast\Bundle\DashliteBundle\Component\DashlitePagination" public="true">
+            <tag
+                    name="twig.component"
+                    template="@DevscastDashlite/component/pagination.html.twig"
             />
         </service>
 

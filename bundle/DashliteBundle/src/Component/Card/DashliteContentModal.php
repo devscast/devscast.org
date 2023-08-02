@@ -7,16 +7,16 @@ namespace Devscast\Bundle\DashliteBundle\Component\Card;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /**
- * Class OverviewCard.
+ * Class Modal.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsTwigComponent]
-class DashliteOverviewCard
+final class DashliteContentModal
 {
-    public string $label;
-    public ?float $value = null;
-    public ?float $ratio = null;
-    public ?string $chart = null;
-    public ?string $info = 'Aucun changement';
+    public string $id;
+    public string $url;
+    public ?string $action = null;
+    public string $position = 'bottom';
+    public string $size = 'lg';
 }

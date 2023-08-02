@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="card-inner">
+        <div class="card-title-group align-start mb-2">
+            <div class="card-title">
+                <h6 class="title">{{ this.label }}</h6>
+                <p>{{ this.description }}</p>
+            </div>
+            {% if this.tooltip %}
+                <div class="card-tools">
+                    <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="{{ this.tooltip }}"></em>
+                </div>
+            {% endif %}
+        </div>
+        <div class="align-end gy-3 gx-5 flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+            <div class="nk-sale-data-group flex-md-nowrap g-4">
+                <div class="nk-sale-data">
+                    <span class="amount">
+                        {{ this.month.value}}
+                        {% if this.month.value != 0.0 %}
+                            <span class="change {{ this.month.ratio >= 0.0 ? 'up text-success' : 'down text-danger' }}">
+                                    <twig:DashliteIcon name="{{ (this.month.ratio >= 0.0 ? 'arrow-long-up' : 'arrow-long-down') }}" /> {{  this.month.ratio }} %
+                                </span>
+                            {% else %}
+                                <span class="change down">
+                                    <twig:DashliteIcon name="alert-fill-c"/>
+                                </span>
+                        {% endif %}
+                    </span>
+                    <span class="sub-title">{{ this.month.label }}</span>
+                </div>
+                <div class="nk-sale-data">
+                    <span class="amount">
+                        {{ this.week.value }}
+                        {% if this.week.value != 0.0 %}
+                            <span class="change {{ this.week.ratio >= 0.0 ? 'up text-success' : 'down text-danger' }}">
+                                    <twig:DashliteIcon name="{{ (this.week.ratio >= 0.0 ? 'arrow-long-up' : 'arrow-long-down') }}" /> {{  this.week.ratio }} %
+                                </span>
+                            {% else %}
+                            <span class="change down">
+                                <twig:DashliteIcon name="alert-fill-c"/>
+                            </span>
+                        {% endif %}
+                    </span>
+                    <span class="sub-title">{{ this.week.label }}</span>
+                </div>
+            </div>
+            {% if this.chart %}
+                <div class="">
+                    <twig:block name="chart">{{ this.chart | raw }}</twig:block>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
