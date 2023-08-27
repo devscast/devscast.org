@@ -23,6 +23,6 @@
         Ce lien ne sera plus valide après **10 minutes**,
         <twig:DashliteEmailButton url="{{ event.link.url }}" title="Me connecter" :format="_format" />
 
-        Vous pouvez également <a rel="noopener" href="{{ url('authentication_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
+        Vous pouvez également <a rel="noopener" href="{{ url('auth_reset_password_request') }}" title="réinitialiser votre mot de passe Devscast.">réinitialiser votre mot de passe</a>
     {% endapply %}
 </twig:block>

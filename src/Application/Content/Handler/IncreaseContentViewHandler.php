@@ -14,12 +14,12 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-final class IncreaseContentViewHandler
+final readonly class IncreaseContentViewHandler
 {
     public function __construct(
-        private readonly ContentViewRepositoryInterface $repository,
-        private readonly ContentRepositoryInterface $contentRepository,
-        private readonly EventDispatcherInterface $dispatcher
+        private ContentViewRepositoryInterface $repository,
+        private ContentRepositoryInterface $contentRepository,
+        private EventDispatcherInterface $dispatcher
     ) {
     }
 

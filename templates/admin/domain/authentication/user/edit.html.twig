@@ -3,9 +3,9 @@
 
 <twig:block name="header">
     <twig:DashliteHeader title="Édition Utilisateur">
-        <twig:HeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
+        <twig:DashliteHeaderLinkButton name="Toutes les entrées" path="{{ _index_url }}" icon="arrow-long-left" />
         {% if _show_url %}
-            <twig:HeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
+            <twig:DashliteHeaderLinkButton name="Revenir aux détails" path="{{ _show_url }}" icon="eye" />
         {% endif %}
     </twig:DashliteHeader>
 </twig:block>

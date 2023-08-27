@@ -5,7 +5,7 @@
     <div class="mt-8 rounded-outer-radius shadow-2xl bg-background-card border border-bdr -mx-6 sm:-mx-10 p-8 sm:p-10 xl:p-12 2xl:p-16">
         <h1 class="text-2xl text-fg-heading1">Connectez-vous</h1>
         <div class="mt-8 grid gap-6 sm:grid-cols-2">
-            <a href="{{ path('authentication_oauth_connect', {service: 'github'}) }}" title="connexion via github" class="h-11 rounded-md btn before:border px-6 before:transition before:border-bdr before:bg-background-card-inside">
+            <a href="{{ path('auth_oauth_connect', {service: 'github'}) }}" title="connexion via github" class="h-11 rounded-md btn before:border px-6 before:transition before:border-bdr before:bg-background-card-inside">
                 <div class="flex items-center justify-center space-x-4 text-fg-heading2 relative z-[6]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5" viewBox="0 0 16 16">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
@@ -13,7 +13,7 @@
                     <span class="block w-max text-sm font-medium tracking-wide text-fg-heading2">Github</span>
                 </div>
             </a>
-            <a href="{{ path('authentication_oauth_connect', {service: 'google'}) }}" title="connexion via google" class="h-11 rounded-md btn before:border px-6 before:transition before:border-bdr before:bg-background-card-inside">
+            <a href="{{ path('auth_oauth_connect', {service: 'google'}) }}" title="connexion via google" class="h-11 rounded-md btn before:border px-6 before:transition before:border-bdr before:bg-background-card-inside">
                 <div class="flex items-center justify-center space-x-4 relative z-[6]">
                     <img src="https://tailus.io/sources/blocks/plus-social/preview/images/google.svg" class="w-5" alt="" />
                     <span class="block w-max text-sm font-medium tracking-wide text-cyan-700 dark:text-fg-heading2">Google</span>
@@ -38,7 +38,7 @@
             <button type="submit" class="group w-full flex justify-center items-center btn btn-md dark:before:bg-primary dark:text-gray-900 before:bg-gray-900 text-gray-50 rounded-lg">
                 <span class="relative z-[6]">Se connecter</span>
             </button>
-            <a href="{{ path('authentication_register') }}" class="inline-block mt-4 -ml-3 w-max px-3  text-sky-500 dark:text-sky-300 hover:text-sky-600">
+            <a href="{{ path('auth_register') }}" class="inline-block mt-4 -ml-3 w-max px-3  text-sky-500 dark:text-sky-300 hover:text-sky-600">
                 <span class="text-sm tracking-wide">Créer un compte</span>
             </a>
         </div>

@@ -6,6 +6,11 @@ namespace Domain\Authentication\ValueObject;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * Class Username.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 class Username implements \Stringable
 {
     private const MIN_LENGTH = 5;

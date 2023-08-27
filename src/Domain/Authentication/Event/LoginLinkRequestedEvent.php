@@ -11,11 +11,11 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class LoginLinkRequestedEvent
+final readonly class LoginLinkRequestedEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly object $link
+        public User $user,
+        public object $link
     ) {
     }
 }

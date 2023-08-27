@@ -16,11 +16,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorEmailCodeMailer implements AuthCodeMailerInterface
+final readonly class TwoFactorEmailCodeMailer implements AuthCodeMailerInterface
 {
     public function __construct(
-        private readonly MailerHelper $mailer,
-        private readonly TranslatorInterface $translator
+        private MailerHelper $mailer,
+        private TranslatorInterface $translator
     ) {
     }
 

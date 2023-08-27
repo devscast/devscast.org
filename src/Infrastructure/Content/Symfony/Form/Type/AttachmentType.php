@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Form\Type;
 
-use Domain\Content\Entity\Attachment;
-use Infrastructure\Content\Doctrine\Repository\AttachmentRepository;
+use Domain\Content\Entity\Blog\Attachment;
+use Infrastructure\Content\Doctrine\Repository\Blog\AttachmentRepository;
 use Infrastructure\Content\Symfony\Validator\AttachmentExist;
 use Infrastructure\Content\Symfony\Validator\NonExistingAttachment;
 use Symfony\Component\Form\DataTransformerInterface;

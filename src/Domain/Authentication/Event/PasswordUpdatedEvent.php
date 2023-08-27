@@ -11,10 +11,10 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class PasswordUpdatedEvent
+final readonly class PasswordUpdatedEvent
 {
     public function __construct(
-        public readonly User $user
+        public User $user
     ) {
     }
 }

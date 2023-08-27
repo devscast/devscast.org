@@ -11,10 +11,10 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserUnbannedEvent
+final readonly class UserUnbannedEvent
 {
     public function __construct(
-        public readonly User $user
+        public User $user
     ) {
     }
 }

@@ -20,7 +20,7 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/login/oauth', name: 'authentication_oauth_')]
+#[Route('/login/oauth', name: 'auth_oauth_')]
 final class LoginOAuthController extends AbstractController
 {
     #[Route('/connect/{service}', name: 'connect', methods: ['GET'])]
@@ -42,7 +42,7 @@ final class LoginOAuthController extends AbstractController
         } catch (\Throwable $e) {
             $this->addSafeMessageExceptionFlash($e);
 
-            return $this->redirectSeeOther('authentication_login');
+            return $this->redirectSeeOther('auth_login');
         }
     }
 

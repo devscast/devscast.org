@@ -16,10 +16,10 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsMessageHandler]
-final class CreateCommentHandler
+final readonly class CreateCommentHandler
 {
     public function __construct(
-        private readonly CommentRepositoryInterface $repository
+        private CommentRepositoryInterface $repository
     ) {
     }
 

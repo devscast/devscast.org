@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Normalizer;
 
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Normalizer\AbstractNormalizer;
-use Domain\Content\Entity\Attachment;
+use Domain\Content\Entity\Blog\Attachment;
 use Infrastructure\Shared\Image\ImageResizerUrlGenerator;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 

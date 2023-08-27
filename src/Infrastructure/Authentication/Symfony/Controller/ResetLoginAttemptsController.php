@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/login/unlock/{token}', name: 'authentication_login_attempts_reset', methods: ['GET'])]
+#[Route('/login/unlock/{token}', name: 'auth_login_attempts_reset', methods: ['GET'])]
 final class ResetLoginAttemptsController extends AbstractController
 {
     public function __invoke(string $token): Response
@@ -31,6 +31,6 @@ final class ResetLoginAttemptsController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('authentication_login');
+        return $this->redirectSeeOther('auth_login');
     }
 }

@@ -12,11 +12,11 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ResetPasswordRequestedEvent
+final readonly class ResetPasswordRequestedEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly ResetPasswordToken $token
+        public User $user,
+        public ResetPasswordToken $token
     ) {
     }
 }

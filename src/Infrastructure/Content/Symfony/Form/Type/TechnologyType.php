@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Form\Type;
 
-use Domain\Content\Entity\Technology;
+use Domain\Content\Entity\Training\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

@@ -9,6 +9,6 @@ namespace Domain\Content\Event;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ContentDeletedEvent
+final readonly class ContentDeletedEvent
 {
 }

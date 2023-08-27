@@ -18,10 +18,10 @@ use Twig\Environment;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class AccessDeniedHandler implements AccessDeniedHandlerInterface
+final readonly class AccessDeniedHandler implements AccessDeniedHandlerInterface
 {
     public function __construct(
-        private readonly Environment $twig
+        private Environment $twig
     ) {
     }
 

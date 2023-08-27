@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Content\Symfony\Validator;
 
-use Domain\Content\Entity\Attachment;
+use Domain\Content\Entity\Blog\Attachment;
 use Symfony\Component\Uid\Uuid;
 
 /**

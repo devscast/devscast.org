@@ -14,10 +14,10 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsMessageHandler]
-final class DeleteTagHandler
+final readonly class DeleteTagHandler
 {
     public function __construct(
-        private readonly TagRepositoryInterface $repository
+        private TagRepositoryInterface $repository
     ) {
     }
 

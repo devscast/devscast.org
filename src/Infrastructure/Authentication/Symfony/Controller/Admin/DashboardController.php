@@ -6,6 +6,7 @@ namespace Infrastructure\Authentication\Symfony\Controller\Admin;
 
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
+#[AsController]
 #[Route('/admin/authentication', name: 'admin_authentication_dashboard_')]
 final class DashboardController extends AbstractController
 {

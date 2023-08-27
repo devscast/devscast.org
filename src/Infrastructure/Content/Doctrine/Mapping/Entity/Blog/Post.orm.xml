@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\Content\Entity\Blog\Post"
+            repository-class="Infrastructure\Content\Doctrine\Repository\Blog\PostRepository"
+            table="content_blog_post"
+    >
+        <!-- relations -->
+        <many-to-one field="category" target-entity="Domain\Content\Entity\Blog\Category" inversed-by="posts" >
+            <join-column on-delete="SET NULL" nullable="true" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

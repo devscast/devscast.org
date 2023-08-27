@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Shared\Symfony\Controller;
 
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
-use Domain\Content\Repository\PostRepositoryInterface;
+use Domain\Content\Repository\Blog\PostRepositoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;

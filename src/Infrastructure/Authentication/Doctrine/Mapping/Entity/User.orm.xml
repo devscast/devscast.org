@@ -21,13 +21,17 @@
 
         <!-- value object -->
         <embedded name="username" class="Domain\Authentication\ValueObject\Username" use-column-prefix="false" />
-        <embedded name="gender" class="Domain\Authentication\ValueObject\Gender" use-column-prefix="false" />
         <embedded name="roles" class="Domain\Authentication\ValueObject\Roles" use-column-prefix="false" />
         <embedded name="rss_url" class="Domain\Authentication\ValueObject\RssUrl" use-column-prefix="false" />
         <embedded name="avatar" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
 
         <!-- fields -->
         <field name="name" type="string" length="80" nullable="true"/>
+        <field name="gender" enum-type="Domain\Authentication\Enum\Gender">
+            <options>
+                <option name="default">M</option>
+            </options>
+        </field>
         <field name="pronouns" type="string" length="10" nullable="true"/>
         <field name="job_title" type="string" length="150" nullable="true"/>
         <field name="biography" type="text" nullable="true"/>

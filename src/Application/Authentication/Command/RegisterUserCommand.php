@@ -20,7 +20,7 @@ final class RegisterUserCommand
         public ?string $name = null,
         #[Assert\NotBlank] public ?string $username = null,
         #[Assert\NotBlank] #[Assert\Email] public ?string $email = null,
-        #[Assert\NotBlank] #[Assert\Length(min: 6, max: 4096)] public ?string $password = null,
+        #[Assert\Length(min: 6, max: 4096)] public ?string $password = null,
         public ?string $facebook_id = null,
         public ?string $github_id = null,
         public ?string $google_id = null,

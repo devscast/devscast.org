@@ -12,11 +12,11 @@ use Domain\Content\Entity\Content;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ContentViewMilestoneReachedEvent
+final readonly class ContentViewMilestoneReachedEvent
 {
     public function __construct(
-        public readonly Content $target,
-        public readonly User $user,
+        public Content $target,
+        public User $user,
     ) {
     }
 }

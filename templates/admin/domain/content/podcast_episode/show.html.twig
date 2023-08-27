@@ -2,14 +2,14 @@
 <twig:block name="title">{{ "Podcast #{data.name}" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="{{ data.name }}" backPath="{{ path('admin_content_podcast_episode_index') }}" backTitle="Tous les podcasts">
-        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_episode_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+    <twig:DashliteHeader title="{{ data.name }}" backPath="{{ path('admin_content_podcast_episode_index') }}" backTitle="Tous les podcasts">
+        <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_episode_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_podcast_episode_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_episode_index') }}" type="button" />
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
-    <twig:AsideCard>
+    <twig:DashliteAsideCard>
         <twig:block name="tabs">
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
@@ -31,14 +31,14 @@
                     <div class="nk-block-head">
                         {{ data.content | markdown_to_html }}
                     </div>
-                    <twig:DataList>
+                    <twig:DashliteDataList>
                         <twig:DataItem label="Titre" value="{{ data.name }}" />
                         <twig:DataItem label="Slug" value="{{ data.slug }}" />
                     </twig:DashliteDataList>
                 </div>
                 <div class="nk-divider divider md"></div>
                 <div class="nk-block">
-                    <twig:DataList title="Informations supplémentaires">
+                    <twig:DashliteDataList title="Informations supplémentaires">
                         <twig:DataItem label="Commentaires autorisés" :value="data.isCommentable | boolean" />
                         <twig:DataItem label="Featured" :value="data.isFeatured | boolean" />
                         <twig:DataItem label="Top promoted" :value="data.isTopPromoted | boolean" />

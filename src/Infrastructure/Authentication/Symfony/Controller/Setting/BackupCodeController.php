@@ -10,6 +10,7 @@ use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractControll
 use Domain\Authentication\Entity\User;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
+#[AsController]
 #[Route('/profile/authentication/settings/backup_codes', name: 'authentication_setting_backup_codes_')]
 final class BackupCodeController extends AbstractController
 {

@@ -2,30 +2,30 @@
 <twig:block name="title">{{ 'Podcasts' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Podcasts">
-        <twig:HeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_podcast_episode_new') }}" />
-        <twig:HeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
+    <twig:DashliteHeader title="Podcasts">
+        <twig:DashliteHeaderLinkButton name="Ajouter" icon="plus" path="{{ path('admin_content_podcast_episode_new') }}" />
+        <twig:DashliteHeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_podcast_episode_new') }}"  emptyStateAction="Ajouter un podcast" >
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_podcast_episode_new') }}"  emptyStateAction="Ajouter un podcast" >
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Nom" col />
-                    <twig:ResponsiveTableColumn value="Audio" col />
-                    <twig:ResponsiveTableColumn value="En ligne ?" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Nom" col />
+                    <twig:DashliteResponsiveTableColumn value="Audio" col />
+                    <twig:DashliteResponsiveTableColumn value="En ligne ?" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn value="{{ item.name | u.truncate(50, '...') }}" />
-                <twig:ResponsiveTableColumn><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(item, 'audio_file') }}"></audio></twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.isOnline | boolean }}</twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_show', {id: item.id}) }}" icon="eye" />
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_episode_edit', {id: item.id}) }}" icon="edit" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.name | u.truncate(50, '...') }}" />
+                <twig:DashliteResponsiveTableColumn><audio style="width: 400px; height: 30px" controls src="{{ vich_uploader_asset(item, 'audio_file') }}"></audio></twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.isOnline | boolean }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_podcast_episode_show', {id: item.id}) }}" icon="eye" />
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_podcast_episode_edit', {id: item.id}) }}" icon="edit" />
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>
             </twig:DashliteResponsiveTable>

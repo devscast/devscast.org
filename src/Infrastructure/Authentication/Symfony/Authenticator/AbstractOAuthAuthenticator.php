@@ -57,7 +57,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
             throw new \InvalidArgumentException(message: "You must set a \$serviceName property (for instance 'github', 'google', 'facebook')");
         }
 
-        return 'authentication_oauth_check' ===
+        return 'auth_oauth_check' ===
             $request->attributes->get('_route') &&
             $request->get('service') === $this->serviceName;
     }
@@ -100,7 +100,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
         if ($exception->getPrevious() instanceof UserOAuthNotFoundException) {
-            return new RedirectResponse($this->router->generate('authentication_register', [
+            return new RedirectResponse($this->router->generate('auth_register', [
                 'oauth' => 1,
             ]));
         }
@@ -109,7 +109,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
             $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         }
 
-        return new RedirectResponse($this->router->generate('authentication_login'));
+        return new RedirectResponse($this->router->generate('auth_login'));
     }
 
     public function onAuthenticationSuccess(

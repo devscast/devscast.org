@@ -2,30 +2,30 @@
 <twig:block name="title">{{ 'Saisons de podcast' }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header>
-        <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_content_podcast_season_new') }}" icon="plus" />
-        <twig:HeaderLinkButton name="Statistique" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
+    <twig:DashliteHeader>
+        <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_content_podcast_season_new') }}" icon="plus" />
+        <twig:DashliteHeaderLinkButton name="Statistique" path="{{ path('admin_content_dashboard_index') }}" icon="bar-chart" />
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_podcast_season_new') }}" emptyStateAction="Ajouter une saison">
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_podcast_season_new') }}" emptyStateAction="Ajouter une saison">
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="Titre" col />
-                    <twig:ResponsiveTableColumn value="Short code" col />
-                    <twig:ResponsiveTableColumn value="Episodes" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="Titre" col />
+                    <twig:DashliteResponsiveTableColumn value="Short code" col />
+                    <twig:DashliteResponsiveTableColumn value="Episodes" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn value="{{ item.name }}" col />
-                <twig:ResponsiveTableColumn value="{{ item.shortCode }}" col />
-                <twig:ResponsiveTableColumn value="{{ item.episodeCount }}" col />
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_show', {id: item.id}) }}" icon="eye" />
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_podcast_season_edit', {id: item.id}) }}" icon="edit" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.name }}" col />
+                <twig:DashliteResponsiveTableColumn value="{{ item.shortCode }}" col />
+                <twig:DashliteResponsiveTableColumn value="{{ item.episodeCount }}" col />
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_podcast_season_show', {id: item.id}) }}" icon="eye" />
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_podcast_season_edit', {id: item.id}) }}" icon="edit" />
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>
             </twig:DashliteResponsiveTable>

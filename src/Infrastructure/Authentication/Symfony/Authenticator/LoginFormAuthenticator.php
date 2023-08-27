@@ -34,7 +34,7 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'authentication_login';
+    public const LOGIN_ROUTE = 'auth_login';
     private ?UserInterface $user = null;
 
     public function __construct(

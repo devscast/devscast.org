@@ -14,10 +14,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorEventSubscriber implements EventSubscriberInterface
+final readonly class TwoFactorEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly MailerHelper $mailer,
+        private MailerHelper $mailer,
     ) {
     }
 

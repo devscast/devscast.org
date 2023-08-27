@@ -11,10 +11,10 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ResetPasswordConfirmedEvent
+final readonly class ResetPasswordConfirmedEvent
 {
     public function __construct(
-        public readonly User $user
+        public User $user
     ) {
     }
 }

@@ -55,7 +55,7 @@
         <a href="{{ logoutPath }}" class="inline-block mt-4 -ml-3 w-max px-3  text-sky-500 dark:text-sky-300 hover:text-sky-600">
             {{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}
         </a>
-        <form action="{{ path('authentication_2fa_resend_code') }}" method="post" class="inline-block mt-4 -ml-3 w-max px-3  text-sky-500 dark:text-sky-300 hover:text-sky-600">
+        <form action="{{ path('auth_2fa_resend_code') }}" method="post" class="inline-block mt-4 -ml-3 w-max px-3  text-sky-500 dark:text-sky-300 hover:text-sky-600">
             <button>{{ 'global.resend'|trans({}, 'messages') }}</button>
         </form>
     </div>

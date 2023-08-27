@@ -61,7 +61,6 @@ final class UserController extends AbstractCrudController
         return $this->handleCommand(new CreateUserCommand(), new CrudParams(
             action: CrudAction::CREATE,
             formClass: CreateUserForm::class,
-            hasIndex: true,
         ));
     }
 
@@ -75,7 +74,6 @@ final class UserController extends AbstractCrudController
             item: $item,
             formClass: UpdateUserForm::class,
             view: 'edit',
-            hasIndex: true,
             hasShow: true,
             overrideView: true
         ));
@@ -107,7 +105,6 @@ final class UserController extends AbstractCrudController
             item: $item,
             formClass: EmailUserForm::class,
             view: 'email',
-            hasIndex: true,
             hasShow: true,
             overrideView: true
         ));

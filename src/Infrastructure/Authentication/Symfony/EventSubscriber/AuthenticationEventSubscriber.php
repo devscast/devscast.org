@@ -28,11 +28,11 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class AuthenticationEventSubscriber implements EventSubscriberInterface
+final readonly class AuthenticationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly MailerHelper $mailer,
-        private readonly MessageBusInterface $bus
+        private MailerHelper $mailer,
+        private MessageBusInterface $bus
     ) {
     }
 

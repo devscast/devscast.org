@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class TwoFactorCondition implements TwoFactorConditionInterface
+final readonly class TwoFactorCondition implements TwoFactorConditionInterface
 {
     public function shouldPerformTwoFactorAuthentication(AuthenticationContextInterface $context): bool
     {

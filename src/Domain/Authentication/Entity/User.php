@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Domain\Authentication\Entity;
 
 use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
-use Domain\Authentication\ValueObject\Gender;
+use Domain\Authentication\Entity\Composable\OAuthTrait;
+use Domain\Authentication\Entity\Composable\TwoFactorTrait;
+use Domain\Authentication\Entity\Composable\TwoFactorUserInterface;
+use Domain\Authentication\Enum\Gender;
 use Domain\Authentication\ValueObject\Roles;
 use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
@@ -14,11 +17,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Vich\UploaderBundle\FileAbstraction\ReplacingFile;
 
 /**
- * @TODO find a way to remove symfony interfaces from the domain model user
- * Class User
+ * Class User.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
@@ -45,7 +46,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     private ?string $biography = null;
 
-    private Gender $gender;
+    private Gender $gender = Gender::MASCULINE;
 
     private ?string $pronouns = null;
 
@@ -89,10 +90,8 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     public function __construct()
     {
-        $this->gender = Gender::male();
         $this->roles = Roles::developer();
         $this->avatar = EmbeddedFile::default();
-        //$this->avatar_file = new ReplacingFile(sprintf('%s/public/images/default.png', dirname(__DIR__, 4)));
     }
 
     public function __serialize(): array
@@ -167,7 +166,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     {
         $this->gender = match (true) {
             $gender instanceof Gender => $gender,
-            default => Gender::fromString($gender)
+            default => Gender::from($gender)
         };
 
         return $this;

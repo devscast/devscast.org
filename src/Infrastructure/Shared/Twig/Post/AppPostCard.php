@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Twig\Post;
 
-use Domain\Content\Entity\Post;
+use Domain\Content\Entity\Blog\Post;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /**

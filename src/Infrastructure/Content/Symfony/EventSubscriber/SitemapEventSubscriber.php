@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\EventSubscriber;
 
 use Domain\Content\Entity\Content;
-use Domain\Content\Entity\PodcastEpisode;
-use Domain\Content\Entity\Post;
-use Domain\Content\Entity\Training;
-use Domain\Content\Entity\Video;
+use Domain\Content\Enum\ContentType;
 use Domain\Content\Repository\ContentRepositoryInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
@@ -21,11 +18,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class SitemapEventSubscriber implements EventSubscriberInterface
+final readonly class SitemapEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly ContentRepositoryInterface $repository,
-        private readonly UrlGeneratorInterface $generator
+        private ContentRepositoryInterface $repository,
+        private UrlGeneratorInterface $generator
     ) {
     }
 
@@ -38,31 +35,22 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
 
     public function populate(SitemapPopulateEvent $event): void
     {
-        $this->registerContentUrls($event->getUrlContainer(), PodcastEpisode::class);
-        $this->registerContentUrls($event->getUrlContainer(), Post::class);
-        $this->registerContentUrls($event->getUrlContainer(), Video::class);
-        $this->registerContentUrls($event->getUrlContainer(), Training::class);
+        $this->registerContentUrls($event->getUrlContainer(), ContentType::PODCAST);
+        $this->registerContentUrls($event->getUrlContainer(), ContentType::POST);
+        $this->registerContentUrls($event->getUrlContainer(), ContentType::VIDEO);
     }
 
-    private function registerContentUrls(UrlContainerInterface $urls, string $type): void
+    private function registerContentUrls(UrlContainerInterface $urls, ContentType $type): void
     {
-        $section = match ($type) {
-            Post::class => 'posts',
-            Video::class => 'videos',
-            Training::class => 'trainings',
-            PodcastEpisode::class => 'podcasts',
-            default => throw new \InvalidArgumentException(sprintf('unknown type %s', $type))
-        };
-
         /** @var Content[] $contents */
-        $contents = $this->repository->findContents($type);
+        $contents = $this->repository->findAll();
+
         foreach ($contents as $content) {
             $urls->addUrl(
                 url: new UrlConcrete(
                     loc: $this->generator->generate(
-                        name: 'content_show',
+                        name: $type->getRoute(),
                         parameters: [
-                            'type' => $section,
                             'id' => $content->getId()?->toHex(),
                             'slug' => $content->getSlug(),
                         ],
@@ -72,7 +60,7 @@ final class SitemapEventSubscriber implements EventSubscriberInterface
                     changefreq: 'daily',
                     priority: 0.8
                 ),
-                section: $section,
+                section: $type->value,
             );
         }
     }

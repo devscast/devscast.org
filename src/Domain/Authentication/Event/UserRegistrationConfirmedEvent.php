@@ -11,12 +11,12 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserRegistrationConfirmedEvent
+final readonly class UserRegistrationConfirmedEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly bool $is_oauth = false,
-        public readonly ?string $oauth_type = null
+        public User $user,
+        public bool $is_oauth = false,
+        public ?string $oauth_type = null
     ) {
     }
 }

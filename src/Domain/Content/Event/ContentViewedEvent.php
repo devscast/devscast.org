@@ -12,12 +12,12 @@ use Domain\Content\Entity\Content;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ContentViewedEvent
+final readonly class ContentViewedEvent
 {
     public function __construct(
-        public readonly Content $target,
-        public readonly string $ip,
-        public readonly ?User $owner = null
+        public Content $target,
+        public string $ip,
+        public ?User $owner = null
     ) {
     }
 }

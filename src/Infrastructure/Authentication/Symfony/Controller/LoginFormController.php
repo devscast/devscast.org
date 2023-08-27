@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('', name: 'authentication_')]
+#[Route('', name: 'auth_')]
 final class LoginFormController extends AbstractController
 {
     #[Route('/login', name: 'login', methods: ['GET', 'POST'])]

@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/password', name: 'authentication_reset_password_')]
+#[Route('/password', name: 'auth_reset_password_')]
 final class ResetPasswordController extends AbstractController
 {
     #[Route('/request', name: 'request', methods: ['GET', 'POST'])]
@@ -47,7 +47,7 @@ final class ResetPasswordController extends AbstractController
                 $this->addSafeMessageExceptionFlash($e);
             }
 
-            return $this->redirectSeeOther('authentication_login');
+            return $this->redirectSeeOther('auth_login');
         }
 
         return $this->render(
@@ -66,7 +66,7 @@ final class ResetPasswordController extends AbstractController
         } catch (ResetPasswordTokenExpiredException $e) {
             $this->addSafeMessageExceptionFlash($e);
 
-            return $this->redirectSeeOther('authentication_login');
+            return $this->redirectSeeOther('auth_login');
         }
 
         $command = new ConfirmResetPasswordCommand($token);
@@ -84,7 +84,7 @@ final class ResetPasswordController extends AbstractController
                 $this->addSafeMessageExceptionFlash($e);
             }
 
-            return $this->redirectSeeOther('authentication_login');
+            return $this->redirectSeeOther('auth_login');
         }
 
         return $this->render(

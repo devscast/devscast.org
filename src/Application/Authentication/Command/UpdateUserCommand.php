@@ -6,7 +6,6 @@ namespace Application\Authentication\Command;
 
 use Devscast\Bundle\DddBundle\Application\Mapper;
 use Domain\Authentication\Entity\User;
-use Domain\Authentication\ValueObject\Gender;
 use Domain\Authentication\ValueObject\Roles;
 use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Shared\ValueObject\EmbeddedFile;
@@ -20,7 +19,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class UpdateUserCommand
 {
     public Roles $roles;
-    public Gender $gender;
     public EmbeddedFile $avatar;
 
     public function __construct(

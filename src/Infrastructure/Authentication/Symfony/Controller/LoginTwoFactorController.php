@@ -10,6 +10,7 @@ use Domain\Authentication\Entity\User;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\RateLimiter\Exception\RateLimitExceededException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,9 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
+#[AsController]
 final class LoginTwoFactorController extends AbstractController
 {
-    #[Route('/login/2fa_resend_code', name: 'authentication_2fa_resend_code', methods: ['POST', 'GET'])]
+    #[Route('/login/2fa_resend_code', name: 'auth_2fa_resend_code', methods: ['POST', 'GET'])]
     public function resend(Request $request, Security $security): Response
     {
         try {

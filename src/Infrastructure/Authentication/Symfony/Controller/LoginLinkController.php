@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/login/link', name: 'authentication_login_link_')]
+#[Route('/login/link', name: 'auth_login_link_')]
 final class LoginLinkController extends AbstractController
 {
     #[Route('/request', name: 'request', methods: ['GET', 'POST'])]
@@ -41,7 +41,7 @@ final class LoginLinkController extends AbstractController
                     domain: 'authentication'
                 );
 
-                return $this->redirectSeeOther('authentication_login');
+                return $this->redirectSeeOther('auth_login');
             } catch (AuthenticationException) {
                 $this->addSomethingWentWrongFlash();
             } catch (\Throwable $e) {

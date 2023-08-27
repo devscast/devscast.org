@@ -35,32 +35,32 @@
                                     avatarUrl="{{ vich_uploader_asset(data.owner, 'avatar_file') }}"
                                 />
                             </twig:DashliteMetaDataItem>
-                            <twig:MetaDataItem label="Identifiant" value="{{ data.id }}" />
-                            <twig:MetaDataItem label="Slug" value="{{ data.slug }}" />
-                            <twig:MetaDataItem label="Status">{{ data.isOnline | boolean("En ligne", "Hors ligne") }}</twig:DashliteMetaDataItem>
-                            <twig:MetaDataItem label="Publication" value="{{ data.scheduledAt | date }}" />
-                            <twig:MetaDataItem label="Création" value="{{ data.createdAt | date }}" />
-                            <twig:MetaDataItem label="Édition" value="{{ data.updatedAt ? data.updatedAt | date : '-' }}" />
+                            <twig:DashliteMetaDataItem label="Identifiant" value="{{ data.id }}" />
+                            <twig:DashliteMetaDataItem label="Slug" value="{{ data.slug }}" />
+                            <twig:DashliteMetaDataItem label="Status">{{ data.isOnline | boolean("En ligne", "Hors ligne") }}</twig:DashliteMetaDataItem>
+                            <twig:DashliteMetaDataItem label="Publication" value="{{ data.scheduledAt | date }}" />
+                            <twig:DashliteMetaDataItem label="Création" value="{{ data.createdAt | date }}" />
+                            <twig:DashliteMetaDataItem label="Édition" value="{{ data.updatedAt ? data.updatedAt | date : '-' }}" />
                         </twig:DashliteMetaDataSection>
-                        <twig:MetaDataSection title="Supplémentaires" row>
-                            <twig:MetaDataItem label="Commentaires" value="{{ data.isCommentable | boolean }}" />
-                            <twig:MetaDataItem label="Featured" value="{{ data.isFeatured | boolean }}" />
-                            <twig:MetaDataItem label="Top Promoted" value="{{ data.isTopPromoted | boolean }}" />
-                            <twig:MetaDataItem label="Premium" value="{{ data.isPremium | boolean }}" />
+                        <twig:DashliteMetaDataSection title="Supplémentaires" row>
+                            <twig:DashliteMetaDataItem label="Commentaires" value="{{ data.isCommentable | boolean }}" />
+                            <twig:DashliteMetaDataItem label="Featured" value="{{ data.isFeatured | boolean }}" />
+                            <twig:DashliteMetaDataItem label="Top Promoted" value="{{ data.isTopPromoted | boolean }}" />
+                            <twig:DashliteMetaDataItem label="Premium" value="{{ data.isPremium | boolean }}" />
                         </twig:DashliteMetaDataSection>
 
                         {% if data.category %}
-                            <twig:MetaDataSection title="Catégorie">
+                            <twig:DashliteMetaDataSection title="Catégorie">
                                 <a href="{{ path('admin_content_category_show', {id: data.category.id}) }}">{{ data.category.name }}</a>
                             </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.series %}
-                            <twig:MetaDataSection title="Séries">
+                            <twig:DashliteMetaDataSection title="Séries">
                                 <a href="{{ path('admin_content_post_series_show', {id: data.series.id}) }}">{{ data.series.name }}</a>
                             </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.tags | length > 0 %}
-                            <twig:MetaDataSection title="Tags">
+                            <twig:DashliteMetaDataSection title="Tags">
                                 <ul class="g-1">
                                     {% for tag in data.tags %}
                                         <li class="btn-group">
@@ -71,7 +71,7 @@
                             </twig:DashliteMetaDataSection>
                         {% endif %}
                         {% if data.technologies | length > 0 %}
-                            <twig:MetaDataSection title="Technologies">
+                            <twig:DashliteMetaDataSection title="Technologies">
                                 <ul class="g-1">
                                     {% for technology in data.technologies %}
                                         <li class="btn-group">
@@ -85,7 +85,7 @@
                 </twig:DashliteCard>
             </div>
             <div class="col-lg-8 col-xl-8 col-xxl-9">
-                <twig:Card>
+                <twig:DashliteCard>
                     <div class="nk-block">
                         <h3>{{ data.name }}</h3>
                         {{ data.content | markdown_to_html }}

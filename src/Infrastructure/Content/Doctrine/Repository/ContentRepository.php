@@ -7,11 +7,11 @@ namespace Infrastructure\Content\Doctrine\Repository;
 use Devscast\Bundle\DddBundle\Infrastructure\Doctrine\Repository\AbstractRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Domain\Content\Entity\Blog\Post;
 use Domain\Content\Entity\Content;
-use Domain\Content\Entity\Post;
 use Domain\Content\Entity\Tag;
+use Domain\Content\Enum\Status;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Domain\Content\ValueObject\ContentStatus;
 
 /**
  * class ContentRepository.
@@ -142,7 +142,7 @@ final class ContentRepository extends AbstractRepository implements ContentRepos
         return $this->createQueryBuilder('c')
             ->where('c.status.status = :status AND c.is_online = TRUE')
             ->andWhere('c.created_at <= CURRENT_TIMESTAMP() OR c.scheduled_at <= CURRENT_TIMESTAMP()')
-            ->setParameter('status', (string) ContentStatus::published())
+            ->setParameter('status', Status::PUBLISHED->value)
             ->orderBy('c.created_at', 'DESC');
     }
 }

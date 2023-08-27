@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Application\Content\Service;
 
 use Application\Content\Command\AbstractContentCommand;
-use Application\Content\Command\CreatePodcastEpisodeCommand;
-use Application\Content\Command\CreatePostCommand;
-use Application\Content\Command\UpdatePodcastEpisodeCommand;
-use Application\Content\Command\UpdatePostCommand;
-use Domain\Content\Entity\Post;
+use Application\Content\Command\Blog\CreatePostCommand;
+use Application\Content\Command\Blog\UpdatePostCommand;
+use Application\Content\Command\Podcast\CreateEpisodeCommand;
+use Application\Content\Command\Podcast\UpdateEpisodeCommand;
+use Domain\Content\Entity\Blog\Post;
+use Domain\Content\Enum\ContentType;
+use Domain\Content\Enum\Status;
 use Domain\Content\Exception\ContentScheduleDateMustBeInFutureException;
 use Domain\Content\Exception\InvalidSlugException;
 use Domain\Content\Repository\ContentRepositoryInterface;
-use Domain\Content\ValueObject\ContentStatus;
-use Domain\Content\ValueObject\ContentType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Webmozart\Assert\Assert;
 
@@ -23,10 +23,10 @@ use Webmozart\Assert\Assert;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ContentService
+final readonly class ContentService
 {
     public function __construct(
-        private readonly ContentRepositoryInterface $repository
+        private ContentRepositoryInterface $repository
     ) {
     }
 
@@ -40,7 +40,7 @@ final class ContentService
 
     public function assertOneContentIsTopPromotedByType(AbstractContentCommand $command): void
     {
-        if (true === $command->is_top_promoted && $command->status->equals(ContentStatus::published())) {
+        if (true === $command->is_top_promoted && Status::PUBLISHED === $command->status) {
             $this->repository->resetTopPromotedContent(Post::class); // todo use correct type
         }
     }
@@ -58,7 +58,7 @@ final class ContentService
     {
         if (0 === $command->duration) {
             /** @var CreatePostCommand|UpdatePostCommand $command */
-            if ($command->content_type->equals(ContentType::post())) {
+            if (ContentType::POST === $command->content_type) {
                 /*
                  * The average reading rate is actually 238, but 200 is a nice compromise and is easier to remember.
                  *
@@ -79,8 +79,8 @@ final class ContentService
                 $command->duration = intval((str_word_count((string) $command->content) / 200) * 60);
             }
 
-            /** @var CreatePodcastEpisodeCommand|UpdatePodcastEpisodeCommand $command */
-            if ($command->content_type->equals(ContentType::podcast()) && null !== $command->audio_file) {
+            /** @var CreateEpisodeCommand|UpdateEpisodeCommand $command */
+            if (ContentType::PODCAST === $command->content_type && null !== $command->audio_file) {
                 $command->duration = FileMetaService::getDuration($command->audio_file->getFileInfo()->getPathname());
             }
         }

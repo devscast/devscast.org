@@ -2,22 +2,22 @@
 <twig:block name="title">Utilisateur {{ data.username }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header :title='data.username'>
+    <twig:DashliteHeader :title='data.username'>
         <twig:block name="description">
             <ul class="list-inline">
                 <li>Inscription : <span class="text-base">{{ data.createdAt | date }}</span></li>
             </ul>
         </twig:block>
         <twig:block name="content">
-            <twig:HeaderLinkButton name="Tous les utilisateurs" path="{{ path('admin_authentication_user_index') }}" icon="arrow-long-left" />
-            <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_authentication_user_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+            <twig:DashliteHeaderLinkButton name="Tous les utilisateurs" path="{{ path('admin_authentication_user_index') }}" icon="arrow-long-left" />
+            <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_authentication_user_edit', {id: data.id}) }}" icon="edit-alt-fill" />
             <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_authentication_user_index') }}" type="button" />
         </twig:block>
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
-    <twig:AsideCard>
+    <twig:DashliteAsideCard>
         <twig:block name="tabs">
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
@@ -46,7 +46,7 @@
 
         <twig:block name="content">
             <div class="nk-block">
-                <twig:DataList title="Informations personnelles" :description="data.biography">
+                <twig:DashliteDataList title="Informations personnelles" :description="data.biography">
                     <twig:DataItem label="Nom complet" :value="data.name" />
                     <twig:DataItem label="Nom d'utilisateur" :value="data.username" />
                     <twig:DataItem label="Email" :value="data.email" />
@@ -62,7 +62,7 @@
                     <twig:DataItem label="Flux Rss" :value="data.rssUrl" link="true" />
                 </twig:DashliteDataList>
                 <div class="nk-divider divider md"></div>
-                <twig:DataList title="Informations supplémentaires">
+                <twig:DashliteDataList title="Informations supplémentaires">
                     <twig:DataItem label="Bannis" :value="data.banned | boolean" />
                     <twig:DataItem label="Email vérifié" :value="data.isEmailVerified | boolean" />
                     <twig:DataItem label="Thème sombre" :value="data.isDarkTheme | boolean" />

@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 final class OAuthRegistrationService
 {
-    public const SESSION_KEY = 'authentication_oauth_login';
+    public const SESSION_KEY = 'auth_oauth_login';
 
     public function __construct(
         private readonly RequestStack $requestStack,

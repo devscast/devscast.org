@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Shared\Twig\Podcast;
 
-use Domain\Content\Entity\PodcastEpisode;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /**

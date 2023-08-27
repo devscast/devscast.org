@@ -11,11 +11,11 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class LoginWithAnotherIpAddressEvent
+final readonly class LoginWithAnotherIpAddressEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly string $ip
+        public User $user,
+        public string $ip
     ) {
     }
 }

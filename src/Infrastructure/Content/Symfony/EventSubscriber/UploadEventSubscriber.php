@@ -18,11 +18,11 @@ use Vich\UploaderBundle\Event\Events;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UploadEventSubscriber implements EventSubscriberInterface
+final readonly class UploadEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly Client $client,
-        private readonly LoggerInterface $logger
+        private Client $client,
+        private LoggerInterface $logger
     ) {
     }
 

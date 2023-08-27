@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Application\Authentication\Command;
 
-use Domain\Authentication\ValueObject\Gender;
+use Domain\Authentication\Enum\Gender;
 use Domain\Authentication\ValueObject\Roles;
+use Domain\Authentication\ValueObject\RssUrl;
 use Domain\Authentication\ValueObject\Username;
 use Domain\Shared\ValueObject\EmbeddedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,10 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class CreateUserCommand
+class CreateUserCommand
 {
     public Roles $roles;
-    public Gender $gender;
     public EmbeddedFile $avatar;
 
     public function __construct(
@@ -34,6 +34,7 @@ final class CreateUserCommand
         public ?string $job_title = null,
         public ?string $biography = null,
         public ?string $pronouns = null,
+        public Gender $gender = Gender::MASCULINE,
         public ?string $phone_number = null,
         #[Assert\Country] public ?string $country = null,
         public bool $is_subscribed_newsletter = false,
@@ -43,10 +44,9 @@ final class CreateUserCommand
         #[Assert\Url] public ?string $linkedin_url = null,
         #[Assert\Url] public ?string $twitter_url = null,
         #[Assert\Url]  public ?string $website_url = null,
-        #[Assert\Url] public ?string $rss_url = null,
+        #[Assert\Url] public ?RssUrl $rss_url = null,
     ) {
         $this->roles = Roles::developer();
-        $this->gender = Gender::queer();
         $this->avatar = EmbeddedFile::default();
     }
 }

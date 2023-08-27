@@ -11,12 +11,12 @@ use Domain\Authentication\Entity\User;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserEmailedEvent
+final readonly class UserEmailedEvent
 {
     public function __construct(
-        public readonly User $user,
-        public readonly string $subject,
-        public readonly string $message
+        public User $user,
+        public string $subject,
+        public string $message
     ) {
     }
 }

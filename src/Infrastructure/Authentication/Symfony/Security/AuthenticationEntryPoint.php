@@ -23,11 +23,11 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
+final readonly class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 {
     public function __construct(
-        private readonly RouterInterface $router,
-        private readonly AccessDeniedHandler $accessDeniedHandler
+        private RouterInterface $router,
+        private AccessDeniedHandler $accessDeniedHandler
     ) {
     }
 
@@ -52,6 +52,6 @@ final class AuthenticationEntryPoint implements AuthenticationEntryPointInterfac
             );
         }
 
-        return new RedirectResponse($this->router->generate('authentication_login'));
+        return new RedirectResponse($this->router->generate('auth_login'));
     }
 }

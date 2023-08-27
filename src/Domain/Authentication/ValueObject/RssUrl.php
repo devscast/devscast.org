@@ -6,6 +6,11 @@ namespace Domain\Authentication\ValueObject;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * Class RssUrl.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
 class RssUrl implements \Stringable
 {
     public const FORMAT = '/^https?:\/\/.*\.(?:rss|xml)$/';

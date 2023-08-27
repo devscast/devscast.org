@@ -1,0 +1,86 @@
+{% extends '@app/shared/layout/base.html.twig' %}
+<twig:block name="title">Home sweet home</twig:block>
+
+<twig:block name="content">
+    <div class="content-background pb-10 lg:pb-24">
+        <div>
+            <div class="px-4 lg:px-5 xl:px-8 my-6">
+                <twig:AppPromotedPodcastList />
+            </div>
+            <h4 class="text-fg-heading1 mb-4 px-4 sm:px-6 lg:px-5 xl:px-8 text-lg">Articles récents</h4>
+            <div class="px-4 lg:px-5 xl:px-8 space-y-6 xs:space-y-4 divide-y divide-bdr xs:divide-y-0">
+                {% for post in posts %}
+                    <twig:AppPostCard :post="post" />
+                {% endfor %}
+
+                <div class="pt-3 flex justify-end">
+                    <twig:AppShowMoreLink path="{{ path('app_content_index', {content_type: 'posts'}) }}" />
+                </div>
+            </div>
+
+            <div class="px-4 lg:px-5 xl:px-8 grid sm:grid-cols-2 gap-4 md:gap-6 mt-7">
+                <div class="bg-background-card rounded-outer-radius border border-bdr p-4 space-y-3">
+                    <div class="rounded-md w-max bg-background-card-inside text-fg-heading2 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm7.5.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7ZM2 5.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5ZM10.5 5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3ZM13 8h-2V6h2v2Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-fg-heading1">
+                        Actualités et mise à jour
+                    </h3>
+                    <p class="text-fg text-sm">
+                        Découvrez les dernières nouvelles et mises à jour de la communauté.
+                    </p>
+                    <div class="flex justify-start">
+                        <a href="./about.html" class="rounded-outer-radius gap-x-2 text-fg-heading2 text-sm flex items-center">
+                            Lire plus
+                        <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" class="w-4 h-4">
+                      <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-background-card rounded-outer-radius border border-bdr p-4 space-y-3">
+                    <div class="rounded-md w-max bg-background-card-inside text-fg-heading2 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
+                            <path d="M8.05 9.6c.336 0 .504-.24.554-.627.04-.534.198-.815.847-1.26.673-.475 1.049-1.09 1.049-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.71 1.71 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745z" />
+                            <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z" />
+                            <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-fg-heading1">
+                        Autres ressources
+                    </h3>
+                    <p class="text-fg text-sm">
+                        Découvrez les dernières nouvelles et mises à jour de la communauté.
+                    </p>
+                    <div class="flex justify-start">
+                        <a href="./about.html" class="rounded-outer-radius gap-x-2 text-fg-heading2 text-sm flex items-center">
+                            Lire plus
+                        <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" class="w-4 h-4">
+                      <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</twig:block>
+
+<twig:block name="right">
+    <aside class="right-box p-4">
+        <div data-box-scrollable data-costum-scrollbar class="lg:pl-2 h-full min-h-max overflow-hidden overflow-y-auto">
+            <div class="lg:pr-2">
+                <twig:AppSponsors />
+                <twig:AppRecentJob />
+                <twig:AppSuggestedMember />
+            </div>
+        </div>
+    </aside>
+</twig:block>

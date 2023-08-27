@@ -1,0 +1,10 @@
+<vich_uploader class="Domain\Content\Entity\Blog\Attachment">
+    <field mapping="content_blog_attachment"
+           name="thumbnail_file"
+           filename_property="thumbnail.name"
+           size="thumbnail.size"
+           dimensions="thumbnail.dimensions"
+           mime_type="thumbnail.mime_type"
+           original_name="thumbnail.original_name"
+    />
+</vich_uploader>

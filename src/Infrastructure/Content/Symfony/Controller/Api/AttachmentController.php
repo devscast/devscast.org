@@ -6,9 +6,9 @@ namespace Infrastructure\Content\Symfony\Controller\Api;
 
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Controller\AbstractController;
 use Domain\Authentication\Entity\User;
-use Domain\Content\Entity\Attachment;
-use Domain\Content\Repository\AttachmentRepositoryInterface;
-use Infrastructure\Content\Doctrine\Repository\AttachmentRepository;
+use Domain\Content\Entity\Blog\Attachment;
+use Domain\Content\Repository\Blog\AttachmentRepositoryInterface;
+use Infrastructure\Content\Doctrine\Repository\Blog\AttachmentRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

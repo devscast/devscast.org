@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Infrastructure\Content\Symfony\Form\Type;
 
 use Application\Content\Command\AbstractContentCommand;
-use Application\Content\Command\CreatePodcastEpisodeCommand;
+use Application\Content\Command\Podcast\CreateEpisodeCommand;
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\DatePickerType;
 use Devscast\Bundle\DddBundle\Infrastructure\Symfony\Form\Type\EditorType;
-use Infrastructure\Content\Symfony\Form\ValueObject\ContentStatusType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,7 +25,7 @@ class AbstractContentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => CreatePodcastEpisodeCommand::class,
+            'data_class' => CreateEpisodeCommand::class,
             'translation_domain' => 'content',
         ]);
     }
@@ -48,17 +47,12 @@ class AbstractContentType extends AbstractType
                 'label' => 'content.forms.labels.thumbnail',
                 'required' => ! $this->isEdition($builder),
             ])
-            ->add('attachment', AttachmentType::class, [
-                'mapped' => false,
-                'required' => false,
-            ])
             ->add('tags', TagType::class)
-            ->add('technologies', TechnologyType::class)
             ->add('scheduled_at', DatePickerType::class, [
                 'label' => 'content.forms.labels.schedule',
                 'required' => false,
             ])
-            ->add('status', ContentStatusType::class, [
+            ->add('status', StatusType::class, [
                 'label' => false,
             ])
         ;
@@ -85,6 +79,10 @@ class AbstractContentType extends AbstractType
             ])
             ->add('is_featured', CheckboxType::class, [
                 'label' => 'content.forms.labels.is_featured',
+                'required' => false,
+            ])
+            ->add('is_community', CheckboxType::class, [
+                'label' => 'content.forms.labels.is_community',
                 'required' => false,
             ])
         ;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\Content\Entity\Training\Technology"
+            repository-class="Infrastructure\Content\Doctrine\Repository\Training\TechnologyRepository"
+            table="content_training_technology"
+    >
+        <unique-constraints>
+            <unique-constraint columns="name"/>
+            <unique-contraint columns="slug"/>
+        </unique-constraints>
+        <id name="id" type="uuid" column="id" unqiue="true">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="doctrine.uuid_generator"/>
+        </id>
+
+        <!-- fields -->
+        <field name="name" type="string" length="255" nullable="false" />
+        <field name="slug" type="string" length="255" nullable="false" />
+        <field name="description" type="text" nullable="true" />
+        <field name="video_count" type="integer" nullable="false" >
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+
+        <!-- value objects -->
+        <embedded name="thumbnail" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
+
+        <!-- relations -->
+        <many-to-many field="videos" target-entity="Domain\Content\Entity\Training\Video" mapped-by="technologies" >
+            <join-table name="content_video_technology" >
+                <join-columns>
+                    <join-column name="technology_id" referenced-column-name="id" nullable="false" unique="false"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="content_id" referenced-column-name="id" nullable="false" unique="false"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <!-- Timestamp -->
+        <field name="created_at" type="datetime_immutable"/>
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

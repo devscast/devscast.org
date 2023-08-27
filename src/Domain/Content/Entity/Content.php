@@ -8,9 +8,9 @@ use Devscast\Bundle\DddBundle\Domain\Entity\AbstractEntity;
 use Devscast\Bundle\DddBundle\Domain\Entity\ThumbnailTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Domain\Content\ValueObject\ContentStatus;
-use Domain\Content\ValueObject\ContentType;
-use Domain\Content\ValueObject\EducationLevel;
+use Domain\Content\Enum\ContentType;
+use Domain\Content\Enum\EducationLevel;
+use Domain\Content\Enum\Status;
 use Domain\Shared\Entity\OwnerTrait;
 use Domain\Shared\ValueObject\EmbeddedFile;
 
@@ -32,17 +32,11 @@ abstract class Content extends AbstractEntity
 
     protected ?string $content = null;
 
-    protected ContentStatus $status;
+    protected Status $status = Status::DRAFT;
 
-    protected ContentType $content_type;
+    protected ContentType $content_type = ContentType::PODCAST;
 
-    protected EducationLevel $education_level;
-
-    protected int $up_vote_count = 0;
-
-    protected int $down_vote_count = 0;
-
-    protected float $ratio_vote_count = 0.0;
+    protected EducationLevel $education_level = EducationLevel::BEGINNER;
 
     protected int $comment_count = 0;
 
@@ -56,11 +50,6 @@ abstract class Content extends AbstractEntity
      * @var Collection<Tag>
      */
     protected Collection $tags;
-
-    /**
-     * @var Collection<Technology>
-     */
-    protected Collection $technologies;
 
     /**
      * @var Collection<Comment>
@@ -85,12 +74,8 @@ abstract class Content extends AbstractEntity
 
     public function __construct()
     {
-        $this->content_type = ContentType::post();
-        $this->status = ContentStatus::draft();
         $this->thumbnail = EmbeddedFile::default();
-        $this->education_level = EducationLevel::beginner();
         $this->tags = new ArrayCollection();
-        $this->technologies = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
@@ -130,16 +115,16 @@ abstract class Content extends AbstractEntity
         return $this;
     }
 
-    public function getStatus(): ContentStatus
+    public function getStatus(): Status
     {
         return $this->status;
     }
 
-    public function setStatus(ContentStatus|string $status): self
+    public function setStatus(Status|string $status): self
     {
         $this->status = match (true) {
-            $status instanceof ContentStatus => $status,
-            default => ContentStatus::fromString($status)
+            $status instanceof Status => $status,
+            default => Status::from($status)
         };
 
         return $this;
@@ -179,7 +164,7 @@ abstract class Content extends AbstractEntity
     {
         $this->content_type = match (true) {
             $content_type instanceof ContentType => $content_type,
-            default => ContentType::fromString((string) $content_type)
+            default => ContentType::from((string) $content_type)
         };
 
         return $this;
@@ -266,32 +251,8 @@ abstract class Content extends AbstractEntity
     {
         $this->education_level = match (true) {
             $education_level instanceof EducationLevel => $education_level,
-            default => EducationLevel::fromString($education_level)
+            default => EducationLevel::from($education_level)
         };
-
-        return $this;
-    }
-
-    public function getUpVoteCount(): int
-    {
-        return $this->up_vote_count;
-    }
-
-    public function setUpVoteCount(int $up_vote_count): self
-    {
-        $this->up_vote_count = $up_vote_count;
-
-        return $this;
-    }
-
-    public function getDownVoteCount(): int
-    {
-        return $this->down_vote_count;
-    }
-
-    public function setDownVoteCount(int $down_vote_count): self
-    {
-        $this->down_vote_count = $down_vote_count;
 
         return $this;
     }
@@ -304,39 +265,6 @@ abstract class Content extends AbstractEntity
     public function setScheduledAt(\DateTimeInterface|string|null $scheduled_at): self
     {
         $this->scheduled_at = $this->createDateTime($scheduled_at);
-
-        return $this;
-    }
-
-    public function getRatioVoteCount(): float
-    {
-        return $this->ratio_vote_count;
-    }
-
-    public function setRatioVoteCount(float $ratio_vote_count): self
-    {
-        $this->ratio_vote_count = $ratio_vote_count;
-
-        return $this;
-    }
-
-    public function getTechnologies(): Collection
-    {
-        return $this->technologies;
-    }
-
-    public function addTechnology(Technology $technology): self
-    {
-        if (! $this->technologies->contains($technology)) {
-            $this->technologies[] = $technology;
-        }
-
-        return $this;
-    }
-
-    public function removeTechnology(Technology $technology): self
-    {
-        $this->technologies->removeElement($technology);
 
         return $this;
     }

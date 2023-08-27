@@ -76,7 +76,7 @@ final class RegistrationController extends AbstractController
                     domain: 'authentication'
                 );
 
-                return $this->redirectSeeOther('authentication_login');
+                return $this->redirectSeeOther('auth_login');
             } catch (\Throwable $e) {
                 $this->addSafeMessageExceptionFlash($e);
                 $response = new Response(status: Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -106,6 +106,6 @@ final class RegistrationController extends AbstractController
             $this->addSafeMessageExceptionFlash($e);
         }
 
-        return $this->redirectSeeOther('authentication_login');
+        return $this->redirectSeeOther('auth_login');
     }
 }

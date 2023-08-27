@@ -12,7 +12,7 @@ use Symfony\Component\Process\Process;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class FileMetaService
+final readonly class FileMetaService
 {
     public static function getDuration(string $path): int
     {

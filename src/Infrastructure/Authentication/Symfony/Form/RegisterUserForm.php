@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Infrastructure\Authentication\Symfony\Form;
 
 use Application\Authentication\Command\RegisterUserCommand;
-use Infrastructure\Authentication\Symfony\Form\ValueObject\UsernameType;
+use Infrastructure\Authentication\Symfony\Form\Type\UsernameType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

@@ -15,10 +15,10 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsMessageHandler]
-final class UpdateTagHandler
+final readonly class UpdateTagHandler
 {
     public function __construct(
-        private readonly TagRepositoryInterface $repository
+        private TagRepositoryInterface $repository
     ) {
     }
 

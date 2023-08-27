@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Domain\Content\Entity\Podcast\Episode"
+            repository-class="Infrastructure\Content\Doctrine\Repository\Podcast\EpisodeRepository"
+            table="content_podcast_episode"
+    >
+        <unique-constraints>
+            <unique-constraint columns="episode_number"/>
+        </unique-constraints>
+
+        <field name="episode_number" type="integer"/>
+        <field name="episode_type" enum-type="Domain\Content\Enum\PodcastEpisodeType" />
+
+        <!-- value objects -->
+        <embedded name="audio" class="Domain\Shared\ValueObject\EmbeddedFile" use-column-prefix="true" />
+
+        <!-- relations -->
+        <many-to-one field="season" target-entity="Domain\Content\Entity\Podcast\Season" inversed-by="episodes">
+            <join-column nullable="true" on-delete="SET NULL" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

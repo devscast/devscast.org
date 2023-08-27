@@ -2,26 +2,26 @@
 <twig:block name="title">Utilisateurs</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="Utilisateurs" :data="data">
-        <twig:HeaderLinkButton name="Ajouter" path="{{ path('admin_authentication_user_new') }}" icon="plus" />
-        <twig:HeaderLinkButton name="Statistiques" path="{{ path('admin_authentication_dashboard_index') }}" icon="bar-chart" />
+    <twig:DashliteHeader title="Utilisateurs" :data="data">
+        <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_authentication_user_new') }}" icon="plus" />
+        <twig:DashliteHeaderLinkButton name="Statistiques" path="{{ path('admin_authentication_dashboard_index') }}" icon="bar-chart" />
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:ResponsiveTable :data="data" separated>
+            <twig:DashliteResponsiveTable :data="data" separated>
                 <twig:block name="header">
-                    <twig:ResponsiveTableColumn value="utilisateur" col/>
-                    <twig:ResponsiveTableColumn value="Github" col />
-                    <twig:ResponsiveTableColumn value="Rôles" col />
-                    <twig:ResponsiveTableColumn value="Confirmé" col />
-                    <twig:ResponsiveTableColumn value="Pays" col />
-                    <twig:ResponsiveTableColumn tools />
+                    <twig:DashliteResponsiveTableColumn value="utilisateur" col/>
+                    <twig:DashliteResponsiveTableColumn value="Github" col />
+                    <twig:DashliteResponsiveTableColumn value="Rôles" col />
+                    <twig:DashliteResponsiveTableColumn value="Confirmé" col />
+                    <twig:DashliteResponsiveTableColumn value="Pays" col />
+                    <twig:DashliteResponsiveTableColumn tools />
                 </twig:block>
 
-                <twig:ResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>
                     <twig:UserAvatarLink
                         path="{{ path('admin_authentication_user_show', {id: item.id}) }}"
                         username="{{ item.username }}"
@@ -29,16 +29,16 @@
                         avatarUrl="{{ vich_uploader_asset(item, 'avatar_file') }}"
                     />
                 </twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>
                     <a href="{{ item.githubUrl }}" title="github of {{ item.username }}" target="_blank">{{ item.githubUrl }}</a>
                 </twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.roles | join(' ') | badge }}</twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.confirmed | boolean }}</twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn>{{ item.country | flag }}</twig:DashliteResponsiveTableColumn>
-                <twig:ResponsiveTableColumn tools>
-                    <twig:ResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_authentication_user_show', {id: item.id}) }}" icon="eye" />
-                        <twig:ResponsiveTableAction>
+                <twig:DashliteResponsiveTableColumn>{{ item.roles | join(' ') | badge }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.confirmed | boolean }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn>{{ item.country | flag }}</twig:DashliteResponsiveTableColumn>
+                <twig:DashliteResponsiveTableColumn tools>
+                    <twig:DashliteResponsiveTableTools>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_authentication_user_show', {id: item.id}) }}" icon="eye" />
+                        <twig:DashliteResponsiveTableAction>
                             <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: item.id}) }}" :item="item" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>

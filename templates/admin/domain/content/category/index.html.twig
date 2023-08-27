@@ -22,8 +22,8 @@
                 <twig:DashliteResponsiveTableColumn :value="item.postCount" responsive="tb-col-lg" />
                 <twig:DashliteResponsiveTableColumn tools>
                     <twig:DashliteResponsiveTableTools>
-                        <twig:ResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
-                        <twig:ResponsiveTableAction>
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DashliteResponsiveTableAction>
                             <twig:DashliteDeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>

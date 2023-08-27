@@ -10,13 +10,13 @@
 
         {%- if _format == 'html' -%}
             <twig:DashliteEmailQrCode
-                src="{{ qr_code_data_uri(url('authentication_register_confirm', {token: user.emailVerificationToken})) }}"
+                src="{{ qr_code_data_uri(url('auth_register_confirm', {token: user.emailVerificationToken})) }}"
                 title="Scanner le QRCode pour confirmer votre inscription ou utiliser le lien"
             />
         {%- endif -%}
 
         Ce lien peut être utilisé pour confirmer votre inscription Devscast. On ne le demande jamais pour autre chose.
 
-        <twig:DashliteEmailButton title="Confirmer mon inscription" url="{{ url('authentication_register_confirm', {token: user.emailVerificationToken}) }}" :format="_format" />
+        <twig:DashliteEmailButton title="Confirmer mon inscription" url="{{ url('auth_register_confirm', {token: user.emailVerificationToken}) }}" :format="_format" />
     {% endapply %}
 </twig:block>

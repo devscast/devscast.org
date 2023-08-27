@@ -2,21 +2,21 @@
 <twig:block name="title">{{ "Saisons #{data.name}" }}</twig:block>
 
 <twig:block name="header">
-    <twig:Header title="{{ data.name }}" backTitle="Toutes les saisons" backPath="{{ path('admin_content_podcast_season_index') }}" >
-        <twig:HeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
+    <twig:DashliteHeader title="{{ data.name }}" backTitle="Toutes les saisons" backPath="{{ path('admin_content_podcast_season_index') }}" >
+        <twig:DashliteHeaderLinkButton name="Éditer" path="{{ path('admin_content_podcast_season_edit', {id: data.id}) }}" icon="edit-alt-fill" />
         <twig:DashliteDeleteButton path="{{ path('admin_content_podcast_season_delete', {id: data.id}) }}" :item="data" redirect="{{ path('admin_content_podcast_season_index') }}" type="button" />
     </twig:DashliteHeader>
 </twig:block>
 
 <twig:block name="content">
-    <twig:Card>
+    <twig:DashliteCard>
         <twig:block name="content">
             <div class="nk-block">
                 <div class="nk-block">
                     <div class="nk-block-head">
                         {{ data.description }}
                     </div>
-                    <twig:DataList>
+                    <twig:DashliteDataList>
                         <twig:DataItem style="plain" label="Nom" value="{{ data.name }}" />
                         <twig:DataItem style="plain" label="Slug" value="{{ data.slug }}" />
                         <twig:DataItem style="plain" label="Short Code" value="{{ data.shortcode }}" />

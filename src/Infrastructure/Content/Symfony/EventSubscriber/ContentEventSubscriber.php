@@ -17,12 +17,12 @@ use Symfony\Component\Messenger\MessageBusInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class ContentEventSubscriber implements EventSubscriberInterface
+final readonly class ContentEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        protected readonly MessageBusInterface $commandBus,
-        protected readonly LoggerInterface $logger,
-        protected readonly MailerHelper $mailer
+        protected MessageBusInterface $commandBus,
+        protected LoggerInterface $logger,
+        protected MailerHelper $mailer
     ) {
     }
 
@@ -38,7 +38,7 @@ final class ContentEventSubscriber implements EventSubscriberInterface
     {
         $this->mailer->sendNotificationEmail(
             $event,
-            template: '@app/domain/content/mail/content_view_milestone_reached.mail.twig',
+            template: '@app/domain/content/_mail/content_view_milestone_reached.mail.twig',
             subject: 'content.mails.subjects.content_view_milestone_reached',
             subject_parameters: [
                 '%views%' => $event->target->getUniqueViewCount(),

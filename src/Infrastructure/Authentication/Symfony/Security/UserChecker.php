@@ -20,13 +20,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class UserChecker implements UserCheckerInterface
+final readonly class UserChecker implements UserCheckerInterface
 {
     use DomainAuthenticationExceptionTrait;
 
     public function __construct(
-        private readonly LoginAttemptService $loginAttemptService,
-        private readonly EventDispatcherInterface $dispatcher
+        private LoginAttemptService $loginAttemptService,
+        private EventDispatcherInterface $dispatcher
     ) {
     }
 
