@@ -35,10 +35,20 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/Entity'
                 prefix: 'Domain\Content\Entity'
                 is_bundle: false
-            Domain\Content\ValueObject:
+            Domain\Content\Entity\Blog:
                 type: xml
-                dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/ValueObject'
-                prefix: 'Domain\Content\ValueObject'
+                dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/Entity/Blog'
+                prefix: 'Domain\Content\Entity\Blog'
+                is_bundle: false
+            Domain\Content\Entity\Podcast:
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/Entity/Podcast'
+                prefix: 'Domain\Content\Entity\Podcast'
+                is_bundle: false
+            Domain\Content\Entity\Training:
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Content/Doctrine/Mapping/Entity/Training'
+                prefix: 'Domain\Content\Entity\Training'
                 is_bundle: false
         dql:
             numeric_functions:

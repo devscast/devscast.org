@@ -2,7 +2,7 @@ devscast_dashlite:
     application:
         name: Devscast Community
         title: devscast.org
-        logo_path: '/images/logo.webp'
+        logo_path: '/images/logo-full.png'
         icon_path: '/images/favicon.webp'
         version: 1.0.0
         copyrights: Devscast Community Plateforme

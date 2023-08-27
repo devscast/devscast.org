@@ -30,8 +30,8 @@ security:
 
             form_login:
                 post_only: true
-                login_path: authentication_login
-                failure_path: authentication_login
+                login_path: auth_login
+                failure_path: auth_login
                 username_parameter: identifier
                 password_parameter: password
                 csrf_parameter: _token
@@ -44,7 +44,7 @@ security:
 
             logout:
                 invalidate_session: true
-                path: authentication_logout
+                path: auth_logout
                 target: authentication_login
 
             remember_me:

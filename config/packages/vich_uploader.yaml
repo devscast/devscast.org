@@ -14,14 +14,15 @@ vich_uploader:
             }
 
     mappings:
-        authentication_user_avatar:
+        auth_user_avatar:
             uri_prefix: '/uploads/authentication/user/avatar'
             upload_destination: '%kernel.project_dir%/public/uploads/authentication/user/avatar'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
-        content_attachment:
-            uri_prefix: '/uploads/content/attachment'
-            upload_destination: '%kernel.project_dir%/public/uploads/content/attachment'
+        # Blog
+        content_blog_attachment:
+            uri_prefix: '/uploads/content/blog/attachment'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/blog/attachment'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             directory_namer:
                 service: Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer
@@ -32,44 +33,46 @@ vich_uploader:
             delete_on_update: true
             delete_on_remove: true
 
+        content_blog_post_thumbnail:
+            uri_prefix: '/uploads/content/blog/post/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/blog/post/thumbnail'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        # Podcast
         content_podcast_season_thumbnail:
-            uri_prefix: '/uploads/content/podcast_season/thumbnail'
-            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast_season/thumbnail'
+            uri_prefix: '/uploads/content/podcast/season/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast/season/thumbnail'
+            namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug', transliterate: true }
+
+        content_podcast_episode_thumbnail:
+            uri_prefix: '/uploads/content/podcast/episode/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast/episode/thumbnail'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }
 
         content_podcast_episode_audio:
             uri_prefix: '/streaming/podcasts'
-            upload_destination: '%kernel.project_dir%/uploads/content/podcast_episode/audio'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/podcast/episode/audio'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }
 
-        content_video_video:
-            uri_prefix: '/streaming/videos'
-            upload_destination: '%kernel.project_dir%/uploads/content/video'
+        # Training
+        content_training_video_thumbnail:
+            uri_prefix: '/uploads/content/video/thumbnail'
+            upload_destination: '%kernel.project_dir%/public/uploads/content/video/thumbnail'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }
 
-        content_post_series_thumbnail:
-            uri_prefix: '/uploads/content/post_series/thumbnail'
-            upload_destination: '%kernel.project_dir%/public/uploads/content/post_series/thumbnail'
-            namer:
-                service: Vich\UploaderBundle\Naming\PropertyNamer
-                options: { property: 'slug', transliterate: true }
-
-        content_technology_thumbnail:
+        content_training_technology_thumbnail:
             uri_prefix: '/uploads/content/technology/thumbnail'
             upload_destination: '%kernel.project_dir%/public/uploads/content/technology/thumbnail'
-            namer:
-                service: Vich\UploaderBundle\Naming\PropertyNamer
-                options: { property: 'slug', transliterate: true }
-
-        content_content_thumbnail:
-            uri_prefix: '/uploads/content/content/thumbnail'
-            upload_destination: '%kernel.project_dir%/public/uploads/content/content/thumbnail'
             namer:
                 service: Vich\UploaderBundle\Naming\PropertyNamer
                 options: { property: 'slug', transliterate: true }

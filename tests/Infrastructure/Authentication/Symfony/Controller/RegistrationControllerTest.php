@@ -54,7 +54,7 @@ final class RegistrationControllerTest extends WebTestCase
     {
         // Simulates an oauth session
         $session = new Session(new MockFileSessionStorage());
-        $session->set('authentication_oauth_login', [
+        $session->set('auth_oauth_login', [
             'email' => 'john@doe.fr',
             'github_id' => 123123,
             'type' => 'Github',

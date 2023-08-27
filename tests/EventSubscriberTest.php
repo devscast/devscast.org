@@ -24,7 +24,7 @@ abstract class EventSubscriberTest extends KernelTestCase
     }
 
     /**
-     * Vérifie qu'un subscriber écoute bien un évènement donnée au niveau du kernel.
+     * Vérifie qu'un subscriber écoute bien un évènement donné au niveau du kernel.
      */
     protected function assertSubscribeTo(string $subscriberClass, string $event): void
     {

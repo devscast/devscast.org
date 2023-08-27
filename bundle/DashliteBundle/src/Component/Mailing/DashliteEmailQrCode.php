@@ -11,7 +11,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final class EmailQrCode
+final class DashliteEmailQrCode
 {
     public string $title = '';
     public string $src = '';

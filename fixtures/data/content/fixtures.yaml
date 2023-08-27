@@ -4,57 +4,35 @@ include:
 Domain\Content\Entity\Tag:
     tag{1..10} (extends tag):
 
-Domain\Content\Entity\Technology:
+Domain\Content\Entity\Training\Technology:
     technology{1..30} (extends technology):
 
-Domain\Content\Entity\Category:
+Domain\Content\Entity\Blog\Category:
     category{1..5} (extends category):
 
-Domain\Content\Entity\Post:
+Domain\Content\Entity\Blog\Post:
     post_{1..500} (extends post):
         tags: [ '@tag*' ]
         technologies: [ '@technology*' ]
         category: '@category*'
         owner: '@user*'
 
-Domain\Content\Entity\PostSeries:
-    postSeries{1..10} (extends post_series):
-        technology: '@technology*'
-        owner: '@user_admin'
-        posts: [ '@post_*' ]
-
-Domain\Content\Entity\PostList:
-    postList{1..45} (extends post_list):
-        owner: '@user*'
-        posts: [ '@post_*' ]
-        is_public: <randomElement([0, 1])>
-
-Domain\Content\Entity\PodcastEpisode:
+Domain\Content\Entity\Podcast\Episode:
     podcastEpisode{1..50} (extends podcast_episode):
         owner: '@user_admin'
         tags: [ '@tag*' ]
         technologies: [ '@technology*' ]
 
-Domain\Content\Entity\PodcastSeason:
+Domain\Content\Entity\Podcast\Season:
     podcastSeason{1..10} (extends podcast_season):
         episodes: [ '@podcastEpisode*' ]
 
-Domain\Content\Entity\SubjectProposal:
-    subjectProposal{1..35} (extends subject_proposal):
-        owner: '@user*'
-
-Domain\Content\Entity\Video:
+Domain\Content\Entity\Training\Video:
     video{1..500} (extends video):
         owner: '@user_admin'
         tags: [ '@tag*' ]
         technologies: [ '@technology*' ]
         source_url: 'https://www.youtube.com/watch?v=zaqoGWp2GMo'
-
-Domain\Content\Entity\Training:
-    training_{1..5} (extends training):
-        owner: '@user*'
-        videos: [ '@video*' ]
-        chapters: []
 
 Domain\Content\Entity\Comment:
     comment{1..500} (extends comment):
