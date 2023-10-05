@@ -3,7 +3,7 @@
 
 <twig:block name="header">
     <twig:DashliteHeader title="Catégories d'articles" :data="data">
-        <twig:DashliteFormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_category_new') }}" />
+        <twig:DashliteFormModalButton name="Ajouter" icon="plus" path="{{ path('admin_content_blog_category_new') }}" />
         <twig:DashliteHeaderLinkButton name="Statistiques" icon="bar-chart" path="{{ path('admin_content_dashboard_index') }}" />
     </twig:DashliteHeader>
 </twig:block>
@@ -11,7 +11,7 @@
 <twig:block name="content">
     <div class="row g-gs mb-4">
         <div class="col-12">
-            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_category_new') }}" emptyStateAction="Ajouter un catégorie">
+            <twig:DashliteResponsiveTable :data="data" emptyStatePath="{{ path('admin_content_blog_category_new') }}" emptyStateAction="Ajouter un catégorie">
                 <twig:block name="header">
                     <twig:DashliteResponsiveTableColumn value="Nom" col />
                     <twig:DashliteResponsiveTableColumn value="Articles" responsive="tb-col-lg" col />
@@ -22,9 +22,9 @@
                 <twig:DashliteResponsiveTableColumn :value="item.postCount" responsive="tb-col-lg" />
                 <twig:DashliteResponsiveTableColumn tools>
                     <twig:DashliteResponsiveTableTools>
-                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_category_edit', {id: item.id}) }}" icon="edit" />
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_content_blog_category_edit', {id: item.id}) }}" icon="edit" />
                         <twig:DashliteResponsiveTableAction>
-                            <twig:DashliteDeleteButton :path="path('admin_content_category_delete', {id: item.id})" :item="item" />
+                            <twig:DashliteDeleteButton :path="path('admin_content_blog_category_delete', {id: item.id})" :id="item.id" :id="item.id" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>

@@ -34,7 +34,7 @@
                                                 </li>
                                             {% endif %}
                                             <li>
-                                                <a href="{{ path('authentication_setting_security_password') }}" class="btn btn-primary">Modifier le mot de passe</a>
+                                                <a href="{{ path('auth_setting_security_password') }}" class="btn btn-primary">Modifier le mot de passe</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -60,7 +60,7 @@
                                     <div class="nk-block-actions flex-shrink-sm-0">
                                         <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
                                             <li class="order-md-last">
-                                                <a href="{{ path('authentication_setting_security_2fa') }}" class="btn btn-primary">Modifier</a>
+                                                <a href="{{ path('auth_setting_security_2fa') }}" class="btn btn-primary">Modifier</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -85,12 +85,12 @@
                                         <div class="nk-block-actions mt-4">
                                             <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
                                                 <li>
-                                                    <form action="{{ path('authentication_setting_backup_codes_regenerate') }}" method="post" class="d-inline-block">
+                                                    <form action="{{ path('auth_setting_backup_codes_regenerate') }}" method="post" class="d-inline-block">
                                                         <button type="submit" class="btn btn-primary">Régénérer</button>
                                                     </form>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ path('authentication_setting_backup_codes_export') }}" class="btn btn-primary">
+                                                    <a href="{{ path('auth_setting_backup_codes_export') }}" class="btn btn-primary">
                                                         <twig:Icon name="download"/>
                                                         <span>Télécharger (csv)</span>
                                                     </a>

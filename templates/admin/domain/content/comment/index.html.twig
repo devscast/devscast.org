@@ -20,7 +20,7 @@
 
                 <twig:DashliteResponsiveTableColumn>
                     <twig:DashliteUserAvatarLink
-                        path="{{ path('admin_authentication_user_show', {id: item.owner.id}) }}"
+                        path="{{ path('admin_auth_user_show', {id: item.owner.id}) }}"
                         username="{{ item.owner.username }}"
                         surname="{{ item.owner.email }}"
                         avatarUrl="{{ vich_uploader_asset(item.owner, 'avatar_file') }}"
@@ -32,7 +32,7 @@
                     <twig:DashliteResponsiveTableTools>
                         <twig:DashliteResponsiveTableAction path="{{ path('admin_content_comment_reply', {id: item.id}) }}" icon="chat"  />
                         <twig:DashliteResponsiveTableAction>
-                            <twig:DashliteDeleteButton path="{{ path('admin_content_comment_delete', {id: item.id}) }}" :item="item" />
+                            <twig:DashliteDeleteButton path="{{ path('admin_content_comment_delete', {id: item.id}) }}" :id="item.id" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>

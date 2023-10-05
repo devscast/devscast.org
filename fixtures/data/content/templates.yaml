@@ -32,9 +32,6 @@ Domain\Content\Entity\Podcast\Episode:
         slug: <slug()>
         content: <text()>
         duration: <numberBetween(1, 1000)>
-        up_vote_count: 0
-        down_vote_count: 0
-        ratio_vote_count: 0
         comment_count: 0
         view_count: 0
         unique_view_count: 0
@@ -49,7 +46,6 @@ Domain\Content\Entity\Podcast\Episode:
 
         owner: ~
         tags: [ ]
-        technologies: [ ]
         comments: [ ]
 
         created_at: <dateTimeThisYear()>
@@ -81,9 +77,6 @@ Domain\Content\Entity\Blog\Post:
         slug: <slug()>
         content: <text()>
         duration: <numberBetween(1, 1000)>
-        up_vote_count: 0
-        down_vote_count: 0
-        ratio_vote_count: 0
         comment_count: 0
         view_count: 0
         unique_view_count: 0
@@ -98,7 +91,6 @@ Domain\Content\Entity\Blog\Post:
 
         owner: ~
         tags: [ ]
-        technologies: [ ]
         comments: [ ]
 
         created_at: <dateTimeThisYear()>
@@ -107,7 +99,6 @@ Domain\Content\Entity\Blog\Post:
 
         content_type: 'post'
         category: ~
-        series: ~
 
 Domain\Content\Entity\Podcast\Progression:
     progression (template):
@@ -131,9 +122,7 @@ Domain\Content\Entity\Training\Technology:
         name: <name()>
         slug: <slug()>
         description: <text()>
-        content_count: 0
         #thumbnail: ~
-        contents: []
         created_at: <dateTimeThisYear()>
         updated_at: ~
 
@@ -144,9 +133,6 @@ Domain\Content\Entity\Training\Video:
         slug: <slug()>
         content: <text()>
         duration: <numberBetween(1, 1000)>
-        up_vote_count: 0
-        down_vote_count: 0
-        ratio_vote_count: 0
         comment_count: 0
         view_count: 0
         unique_view_count: 0
@@ -171,4 +157,3 @@ Domain\Content\Entity\Training\Video:
         content_type: 'video'
         source_url: ~
         timecodes: ~
-        training: ~

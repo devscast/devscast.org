@@ -22,12 +22,12 @@
                     <img src="{{ vich_uploader_asset(item, 'thumbnail_file') }}" width="150" alt="{{ item.name }}">
                 </twig:DashliteResponsiveTableColumn>
                 <twig:DashliteResponsiveTableColumn value="{{ item.name }}" />
-                <twig:DashliteResponsiveTableColumn value="{{ item.contentCount }}" />
+                <twig:DashliteResponsiveTableColumn value="{{ item.videoCount }}" />
                 <twig:DashliteResponsiveTableColumn tools>
                     <twig:DashliteResponsiveTableTools>
                         <twig:DashliteResponsiveTableAction path="{{ path('admin_content_technology_edit', {id: item.id}) }}" icon="edit" />
                         <twig:DashliteResponsiveTableAction>
-                            <twig:DashliteDeleteButton :item="item" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
+                            <twig:DashliteDeleteButton :id="item.id" path="{{ path('admin_content_technology_delete', {id: item.id}) }}" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>

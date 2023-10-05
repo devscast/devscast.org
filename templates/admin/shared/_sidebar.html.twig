@@ -1,13 +1,11 @@
 {% set data = [
     {type: 'link', label: 'Dashboard', url: path('admin_content_dashboard_index'), icon: 'home'},
     {type: 'header', label: 'Gestions des utilisateurs'},
-    {type: 'link', label: 'Utilisateurs', url: path('admin_authentication_user_index'), icon: 'users'},
+    {type: 'link', label: 'Utilisateurs', url: path('admin_auth_user_index'), icon: 'users'},
     {type: 'header', label: 'Gestions du contenu'},
     {type: 'group', label: 'Blog', icon: 'folder', links: [
-        {type: 'link', label: 'Articles', url: path('admin_content_post_index'), icon: 'folder'},
-        {type: 'link', label: 'Séries', url: path('admin_content_post_series_index'), icon: 'folder'},
-        {type: 'link', label: 'Listes', url: path('admin_content_post_list_index'), icon: 'folder'},
-        {type: 'link', label: 'Catégories', url: path('admin_content_category_index'), icon: 'folder'},
+        {type: 'link', label: 'Articles', url: path('admin_content_blog_post_index'), icon: 'folder'},
+        {type: 'link', label: 'Catégories', url: path('admin_content_blog_category_index'), icon: 'folder'},
         {type: 'link', label: 'Tags', url: path('admin_content_tag_index'), icon: 'folder'}
     ]},
     {type: 'group', label: 'Podcast', icon: 'folder', links: [
@@ -16,13 +14,11 @@
     ]},
     {type: 'group', label: 'Formation', icon: 'folder', links: [
         {type: 'link', label: 'Vidéos', url: path('admin_content_video_index'), icon: 'folder'},
-        {type: 'link', label: 'Formations', url: path('admin_content_training_index'), icon: 'folder'}
+        {type: 'link', label: 'Technologies', url: path('admin_content_technology_index'), icon: 'folder'}
     ]},
     {type: 'group', label: 'Autres', icon: 'folder', links: [
-        {type: 'link', label: 'Technologies', url: path('admin_content_technology_index'), icon: 'folder'},
         {type: 'link', label: 'Commentaires', url: path('admin_content_comment_index'), icon: 'folder'},
-        {type: 'link', label: 'Propositions Sujets', url: path('admin_content_subject_proposal_index'), icon: 'folder'}
     ]}
 ] %}
 
-<twig:Sidebar :data="data" />
+<twig:DashliteSidebar :data="data" />

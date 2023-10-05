@@ -44,7 +44,7 @@ final class VideoController extends AbstractCrudController
             action: CrudAction::CREATE,
             formClass: CreateVideoForm::class,
             hasIndex: true,
-            hasShow: true
+            hasShow: false
         ));
     }
 

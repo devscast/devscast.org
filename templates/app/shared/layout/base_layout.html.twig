@@ -1,0 +1,31 @@
+{% apply spaceless %}
+    <!DOCTYPE html>
+    <html lang="{{ app.request.locale ?? 'fr' }}" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="icon" type="image/webp" href="{{ asset(devscast_dashlite.application.icon_path) }}" />
+        <link rel="shortcut icon" href="{{ asset(devscast_dashlite.application.icon_path) }}" type="image/webp">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <title>{% block title %}{% endblock %} | {{ devscast_dashlite.application.name }}</title>
+        <twig:block name="meta"></twig:block>
+        <twig:block name="assets">
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_script_tags('app') }}
+        </twig:block>
+    </head>
+
+    <body>
+    <twig:AppHeader />
+    <twig:AppMobileNavigation />
+
+    <twig:block name="content"></twig:block>
+
+    <div data-nav-overlay class="hidden lg:hidden fixed inset-0 z-30"></div>
+    <div aria-hidden="true" class="fixed right-0 scale-y-[2.5] rotate-45 top-0 w-28 h-96 blur-[5rem] rounded-full bg-[#D6ADFF]/30 dark:bg-[#31ABF0]/20"></div>
+    <twig:AppFooter />
+    </body>
+    </html>
+{% endapply %}

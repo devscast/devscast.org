@@ -3,8 +3,8 @@
 
 <twig:block name="header">
     <twig:DashliteHeader title="Utilisateurs" :data="data">
-        <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_authentication_user_new') }}" icon="plus" />
-        <twig:DashliteHeaderLinkButton name="Statistiques" path="{{ path('admin_authentication_dashboard_index') }}" icon="bar-chart" />
+        <twig:DashliteHeaderLinkButton name="Ajouter" path="{{ path('admin_auth_user_new') }}" icon="plus" />
+        <twig:DashliteHeaderLinkButton name="Statistiques" path="{{ path('admin_auth_dashboard_index') }}" icon="bar-chart" />
     </twig:DashliteHeader>
 </twig:block>
 
@@ -23,7 +23,7 @@
 
                 <twig:DashliteResponsiveTableColumn>
                     <twig:UserAvatarLink
-                        path="{{ path('admin_authentication_user_show', {id: item.id}) }}"
+                        path="{{ path('admin_auth_user_show', {id: item.id}) }}"
                         username="{{ item.username }}"
                         surname="{{ item.email }}"
                         avatarUrl="{{ vich_uploader_asset(item, 'avatar_file') }}"
@@ -37,9 +37,9 @@
                 <twig:DashliteResponsiveTableColumn>{{ item.country | flag }}</twig:DashliteResponsiveTableColumn>
                 <twig:DashliteResponsiveTableColumn tools>
                     <twig:DashliteResponsiveTableTools>
-                        <twig:DashliteResponsiveTableAction path="{{ path('admin_authentication_user_show', {id: item.id}) }}" icon="eye" />
+                        <twig:DashliteResponsiveTableAction path="{{ path('admin_auth_user_show', {id: item.id}) }}" icon="eye" />
                         <twig:DashliteResponsiveTableAction>
-                            <twig:DashliteDeleteButton path="{{ path('admin_authentication_user_delete', {id: item.id}) }}" :item="item" />
+                            <twig:DashliteDeleteButton path="{{ path('admin_auth_user_delete', {id: item.id}) }}" :id="item.id" />
                         </twig:DashliteResponsiveTableAction>
                     </twig:DashliteResponsiveTableTools>
                 </twig:DashliteResponsiveTableColumn>

@@ -11,7 +11,7 @@
         <p class="mb-4">
             {{ "choose_provider"|trans({}, 'SchebTwoFactorBundle') }}:
             {% for provider in availableTwoFactorProviders %}
-                <a class="inline-block text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light underline" href="{{ path("authentication_2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
+                <a class="inline-block text-info-500 hover:text-info-400 dark:text-info-300 dark:hover:text-info-light underline" href="{{ path("auth_2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
             {% endfor %}
         </p>
 

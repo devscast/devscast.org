@@ -37,7 +37,7 @@ security:
                 csrf_parameter: _token
 
             login_link:
-                check_route: authentication_login_link_check
+                check_route: auth_login_link_check
                 signature_properties: [ id, email ]
                 max_uses: 3
                 lifetime: 600
@@ -45,7 +45,7 @@ security:
             logout:
                 invalidate_session: true
                 path: auth_logout
-                target: authentication_login
+                target: auth_login
 
             remember_me:
                 secret: "%kernel.secret%"
@@ -57,8 +57,8 @@ security:
             switch_user: { role: ROLE_ADMIN, parameter: _control }
 
             two_factor:
-                auth_form_path: authentication_2fa_login
-                check_path: authentication_2fa_check
+                auth_form_path: auth_2fa_login
+                check_path: auth_2fa_check
                 post_only: true
                 default_target_path: /
                 always_use_default_target_path: false

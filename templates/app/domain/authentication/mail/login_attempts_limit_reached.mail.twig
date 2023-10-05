@@ -9,7 +9,7 @@
 
         Nous avons bloqué l'accès à votre compte pour votre sécurité, pour réactiver votre compte, veuillez suivre le lien ci-dessous :
 
-        <twig:DashliteEmailButton title="Déverrouiller mon compte" url="{{ url('authentication_login_attempts_reset', {token: user.resetLoginAttemptsToken}) }}" :format="_format" />
+        <twig:DashliteEmailButton title="Déverrouiller mon compte" url="{{ url('auth_login_attempts_reset', {token: user.resetLoginAttemptsToken}) }}" :format="_format" />
 
         Pour plus de sécurité nous vous recommandons de réinitialiser votre mot de passe :
 

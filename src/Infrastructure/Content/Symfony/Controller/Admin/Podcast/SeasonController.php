@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
 final class SeasonController extends AbstractCrudController
 {
     protected const DOMAIN = 'content';
-    protected const ENTITY = 'season';
+    protected const ENTITY = 'podcast_season';
 
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(SeasonRepository $repository): Response

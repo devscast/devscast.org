@@ -1,0 +1,175 @@
+{% extends '@app/shared/layout/base.html.twig' %}
+<twig:block name="title">Tous les podcasts</twig:block>
+
+<twig:block name="content">
+    <div class="content-background pb-10 lg:pb-24">
+        <div>
+            <div class="px-4 lg:px-5 xl:px-8 my-6">
+                <twig:AppPromotedPodcastList />
+            </div>
+            <div class="px-4 lg:px-5 xl:px-8 space-y-6 xs:space-y-4 divide-y divide-bdr xs:divide-y-0">
+                {% for podcast in data %}
+                    <twig:AppPodcastCard :episode="podcast" />
+                {% endfor %}
+
+                <div class="pt-3 flex justify-end">
+                    <twig:AppPagination :data="data" />
+                </div>
+            </div>
+        </div>
+    </div>
+</twig:block>
+
+<twig:block name="right">
+    <aside class="right-box">
+        <div data-box-scrollable data-costum-scrollbar class="lg:pl-2 h-full min-h-max overflow-hidden overflow-y-auto">
+            <div class="lg:pr-2">
+                <h2 class="text-fg-heading1 text-lg">Discussions recentes</h2>
+                <div class="mt-2 space-y-3 divide-y divide-bdr">
+                    <a href="./discussions/discussion.html"
+                       class="text-fg py-2 flex flex-col px-2 lg:-mx-2 hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <h1 class="text-fg-heading1 font-semibold text-lg lg:line-clamp-1">
+                            Why you need lorem ipsum
+                        </h1>
+                        <div class="flex items-center gap-x-1.5 text-sm ">
+                            <span>#discussion</span>
+                            <span class="w-1 h-1 rounded-full bg-fg"></span>
+                            <span>Il y a 5 minutes</span>
+                        </div>
+                    </a>
+                    <a href="./discussions/discussion.html"
+                       class="text-fg py-2 flex flex-col px-2 lg:-mx-2 hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <h1 class="text-fg-heading1 font-semibold text-lg lg:line-clamp-1">
+                            Experienced Copyrwiter
+                        </h1>
+                        <div class="flex items-center gap-x-1.5 text-sm ">
+                            <span>#discussion</span>
+                            <span class="w-1 h-1 rounded-full bg-fg"></span>
+                            <span>Il y a 5 minutes</span>
+                        </div>
+                    </a>
+                </div>
+                <h2 class="text-fg-heading1 text-lg  mt-7">Jobs recents</h2>
+                <div class="mt-2 grid sm:grid-cols-2 gap-4 lg:gap-0 lg:flex lg:flex-col">
+                    <a href="./jobs/job.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="p-2 rounded-outer-radius bg-background-card-inside border border-bdr w-max min-w-max">
+                            <img src="/logo.png" alt="logo" class="w-8 h-8">
+                        </div>
+                        <div class="flex flex-col flex-1">
+                  <span class="flex items-center gap-x-2 text-sm text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" class="w-3.5 h-3.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64" />
+                    </svg>
+                    Europe - Remote
+                  </span>
+                            <h2 class="text-fg-heading1 font-medium lg:line-clamp-1">
+                                Product Designer
+                            </h2>
+                            <div class="flex items-center gap-x-1.5 text-fg text-sm">
+                                <span>Fulltime</span>
+                                <span class="w-1 h-1 rounded-full bg-fg"></span>
+                                <span>$500 - $700</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./jobs/job.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="p-2 rounded-outer-radius bg-background-card-inside border border-bdr w-max min-w-max">
+                            <img src="/logo.png" alt="logo" class="w-8 h-8">
+                        </div>
+                        <div class="flex flex-col flex-1">
+                  <span class="flex items-center gap-x-2 text-sm text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" class="w-3.5 h-3.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64" />
+                    </svg>
+                    Europe - Remote
+                  </span>
+                            <h2 class="text-fg-heading1 font-medium lg:line-clamp-1">
+                                Product Designer
+                            </h2>
+                            <div class="flex items-center gap-x-1.5 text-fg text-sm">
+                                <span>Fulltime</span>
+                                <span class="w-1 h-1 rounded-full bg-fg"></span>
+                                <span>$500 - $700</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./jobs/job.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="p-2 rounded-outer-radius bg-background-card-inside border border-bdr w-max min-w-max">
+                            <img src="/logo.png" alt="logo" class="w-8 h-8">
+                        </div>
+                        <div class="flex flex-col flex-1">
+                  <span class="flex items-center gap-x-2 text-sm text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" class="w-3.5 h-3.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64" />
+                    </svg>
+                    Europe - Remote
+                  </span>
+                            <h2 class="text-fg-heading1 font-medium lg:line-clamp-1">
+                                Product Designer
+                            </h2>
+                            <div class="flex items-center gap-x-1.5 text-fg text-sm">
+                                <span>Fulltime</span>
+                                <span class="w-1 h-1 rounded-full bg-fg"></span>
+                                <span>$500 - $700</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <h2 class="text-fg-heading1 text-lg mt-7">Membres a suivre</h2>
+                <div class="mt-2 grid sm:grid-cols-2 gap-4 lg:gap-0 lg:flex lg:flex-col">
+                    <a href="./membres/membre.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="min-w-max">
+                            <img class="w-12 h-12 object-cover rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-1">
+                            <h3 class="text-fg-heading1 font-medium line-clamp-1">John Doe</h3>
+                            <button
+                                class="btn px-3 h-7 max-w-max text-sm before:bg-gray-800 dark:before:bg-gray-100 before:border before:border-bdr text-gray-50 dark:text-gray-900">
+                                <span class="relative z-[6]">Suivre</span>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="./membres/membre.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="min-w-max">
+                            <img class="w-12 h-12 object-cover rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-1">
+                            <h3 class="text-fg-heading1 font-medium line-clamp-1">John Doe</h3>
+                            <button
+                                class="btn px-3 h-7 max-w-max text-sm before:bg-gray-800 dark:before:bg-gray-100 before:border before:border-bdr text-gray-50 dark:text-gray-900">
+                                <span class="relative z-[6]">Suivre</span>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="./membres/membre.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="min-w-max">
+                            <img class="w-12 h-12 object-cover rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-1">
+                            <h3 class="text-fg-heading1 font-medium line-clamp-1">John Doe</h3>
+                            <button
+                                class="btn px-3 h-7 max-w-max text-sm before:bg-gray-800 dark:before:bg-gray-100 before:border before:border-bdr text-gray-50 dark:text-gray-900">
+                                <span class="relative z-[6]">Suivre</span>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="./membres/membre.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
+                        <div class="min-w-max">
+                            <img class="w-12 h-12 object-cover rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-1">
+                            <h3 class="text-fg-heading1 font-medium line-clamp-1">John Doe</h3>
+                            <button
+                                class="btn px-3 h-7 max-w-max text-sm before:bg-gray-800 dark:before:bg-gray-100 before:border before:border-bdr text-gray-50 dark:text-gray-900">
+                                <span class="relative z-[6]">Suivre</span>
+                            </button>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </aside>
+</twig:block>

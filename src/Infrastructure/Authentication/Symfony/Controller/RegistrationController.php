@@ -23,7 +23,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/register', name: 'authentication_')]
+#[Route('/register', name: 'auth_')]
 final class RegistrationController extends AbstractController
 {
     #[Route('', name: 'register', methods: ['GET', 'POST'])]

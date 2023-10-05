@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsController]
-#[Route('/admin/authentication/users', name: 'admin_authentication_user_')]
+#[Route('/admin/authentication/users', name: 'admin_auth_user_')]
 final class UserController extends AbstractCrudController
 {
     protected const DOMAIN = 'authentication';

@@ -61,7 +61,7 @@
             </div>
         </div>
         <h1 class="mt-4">
-            <a href="{{ path('app_content_show', {id: this.post.id, content_type: 'posts'}) }}" class="text-fg-heading1 tracking-tight duration-300 hover:text-gray-950 dark:hover:text-primary font-semibold text-xl sm:text-2xl">
+            <a href="{{ path('app_content_blog_post_show', {id: this.post.id, slug: this.post.slug}) }}" class="text-fg-heading1 tracking-tight duration-300 hover:text-gray-950 dark:hover:text-primary font-semibold text-xl sm:text-2xl">
                 {{ this.post.name }}
             </a>
         </h1>

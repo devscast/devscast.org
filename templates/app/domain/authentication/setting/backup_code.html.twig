@@ -9,9 +9,9 @@
         {% endfor %}
     </code>
 
-    <form action="{{ path('authentication_setting_backup_codes_regenerate') }}" method="post">
+    <form action="{{ path('auth_setting_backup_codes_regenerate') }}" method="post">
         <button type="submit">regenerate</button>
     </form>
-    <a href="{{ path('authentication_setting_backup_codes_export') }}">download backup code (csv)</a>
+    <a href="{{ path('auth_setting_backup_codes_export') }}">download backup code (csv)</a>
 </twig:block>
 

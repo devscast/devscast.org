@@ -1,95 +1,295 @@
-{% extends '@app/shared/layout/base.html.twig' %}
-<twig:block name="title">Home sweet home</twig:block>
+{% extends '@app/shared/layout/base_layout.html.twig' %}
+<twig:block name="title">Devscast Community</twig:block>
 
 <twig:block name="content">
-    <div class="content-background pb-10 lg:pb-24">
-        <div>
-            <div class="px-4 lg:px-5 xl:px-8 my-6">
-                <twig:AppPromotedPodcastList />
-            </div>
-            <h4 class="text-fg-heading1 mb-4 px-4 sm:px-6 lg:px-5 xl:px-8 text-lg">Articles récents</h4>
-            <div class="px-4 lg:px-5 xl:px-8 space-y-6 xs:space-y-4 divide-y divide-bdr xs:divide-y-0">
-                {% for post in posts %}
-                    <twig:AppPostCard :post="post" />
-                {% endfor %}
+    <main class="box-container w-full relative space-y-24 pb-24">
 
-                <div class="pt-3 flex justify-end">
-                   <twig:AppShowMoreLink path="{{ path('app_content_blog_post_index') }}" />
+        <!-- hero section -->
+        <section class="pt-24 relative pb-px">
+            <span class="absolute inset-x-0 h-0.5 bottom-0 bg-gradient-to-b from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-full"></span>
+            <div class="text-center mx-auto max-w-4xl space-y-10">
+                <h1 class="text-fg-heading1 font-bold leading-snug text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mx-auto">
+                    Rejoignez la communauté qui vous fera grandir
+                </h1>
+                <p class="text-center text-fg-heading3 mx-auto max-w-xl">
+                    Un espace permettant aux développeurs d'apprendre, de se développer et de résoudre des problèmes ensemble
+                </p>
+                <div class="mx-auto flex flex-col sm:flex-row items-center gap-3 justify-center">
+                    <a href="#" class="btn btn-md before:bg-gray-800 dark:before:bg-primary text-gray-50 dark:text-gray-900">
+            <span class="relative z-[6]">
+              Rejoindre maintenant
+            </span>
+                    </a>
+                    <a href="#" class="btn btn-md before:border before:border-bdr text-fg-heading3">
+            <span class="relative z-[6]">
+              Se connecter
+            </span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <div class="flex justify-center w-full aspect-[3/1.4] overflow-hidden bg-gradient-to-t from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative rounded-t-[18px]">
+                        <img src="/images/frameLight.webp" alt="devscast community screen" width="1200" class="absolute top-1 left-1 w-[calc(100%-8px)] dark:hidden">
+                        <img src="/images/framweDark.webp" alt="devscast community screen" width="1200" class="absolute top-1 left-1 w-[calc(100%-8px)] hidden dark:flex">
+                        <span class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-gray-50 dark:from-gray-950"></span>
+
+                    </div>
+                    <div class="flex flex-col gap-3 mx-auto w-max text-left absolute top-1/2 -left-4 sm:-left-20 p-3 rounded-radius-inside1 bg-background-card border border-bdr">
+                        <div class="flex items-center -mx-2 children:w-8 children:h-8 children:rounded-outer-radius children:object-cover -space-x-2 children:ring-4 children:ring-background">
+                            <img src="/avatar.png" alt="avatar">
+                            <img src="/avatar.png" alt="avatar">
+                            <img src="/avatar.png" alt="avatar">
+                        </div>
+                        <p class="text-sm text-fg"><span class="font-semibold">2k personnes</span> <br> ont rejoint la communauté</p>
+                    </div>
+                    <div class="hidden sm:flex items-center space-x-3 mx-auto w-max text-left absolute top-1/4 sm:-right-20 p-3 rounded-radius-inside1 bg-background-card border border-bdr">
+
+                        <span class="text-sm text-fg">+200 articles <br> et podcasts</span>
+                    </div>
                 </div>
             </div>
+        </section>
+        <section class="space-y-10">
+            <h1 class="font-bold text-fg-heading1 text-3xl md:text-4xl mx-auto text-center max-w-xl">
+                Des startups et entreprises qui croient en nous
+            </h1>
+            <div class="flex justify-center flex-wrap gap-4">
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+                <div class="p-2">
+                    <img src="/logos/beserved.png" alt="logo " width="600" class="w-auto h-9 max-w-full">
+                </div>
+            </div>
+        </section>
 
-            <div class="px-4 lg:px-5 xl:px-8 grid sm:grid-cols-2 gap-4 md:gap-6 mt-7">
-                <div class="bg-background-card rounded-outer-radius border border-bdr p-4 space-y-3">
-                    <div class="rounded-md w-max bg-background-card-inside text-fg-heading2 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm7.5.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7ZM2 5.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5ZM10.5 5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3ZM13 8h-2V6h2v2Z" />
-                        </svg>
+
+        <!-- join us -->
+        <section class="space-y-14">
+            <h1 class="font-bold text-fg-heading1 text-3xl md:text-4xl mx-auto text-center max-w-xl">
+                Une communauté de développeurs où nous sommes tous connectés.
+            </h1>
+            <div class="space-y-10 md:space-y-0 md:space-x-12 md:flex md:items-center">
+                <div class="md:w-1/2 xl:w-[43%] space-y-6 lg:space-y-8 text-fg-heading3 md:py-2">
+                    <div class="gap-4 flex items-start">
+                        <div class="bg-gray-800 dark:bg-gray-900 text-gray-100 p-3 rounded-outer-radius">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-width="2" d="M10 21c-2.5 2.5-5 2-7 0s-2.5-4.5 0-7l3-3l7 7l-3 3Zm4-18c2.5-2.5 5-2 7.001 0c2.001 2 2.499 4.5 0 7l-3 3L11 6l3-3Zm-3 7l-2.5 2.5L11 10Zm3 3l-2.5 2.5L14 13Z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <h2 class="font-semibold text-fg-heading2 text-xl">Connectez-vous</h2>
+                            <p>
+                                Notre plateforme communautaire est un excellent moyen de se connecter avec des personnes partageant les mêmes intérêts et d'apprendre de nouvelles choses. Vous pouvez participer à des discussions avec d'autres membres de la communauté sur une variété de sujets
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-medium text-fg-heading1">
-                        Actualites et mise a jour
-                    </h3>
-                    <p class="text-fg text-sm">
-                        Découvrez les dernières nouvelles et mises à jour de la communauté.
+                    <div class="gap-4 flex items-start">
+                        <div class="bg-gray-800 dark:bg-gray-900 text-gray-100 p-3 rounded-outer-radius">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                                    <path d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm2 30a6 6 0 1 0 0-12a6 6 0 0 0 0 12Zm28 2a6 6 0 1 0 0-12a6 6 0 0 0 0 12ZM22 28a8 8 0 1 0 0-16a8 8 0 0 0 0 16Zm12-16a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z" clip-rule="evenodd"></path>
+                                    <path d="m11 11l4 4m15-3l-2 2m6 19.5L28 26m-14 5l4-4"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <h2 class="font-semibold text-fg-heading2 text-xl">Partagez - Apprenez</h2>
+                            <p>
+                                Nous pensons que chacun a quelque chose à offrir, et nous encourageons la participation active de tous les membres de la communauté. Nous croyons que la communauté est plus forte lorsque les gens sont prêts à partager leurs connaissances et à apprendre les uns des autres
+                            </p>
+                        </div>
+                    </div>
+                    <div class="gap-4 flex items-start">
+                        <div class="bg-gray-800 dark:bg-gray-900 text-gray-100 p-3 rounded-outer-radius">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                                <path fill="currentColor" d="M26 13a4.005 4.005 0 0 0 4-4V6h-3a3.979 3.979 0 0 0-2.747 1.106A6.004 6.004 0 0 0 19 4h-3v3a6.007 6.007 0 0 0 6 6h1v13H11v-5h1a4.005 4.005 0 0 0 4-4v-3h-3a3.979 3.979 0 0 0-2.747 1.106A6.004 6.004 0 0 0 5 12H2v3a6.007 6.007 0 0 0 6 6h1v5H2v2h28v-2h-5V13Zm-1-3a2.002 2.002 0 0 1 2-2h1v1a2.002 2.002 0 0 1-2 2h-1Zm-14 8a2.002 2.002 0 0 1 2-2h1v1a2.002 2.002 0 0 1-2 2h-1Zm-2 1H8a4.005 4.005 0 0 1-4-4v-1h1a4.005 4.005 0 0 1 4 4Zm14-8h-1a4.005 4.005 0 0 1-4-4V6h1a4.005 4.005 0 0 1 4 4Z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <h2 class="font-semibold text-fg-heading2 text-xl">Grandissez</h2>
+                            <p>
+                                Notre plateforme communautaire est un excellent moyen d'obtenir des conseils et des recommandations d'autres professionnels. Vous pouvez poser des questions sur votre carrière, vos projets ou vos objectifs. Vous pouvez également obtenir des conseils sur la façon de développer vos compétences, de trouver un emploi ou de lancer votre propre entreprise.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 md:h-full">
+                    <img src="/images/students_learning.webp" alt="students learning" class="w-full aspect-video md:aspect-auto md:h-full rounded-outer-radius object-cover">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- testimonials  -->
+        <section class="space-y-14">
+            <h1 class="font-bold text-fg-heading1 text-3xl md:text-4xl mx-auto text-center max-w-xl">
+                Ce qu'ils pensent de la communauté
+            </h1>
+            <div class="sm:columns-2 lg:columns-3 gap-6 space-y-6 children:break-inside-avoid children:space-y-8 children:p-4 children:sm:p-6 children:bg-background-card children:rounded-outer-radius children:border children:border-bdr">
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magnam fuga voluptates dolore
                     </p>
-                    <div class="flex justify-start">
-                        <a href="./about.html" class="rounded-outer-radius gap-x-2 text-fg-heading2 text-sm flex items-center">
-                            Lire plus
-                            <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16"
-                         height="16" class="w-4 h-4">
-                      <path fill-rule="evenodd"
-                            d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                            clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                        </a>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-background-card rounded-outer-radius border border-bdr p-4 space-y-3">
-                    <div class="rounded-md w-max bg-background-card-inside text-fg-heading2 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="w-6 h-6"
-                             viewBox="0 0 16 16">
-                            <path
-                                d="M8.05 9.6c.336 0 .504-.24.554-.627.04-.534.198-.815.847-1.26.673-.475 1.049-1.09 1.049-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.71 1.71 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745z" />
-                            <path
-                                d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z" />
-                            <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-medium text-fg-heading1">
-                        Autres ressources
-                    </h3>
-                    <p class="text-fg text-sm">
-                        Découvrez les dernières nouvelles et mises à jour de la communauté.
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magnam fuga voluptates dolore hic molestiae
+                        dolorem, consequuntur modi. Laudantium dolorum mollitia quam ut, ipsa excepturi id nam magni cupiditate
+                        amet.
                     </p>
-                    <div class="flex justify-start">
-                        <a href="./about.html" class="rounded-outer-radius gap-x-2 text-fg-heading2 text-sm flex items-center">
-                            Lire plus
-                            <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16"
-                         height="16" class="w-4 h-4">
-                      <path fill-rule="evenodd"
-                            d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                            clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                        </a>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magnam fuga voluptates dolore hic molestiae
+                        dolorem, consequuntur modi. Laudantium dolorum mollitia quam ut, ipsa excepturi id nam magni cupiditate
+                        amet.
+                    </p>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magnam fuga voluptates dolore hic molestiae
+                        dolorem, consequuntur modi. Laudantium dolorum mollitia quam ut, ipsa excepturi id nam magni cupiditate
+                        amet.
+                    </p>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magnam fuga voluptates dolore hict.
+                    </p>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-fg-heading3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <div class="flex items-start gap-x-4">
+                        <img class="h-12 w-12 rounded-full" src="/avatar.png" alt="Bernard Ng" width="400" height="400">
+                        <div>
+                            <h3 class="text-lg font-medium text-fg-heading1">John doe</h3>
+                            <span class="text-sm text-fg-heading3">.Net developer</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- latest news from blog -->
+        <section class="space-y-14">
+            <div class="space-y-10">
+                <h1 class="font-bold text-fg-heading1 text-3xl md:text-4xl mx-auto text-center max-w-xl">
+                    De nouvelles depuis notre blog
+                </h1>
+                <div class="w-max mx-auto">
+                    <a href="https://devscast.tech/posts" target="_blank" class="btn btn-md before:border before:border-bdr text-fg-heading3">
+            <span class="relative z-[6]">
+              Decouvrir plus
+            </span>
+                    </a>
+                </div>
+            </div>
+            <div class="grid gap-12 md:gap-6 md:grid-cols-2 lg:gap-12 children:flex children:flex-col children:gap-y-6 children:p-4 children:sm:p-6 children:bg-background-card children:rounded-outer-radius children:border children:border-bdr">
+                <a href="#">
+                    <img src="/images/image1.webp" alt="post cover" class="aspect-video object-cover w-full rounded">
+                    <div class="space-y-5 flex flex-col flex-1">
+                        <div class="flex flex-wrap gap-x-3 gap-y-3 items-center text-fg-heading4">
+              <span>
+                12-12-2022
+              </span>
+                            <span class="w-px h-2 bg-gray-600 dark:bg-gray-400 rounded-full"></span>
+                            <span>
+                12min
+              </span>
+                        </div>
+                        <h1 class="text-fg-heading1 tracking-tight font-semibold text-2xl flex-1">Les Design Patterns en Kotlin : Le
+                            Singleton</h1>
+                        <div class="flex items-start gap-x-4">
+                            <img class="h-12 w-12 rounded-full" src="https://devscast.tech/uploads/avatar/b18303c0-a086-4e0e-bcb2-9aac16e265df.jpg" alt="Yves kalume" width="400" height="400">
+                            <div>
+                                <h3 class="text-lg font-semibold text-fg-heading1">Yves kalume</h3>
+                                <span class="text-sm text-fg-heading3">.Net developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <img src="/images/image1.webp" alt="post cover" class="aspect-video object-cover w-full rounded">
+                    <div class="space-y-5 flex flex-col flex-1">
+                        <div class="flex flex-wrap gap-x-3 gap-y-3 items-center text-fg-heading4">
+              <span>
+                12-12-2022
+              </span>
+                            <span class="w-px h-2 bg-gray-600 dark:bg-gray-400 rounded-full"></span>
+                            <span>
+                12min
+              </span>
+                        </div>
+                        <h1 class="text-fg-heading1 tracking-tight font-semibold text-2xl flex-1">Les Design Patterns en Kotlin : Le
+                            Singleton</h1>
+                        <div class="flex items-start gap-x-4">
+                            <img class="h-12 w-12 rounded-full" src="https://devscast.tech/uploads/avatar/b18303c0-a086-4e0e-bcb2-9aac16e265df.jpg" alt="Yves kalume" width="400" height="400">
+                            <div>
+                                <h3 class="text-lg font-semibold text-fg-heading1">Yves kalume</h3>
+                                <span class="text-sm text-fg-heading3">.Net developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
 </twig:block>
 
-<twig:block name="right">
-    <aside class="right-box p-4">
-        <div data-box-scrollable data-costum-scrollbar class="lg:pl-2 h-full min-h-max overflow-hidden overflow-y-auto">
-            <div class="lg:pr-2">
-                <twig:AppSponsors />
-                <twig:AppRecentJob />
-                <twig:AppSuggestedMember />
-            </div>
-        </div>
-    </aside>
-</twig:block>
