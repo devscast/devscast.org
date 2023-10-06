@@ -60,7 +60,7 @@
         "simplebar": "^6.2.5",
         "stimulus": "^3.2.1",
         "stimulus-use": "^0.52.0",
-        "sweetalert2": "^11.7.18",
+        "sweetalert2": "^11.6.13",
         "tom-select": "^2.2.2"
     },
     "overrides": {

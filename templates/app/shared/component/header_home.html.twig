@@ -1,0 +1,37 @@
+<header class="relative z-40 w-full h-20 flex items-center">
+    <div class="box-container flex items-center h-full justify-between relative">
+        <div class="min-w-max flex items-center lg:pl-4 flex-1 gap-x-3">
+            <div aria-hidden="true" class="flex lg:hidden h-auto">
+                <button data-open-sidebar="" class="flex flex-col gap-y-2 pr-3 py-2 border-r border-bdr">
+                    <div aria-hidden="true" class="mx-auto h-0.5 w-6 rounded bg-fg-heading2 transition duration-300"></div>
+                    <div aria-hidden="true" class="mx-auto h-0.5 w-6 rounded bg-fg-heading2 transition duration-300"></div>
+                </button>
+            </div>
+            <a href="#" class="w-max hidden xs:flex">
+                <img src="{{ asset(devscast_dashlite.application.logo_path) }}" alt="Devscast Logo" width="auto" height="120" class="w-auto h-8">
+            </a>
+        </div>
+
+
+        <div class="flex items-center gap-x-2 flex-1 justify-end text-fg-heading2 h-full">
+
+            <div class="flex items-center gap-x-2 min-w-max">
+                <a href="{{ path('auth_login') }}" class="btn btn-md before:border before:border-bdr text-fg-heading3">
+            <span class="relative z-[6]">
+              Se connecter
+            </span>
+                </a>
+                <a href="#" class="btn btn-md before:bg-gray-800 dark:before:bg-primary text-gray-50 dark:text-gray-900">
+            <span class="relative z-[6]">
+              Nous rejoindre
+            </span>
+                </a>
+            </div>
+
+            <div class="flex items-center">
+                <twig:AppThemeSwitcher />
+            </div>
+
+        </div>
+    </div>
+</header>
