@@ -8,6 +8,7 @@
                 <twig:AppPromotedPodcastList />
             </div>
             <div class="px-4 lg:px-5 xl:px-8 space-y-6 xs:space-y-4 divide-y divide-bdr xs:divide-y-0">
+                <h2 class="text-fg-heading1 text-lg">Tous les podcasts</h2>
                 {% for podcast in data %}
                     <twig:AppPodcastCard :episode="podcast" />
                 {% endfor %}
@@ -53,7 +54,7 @@
                 <div class="mt-2 grid sm:grid-cols-2 gap-4 lg:gap-0 lg:flex lg:flex-col">
                     <a href="./jobs/job.html" class="flex items-start gap-x-3 lg:-mx-2 p-4 rounded-outer-radius lg:rounded-none border border-bdr lg:border-none lg:py-2 lg:px-2 bg-background-card lg:bg-transparent hover:bg-gray-100/80 dark:hover:bg-gray-900/90">
                         <div class="p-2 rounded-outer-radius bg-background-card-inside border border-bdr w-max min-w-max">
-                            <img src="/logo.png" alt="logo" class="w-8 h-8">
+                            <img src="{{ asset('logo.png') }}" alt="logo" class="w-8 h-8">
                         </div>
                         <div class="flex flex-col flex-1">
                   <span class="flex items-center gap-x-2 text-sm text-gray-500 dark:text-gray-400">
