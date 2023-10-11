@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 /**
  * Class EpisodeController.
@@ -61,7 +60,6 @@ final class EpisodeController extends AbstractController
     public function show(
         string $slug,
         Episode $item,
-        #[CurrentUser] User $user,
         EventDispatcherInterface $dispatcher
     ): Response {
         if ($item->getSlug() !== $slug) {
@@ -75,6 +73,8 @@ final class EpisodeController extends AbstractController
             );
         }
 
+        /** @var User|null $user */
+        $user = $this->getUser();
         $dispatcher->dispatch(new ContentViewedEvent($item, (string) $this->getCurrentRequest()->getClientIp(), $user));
 
         return $this->render(
