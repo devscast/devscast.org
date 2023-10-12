@@ -9,13 +9,13 @@
                     </div>
                     <div class="">
                         <h1 class="font-semibold text-xl text-fg-heading1">
-                            E32. Raïssa Mandeng. Comment développer sa communauté (WTM Douala)
+                            {{ data.name }}
                         </h1>
                         <div class="flex gap-x-2 items-center flex-1 mt-3 justify-between text-fg">
                             <div class="flex items-center gap-x-1.5 text-sm">
-                                <span>10min de lecture</span>
+                                <span>{{ data.duration }}</span>
                                 <span class="w-1 h-1 rounded-full bg-fg"></span>
-                                <span>12, Avril, 2023</span>
+                                <span>{{ data.createdAt }}</span>
                             </div>
                         </div>
 
@@ -25,18 +25,7 @@
                             <h2 class="text-lg text-fg-heading1 font-semibold">Informations</h2>
                             <div class="mt-4 content-detail podcast-content-detail">
                                 <p>
-                                    Dans ce podcast, nous explorons les différentes façons dont les individus et les communautés
-                                    peuvent avoir un impact positif sur le monde qui les entoure.
-                                </p>
-                                <p>
-                                    Notre invitée de cette semaine est Raïssa, une femme passionnée de technologie et de développement
-                                    communautaire. En tant que responsable de la communauté Woman Tech Maker à Douala, Raïssa
-                                    travaille sans relâche pour encourager et soutenir les femmes dans leur parcours de carrière dans
-                                    l'industrie de la technologie.
-                                </p>
-                                <p>
-                                    Dans ce podcast, nous explorons les différentes façons dont les individus et les communautés
-                                    peuvent avoir un impact positif sur le monde qui les entoure.
+                                    {{ data.content }}
                                 </p>
                             </div>
                         </div>
