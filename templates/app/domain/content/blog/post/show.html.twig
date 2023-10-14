@@ -1,1 +1,678 @@
-{{ content.name }} <br> {{ content.contentType.translationKey | trans([], 'content') }}
+{% extends '@app/shared/layout/base.html.twig' %}
+
+<twig:block name="content">
+    <main class="w-full relative">
+        <div class="box-container gap-10 md:flex md:gap-x-8 md:pb-7">
+
+            <aside data-side-bar="" data-is-open="false" class="sidebar group" data-invisible-on-page="true">
+                <div data-simple-scroll-container="" class="side-bar-container simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px -16px 0px 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px 16px 0px 0px;">
+                                    </div></div></div></div><div class="simplebar-placeholder" style="width: 296px; height: 793px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 561px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div></div>
+
+            </aside>
+            <div data-nav-overlay="" class="hidden lg:hidden fixed inset-0 z-30"></div>
+
+            <article class="mt-8 pb-6 sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius  overflow-hidden">
+
+                <header class="space-y-6 sm:pt-6 lg:pt-8">
+                    <div class="flex items-center justify-between sm:px-6 lg:px-8">
+                        <a href="./" class="flex underline hover:text-gray-900 dark:hover:text-primary items-center text-fg-heading3 text-sm gap-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"></path>
+                            </svg>
+                            Articles
+                        </a>
+
+                        <div class="flex items-center gap-x-3 text-fg">
+                            <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max">
+                                <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                    </svg>
+                                    <span class="sr-only">toggle dropdown</span>
+                                </button>
+                                <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                    <div class="app-dropdown-content text-fg-heading2 ">
+                                        <ul class="space-y-1">
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                        <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                    </svg>
+                                                    Signaler
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"></path>
+                                                        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"></path>
+                                                    </svg>
+                                                    Enregistrer
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-dropdown-box="" data-dropdown-open="false" class="relative flex h-max items-center">
+                                <button data-drop-trigger="" class="outline-none flex  p-2 hover:bg-background-card-inside rounded-md">
+                                    <span class="sr-only">Toggle share</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path>
+                                    </svg>
+                                </button>
+                                <div data-drop-down-container="" class="app-dropdown-container right-0 top-full origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                    <div class="app-dropdown-content text-fg-heading2 ">
+                                        <ul class="space-y-1">
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Autre
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 text-sm sm:px-6 lg:px-8">
+                        <a href="/" class="bg-gray-900 text-gray-50 dark:bg-primary dark:text-gray-900 px-2 py-0.5 rounded-md">
+                            {{ data.category.name }}
+                        </a>
+                        <div class="bg-background-card-inside text-fg-heading2 px-2 py-0.5 rounded-md">
+                            {{ data.duration }}
+                        </div>
+                    </div>
+                    <h1 class="text-2xl font-bold tracking-tight lg:text-4xl text-fg-heading1 sm:px-6 lg:px-8">
+                        AI is replacing Coders, not Engineers. Learn CS now!
+                    </h1>
+                    <div class="flex gap-x-2 items-center flex-1 sm:px-6 lg:px-8">
+                        <div class="rounded-full min-w-max bg-background-card-inside border border-bdr">
+                            <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                        </div>
+                        <div class="flex flex-col text-fg">
+                            <a href="./../profile/index.html" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">{{ data.name }}</a>
+                            <div class="text-sm">
+                                <span>Il y a 5 minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center flex-wrap gap-1 text-fg sm:px-6 lg:px-8">
+                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
+                            #javascript
+                        </a>
+                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
+                            #css
+                        </a>
+                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
+                            #vuejs
+                        </a>
+                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
+                            #Tag name
+                        </a>
+                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
+                           #Tag name
+                        </a>
+                    </div>
+                    <div class="sm:px-2 sm:pt-2">
+                        <img src="/images/image1.webp" alt="image job cover" class="object-cover w-full aspect-video rounded-outer-radius sm:rounded-inner-radius-gradient">
+                    </div>
+
+                </header>
+
+                <div class="post-content-detail content-detail">
+                    <p class="lead">
+                        {{ data.content }}
+                    </p>
+                    <figure>
+                        <img src="https://devscast.tech/uploads/thumbnails/posts/les-design-patterns-en-kotlin-singleton.png" alt="">
+                        <figcaption>devscast.org</figcaption>
+                    </figure>
+
+                    <blockquote>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laudantium asperiores eligendi ex aut
+                            nostrum. Placeat nesciunt, architecto ipsum maxime non pariatur quas tenetur. Ab obcaecati repellendus
+                            sunt nihil vel.</p>
+                    </blockquote>
+
+                    <p>It's important to cover all of these use cases for a few reasons:</p>
+                    <ol>
+                        <li>We want everything to look good out of the box.</li>
+                        <li>Really just the first reason, that's the whole point of the plugin.</li>
+                        <li>Here's a third pretend reason though a list with three items looks more realistic than a list with two
+                            items.</li>
+                    </ol>
+
+                    <pre data-simplebar="init" class="simplebar-scrollable-x"><div class="simplebar-wrapper" style="margin: -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: scroll hidden;"><div class="simplebar-content" style="padding: 16px;">            <code class="language-html">
+                    &lt;article class="prose"&gt;
+                      &lt;h1&gt;Garlic bread with cheese: What the science tells us&lt;/h1&gt;
+                      &lt;p&gt;
+                        For years parents have espoused the health benefits of eating garlic bread with cheese to their
+                        children, with the food earning such an iconic status in our culture that kids will often dress
+                        up as warm, cheesy loaf for Halloween.
+                      &lt;/p&gt;
+                        &lt;p&gt;
+                        But a recent study shows that the celebrated appetizer may be linked to a series of rabies cases
+                        springing up around the country.
+                      &lt;/p&gt;
+                      &lt;!-- ... --&gt;
+                    &lt;/article&gt;
+            </code></div></div></div></div><div class="simplebar-placeholder" style="width: 343px; height: 440px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: visible;"><div class="simplebar-scrollbar" style="width: 137px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></pre>
+                    <p>For more information about how to use the plugin and the features it includes, <a href="https://github.com/tailwindcss/typography/blob/master/README.md">read the documentation</a>.</p>
+                    <p>Now I'm going to show you an example of an unordered list to make sure that looks good, too:</p>
+                    <ul>
+                        <li>So here is the first item in this list.</li>
+                        <li>In this example we're keeping the items short.</li>
+                        <li>Later, we'll use longer, more complex list items.</li>
+                    </ul>
+                    <p>And that's the end of this section.</p>
+                    <h2>What if we stack headings?</h2>
+                    <h3>We should make sure that looks good, too.</h3>
+                    <p>Sometimes you have headings directly underneath each other. In those cases you often have to undo the top
+                        margin on the second heading because it usually looks better for the headings to be closer together than a
+                        paragraph followed by a heading should be.</p>
+
+                    <h3>When a heading comes after a paragraph …</h3>
+                    <p>When a heading comes after a paragraph, we need a bit more space, like I already mentioned above. Now let's
+                        see what a more complex list would look like.</p>
+                    <ul>
+                        <li>
+                            <p><strong>I often do this thing where list items have headings.</strong></p>
+                            <p>For some reason I think this looks cool which is unfortunate because it's pretty annoying to get the
+                                styles right.</p>
+                            <p>I often have two or three paragraphs in these list items, too, so the hard part is getting the spacing
+                                between the paragraphs, list item heading, and separate list items to all make sense. Pretty tough
+                                honestly, you could make a strong argument that you just shouldn't write this way.</p>
+                        </li>
+                        <li>
+                            <p><strong>Since this is a list, I need at least two items.</strong></p>
+                            <p>I explained what I'm doing already in the previous list item, but a list wouldn't be a list if it only
+                                had one item, and we really want this to look realistic. That's why I've added this second list item so
+                                I actually have something to look at when writing the styles.</p>
+                        </li>
+                        <li>
+                            <p><strong>It's not a bad idea to add a third item either.</strong></p>
+                            <p>I think it probably would've been fine to just use two items but three is definitely not worse, and
+                                since I seem to be having no trouble making up arbitrary things to type, I might as well include it.</p>
+                        </li>
+                    </ul>
+                    <p>After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird
+                        jumping right to a heading.</p>
+                    <h2>Code should look okay by default.</h2>
+                    <p>I think most people are going to use <a href="https://highlightjs.org/">highlight.js</a> or <a href="https://prismjs.com/">Prism</a> or something if they want to style their code blocks but it wouldn't
+                        hurt to make them look <em>okay</em> out of the box, even with no syntax highlighting.</p>
+                    <p>Here's what a default <code>tailwind.config.js</code> file looks like at the time of writing:</p>
+                    <pre data-simplebar="init"><div class="simplebar-wrapper" style="margin: -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 16px;"><code class="language-js">module.exports = {
+  purge: [],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+}
+</code></div></div></div></div><div class="simplebar-placeholder" style="width: 343px; height: 272px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></pre>
+
+                    <p>I almost forgot to mention links, like <a href="https://tailwindcss.com">this link to the Tailwind CSS
+                            website</a>. We almost made them blue but that's so yesterday, so we went with dark gray, feels edgier.
+                    </p>
+                    <p>We even included table styles, check it out:</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Wrestler</th>
+                            <th>Origin</th>
+                            <th>Finisher</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Bret "The Hitman" Hart</td>
+                            <td>Calgary, AB</td>
+                            <td>Sharpshooter</td>
+                        </tr>
+                        <tr>
+                            <td>Stone Cold Steve Austin</td>
+                            <td>Austin, TX</td>
+                            <td>Stone Cold Stunner</td>
+                        </tr>
+                        <tr>
+                            <td>Randy Savage</td>
+                            <td>Sarasota, FL</td>
+                            <td>Elbow Drop</td>
+                        </tr>
+                        <tr>
+                            <td>Vader</td>
+                            <td>Boulder, CO</td>
+                            <td>Vader Bomb</td>
+                        </tr>
+                        <tr>
+                            <td>Razor Ramon</td>
+                            <td>Chuluota, FL</td>
+                            <td>Razor's Edge</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p>We also need to make sure inline code looks good, like if I wanted to talk about <code>&lt;span&gt;</code>
+                        elements or tell you the good news about <code>@tailwindcss/typography</code>.</p>
+                    <h3>Sometimes I even use <code>code</code> in headings</h3>
+                    <p>Even though it's probably a bad idea, and historically I've had a hard time making it look good. This
+                        <em>"wrap the code blocks in backticks"</em> trick works pretty well though really.</p>
+                    <p>
+                        Another thing I've done in the past is put a <code>code</code> tag inside of a link, like if I wanted to
+                        tell you about the <a href="https://github.com/tailwindcss/docs"><code>tailwindcss/docs</code></a>
+                        repository. I don't love that there is an underline below the backticks but it is absolutely not worth the
+                        madness it would require to avoid it.
+                    </p>
+                    <h4>We haven't used an <code>h4</code> yet</h4>
+                    <p>But now we have. Please don't use <code>h5</code> or <code>h6</code> in your content, Medium only supports
+                        two heading levels for a reason, you animals. I honestly considered using a <code>before</code>
+                        pseudo-element to scream at you if you use an <code>h5</code> or <code>h6</code>.</p>
+
+
+                </div>
+
+                <div class=" sm:px-6 lg:px-8 mt-5 sm:border-y sm:border-bdr sm:py-2 select-none">
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-4 text-sm ">
+                            <form action="" class="text-fg flex items-center gap-x-1">
+                                <input type="checkbox" name="action-like-post2" id="action-like-post2" class="hidden peer appearance-none">
+                                <label for="action-like-post2" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
+                                        <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
+                                    </svg>
+                                </label>
+                                <span class="flex gap-x-1">45 <span class="hidden sm:flex">likes</span></span>
+                            </form>
+                            <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                </svg>
+                                <span class="flex gap-x-1">45 <span class="hidden sm:flex">Commentaires</span></span>
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-x-2 text-fg">
+                            <span class="text-sm ">2 min read</span>
+                            <div data-dropdown-box="" data-dropdown-open="false" class="relative flex h-max items-center">
+                                <button data-drop-trigger="" class="outline-none flex  p-2 hover:bg-background-card-inside rounded-md">
+                                    <span class="sr-only">Toggle share</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path>
+                                    </svg>
+                                </button>
+                                <div data-drop-down-container="" class="app-dropdown-container right-0 -top-2 -translate-y-full origin-bottom-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                    <div class="app-dropdown-content text-fg-heading2 ">
+                                        <ul class="space-y-1">
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="px-3 flex items-center gap-x-2 rounded-md py-1 transition hover:bg-background-card-inside !w-36">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-fg-heading2"></span>
+                                                    Autre
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-comment-bloc mt-5 sm:px-6 lg:px-8">
+                    <div data-comment-bloc-zone="" data-show-comment-box-area="" class="flex py-4">
+                        <div data-trigger-comment-bloc="" class="p-2 group cursor-pointer select-none bg-background-card w-full border border-bdr rounded-outer-radius flex justify-between items-center">
+                            <div class="flex items-center gap-2 text-fg">
+                                <img class="w-10 h-10  object-covere rounded-md" src="/avatar.png" alt="user avatar">
+                                <span>votre commentainer</span>
+                            </div>
+                            <button class="outline-none p-2 rounded-md border border-bdr text-fg group-hover:border-primary group-hover:bg-primary group-hover:text-gray-800">
+                                <span class="sr-only">New</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send-plus" viewBox="0 0 16 16">
+                                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"></path>
+                                    <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div data-comment-bloc="" aria-hidden="true" class="w-full">
+                            <form action="" class="w-full flex-col">
+                                <textarea name="" id="" class="outline-none rounded-lg py-2.5 px-5 bg-background-card w-full border border-bdr rounded-ful"></textarea>
+                                <div class="mt-6 border-t border-t-bdr flex gap-4 flex-wrap pt-4">
+                                    <button type="submit" class="h-11 outline-none text-sm border border-bdr flex items-center px-5 rounded-lg bg-primary text-gray-800">
+                                        Commenter
+                                    </button>
+                                    <button data-hide-comment-area="" class="h-11 outline-none px-4 rounded-lg text-fg-heading2 border border-bdr flex items-center">
+                                        Annuler
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 space-y-6 scroll-mt-20" id="commentsection">
+                        <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
+                            <div class="flex justify-between w-full gap-x-6">
+                                <div class="flex gap-x-2 items-center flex-1">
+                                    <div class="rounded-full min-w-max bg-background-card-inside border border-bdr">
+                                        <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                                    </div>
+                                    <div class="flex flex-col text-fg">
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">John doe</a>
+                                        <div class="flex items-center gap-x-1.5 text-sm ">
+                                            <span>Il y a 5 minutes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max text-fg">
+                                    <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                        </svg>
+                                        <span class="sr-only">toggle dropdown</span>
+                                    </button>
+                                    <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                        <div class="app-dropdown-content text-fg-heading2 ">
+                                            <ul class="space-y-1">
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Signaler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Editer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <p>
+                                   {{ data.content }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm ">
+                                <form action="" class="text-fg flex items-center gap-x-1">
+                                    <input type="checkbox" name="action-like-post2" id="action-like-comment1" class="hidden peer appearance-none">
+                                    <label for="action-like-comment1" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
+                                            <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
+                                        </svg>
+                                    </label>
+                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">like</span></span>
+                                </form>
+                                <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                    </svg>
+                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">Commentaire</span></span>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
+                            <div class="flex justify-between w-full gap-x-6">
+                                <div class="flex gap-x-2 items-center flex-1">
+                                    <div class="rounded-full min-w-max bg-background-card-inside border border-bdr">
+                                        <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                                    </div>
+                                    <div class="flex flex-col text-fg">
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">John doe</a>
+                                        <div class="flex items-center gap-x-1.5 text-sm ">
+                                            <span>Il y a 5 minutes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max text-fg">
+                                    <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                        </svg>
+                                        <span class="sr-only">toggle dropdown</span>
+                                    </button>
+                                    <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                        <div class="app-dropdown-content text-fg-heading2 ">
+                                            <ul class="space-y-1">
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Signaler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Editer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <p>
+                                   {{ data.content }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm ">
+                                <form action="" class="text-fg flex items-center gap-x-1">
+                                    <input type="checkbox" name="action-like-post2" id="action-like-comment1" class="hidden peer appearance-none">
+                                    <label for="action-like-comment1" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
+                                            <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
+                                        </svg>
+                                    </label>
+                                    <span class="flex gap-x-1">45 <span class="hidden sm:flex">likes</span></span>
+                                </form>
+                                <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                    </svg>
+                                    <span class="flex gap-x-1">45 <span class="hidden sm:flex">Commentaires</span></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="ml-6 md:ml-8 lg:ml-14 p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
+                            <div class="flex justify-between w-full gap-x-6">
+                                <div class="flex gap-x-2 items-center flex-1">
+                                    <div class="rounded-full min-w-max bg-background-card-inside border border-bdr">
+                                        <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                                    </div>
+                                    <div class="flex flex-col text-fg">
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">John doe</a>
+                                        <div class="flex items-center gap-x-1.5 text-sm ">
+                                            <span>Il y a 5 minutes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max text-fg">
+                                    <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                        </svg>
+                                        <span class="sr-only">toggle dropdown</span>
+                                    </button>
+                                    <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                        <div class="app-dropdown-content text-fg-heading2 ">
+                                            <ul class="space-y-1">
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Signaler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Editer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <p>
+                                    {{ data.content }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm ">
+                                <form action="" class="text-fg flex items-center gap-x-1">
+                                    <input type="checkbox" name="action-like-post2" id="action-like-response1" class="hidden peer appearance-none">
+                                    <label for="action-like-response1" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
+                                            <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
+                                        </svg>
+                                    </label>
+                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">like</span></span>
+                                </form>
+                                <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                    </svg>
+                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">Commentaire</span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="flex-col pt-16 pb-16 md:pb-0 flex space-y-6 md:h-max md:sticky md:w-72 lg:w-80 xl:w-[22rem] xl:min-w-[22rem] lg:pt-8">
+                <div class="lg:sticky lg:top-20 bg-background-card border border-bdr rounded-outer-radius  overflow-hidden">
+                    <div class="flex flex-col gap-4">
+                        <div class="relative px-5 lg:px-6 pt-20">
+                            <div class="absolute h-28 sm:h-32 inset-x-0 top-0">
+                                <img src="/coverImage.jpg" alt="cover image" class="w-full h-full rounded-lg object-cover">
+                            </div>
+                            <div class="relative w-full flex justify-between items-end">
+                                <img src="/avatar.png" alt="avatar" width="800" class="w-20 h-20 rounded-md ring-4 ring-background-card">
+                                <button class="btn px-3 h-7 max-w-max text-sm before:bg-gray-800 dark:before:bg-gray-100 before:border before:border-bdr text-gray-50 dark:text-gray-900">
+                                    <span class="relative z-[6]">Suivre</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-fg p-5 pt-0 lg:pt-0 lg:p-6">
+                            <a href="./" class="text-fg-heading1 font-semibold text-xl">
+                                john doe
+                            </a>
+                            <div class="flex items-center gap-x-1.5 text-sm ">
+                                <span>@jodoe</span>
+                                <span class="w-1 h-1 rounded-full bg-fg"></span>
+                                <span class="line-clamp-1">Web developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="text-lg text-fg-heading1">
+                    Autres articles de l'auteur
+                </h2>
+                <div class="divide-y divide-bdr flex flex-col sm:bg-background-card sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius sm:p-6">
+                    <a href="./post.html" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
+                        <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
+                            Les Design Patterns en Kotlin : Le Singleton
+                        </h4>
+                        <p class="text-fg text-sm py-1 line-clamp-1">
+                            En général, si vous disposez d'une classe
+                        </p>
+                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                    </a>
+                    <a href="./post.html" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
+                        <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
+                            Les Design Patterns en Kotlin : Le Singleton
+                        </h4>
+                        <p class="text-fg text-sm py-1 line-clamp-1">
+                            En général, si vous disposez d'une classe
+                        </p>
+                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                    </a>
+                    <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
+                        <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
+                            Les Design Patterns en Kotlin : Le Singleton
+                        </h4>
+                        <p class="text-fg text-sm py-1 line-clamp-1">
+                            En général, si vous disposez d'une classe
+                        </p>
+                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                    </a>
+
+                    <div class="pt-4">
+                        <a href="./../membres/membre.html#articles" class="underline text-fg-heading2">
+                            Voir plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</twig:block>
