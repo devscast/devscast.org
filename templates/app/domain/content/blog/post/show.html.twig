@@ -3,12 +3,6 @@
 <twig:block name="content">
     <main class="w-full relative">
         <div class="box-container gap-10 md:flex md:gap-x-8 md:pb-7">
-
-            <aside data-side-bar="" data-is-open="false" class="sidebar group" data-invisible-on-page="true">
-                <div data-simple-scroll-container="" class="side-bar-container simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px -16px 0px 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px 16px 0px 0px;">
-                                    </div></div></div></div><div class="simplebar-placeholder" style="width: 296px; height: 793px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 561px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div></div>
-
-            </aside>
             <div data-nav-overlay="" class="hidden lg:hidden fixed inset-0 z-30"></div>
 
             <article class="mt-8 pb-6 sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius  overflow-hidden">
@@ -72,9 +66,11 @@
                             <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
                         </div>
                         <div class="flex flex-col text-fg">
-                            <a href="./../profile/index.html" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">{{ data.name }}</a>
+                            <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">
+                                {{ data.name }}
+                            </a>
                             <div class="text-sm">
-                                <span>Il y a 5 minutes</span>
+                                <span>{{ data.createdAt | date }}</span>
                             </div>
                         </div>
                     </div>
@@ -118,22 +114,35 @@
 
                     <p>{{ data.content }}</p>
                     <ol>
-                        <li>{{ data.content }}</li>
-                        <li>{{ data.content }}</li>
-                        <li>{{ data.content }}</li>
+                        <li>{{ data.category.description }}</li>
                     </ol>
 
                     <pre data-simplebar="init" class="simplebar-scrollable-x"><div class="simplebar-wrapper" style="margin: -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: scroll hidden;"><div class="simplebar-content" style="padding: 16px;">            <code class="language-html">
                         {{ data.content | markdown_to_html }}
             </code></div></div></div></div><div class="simplebar-placeholder" style="width: 343px; height: 440px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: visible;"><div class="simplebar-scrollbar" style="width: 137px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></pre>
                     <p>{{ data.content }}</p>
-                    <p>{{ data.content }}</p>
                     <ul>
-                        <li>{{ data.content }}</li>
-                        <li>{{ data.content }}</li>
-                        <li>{{ data.content }}</li>
+                        <li>{{ data.category.description }}</li>
                     </ul>
+                    <h3>{{ data.content }}</h3>
+                    <p>{{ data.category.description }}</p>
+
+                    <h3>{{ data.content }}</h3>
+                    <p>{{ data.category.description }}</p>
+                    <ul>
+                        <li>
+                            <p>{{ data.content }}</p>
+                        </li>
+                        <li>
+                            <p>{{ data.content }}</p>
+                        </li>
+                        <li>
+                            <p>{{ data.content }}</p>
+                        </li>
+                    </ul>
+
                 </div>
+
                 <div class=" sm:px-6 lg:px-8 mt-5 sm:border-y sm:border-bdr sm:py-2 select-none">
                     <div class="flex justify-between">
                         <div class="flex items-center gap-4 text-sm ">
@@ -149,15 +158,15 @@
                                 </label>
                                 <span class="flex gap-x-1">45 <span class="hidden sm:flex">likes</span></span>
                             </form>
-                            <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                            <a href="#" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
                                 </svg>
-                                <span class="flex gap-x-1">45 <span class="hidden sm:flex">Commentaires</span></span>
+                                <span class="flex gap-x-1">{{ data.commentCount }} <span class="hidden sm:flex">Commentaires</span></span>
                             </a>
                         </div>
                         <div class="flex items-center gap-x-2 text-fg">
-                            <span class="text-sm ">2 min read</span>
+                            <span class="text-sm ">{{ data.duration }} min read</span>
                             <div data-dropdown-box="" data-dropdown-open="false" class="relative flex h-max items-center">
                                 <button data-drop-trigger="" class="outline-none flex  p-2 hover:bg-background-card-inside rounded-md">
                                     <span class="sr-only">Toggle share</span>
@@ -172,36 +181,36 @@
                 </div>
 
                 <div class="post-comment-bloc mt-5 sm:px-6 lg:px-8">
-                    <div class="mt-6 space-y-6 scroll-mt-20" id="commentsection">
-                        <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
-                            <div class="">
-                                <p>
-                                   {{ data.content }}
-                                </p>
+                    <div data-comment-bloc-zone="" data-show-comment-box-area="" class="flex py-4">
+                        <div data-trigger-comment-bloc="" class="p-2 group cursor-pointer select-none bg-background-card w-full border border-bdr rounded-outer-radius flex justify-between items-center">
+                            <div class="flex items-center gap-2 text-fg">
+                                <img class="w-10 h-10  object-covere rounded-md" src="/avatar.png" alt="user avatar">
+                                <span>votre commentainer</span>
                             </div>
-                            <div class="flex items-center gap-4 text-sm ">
-                                <form action="" class="text-fg flex items-center gap-x-1">
-                                    <input type="checkbox" name="action-like-post2" id="action-like-comment1" class="hidden peer appearance-none">
-                                    <label for="action-like-comment1" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
-                                            <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
-                                        </svg>
-                                    </label>
-                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">like</span></span>
-                                </form>
-                                <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
-                                    </svg>
-                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">Commentaire</span></span>
-                                </a>
-                            </div>
+                            <button class="outline-none p-2 rounded-md border border-bdr text-fg group-hover:border-primary group-hover:bg-primary group-hover:text-gray-800">
+                                <span class="sr-only">New</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send-plus" viewBox="0 0 16 16">
+                                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"></path>
+                                    <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"></path>
+                                </svg>
+                            </button>
                         </div>
+                        <div data-comment-bloc="" aria-hidden="true" class="w-full">
+                            <form action="" class="w-full flex-col">
+                                <textarea name="" id="" class="outline-none rounded-lg py-2.5 px-5 bg-background-card w-full border border-bdr rounded-ful"></textarea>
+                                <div class="mt-6 border-t border-t-bdr flex gap-4 flex-wrap pt-4">
+                                    <button type="submit" class="h-11 outline-none text-sm border border-bdr flex items-center px-5 rounded-lg bg-primary text-gray-800">
+                                        Commenter
+                                    </button>
+                                    <button data-hide-comment-area="" class="h-11 outline-none px-4 rounded-lg text-fg-heading2 border border-bdr flex items-center">
+                                        Annuler
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-
+                    <div class="mt-6 space-y-6 scroll-mt-20" id="commentsection">
                         <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
                             <div class="flex justify-between w-full gap-x-6">
                                 <div class="flex gap-x-2 items-center flex-1">
@@ -209,9 +218,9 @@
                                         <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
                                     </div>
                                     <div class="flex flex-col text-fg">
-                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">John doe</a>
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">{{ data.name }}</a>
                                         <div class="flex items-center gap-x-1.5 text-sm ">
-                                            <span>Il y a 5 minutes</span>
+                                            <span>{{ data.createdAt | date }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -262,13 +271,85 @@
                                             <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
                                         </svg>
                                     </label>
-                                    <span class="flex gap-x-1">45 <span class="hidden sm:flex">likes</span></span>
+                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">like</span></span>
                                 </form>
                                 <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
                                     </svg>
-                                    <span class="flex gap-x-1">45 <span class="hidden sm:flex">Commentaires</span></span>
+                                    <span class="flex gap-x-1">{{ data.commentCount }} <span class="hidden sm:flex">Commentaire</span></span>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
+                            <div class="flex justify-between w-full gap-x-6">
+                                <div class="flex gap-x-2 items-center flex-1">
+                                    <div class="rounded-full min-w-max bg-background-card-inside border border-bdr">
+                                        <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
+                                    </div>
+                                    <div class="flex flex-col text-fg">
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">{{ data.name }}</a>
+                                        <div class="flex items-center gap-x-1.5 text-sm ">
+                                            <span>{{ data.createdAt | date }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-dropdown-box="" data-dropdown-open="false" class="relative flex min-w-max text-fg">
+                                    <button data-drop-trigger="" class="rounded-md outline-none w-8 h-8 flex items-center justify-center p-1 hover:bg-background-card-inside">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                        </svg>
+                                        <span class="sr-only">toggle dropdown</span>
+                                    </button>
+                                    <div data-drop-down-container="" class="app-dropdown-container !top-8 right-0 !origin-top-right dark:p-px bg-dark-gradient !w-40 shadow-lg dark:shadow-transparent">
+                                        <div class="app-dropdown-content text-fg-heading2 ">
+                                            <ul class="space-y-1">
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Signaler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="px-3 flex items-center gap-x-3 rounded-md py-1 transition hover:bg-background-card-inside">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                                                            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
+                                                        </svg>
+                                                        Editer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <p>
+                                    {{ data.content }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm ">
+                                <form action="" class="text-fg flex items-center gap-x-1">
+                                    <input type="checkbox" name="action-like-post2" id="action-like-comment1" class="hidden peer appearance-none">
+                                    <label for="action-like-comment1" class="peer-checked:text-gray-950 dark:peer-checked:text-primary peer-checked:[&amp;>*:not(:first-child)]:flex peer-checked:[&amp;>*:not(:last-child)]:hidden cursor-pointer bg-background-card-inside rounded-md p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5 peer-checked:hidden">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden peer-checked:flex">
+                                            <path d="M1 8.25a1.25 1.25 0 112.5 0v7.5a1.25 1.25 0 11-2.5 0v-7.5zM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0114 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 01-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 01-1.341-.317l-2.734-1.366A3 3 0 006.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 012.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388z"></path>
+                                        </svg>
+                                    </label>
+                                    <span class="flex gap-x-1">45 <span class="hidden sm:flex">likes</span></span>
+                                </form>
+                                <a href="#" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                    </svg>
+                                    <span class="flex gap-x-1">{{ data.commentCount }} <span class="hidden sm:flex">Commentaires</span></span>
                                 </a>
                             </div>
                         </div>
@@ -280,9 +361,9 @@
                                         <img class="w-10 h-10  object-covere rounded-outer-radius" src="/avatar.png" alt="user avatar">
                                     </div>
                                     <div class="flex flex-col text-fg">
-                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">John doe</a>
+                                        <a href="#" class="line-clamp-1 text-fg-heading2 font-medium hover:text-fg-heading1">{{ data.name }}</a>
                                         <div class="flex items-center gap-x-1.5 text-sm ">
-                                            <span>Il y a 5 minutes</span>
+                                            <span>{{ data.createdAt | date }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -335,11 +416,11 @@
                                     </label>
                                     <span class="flex gap-x-1">0 <span class="hidden sm:flex">like</span></span>
                                 </form>
-                                <a href="./posts/post.html#commentsection" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
+                                <a href="#" class="px-2 p-0.5 gap-1 text-sm flex items-center rounded-full text-fg">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
                                     </svg>
-                                    <span class="flex gap-x-1">0 <span class="hidden sm:flex">Commentaire</span></span>
+                                    <span class="flex gap-x-1">{{ data.commentCount }} <span class="hidden sm:flex">Commentaire</span></span>
                                 </a>
                             </div>
                         </div>
@@ -378,30 +459,30 @@
                 <div class="divide-y divide-bdr flex flex-col sm:bg-background-card sm:border sm:!border-y sm:border-bdr sm:rounded-outer-radius sm:p-6">
                     <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
                         <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
-                            Les Design Patterns en Kotlin : Le Singleton
+                            {{ data.content }}
                         </h4>
                         <p class="text-fg text-sm py-1 line-clamp-1">
-                            En général, si vous disposez d'une classe
+                            {{ data.category.description }}
                         </p>
-                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                        <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
                     </a>
                     <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
                         <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
-                            Les Design Patterns en Kotlin : Le Singleton
+                            {{ data.content }}
                         </h4>
                         <p class="text-fg text-sm py-1 line-clamp-1">
-                            En général, si vous disposez d'une classe
+                            {{ data.category.description }}
                         </p>
-                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                        <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
                     </a>
                     <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
                         <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
-                            Les Design Patterns en Kotlin : Le Singleton
+                            {{ data.content }}
                         </h4>
                         <p class="text-fg text-sm py-1 line-clamp-1">
-                            En général, si vous disposez d'une classe
+                            {{ data.category.description }}
                         </p>
-                        <span class="text-sm font-light text-fg">Il y a 2 jours</span>
+                        <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
                     </a>
 
                     <div class="pt-4">
