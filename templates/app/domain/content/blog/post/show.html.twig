@@ -74,23 +74,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 flex items-center flex-wrap gap-1 text-fg sm:px-6 lg:px-8">
-                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
-                            #javascript
-                        </a>
-                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
-                            #css
-                        </a>
-                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
-                            #vuejs
-                        </a>
-                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
-                            #Tag name
-                        </a>
-                        <a href="#" class="px-2 p-0.5 rounded-md border border-dashed border-bdr bg-background-card-inside text-sm">
-                           #Tag name
-                        </a>
-                    </div>
                     <div class="sm:px-2 sm:pt-2">
                         <img src="/images/image1.webp" alt="image job cover" class="object-cover w-full aspect-video rounded-outer-radius sm:rounded-inner-radius-gradient">
                     </div>
@@ -98,25 +81,7 @@
                 </header>
 
                 <div class="post-content-detail content-detail">
-                    <p class="lead">
-                        {{ data.content }}
-                    </p>
-                    <figure>
-                        <img src="https://devscast.tech/uploads/thumbnails/posts/les-design-patterns-en-kotlin-singleton.png" alt="">
-                        <figcaption>devscast.org</figcaption>
-                    </figure>
-
-                    <blockquote>
-                        <p>
-                            {{ data.content }}
-                        </p>
-                    </blockquote>
-
-                    <pre data-simplebar="init" class="simplebar-scrollable-x"><div class="simplebar-wrapper" style="margin: -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: scroll hidden;"><div class="simplebar-content" style="padding: 16px;">            <code class="language-html">
-                        {{ data.content | markdown_to_html }}
-            </code></div></div></div></div><div class="simplebar-placeholder" style="width: 343px; height: 440px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: visible;"><div class="simplebar-scrollbar" style="width: 137px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></pre>
-                    <p>{{ data.content }}</p>
-
+                    {{ data.content | markdown_to_html }}
                 </div>
 
                 <div class=" sm:px-6 lg:px-8 mt-5 sm:border-y sm:border-bdr sm:py-2 select-none">
@@ -157,34 +122,6 @@
                 </div>
 
                 <div class="post-comment-bloc mt-5 sm:px-6 lg:px-8">
-                    <div data-comment-bloc-zone="" data-show-comment-box-area="" class="flex py-4">
-                        <div data-trigger-comment-bloc="" class="p-2 group cursor-pointer select-none bg-background-card w-full border border-bdr rounded-outer-radius flex justify-between items-center">
-                            <div class="flex items-center gap-2 text-fg">
-                                <img class="w-10 h-10  object-covere rounded-md" src="/avatar.png" alt="user avatar">
-                                <span>votre commentainer</span>
-                            </div>
-                            <button class="outline-none p-2 rounded-md border border-bdr text-fg group-hover:border-primary group-hover:bg-primary group-hover:text-gray-800">
-                                <span class="sr-only">New</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send-plus" viewBox="0 0 16 16">
-                                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"></path>
-                                    <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <div data-comment-bloc="" aria-hidden="true" class="w-full">
-                            <form action="" class="w-full flex-col">
-                                <textarea name="" id="" class="outline-none rounded-lg py-2.5 px-5 bg-background-card w-full border border-bdr rounded-ful"></textarea>
-                                <div class="mt-6 border-t border-t-bdr flex gap-4 flex-wrap pt-4">
-                                    <button type="submit" class="h-11 outline-none text-sm border border-bdr flex items-center px-5 rounded-lg bg-primary text-gray-800">
-                                        Commenter
-                                    </button>
-                                    <button data-hide-comment-area="" class="h-11 outline-none px-4 rounded-lg text-fg-heading2 border border-bdr flex items-center">
-                                        Annuler
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
                     <div class="mt-6 space-y-6 scroll-mt-20" id="commentsection">
                         <div class="p-5 group bg-background-card border border-bdr rounded-outer-radius  space-y-4 text-fg">
@@ -295,27 +232,6 @@
                         <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
                             {{ data.content }}
                         </h4>
-                        <p class="text-fg text-sm py-1 line-clamp-1">
-                            En général, si vous disposez d'une classe
-                        </p>
-                        <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
-                    </a>
-                    <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
-                        <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
-                            {{ data.content }}
-                        </h4>
-                        <p class="text-fg text-sm py-1 line-clamp-1">
-                            Les Design Patterns en Kotlin : Le Singleton
-                        </p>
-                        <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
-                    </a>
-                    <a href="#" class="w-full flex flex-col py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
-                        <h4 class="text-base sm:text-lg font-medium text-fg-heading1">
-                            {{ data.content }}
-                        </h4>
-                        <p class="text-fg text-sm py-1 line-clamp-1">
-                            En général, si vous disposez d'une classe
-                        </p>
                         <span class="text-sm font-light text-fg">{{ data.createdAt | date }}</span>
                     </a>
 
