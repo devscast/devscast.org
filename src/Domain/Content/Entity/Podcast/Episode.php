@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Content\Entity\Podcast;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Domain\Authentication\Entity\User;
 use Domain\Content\Entity\Content;
 use Domain\Content\Enum\ContentType;
 use Domain\Content\Enum\EpisodeType;
@@ -28,11 +31,17 @@ class Episode extends Content
 
     private ?File $audio_file = null;
 
+    /**
+     * @var Collection<User>
+     */
+    private Collection $guests;
+
     public function __construct()
     {
         parent::__construct();
         $this->audio = EmbeddedFile::default();
         $this->content_type = ContentType::PODCAST;
+        $this->guests = new ArrayCollection();
     }
 
     public function getContentType(): ContentType
@@ -102,6 +111,36 @@ class Episode extends Content
     public function setEpisodeNumber(?int $episode_number): self
     {
         $this->episode_number = $episode_number;
+
+        return $this;
+    }
+
+    public function getGuests(): Collection
+    {
+        return $this->guests;
+    }
+
+    public function setGuests(Collection $guests): self
+    {
+        $this->guests = $guests;
+
+        return $this;
+    }
+
+    public function addGuest(User $guest): self
+    {
+        if (! $this->guests->contains($guest)) {
+            $this->guests->add($guest);
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(User $guest): self
+    {
+        if ($this->guests->contains($guest)) {
+            $this->guests->removeElement($guest);
+        }
 
         return $this;
     }

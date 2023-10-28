@@ -6,6 +6,7 @@ namespace Infrastructure\Content\Symfony\Form\Podcast;
 
 use Application\Content\Command\Podcast\CreateEpisodeCommand;
 use Domain\Content\Entity\Podcast\Season;
+use Infrastructure\Authentication\Symfony\Form\Field\UserAutocompleteField;
 use Infrastructure\Content\Symfony\Form\Type\AbstractContentType;
 use Infrastructure\Content\Symfony\Form\Type\EpisodeTypeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -41,6 +42,11 @@ class CreateEpisodeForm extends AbstractContentType
             ])
             ->add('episode_number', IntegerType::class, [
                 'label' => 'content.forms.labels.episode_number',
+            ])
+            ->add('guests', UserAutocompleteField::class, [
+                'label' => 'content.forms.labels.guests',
+                'multiple' => true,
+                'required' => false,
             ])
         ;
         $this->addContentOptions($builder);

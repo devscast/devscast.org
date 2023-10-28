@@ -1,16 +1,16 @@
-<div class="app-card-podcast flex flex-row items-stretch gap-x-6 sm:gap-x-7 relative overflow-hidden">
-    <span class="absolute left-0 bottom-0 h-0.5 bg-primary" style="width: 80%;"></span>
-    <div class="relative w-2/5 max-w-[10rem] lg:max-w-none min-w-[6rem] md:min-w-[8rem] h-auto flex items-start">
-        <img src="{{ this.episode.thumbnail.name ? vich_uploader_asset(this.episode, 'thumbnail_file') : asset('/images/cover.jpg') }}" alt="Cover image" width="2080" class="w-full  aspect-square rounded-md object-cover">
-        <span class="absolute top-2 right-2 px-2 rounded text-sm text-gray-50 dark:text-gray-900 bg-gray-900 dark:bg-primary">
-            {{ this.episode.duration }}
-        </span>
+<div class="app-card-podcast flex flex-row items-start gap-x-6 sm:gap-x-7 relative overflow-hidden">
+    <span class="absolute left-0 bottom-0 h-0.5 bg-primary" style="width: 20%;"></span>
+    <div class="relative w-32 md:w-36 lg:w-32 xl:w-44 h-auto flex items-start">
+        <img src="{{ this.episode.thumbnail.name ? vich_uploader_asset(this.episode, 'thumbnail_file') : asset('/images/cover.jpg') }}" alt="Cover image" width="500" class="w-full  aspect-square rounded-md object-cover">
+        <span class="absolute top-2 right-2 px-2 rounded text-sm text-gray-50 dark:text-gray-900 bg-gray-900 dark:bg-primary">{{ this.episode.duration }} min</span>
     </div>
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-center flex-1">
         <a href="{{ path('app_content_podcast_episode_show',  {id: this.episode.id, slug: this.episode.slug}) }}" class="font-semibold line-clamp-4 text-base md:text-lg lg:text-xl text-fg-heading1  hover:text-gray-950 dark:hover:text-primary">
             {{ this.episode.name }}
         </a>
-        {{ this.episode.content | u.truncate(300, '...') }}
+        <p class="text-fg mt-3 sm:mt-5">
+            {{ this.episode.content | u.truncate(300, '...') }}
+        </p>
         <div class="pt-3 sm:pt-5 min-h-max h-max">
             <a aria-current="page" href="{{ path('app_content_podcast_episode_show', {id: this.episode.id, slug: this.episode.slug}) }}" class="flex relative group btn h-10 px-4 text-gray-50 dark:text-gray-900 before:bg-gray-800 dark:before:bg-primary max-w-max text-sm">
                 <span class="relative flex items-center gap-3 z-[6]">

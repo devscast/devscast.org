@@ -22,23 +22,23 @@
             <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
-                        <twig:Icon name="user-circle" />
+                        <twig:DashliteIcon name="user-circle" />
                         <span>Personal</span>
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">
-                        <twig:Icon name="repeat" />
+                        <twig:DashliteIcon name="repeat" />
                         <span>Contenus</span>
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">
-                        <twig:Icon name="repeat" />
+                        <twig:DashliteIcon name="repeat" />
                         <span>Transactions</span>
                     </a>
                 </li>
                 <li class="nav-item nav-item-trigger d-xxl-none">
                     <a href="#" class="toggle btn btn-icon btn-trigger" data-target="userAside">
-                        <twig:Icon name="user-list-fill" />
+                        <twig:DashliteIcon name="user-list-fill" />
                     </a>
                 </li>
             </ul>
@@ -47,30 +47,30 @@
         <twig:block name="content">
             <div class="nk-block">
                 <twig:DashliteDataList title="Informations personnelles" :description="data.biography">
-                    <twig:DataItem label="Nom complet" :value="data.name" />
-                    <twig:DataItem label="Nom d'utilisateur" :value="data.username" />
-                    <twig:DataItem label="Email" :value="data.email" />
-                    <twig:DataItem label="Pronoms" :value="data.pronouns" />
-                    <twig:DataItem label="Poste" :value="data.jobTitle" />
-                    <twig:DataItem label="Genre" :value="data.gender.translationKey | trans([], 'authentication')" />
-                    <twig:DataItem label="Pays" :value="data.country | flag" />
-                    <twig:DataItem label="Rôle" :value="data.roles | last | badge " />
-                    <twig:DataItem label="Linkedin" :value="data.linkedinUrl" link="true" />
-                    <twig:DataItem label="Twitter" :value="data.twitterUrl" link="true" />
-                    <twig:DataItem label="Github" :value="data.githubUrl" link="true" />
-                    <twig:DataItem label="Site Internet" :value="data.githubUrl" link="true"/>
-                    <twig:DataItem label="Flux Rss" :value="data.rssUrl" link="true" />
+                    <twig:DashliteDataItem label="Nom complet" :value="data.name" />
+                    <twig:DashliteDataItem label="Nom d'utilisateur" :value="data.username" />
+                    <twig:DashliteDataItem label="Email" :value="data.email" />
+                    <twig:DashliteDataItem label="Pronoms" :value="data.pronouns" />
+                    <twig:DashliteDataItem label="Poste" :value="data.jobTitle" />
+                    <twig:DashliteDataItem label="Genre" :value="data.gender.translationKey | trans([], 'authentication')" />
+                    <twig:DashliteDataItem label="Pays" :value="data.country | flag" />
+                    <twig:DashliteDataItem label="Rôle" :value="data.roles | last | badge " />
+                    <twig:DashliteDataItem label="Linkedin" :value="data.linkedinUrl" link="true" />
+                    <twig:DashliteDataItem label="Twitter" :value="data.twitterUrl" link="true" />
+                    <twig:DashliteDataItem label="Github" :value="data.githubUrl" link="true" />
+                    <twig:DashliteDataItem label="Site Internet" :value="data.githubUrl" link="true"/>
+                    <twig:DashliteDataItem label="Flux Rss" :value="data.rssUrl" link="true" />
                 </twig:DashliteDataList>
                 <div class="nk-divider divider md"></div>
                 <twig:DashliteDataList title="Informations supplémentaires">
-                    <twig:DataItem label="Bannis" :value="data.banned | boolean" />
-                    <twig:DataItem label="Email vérifié" :value="data.isEmailVerified | boolean" />
-                    <twig:DataItem label="Thème sombre" :value="data.isDarkTheme | boolean" />
-                    <twig:DataItem label="Téléphone vérifié" :value="data.isPhoneNumberVerified | boolean" />
-                    <twig:DataItem label="Newsletter" :value="data.isSubscribedNewsletter | boolean" />
-                    <twig:DataItem label="Marketing" :value="data.isSubscribedMarketing | boolean" />
-                    <twig:DataItem label="2FA activé" :value="data.twoFactorEnabled | boolean" />
-                    <twig:DataItem label="Date de bannissement" :value="data.bannedAt ? data.bannedAt | date : '-'" />
+                    <twig:DashliteDataItem label="Bannis" :value="data.banned | boolean" />
+                    <twig:DashliteDataItem label="Email vérifié" :value="data.isEmailVerified | boolean" />
+                    <twig:DashliteDataItem label="Thème sombre" :value="data.isDarkTheme | boolean" />
+                    <twig:DashliteDataItem label="Téléphone vérifié" :value="data.isPhoneNumberVerified | boolean" />
+                    <twig:DashliteDataItem label="Newsletter" :value="data.isSubscribedNewsletter | boolean" />
+                    <twig:DashliteDataItem label="Marketing" :value="data.isSubscribedMarketing | boolean" />
+                    <twig:DashliteDataItem label="2FA activé" :value="data.twoFactorEnabled | boolean" />
+                    <twig:DashliteDataItem label="Date de bannissement" :value="data.bannedAt ? data.bannedAt | date : '-'" />
                 </twig:DashliteDataList>
             </div>
         </twig:block>
@@ -105,7 +105,7 @@
                                         redirect="{{ path('admin_auth_user_show', {id: data.id}) }}"
                                         title="{{ 'global.ban' | trans([], 'messages') }}"
                                     >
-                                        <twig:Icon name="shield" />
+                                        <twig:DashliteIcon name="shield" />
                                     </button>
                                 {% else %}
                                     <button
@@ -115,11 +115,11 @@
                                         redirect="{{ path('admin_auth_user_show', {id: data.id}) }}"
                                         title="{{ 'global.unban' | trans([], 'messages') }}"
                                     >
-                                        <twig:Icon name="shield-off" />
+                                        <twig:DashliteIcon name="shield-off" />
                                     </button>
                                 {% endif %}
                             </li>
-                            <li><a href="{{ path('admin_auth_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon"><twig:Icon name="mail"/></a></li>
+                            <li><a href="{{ path('admin_auth_user_email', {id: data.id}) }}" class="btn text-soft btn-trigger btn-icon"><twig:DashliteIcon name="mail"/></a></li>
                         </ul>
                     </div>
                     <div class="card-inner"><h6 class="overline-title-alt mb-2">Additional</h6>

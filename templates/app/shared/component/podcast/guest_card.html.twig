@@ -1,0 +1,12 @@
+<div class="p-5 rounded-outer-radius border border-bdr bg-background-card text-fg">
+    <img class="rounded-md w-20 aspect-square shadow-lg mb-3" src="{{ vich_uploader_asset(this.guest, 'avatar_file') }}" alt="{{ this.guest.name }}">
+    <h5 class="text-fg-heading1 md:text-lg font-medium mb-3">{{ this.guest.name }}</h5>
+    <p class="mb-3 text-sm">{{ this.guest.jobTitle }}</p>
+    <div class="flex items-center gap-x-0.5 -mx-2">
+        <a href="{{ this.guest.linkedinUrl }}" class="px-2 py-0.5" title="{{ this.guest.name }} sur linkedin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 448 512" class="w-5 h-5">
+                <path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+            </svg>
+        </a>
+    </div>
+</div>

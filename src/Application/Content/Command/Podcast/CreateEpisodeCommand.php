@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Application\Content\Command\Podcast;
 
 use Application\Content\Command\AbstractContentCommand;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Content\Entity\Podcast\Season;
 use Domain\Content\Enum\ContentType;
 use Domain\Content\Enum\EpisodeType;
@@ -24,6 +26,7 @@ final class CreateEpisodeCommand extends AbstractContentCommand
         #[Assert\GreaterThanOrEqual(1)] public ?int $episode_number = null,
         public EpisodeType $episode_type = EpisodeType::FULL,
         public ContentType $content_type = ContentType::PODCAST,
+        public Collection $guests = new ArrayCollection()
     ) {
     }
 }

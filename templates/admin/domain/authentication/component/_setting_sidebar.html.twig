@@ -6,7 +6,7 @@
                     {% if app.user.avatar.name %}
                         <img src="{{ vich_uploader_asset(app.user, 'avatar_file') }}" alt="{{ app.user.userIdentifier }}">
                     {% else %}
-                        <twig:Icon name="user"/>
+                        <twig:DashliteIcon name="user"/>
                     {% endif %}
                 </div>
                 <div class="user-info">
